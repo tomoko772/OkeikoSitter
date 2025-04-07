@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		A02C051C2DA40FE000316F42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A02C04FD2DA40FDF00316F42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A02C05042DA40FDF00316F42;
+			remoteInfo = OkeikoSitter;
+		};
+		A02C05262DA40FE000316F42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A02C04FD2DA40FDF00316F42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A02C05042DA40FDF00316F42;
+			remoteInfo = OkeikoSitter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A02C05052DA40FDF00316F42 /* OkeikoSitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkeikoSitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A02C051B2DA40FE000316F42 /* OkeikoSitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OkeikoSitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A02C05252DA40FE000316F42 /* OkeikoSitterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OkeikoSitterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A02C052D2DA40FE000316F42 /* Exceptions for "OkeikoSitter" folder in "OkeikoSitter" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A02C05042DA40FDF00316F42 /* OkeikoSitter */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A02C05072DA40FDF00316F42 /* OkeikoSitter */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A02C052D2DA40FE000316F42 /* Exceptions for "OkeikoSitter" folder in "OkeikoSitter" target */,
+			);
+			path = OkeikoSitter;
+			sourceTree = "<group>";
+		};
+		A02C051E2DA40FE000316F42 /* OkeikoSitterTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = OkeikoSitterTests;
+			sourceTree = "<group>";
+		};
+		A02C05282DA40FE000316F42 /* OkeikoSitterUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = OkeikoSitterUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A02C05022DA40FDF00316F42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A02C05182DA40FE000316F42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A02C05222DA40FE000316F42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A02C04FC2DA40FDF00316F42 = {
+			isa = PBXGroup;
+			children = (
+				A02C05072DA40FDF00316F42 /* OkeikoSitter */,
+				A02C051E2DA40FE000316F42 /* OkeikoSitterTests */,
+				A02C05282DA40FE000316F42 /* OkeikoSitterUITests */,
+				A02C05062DA40FDF00316F42 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A02C05062DA40FDF00316F42 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A02C05052DA40FDF00316F42 /* OkeikoSitter.app */,
+				A02C051B2DA40FE000316F42 /* OkeikoSitterTests.xctest */,
+				A02C05252DA40FE000316F42 /* OkeikoSitterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A02C05042DA40FDF00316F42 /* OkeikoSitter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A02C052E2DA40FE000316F42 /* Build configuration list for PBXNativeTarget "OkeikoSitter" */;
+			buildPhases = (
+				A02C05012DA40FDF00316F42 /* Sources */,
+				A02C05022DA40FDF00316F42 /* Frameworks */,
+				A02C05032DA40FDF00316F42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A02C05072DA40FDF00316F42 /* OkeikoSitter */,
+			);
+			name = OkeikoSitter;
+			packageProductDependencies = (
+			);
+			productName = OkeikoSitter;
+			productReference = A02C05052DA40FDF00316F42 /* OkeikoSitter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A02C051A2DA40FE000316F42 /* OkeikoSitterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A02C05332DA40FE000316F42 /* Build configuration list for PBXNativeTarget "OkeikoSitterTests" */;
+			buildPhases = (
+				A02C05172DA40FE000316F42 /* Sources */,
+				A02C05182DA40FE000316F42 /* Frameworks */,
+				A02C05192DA40FE000316F42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A02C051D2DA40FE000316F42 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A02C051E2DA40FE000316F42 /* OkeikoSitterTests */,
+			);
+			name = OkeikoSitterTests;
+			packageProductDependencies = (
+			);
+			productName = OkeikoSitterTests;
+			productReference = A02C051B2DA40FE000316F42 /* OkeikoSitterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A02C05242DA40FE000316F42 /* OkeikoSitterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A02C05362DA40FE000316F42 /* Build configuration list for PBXNativeTarget "OkeikoSitterUITests" */;
+			buildPhases = (
+				A02C05212DA40FE000316F42 /* Sources */,
+				A02C05222DA40FE000316F42 /* Frameworks */,
+				A02C05232DA40FE000316F42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A02C05272DA40FE000316F42 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A02C05282DA40FE000316F42 /* OkeikoSitterUITests */,
+			);
+			name = OkeikoSitterUITests;
+			packageProductDependencies = (
+			);
+			productName = OkeikoSitterUITests;
+			productReference = A02C05252DA40FE000316F42 /* OkeikoSitterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A02C04FD2DA40FDF00316F42 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					A02C05042DA40FDF00316F42 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					A02C051A2DA40FE000316F42 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = A02C05042DA40FDF00316F42;
+					};
+					A02C05242DA40FE000316F42 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = A02C05042DA40FDF00316F42;
+					};
+				};
+			};
+			buildConfigurationList = A02C05002DA40FDF00316F42 /* Build configuration list for PBXProject "OkeikoSitter" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A02C04FC2DA40FDF00316F42;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A02C05062DA40FDF00316F42 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A02C05042DA40FDF00316F42 /* OkeikoSitter */,
+				A02C051A2DA40FE000316F42 /* OkeikoSitterTests */,
+				A02C05242DA40FE000316F42 /* OkeikoSitterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A02C05032DA40FDF00316F42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A02C05192DA40FE000316F42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A02C05232DA40FE000316F42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A02C05012DA40FDF00316F42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A02C05172DA40FE000316F42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A02C05212DA40FE000316F42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A02C051D2DA40FE000316F42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A02C05042DA40FDF00316F42 /* OkeikoSitter */;
+			targetProxy = A02C051C2DA40FE000316F42 /* PBXContainerItemProxy */;
+		};
+		A02C05272DA40FE000316F42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A02C05042DA40FDF00316F42 /* OkeikoSitter */;
+			targetProxy = A02C05262DA40FE000316F42 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A02C052F2DA40FE000316F42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VK6NH793RA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OkeikoSitter/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.init.example.OkeikoSitter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A02C05302DA40FE000316F42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VK6NH793RA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OkeikoSitter/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.init.example.OkeikoSitter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A02C05312DA40FE000316F42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A02C05322DA40FE000316F42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A02C05342DA40FE000316F42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VK6NH793RA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.init.example.OkeikoSitterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OkeikoSitter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OkeikoSitter";
+			};
+			name = Debug;
+		};
+		A02C05352DA40FE000316F42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VK6NH793RA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.init.example.OkeikoSitterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OkeikoSitter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OkeikoSitter";
+			};
+			name = Release;
+		};
+		A02C05372DA40FE000316F42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VK6NH793RA;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.init.example.OkeikoSitterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OkeikoSitter;
+			};
+			name = Debug;
+		};
+		A02C05382DA40FE000316F42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VK6NH793RA;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.init.example.OkeikoSitterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OkeikoSitter;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A02C05002DA40FDF00316F42 /* Build configuration list for PBXProject "OkeikoSitter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A02C05312DA40FE000316F42 /* Debug */,
+				A02C05322DA40FE000316F42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A02C052E2DA40FE000316F42 /* Build configuration list for PBXNativeTarget "OkeikoSitter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A02C052F2DA40FE000316F42 /* Debug */,
+				A02C05302DA40FE000316F42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A02C05332DA40FE000316F42 /* Build configuration list for PBXNativeTarget "OkeikoSitterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A02C05342DA40FE000316F42 /* Debug */,
+				A02C05352DA40FE000316F42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A02C05362DA40FE000316F42 /* Build configuration list for PBXNativeTarget "OkeikoSitterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A02C05372DA40FE000316F42 /* Debug */,
+				A02C05382DA40FE000316F42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A02C04FD2DA40FDF00316F42 /* Project object */;
+}
