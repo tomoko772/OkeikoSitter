@@ -34,9 +34,9 @@ class MainViewController: UIViewController {
         
         // 画像のサイズを適切に設定
         let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
-        imageView.frame = titleView.bounds
+        imageView.frame = CGRect(x: 100, y: 0, width: 38, height: 38) // x座標を調整して右に寄せる
+        //imageView.frame = titleView.bounds
         titleView.addSubview(imageView)
-        
         // ナビゲーションアイテムのタイトルビューに設定
         self.navigationItem.titleView = titleView
     }
