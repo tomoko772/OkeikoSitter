@@ -17,31 +17,25 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Other Methods
-    
-    
-    
-    
-    
+
     private func configureBarButtonItems() {
         
         // １つ目の画像ボタン
-        let image1 = UIImage(named: "ic_users")
-        let button1 = UIBarButtonItem(
-            image: image1,
+        let firstBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "ic_users"),
             style: .plain,
             target: self,
             action: #selector(didTapUsersButton))
     
         // ２つ目の画像のボタン
-        let image2 = UIImage(named: "ic_setting")
-        let button2 = UIBarButtonItem(
-            image: image2,
+        let secondBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "ic_setting"),
             style: .plain,
             target: self,
             action: #selector(didTapSettingButton))
         
         // ボタンを右側に２つ並べる
-        self.navigationItem.rightBarButtonItems = [button1, button2]
+        self.navigationItem.rightBarButtonItems = [firstBarButtonItem, secondBarButtonItem]
     }
     
     @objc private func didTapSettingButton() {
