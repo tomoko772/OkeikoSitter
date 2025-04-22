@@ -33,10 +33,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gey-sm-KR3">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Pw-Mv-FNB">
-                                        <rect key="frame" x="0.0" y="-103" width="393" height="818"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Pw-Mv-FNB">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -44,7 +44,6 @@
                                     <constraint firstItem="6Pw-Mv-FNB" firstAttribute="top" secondItem="Gey-sm-KR3" secondAttribute="top" id="2kq-Q3-tTz"/>
                                     <constraint firstAttribute="trailing" secondItem="6Pw-Mv-FNB" secondAttribute="trailing" id="Fas-LU-bEe"/>
                                     <constraint firstAttribute="bottom" secondItem="6Pw-Mv-FNB" secondAttribute="bottom" id="TpZ-G9-DH5"/>
-                                    <constraint firstItem="6Pw-Mv-FNB" firstAttribute="width" secondItem="Gey-sm-KR3" secondAttribute="width" multiplier="0.610687" id="gsG-OF-U9O"/>
                                     <constraint firstItem="6Pw-Mv-FNB" firstAttribute="leading" secondItem="Gey-sm-KR3" secondAttribute="leading" id="jDj-zO-eY3"/>
                                 </constraints>
                             </scrollView>
@@ -55,7 +54,8 @@
                             <constraint firstItem="fH8-ns-22W" firstAttribute="bottom" secondItem="Gey-sm-KR3" secondAttribute="bottom" id="Wz3-di-bvI"/>
                             <constraint firstItem="fH8-ns-22W" firstAttribute="trailing" secondItem="Gey-sm-KR3" secondAttribute="trailing" id="XDV-iA-UxR"/>
                             <constraint firstItem="Gey-sm-KR3" firstAttribute="leading" secondItem="fH8-ns-22W" secondAttribute="leading" id="pY9-51-FBg"/>
-                            <constraint firstItem="Gey-sm-KR3" firstAttribute="top" secondItem="woP-PD-5z0" secondAttribute="top" id="wir-cV-hYr"/>
+                            <constraint firstItem="6Pw-Mv-FNB" firstAttribute="width" secondItem="woP-PD-5z0" secondAttribute="width" id="wC9-Vb-CGr"/>
+                            <constraint firstItem="Gey-sm-KR3" firstAttribute="top" secondItem="fH8-ns-22W" secondAttribute="top" id="wir-cV-hYr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dog-in-9qq"/>
