@@ -37,7 +37,21 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Pw-Mv-FNB">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b7V-Uw-vdh">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="hDc-j9-FhZ"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="b7V-Uw-vdh" secondAttribute="trailing" id="5ni-4r-dzi"/>
+                                            <constraint firstItem="b7V-Uw-vdh" firstAttribute="top" secondItem="6Pw-Mv-FNB" secondAttribute="top" id="7sp-0t-I5m"/>
+                                            <constraint firstItem="b7V-Uw-vdh" firstAttribute="leading" secondItem="6Pw-Mv-FNB" secondAttribute="leading" id="DcN-nu-PHG"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
