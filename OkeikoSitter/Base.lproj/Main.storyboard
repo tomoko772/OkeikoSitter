@@ -73,27 +73,43 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGZ-sC-pCP">
                                                 <rect key="frame" x="28" y="70" width="337" height="685"/>
                                                 <subviews>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容（達成したらクリック↓）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2q-3o-EfC">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OoN-oO-zkS">
                                                         <rect key="frame" x="32" y="14" width="281" height="55"/>
+                                                        <subviews>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容（達成したらクリック↓）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2q-3o-EfC">
+                                                                <rect key="frame" x="0.0" y="0.0" width="281" height="55"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="281" id="5re-ny-Z82"/>
+                                                                    <constraint firstAttribute="height" constant="55" id="NQi-GP-fpY"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="8"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                        </subviews>
                                                         <color key="backgroundColor" red="0.92156862745098034" green="1" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="281" id="5re-ny-Z82"/>
-                                                            <constraint firstAttribute="height" constant="55" id="NQi-GP-fpY"/>
+                                                            <constraint firstAttribute="width" constant="281" id="I7X-3j-ajJ"/>
+                                                            <constraint firstAttribute="height" constant="55" id="PA9-Ro-xrA"/>
+                                                            <constraint firstItem="k2q-3o-EfC" firstAttribute="top" secondItem="OoN-oO-zkS" secondAttribute="top" id="Zmr-CL-COD"/>
+                                                            <constraint firstItem="k2q-3o-EfC" firstAttribute="leading" secondItem="OoN-oO-zkS" secondAttribute="leading" id="ibQ-ub-Oqq"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                 <integer key="value" value="8"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                    </label>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstItem="k2q-3o-EfC" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="32" id="OFR-VD-6dG"/>
-                                                    <constraint firstItem="k2q-3o-EfC" firstAttribute="top" secondItem="HGZ-sC-pCP" secondAttribute="top" constant="14" id="u3s-ZL-7cK"/>
+                                                    <constraint firstItem="OoN-oO-zkS" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="32" id="HBF-ZC-BEE"/>
+                                                    <constraint firstItem="OoN-oO-zkS" firstAttribute="top" secondItem="HGZ-sC-pCP" secondAttribute="top" constant="14" id="ZmL-XE-TKT"/>
                                                     <constraint firstAttribute="height" constant="685" id="uZy-R0-4gf"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
