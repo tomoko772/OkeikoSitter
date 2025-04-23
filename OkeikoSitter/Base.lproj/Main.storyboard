@@ -71,7 +71,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGZ-sC-pCP">
-                                                <rect key="frame" x="0.0" y="70" width="393" height="685"/>
+                                                <rect key="frame" x="28" y="70" width="337" height="685"/>
                                                 <color key="backgroundColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="685" id="uZy-R0-4gf"/>
@@ -88,10 +88,10 @@
                                             <constraint firstItem="HGZ-sC-pCP" firstAttribute="top" secondItem="b7V-Uw-vdh" secondAttribute="bottom" id="3TI-dc-Rd9"/>
                                             <constraint firstAttribute="trailing" secondItem="b7V-Uw-vdh" secondAttribute="trailing" id="5ni-4r-dzi"/>
                                             <constraint firstItem="b7V-Uw-vdh" firstAttribute="top" secondItem="6Pw-Mv-FNB" secondAttribute="top" id="7sp-0t-I5m"/>
-                                            <constraint firstAttribute="trailing" secondItem="HGZ-sC-pCP" secondAttribute="trailing" id="C4C-6O-7Nt"/>
+                                            <constraint firstAttribute="trailing" secondItem="HGZ-sC-pCP" secondAttribute="trailing" constant="28" id="C4C-6O-7Nt"/>
                                             <constraint firstItem="b7V-Uw-vdh" firstAttribute="leading" secondItem="6Pw-Mv-FNB" secondAttribute="leading" id="DcN-nu-PHG"/>
                                             <constraint firstAttribute="bottom" secondItem="HGZ-sC-pCP" secondAttribute="bottom" constant="34" id="U2J-iD-ZgF"/>
-                                            <constraint firstItem="HGZ-sC-pCP" firstAttribute="leading" secondItem="6Pw-Mv-FNB" secondAttribute="leading" id="uEa-62-eZV"/>
+                                            <constraint firstItem="HGZ-sC-pCP" firstAttribute="leading" secondItem="6Pw-Mv-FNB" secondAttribute="leading" constant="28" id="uEa-62-eZV"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
