@@ -104,18 +104,36 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qud-c2-PTL">
+                                                        <rect key="frame" x="46" y="73" width="245" height="115"/>
+                                                        <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="115" id="y9a-O4-Tfc"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="qud-c2-PTL" secondAttribute="trailing" constant="46" id="0Bz-1U-Sqi"/>
                                                     <constraint firstItem="OoN-oO-zkS" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="32" id="HBF-ZC-BEE"/>
                                                     <constraint firstItem="OoN-oO-zkS" firstAttribute="top" secondItem="HGZ-sC-pCP" secondAttribute="top" constant="14" id="ZmL-XE-TKT"/>
                                                     <constraint firstAttribute="trailing" secondItem="OoN-oO-zkS" secondAttribute="trailing" constant="32" id="ppW-1D-C30"/>
                                                     <constraint firstAttribute="height" constant="685" id="uZy-R0-4gf"/>
+                                                    <constraint firstItem="qud-c2-PTL" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="46" id="yYm-8Q-g8x"/>
+                                                    <constraint firstItem="qud-c2-PTL" firstAttribute="top" secondItem="OoN-oO-zkS" secondAttribute="bottom" constant="4" id="yva-Q8-swp"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
