@@ -222,7 +222,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Dog-in-9qq"/>
                     <connections>
-                        <outlet property="violinGifImage" destination="Dl7-Mn-ck1" id="IUD-Xc-Jit"/>
+                        <outlet property="gifImage" destination="Dl7-Mn-ck1" id="IUD-Xc-Jit"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m72-Hw-t9o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

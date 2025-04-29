@@ -12,10 +12,11 @@ class MainViewController: UIViewController {
     
     // MARK: - View Life-Cycle Methods
     
-    @IBOutlet weak var violinGifImage: UIImageView!
+    @IBOutlet weak var gifImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gifImage.loadGif(name: "violin")
         configureBarButtonItems()
     }
     
