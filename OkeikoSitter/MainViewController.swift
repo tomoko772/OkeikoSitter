@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import SwiftGifOrigin
 
 class MainViewController: UIViewController {
     
     // MARK: - View Life-Cycle Methods
+    
+    @IBOutlet weak var violinGifImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
