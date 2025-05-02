@@ -1,23 +1,31 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  OkeikoSitter
 //
 //  Created by Tomoko T. Nakao on 2025/04/07.
 //
 
 import UIKit
+import SwiftGifOrigin
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet private weak var gifImage: UIImageView!
     
     // MARK: - View Life-Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gifImage.loadGif(name: "violin")
+        gifImage.clipsToBounds = true
+        gifImage.contentMode = .center
         configureBarButtonItems()
     }
     
     // MARK: - Other Methods
-
+    
     private func configureBarButtonItems() {
         
         // １つ目の画像ボタン
@@ -26,7 +34,7 @@ class MainViewController: UIViewController {
             style: .plain,
             target: self,
             action: #selector(didTapUsersButton))
-    
+        
         // ２つ目の画像のボタン
         let secondBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "ic_setting"),
@@ -47,6 +55,6 @@ class MainViewController: UIViewController {
         // ユーザー切り替えボタンがタップされたときの処理
         print("ユーザー切り替えボタンがタップされました")
     }
-
+    
 }
 

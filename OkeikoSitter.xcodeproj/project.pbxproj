@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		05077BB51AA57A201A8C1F08 /* Pods_OkeikoSitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCF1541357E48D93D118484 /* Pods_OkeikoSitter.framework */; };
+		421558465FDDDEE70E4E48B6 /* Pods_OkeikoSitter_OkeikoSitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6B792ACEFAA27DD5C0BB5F /* Pods_OkeikoSitter_OkeikoSitterUITests.framework */; };
+		F02246C39307296D93E7A725 /* Pods_OkeikoSitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D511F054EF139139BEE6EA /* Pods_OkeikoSitterTests.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A02C051C2DA40FE000316F42 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,9 +30,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12556B74575E5937BFBA23ED /* Pods-OkeikoSitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkeikoSitterTests.debug.xcconfig"; path = "Target Support Files/Pods-OkeikoSitterTests/Pods-OkeikoSitterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		16D511F054EF139139BEE6EA /* Pods_OkeikoSitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkeikoSitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E6B792ACEFAA27DD5C0BB5F /* Pods_OkeikoSitter_OkeikoSitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkeikoSitter_OkeikoSitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C6516DE34DEF575E216E386 /* Pods-OkeikoSitter-OkeikoSitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkeikoSitter-OkeikoSitterUITests.release.xcconfig"; path = "Target Support Files/Pods-OkeikoSitter-OkeikoSitterUITests/Pods-OkeikoSitter-OkeikoSitterUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5E995ED2BA2AAE659BF1A623 /* Pods-OkeikoSitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkeikoSitterTests.release.xcconfig"; path = "Target Support Files/Pods-OkeikoSitterTests/Pods-OkeikoSitterTests.release.xcconfig"; sourceTree = "<group>"; };
 		A02C05052DA40FDF00316F42 /* OkeikoSitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkeikoSitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A02C051B2DA40FE000316F42 /* OkeikoSitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OkeikoSitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A02C05252DA40FE000316F42 /* OkeikoSitterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OkeikoSitterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9EFA8489E382FC1D7EA1BE8 /* Pods-OkeikoSitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkeikoSitter.release.xcconfig"; path = "Target Support Files/Pods-OkeikoSitter/Pods-OkeikoSitter.release.xcconfig"; sourceTree = "<group>"; };
+		CFFDCB7C0F8FF40A173063E2 /* Pods-OkeikoSitter-OkeikoSitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkeikoSitter-OkeikoSitterUITests.debug.xcconfig"; path = "Target Support Files/Pods-OkeikoSitter-OkeikoSitterUITests/Pods-OkeikoSitter-OkeikoSitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CFFEB63197A9FA09F2AF1B8F /* Pods-OkeikoSitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkeikoSitter.debug.xcconfig"; path = "Target Support Files/Pods-OkeikoSitter/Pods-OkeikoSitter.debug.xcconfig"; sourceTree = "<group>"; };
+		FBCF1541357E48D93D118484 /* Pods_OkeikoSitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkeikoSitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -65,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05077BB51AA57A201A8C1F08 /* Pods_OkeikoSitter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F02246C39307296D93E7A725 /* Pods_OkeikoSitterTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,12 +96,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				421558465FDDDEE70E4E48B6 /* Pods_OkeikoSitter_OkeikoSitterUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F5A0FCF49DB3B2BC005F141 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FBCF1541357E48D93D118484 /* Pods_OkeikoSitter.framework */,
+				1E6B792ACEFAA27DD5C0BB5F /* Pods_OkeikoSitter_OkeikoSitterUITests.framework */,
+				16D511F054EF139139BEE6EA /* Pods_OkeikoSitterTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		839652083E899C774E729632 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CFFEB63197A9FA09F2AF1B8F /* Pods-OkeikoSitter.debug.xcconfig */,
+				B9EFA8489E382FC1D7EA1BE8 /* Pods-OkeikoSitter.release.xcconfig */,
+				CFFDCB7C0F8FF40A173063E2 /* Pods-OkeikoSitter-OkeikoSitterUITests.debug.xcconfig */,
+				2C6516DE34DEF575E216E386 /* Pods-OkeikoSitter-OkeikoSitterUITests.release.xcconfig */,
+				12556B74575E5937BFBA23ED /* Pods-OkeikoSitterTests.debug.xcconfig */,
+				5E995ED2BA2AAE659BF1A623 /* Pods-OkeikoSitterTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A02C04FC2DA40FDF00316F42 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +133,8 @@
 				A02C051E2DA40FE000316F42 /* OkeikoSitterTests */,
 				A02C05282DA40FE000316F42 /* OkeikoSitterUITests */,
 				A02C05062DA40FDF00316F42 /* Products */,
+				839652083E899C774E729632 /* Pods */,
+				0F5A0FCF49DB3B2BC005F141 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,9 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A02C052E2DA40FE000316F42 /* Build configuration list for PBXNativeTarget "OkeikoSitter" */;
 			buildPhases = (
+				4F04DCDC6C79F2A695020EC2 /* [CP] Check Pods Manifest.lock */,
 				A02C05012DA40FDF00316F42 /* Sources */,
 				A02C05022DA40FDF00316F42 /* Frameworks */,
 				A02C05032DA40FDF00316F42 /* Resources */,
+				9FC3B7D117CEA3CA52FE57FD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,8 +169,6 @@
 				A02C05072DA40FDF00316F42 /* OkeikoSitter */,
 			);
 			name = OkeikoSitter;
-			packageProductDependencies = (
-			);
 			productName = OkeikoSitter;
 			productReference = A02C05052DA40FDF00316F42 /* OkeikoSitter.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +177,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A02C05332DA40FE000316F42 /* Build configuration list for PBXNativeTarget "OkeikoSitterTests" */;
 			buildPhases = (
+				E9176BE4EAFB668EFECC67DE /* [CP] Check Pods Manifest.lock */,
 				A02C05172DA40FE000316F42 /* Sources */,
 				A02C05182DA40FE000316F42 /* Frameworks */,
 				A02C05192DA40FE000316F42 /* Resources */,
@@ -147,8 +191,6 @@
 				A02C051E2DA40FE000316F42 /* OkeikoSitterTests */,
 			);
 			name = OkeikoSitterTests;
-			packageProductDependencies = (
-			);
 			productName = OkeikoSitterTests;
 			productReference = A02C051B2DA40FE000316F42 /* OkeikoSitterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,9 +199,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A02C05362DA40FE000316F42 /* Build configuration list for PBXNativeTarget "OkeikoSitterUITests" */;
 			buildPhases = (
+				18F07FD1E0ECE79AB8E04DBC /* [CP] Check Pods Manifest.lock */,
 				A02C05212DA40FE000316F42 /* Sources */,
 				A02C05222DA40FE000316F42 /* Frameworks */,
 				A02C05232DA40FE000316F42 /* Resources */,
+				7D4F64EFD751C4A7169CC7C7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,8 +214,6 @@
 				A02C05282DA40FE000316F42 /* OkeikoSitterUITests */,
 			);
 			name = OkeikoSitterUITests;
-			packageProductDependencies = (
-			);
 			productName = OkeikoSitterUITests;
 			productReference = A02C05252DA40FE000316F42 /* OkeikoSitterUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -244,6 +286,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		18F07FD1E0ECE79AB8E04DBC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OkeikoSitter-OkeikoSitterUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4F04DCDC6C79F2A695020EC2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OkeikoSitter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D4F64EFD751C4A7169CC7C7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OkeikoSitter-OkeikoSitterUITests/Pods-OkeikoSitter-OkeikoSitterUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OkeikoSitter-OkeikoSitterUITests/Pods-OkeikoSitter-OkeikoSitterUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OkeikoSitter-OkeikoSitterUITests/Pods-OkeikoSitter-OkeikoSitterUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FC3B7D117CEA3CA52FE57FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OkeikoSitter/Pods-OkeikoSitter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OkeikoSitter/Pods-OkeikoSitter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OkeikoSitter/Pods-OkeikoSitter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9176BE4EAFB668EFECC67DE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OkeikoSitterTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A02C05012DA40FDF00316F42 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -284,12 +429,14 @@
 /* Begin XCBuildConfiguration section */
 		A02C052F2DA40FE000316F42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFFEB63197A9FA09F2AF1B8F /* Pods-OkeikoSitter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VK6NH793RA;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OkeikoSitter/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -313,12 +460,14 @@
 		};
 		A02C05302DA40FE000316F42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9EFA8489E382FC1D7EA1BE8 /* Pods-OkeikoSitter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VK6NH793RA;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OkeikoSitter/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -377,7 +526,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -440,7 +589,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -461,11 +610,13 @@
 		};
 		A02C05342DA40FE000316F42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12556B74575E5937BFBA23ED /* Pods-OkeikoSitterTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VK6NH793RA;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
@@ -480,11 +631,13 @@
 		};
 		A02C05352DA40FE000316F42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E995ED2BA2AAE659BF1A623 /* Pods-OkeikoSitterTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VK6NH793RA;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
@@ -499,10 +652,12 @@
 		};
 		A02C05372DA40FE000316F42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFFDCB7C0F8FF40A173063E2 /* Pods-OkeikoSitter-OkeikoSitterUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VK6NH793RA;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.init.example.OkeikoSitterUITests;
@@ -516,10 +671,12 @@
 		};
 		A02C05382DA40FE000316F42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C6516DE34DEF575E216E386 /* Pods-OkeikoSitter-OkeikoSitterUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VK6NH793RA;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.init.example.OkeikoSitterUITests;
