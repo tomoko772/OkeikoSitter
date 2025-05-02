@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     
     // MARK: - IBOutlets
     
-    @IBOutlet weak var gifImage: UIImageView!
+    @IBOutlet private weak var gifImage: UIImageView!
     
     // MARK: - View Life-Cycle Methods
     
