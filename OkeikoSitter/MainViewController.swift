@@ -10,9 +10,11 @@ import SwiftGifOrigin
 
 class MainViewController: UIViewController {
     
-    // MARK: - View Life-Cycle Methods
+    // MARK: - IBOutlets
     
     @IBOutlet weak var gifImage: UIImageView!
+    
+    // MARK: - View Life-Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
