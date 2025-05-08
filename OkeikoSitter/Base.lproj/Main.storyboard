@@ -164,15 +164,52 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yd8-IO-bAf">
+                                                        <rect key="frame" x="46" y="194" width="245" height="49"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ボーナスポイント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnA-TA-WAx">
+                                                                <rect key="frame" x="58" y="16.666666666666686" width="129" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.99215686274509807" green="0.82745098039215681" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="49" id="2Aa-4V-2q1"/>
+                                                            <constraint firstAttribute="trailing" secondItem="VnA-TA-WAx" secondAttribute="trailing" constant="58" id="Ckx-aa-18j"/>
+                                                            <constraint firstItem="VnA-TA-WAx" firstAttribute="leading" secondItem="yd8-IO-bAf" secondAttribute="leading" constant="58" id="h3T-F1-Nec"/>
+                                                            <constraint firstItem="VnA-TA-WAx" firstAttribute="top" secondItem="yd8-IO-bAf" secondAttribute="top" constant="16.5" id="l2g-8H-Uj0"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXo-ak-N0b">
+                                                        <rect key="frame" x="46" y="194" width="245" height="49"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="49" id="89g-ae-Edj"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain"/>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="qud-c2-PTL" secondAttribute="trailing" constant="46" id="0Bz-1U-Sqi"/>
                                                     <constraint firstAttribute="trailing" secondItem="aO0-YA-QaS" secondAttribute="trailing" constant="46" id="7Ia-TK-aJt"/>
+                                                    <constraint firstAttribute="trailing" secondItem="yd8-IO-bAf" secondAttribute="trailing" constant="46" id="9kt-s7-h4Q"/>
+                                                    <constraint firstAttribute="trailing" secondItem="bXo-ak-N0b" secondAttribute="trailing" constant="46" id="9sp-eJ-p5O"/>
                                                     <constraint firstItem="aO0-YA-QaS" firstAttribute="top" secondItem="OoN-oO-zkS" secondAttribute="bottom" constant="4" id="AzA-IJ-VKn"/>
+                                                    <constraint firstItem="yd8-IO-bAf" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="46" id="EF5-mc-ONX"/>
+                                                    <constraint firstItem="bXo-ak-N0b" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="46" id="GwS-wc-tmI"/>
                                                     <constraint firstItem="OoN-oO-zkS" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="32" id="HBF-ZC-BEE"/>
+                                                    <constraint firstItem="bXo-ak-N0b" firstAttribute="top" secondItem="qud-c2-PTL" secondAttribute="bottom" constant="6" id="OLJ-AN-pU7"/>
                                                     <constraint firstItem="aO0-YA-QaS" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="46" id="Yri-81-keH"/>
                                                     <constraint firstItem="OoN-oO-zkS" firstAttribute="top" secondItem="HGZ-sC-pCP" secondAttribute="top" constant="14" id="ZmL-XE-TKT"/>
+                                                    <constraint firstItem="yd8-IO-bAf" firstAttribute="top" secondItem="qud-c2-PTL" secondAttribute="bottom" constant="6" id="a3q-x1-iQU"/>
                                                     <constraint firstAttribute="trailing" secondItem="OoN-oO-zkS" secondAttribute="trailing" constant="32" id="ppW-1D-C30"/>
                                                     <constraint firstAttribute="height" constant="685" id="uZy-R0-4gf"/>
                                                     <constraint firstItem="qud-c2-PTL" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="46" id="yYm-8Q-g8x"/>
