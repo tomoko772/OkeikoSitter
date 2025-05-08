@@ -195,6 +195,18 @@
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain"/>
                                                     </button>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LCl-zv-g1k">
+                                                        <rect key="frame" x="16" y="249" width="306" height="292"/>
+                                                        <color key="backgroundColor" red="0.68627450980392157" green="0.95686274509803915" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="292" id="DnF-Xn-5uv"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -207,9 +219,12 @@
                                                     <constraint firstItem="bXo-ak-N0b" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="46" id="GwS-wc-tmI"/>
                                                     <constraint firstItem="OoN-oO-zkS" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="32" id="HBF-ZC-BEE"/>
                                                     <constraint firstItem="bXo-ak-N0b" firstAttribute="top" secondItem="qud-c2-PTL" secondAttribute="bottom" constant="6" id="OLJ-AN-pU7"/>
+                                                    <constraint firstAttribute="trailing" secondItem="LCl-zv-g1k" secondAttribute="trailing" constant="15" id="VSl-aX-7en"/>
                                                     <constraint firstItem="aO0-YA-QaS" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="46" id="Yri-81-keH"/>
                                                     <constraint firstItem="OoN-oO-zkS" firstAttribute="top" secondItem="HGZ-sC-pCP" secondAttribute="top" constant="14" id="ZmL-XE-TKT"/>
                                                     <constraint firstItem="yd8-IO-bAf" firstAttribute="top" secondItem="qud-c2-PTL" secondAttribute="bottom" constant="6" id="a3q-x1-iQU"/>
+                                                    <constraint firstItem="LCl-zv-g1k" firstAttribute="top" secondItem="yd8-IO-bAf" secondAttribute="bottom" constant="6" id="jCT-bW-EB3"/>
+                                                    <constraint firstItem="LCl-zv-g1k" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="16" id="nra-CW-9wI"/>
                                                     <constraint firstAttribute="trailing" secondItem="OoN-oO-zkS" secondAttribute="trailing" constant="32" id="ppW-1D-C30"/>
                                                     <constraint firstAttribute="height" constant="685" id="uZy-R0-4gf"/>
                                                     <constraint firstItem="qud-c2-PTL" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="46" id="yYm-8Q-g8x"/>
