@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Pw-Mv-FNB">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="789"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="799"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b7V-Uw-vdh">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
@@ -71,16 +71,18 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGZ-sC-pCP">
-                                                <rect key="frame" x="28" y="70" width="337" height="685"/>
+                                                <rect key="frame" x="28" y="80" width="347" height="685"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OoN-oO-zkS">
-                                                        <rect key="frame" x="32" y="14" width="273" height="55"/>
+                                                        <rect key="frame" x="32" y="14" width="283" height="55"/>
                                                         <subviews>
-                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☆チャレンジ内容                                  （達成したらクリックしよう↓）" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2q-3o-EfC">
-                                                                <rect key="frame" x="0.0" y="0.0" width="273" height="55"/>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2q-3o-EfC">
+                                                                <rect key="frame" x="0.0" y="0.0" width="283" height="55"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="NQi-GP-fpY"/>
                                                                 </constraints>
+                                                                <string key="text">☆チャレンジ内容
+ （達成したらクリックしよう↓）</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -105,7 +107,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qud-c2-PTL">
-                                                        <rect key="frame" x="46" y="73" width="245" height="115"/>
+                                                        <rect key="frame" x="46" y="73" width="255" height="115"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="115" id="y9a-O4-Tfc"/>
                                                         </constraints>
@@ -121,10 +123,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aO0-YA-QaS">
-                                                        <rect key="frame" x="46" y="73" width="245" height="115"/>
+                                                        <rect key="frame" x="46" y="73" width="255" height="115"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtb-mp-PzB">
-                                                                <rect key="frame" x="75" y="60" width="96" height="45"/>
+                                                                <rect key="frame" x="75" y="60" width="106" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="2Ot-Qa-2u4"/>
                                                                 </constraints>
@@ -133,13 +135,13 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="毎日30分バイオリンを練習" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6x-qg-RCo">
-                                                                <rect key="frame" x="29" y="33.666666666666686" width="187" height="19.333333333333329"/>
+                                                                <rect key="frame" x="29" y="33.666666666666686" width="197" height="19.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dl7-Mn-ck1">
-                                                                <rect key="frame" x="15" y="51" width="51" height="61.666666666666657"/>
+                                                                <rect key="frame" x="15" y="51" width="61" height="61.666666666666657"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="61.539999999999999" id="3hg-3h-vt8"/>
                                                                 </constraints>
@@ -165,10 +167,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yd8-IO-bAf">
-                                                        <rect key="frame" x="46" y="194" width="245" height="49"/>
+                                                        <rect key="frame" x="46" y="194" width="255" height="49"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ボーナスポイント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnA-TA-WAx">
-                                                                <rect key="frame" x="58" y="16.666666666666686" width="129" height="21"/>
+                                                                <rect key="frame" x="58" y="16.666666666666686" width="139" height="21"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -188,7 +190,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXo-ak-N0b">
-                                                        <rect key="frame" x="46" y="194" width="245" height="49"/>
+                                                        <rect key="frame" x="46" y="194" width="255" height="49"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="49" id="89g-ae-Edj"/>
                                                         </constraints>
@@ -196,13 +198,13 @@
                                                         <buttonConfiguration key="configuration" style="plain"/>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LCl-zv-g1k">
-                                                        <rect key="frame" x="16" y="249" width="306" height="292"/>
+                                                        <rect key="frame" x="16" y="249" width="316" height="292"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUi-up-B5w">
-                                                                <rect key="frame" x="31" y="17" width="245" height="75"/>
+                                                                <rect key="frame" x="31" y="17" width="255" height="75"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="現在　５　ポイント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cW-IU-c4O">
-                                                                        <rect key="frame" x="50" y="29.666666666666686" width="145" height="21"/>
+                                                                        <rect key="frame" x="50" y="29.666666666666686" width="155" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -222,10 +224,10 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C7b-1f-5UW">
-                                                                <rect key="frame" x="31" y="111" width="244" height="75"/>
+                                                                <rect key="frame" x="31" y="111" width="254" height="75"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目標　３０　ポイント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pze-Sr-b4G">
-                                                                        <rect key="frame" x="42" y="29.666666666666629" width="160" height="21"/>
+                                                                        <rect key="frame" x="42" y="29.666666666666629" width="170" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -251,7 +253,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Mk-pT-Yyu">
-                                                                <rect key="frame" x="31" y="201" width="244" height="75"/>
+                                                                <rect key="frame" x="31" y="201" width="254" height="75"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="75" id="0pR-Wc-bD9"/>
                                                                 </constraints>
@@ -264,16 +266,16 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cy1-13-BlZ">
-                                                                <rect key="frame" x="31" y="201" width="244" height="75"/>
+                                                                <rect key="frame" x="31" y="201" width="254" height="75"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="残り　２７　日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duu-kE-vVK">
-                                                                        <rect key="frame" x="76" y="28" width="112" height="21"/>
+                                                                        <rect key="frame" x="76" y="28" width="122" height="21"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" translatesAutoresizingMaskIntoConstraints="NO" id="oin-pi-Zrz">
-                                                                        <rect key="frame" x="31" y="24" width="26" height="25"/>
+                                                                        <rect key="frame" x="31" y="24" width="36" height="25"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="25" id="Oza-zV-SzT"/>
                                                                         </constraints>
@@ -324,10 +326,39 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKy-wT-pCh">
+                                                        <rect key="frame" x="19" y="551" width="310" height="42"/>
+                                                        <subviews>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目標ポイントに到達するともらえるよ↓                        " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6v0-3a-D06">
+                                                                <rect key="frame" x="10.666666666666657" y="12.999999999999998" width="289" height="19.333333333333329"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layercornerRadius">
+                                                                        <integer key="value" value="8"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.92156862745098034" green="0.99607843137254903" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="6v0-3a-D06" firstAttribute="top" secondItem="qKy-wT-pCh" secondAttribute="top" constant="13" id="0DS-t5-MpU"/>
+                                                            <constraint firstItem="6v0-3a-D06" firstAttribute="leading" secondItem="qKy-wT-pCh" secondAttribute="leading" constant="10.5" id="eAx-0q-SQY"/>
+                                                            <constraint firstAttribute="trailing" secondItem="6v0-3a-D06" secondAttribute="trailing" constant="10.5" id="hHW-5F-PUi"/>
+                                                            <constraint firstAttribute="height" constant="42" id="oja-q0-6G7"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="qud-c2-PTL" secondAttribute="trailing" constant="46" id="0Bz-1U-Sqi"/>
+                                                    <constraint firstItem="qKy-wT-pCh" firstAttribute="top" secondItem="LCl-zv-g1k" secondAttribute="bottom" constant="10" id="37G-zj-Ew8"/>
                                                     <constraint firstAttribute="trailing" secondItem="aO0-YA-QaS" secondAttribute="trailing" constant="46" id="7Ia-TK-aJt"/>
                                                     <constraint firstAttribute="trailing" secondItem="yd8-IO-bAf" secondAttribute="trailing" constant="46" id="9kt-s7-h4Q"/>
                                                     <constraint firstAttribute="trailing" secondItem="bXo-ak-N0b" secondAttribute="trailing" constant="46" id="9sp-eJ-p5O"/>
@@ -340,7 +371,9 @@
                                                     <constraint firstItem="aO0-YA-QaS" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="46" id="Yri-81-keH"/>
                                                     <constraint firstItem="OoN-oO-zkS" firstAttribute="top" secondItem="HGZ-sC-pCP" secondAttribute="top" constant="14" id="ZmL-XE-TKT"/>
                                                     <constraint firstItem="yd8-IO-bAf" firstAttribute="top" secondItem="qud-c2-PTL" secondAttribute="bottom" constant="6" id="a3q-x1-iQU"/>
+                                                    <constraint firstItem="qKy-wT-pCh" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="19" id="aDX-WP-UeK"/>
                                                     <constraint firstItem="LCl-zv-g1k" firstAttribute="top" secondItem="yd8-IO-bAf" secondAttribute="bottom" constant="6" id="jCT-bW-EB3"/>
+                                                    <constraint firstAttribute="trailing" secondItem="qKy-wT-pCh" secondAttribute="trailing" constant="18" id="m2J-jL-vWC"/>
                                                     <constraint firstItem="LCl-zv-g1k" firstAttribute="leading" secondItem="HGZ-sC-pCP" secondAttribute="leading" constant="16" id="nra-CW-9wI"/>
                                                     <constraint firstAttribute="trailing" secondItem="OoN-oO-zkS" secondAttribute="trailing" constant="32" id="ppW-1D-C30"/>
                                                     <constraint firstAttribute="height" constant="685" id="uZy-R0-4gf"/>
@@ -361,7 +394,10 @@
                                             <constraint firstItem="b7V-Uw-vdh" firstAttribute="top" secondItem="6Pw-Mv-FNB" secondAttribute="top" id="7sp-0t-I5m"/>
                                             <constraint firstAttribute="trailing" secondItem="HGZ-sC-pCP" secondAttribute="trailing" constant="28" id="C4C-6O-7Nt"/>
                                             <constraint firstItem="b7V-Uw-vdh" firstAttribute="leading" secondItem="6Pw-Mv-FNB" secondAttribute="leading" id="DcN-nu-PHG"/>
+                                            <constraint firstAttribute="trailing" secondItem="HGZ-sC-pCP" secondAttribute="trailing" constant="18" id="PNq-vk-j73"/>
                                             <constraint firstAttribute="bottom" secondItem="HGZ-sC-pCP" secondAttribute="bottom" constant="34" id="U2J-iD-ZgF"/>
+                                            <constraint firstItem="HGZ-sC-pCP" firstAttribute="leading" secondItem="6Pw-Mv-FNB" secondAttribute="leading" constant="19" id="lJr-Ax-u50"/>
+                                            <constraint firstItem="HGZ-sC-pCP" firstAttribute="top" secondItem="b7V-Uw-vdh" secondAttribute="bottom" constant="10" id="mFN-EN-k9n"/>
                                             <constraint firstItem="HGZ-sC-pCP" firstAttribute="leading" secondItem="6Pw-Mv-FNB" secondAttribute="leading" constant="28" id="uEa-62-eZV"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
