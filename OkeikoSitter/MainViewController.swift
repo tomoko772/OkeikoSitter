@@ -14,6 +14,9 @@ final class MainViewController: UIViewController {
     
     @IBOutlet private weak var gifImage: UIImageView!
     
+    @IBOutlet private weak var gifImage2: UIImageView!
+    
+    
     // MARK: - View Life-Cycle Methods
     
     override func viewDidLoad() {
@@ -21,6 +24,7 @@ final class MainViewController: UIViewController {
         gifImage.loadGif(name: "violin")
         gifImage.clipsToBounds = true
         gifImage.contentMode = .center
+        gifImage2.loadGif(name: "present")
         configureBarButtonItems()
     }
     

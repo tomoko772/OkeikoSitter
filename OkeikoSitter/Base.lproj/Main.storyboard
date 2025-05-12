@@ -354,10 +354,21 @@
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZq-DP-9Pi">
                                                         <rect key="frame" x="46" y="601" width="255" height="75"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="present.gif" translatesAutoresizingMaskIntoConstraints="NO" id="vBd-J9-KBJ">
+                                                                <rect key="frame" x="74" y="2" width="107" height="73"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="73" id="Dez-9l-qtC"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
                                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="75" id="Ne6-8C-6u7"/>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="fWq-NF-Vcv"/>
+                                                            <constraint firstItem="vBd-J9-KBJ" firstAttribute="leading" secondItem="wZq-DP-9Pi" secondAttribute="leading" constant="74" id="ioB-cz-dK2"/>
+                                                            <constraint firstItem="vBd-J9-KBJ" firstAttribute="top" secondItem="wZq-DP-9Pi" secondAttribute="top" constant="2" id="o8o-rF-r4i"/>
+                                                            <constraint firstAttribute="trailing" secondItem="vBd-J9-KBJ" secondAttribute="trailing" constant="74" id="sXc-n0-63y"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -461,6 +472,7 @@
                     <navigationItem key="navigationItem" id="Dog-in-9qq"/>
                     <connections>
                         <outlet property="gifImage" destination="Dl7-Mn-ck1" id="IUD-Xc-Jit"/>
+                        <outlet property="gifImage2" destination="vBd-J9-KBJ" id="e2k-wn-e3y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m72-Hw-t9o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -471,6 +483,7 @@
     <resources>
         <image name="calendar" width="25" height="25"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
+        <image name="present.gif" width="150" height="150"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
