@@ -16,6 +16,7 @@ final class MainViewController: UIViewController {
     
     @IBOutlet private weak var userName: UIView!
     
+    @IBOutlet private weak var goal: UIView!
     
     
     @IBOutlet private weak var gifImage: UIImageView!
