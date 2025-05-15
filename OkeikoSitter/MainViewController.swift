@@ -26,6 +26,9 @@ final class MainViewController: UIViewController {
     
     @IBOutlet private weak var goalPoint: UILabel!
     
+    @IBOutlet private weak var remainingDays: UIButton!
+    
+    
     @IBOutlet private weak var gifImage: UIImageView!
     
     @IBOutlet private weak var gifImage2: UIImageView!
