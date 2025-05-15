@@ -472,6 +472,7 @@
                         <outlet property="gifImage" destination="Dl7-Mn-ck1" id="IUD-Xc-Jit"/>
                         <outlet property="gifImage2" destination="vBd-J9-KBJ" id="e2k-wn-e3y"/>
                         <outlet property="goal" destination="aO0-YA-QaS" id="FBF-O4-voC"/>
+                        <outlet property="goalPoint" destination="Pze-Sr-b4G" id="oS7-go-6fN"/>
                         <outlet property="userImage" destination="OvK-5u-h7g" id="gWj-9q-dY6"/>
                         <outlet property="userName" destination="b7V-Uw-vdh" id="Hpw-v1-jXl"/>
                     </connections>

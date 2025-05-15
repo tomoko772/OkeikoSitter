@@ -24,6 +24,7 @@ final class MainViewController: UIViewController {
     
     @IBOutlet private weak var currentPoint: UILabel!
     
+    @IBOutlet private weak var goalPoint: UILabel!
     
     @IBOutlet private weak var gifImage: UIImageView!
     
