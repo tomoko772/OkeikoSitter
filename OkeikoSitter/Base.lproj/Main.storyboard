@@ -467,6 +467,7 @@
                     <navigationItem key="navigationItem" id="Dog-in-9qq"/>
                     <connections>
                         <outlet property="bonusPoint" destination="bXo-ak-N0b" id="vVp-gY-rM8"/>
+                        <outlet property="calendar" destination="6Mk-pT-Yyu" id="znu-lb-feh"/>
                         <outlet property="currentPoint" destination="6cW-IU-c4O" id="Lq6-aw-sOb"/>
                         <outlet property="dailyPoint" destination="vtb-mp-PzB" id="3df-l5-kED"/>
                         <outlet property="gifImage" destination="Dl7-Mn-ck1" id="IUD-Xc-Jit"/>

@@ -28,6 +28,7 @@ final class MainViewController: UIViewController {
     
     @IBOutlet private weak var remainingDays: UIButton!
     
+    @IBOutlet private weak var calendar: UIButton!
     
     @IBOutlet private weak var gifImage: UIImageView!
     
