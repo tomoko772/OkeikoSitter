@@ -20,6 +20,8 @@ final class MainViewController: UIViewController {
     
     @IBOutlet private weak var dailyPoint: UILabel!
     
+    @IBOutlet weak var bonusPoint: UIButton!
+    
     
     
     @IBOutlet private weak var gifImage: UIImageView!
