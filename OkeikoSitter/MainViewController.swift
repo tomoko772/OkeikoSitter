@@ -12,6 +12,12 @@ final class MainViewController: UIViewController {
     
     // MARK: - IBOutlets
     
+    @IBOutlet private weak var userImage: UIImageView!
+    
+    @IBOutlet private weak var userName: UIView!
+    
+    
+    
     @IBOutlet private weak var gifImage: UIImageView!
     
     @IBOutlet private weak var gifImage2: UIImageView!

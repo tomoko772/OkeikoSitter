@@ -468,6 +468,8 @@
                     <connections>
                         <outlet property="gifImage" destination="Dl7-Mn-ck1" id="IUD-Xc-Jit"/>
                         <outlet property="gifImage2" destination="vBd-J9-KBJ" id="e2k-wn-e3y"/>
+                        <outlet property="userImage" destination="OvK-5u-h7g" id="gWj-9q-dY6"/>
+                        <outlet property="userName" destination="b7V-Uw-vdh" id="Hpw-v1-jXl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m72-Hw-t9o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
