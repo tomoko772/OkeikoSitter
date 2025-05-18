@@ -17,7 +17,7 @@ final class MainViewController: UIViewController {
     /// ユーザーネーム
     @IBOutlet private weak var userName: UIView!
     /// 目標（課題）の内容
-    @IBOutlet weak var task: UILabel!
+    @IBOutlet private weak var task: UILabel!
     /// 目標（課題）達成時にもらえるポイント数
     @IBOutlet private weak var dailyPoint: UILabel!
     /// ボーナスポイント数
