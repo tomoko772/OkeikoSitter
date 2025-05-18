@@ -33,22 +33,6 @@ final class MainViewController: UIViewController {
     /// GIF画像を表示するためにIBOutlet接
     @IBOutlet private weak var gifImage2: UIImageView!
     
-    /// 目標が表示されたボタンを押した時に呼ばれる関数
-    @IBAction func addButtonTapped(_ sender: Any) {
-    }
-    
-    /// ボーナスボタンを押した時に呼ばれる関数
-    @IBAction func addBonusButtonTapped(_ sender: Any) {
-    }
-    
-    /// 残り日数が表示されたボタンを押した時に呼ばれる関数
-    @IBAction func calendarButtonTapped(_ sender: Any) {
-    }
-    
-    /// ご褒美ボタンを押した時に呼ばれる関数
-    @IBAction func presentButtonTapped(_ sender: Any) {
-    }
-    
     // MARK: - View Life-Cycle Methods
     
     override func viewDidLoad() {
@@ -58,6 +42,23 @@ final class MainViewController: UIViewController {
         gifImage.contentMode = .center
         gifImage2.loadGif(name: "present")
         configureBarButtonItems()
+    }
+    
+    // MARK: - IBActions
+    /// 目標が表示されたボタンを押した時に呼ばれる関数
+    @IBAction private func addButtonTapped(_ sender: Any) {
+    }
+    
+    /// ボーナスボタンを押した時に呼ばれる関数
+    @IBAction private func addBonusButtonTapped(_ sender: Any) {
+    }
+    
+    /// 残り日数が表示されたボタンを押した時に呼ばれる関数
+    @IBAction private func calendarButtonTapped(_ sender: Any) {
+    }
+    
+    /// ご褒美ボタンを押した時に呼ばれる関数
+    @IBAction private func presentButtonTapped(_ sender: Any) {
     }
     
     // MARK: - Other Methods
@@ -91,6 +92,6 @@ final class MainViewController: UIViewController {
         // ユーザー切り替えボタンがタップされたときの処理
         print("ユーザー切り替えボタンがタップされました")
     }
- 
+    
 }
 
