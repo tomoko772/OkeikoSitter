@@ -27,7 +27,7 @@ final class MainViewController: UIViewController {
     /// 目標ポイント数
     @IBOutlet private weak var goalPoint: UILabel!
     /// 残りの日数
-    @IBOutlet weak var remainingDays: UILabel!
+    @IBOutlet private weak var remainingDays: UILabel!
     /// GIF画像を表示するためにIBOutlet接続
     @IBOutlet private weak var gifImage: UIImageView!
     /// GIF画像を表示するためにIBOutlet接
