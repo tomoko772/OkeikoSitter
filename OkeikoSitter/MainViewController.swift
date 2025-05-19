@@ -45,6 +45,7 @@ final class MainViewController: UIViewController {
     }
     
     // MARK: - IBActions
+    
     /// 目標が表示されたボタンを押した時に呼ばれる関数
     @IBAction private func addButtonTapped(_ sender: Any) {
     }
