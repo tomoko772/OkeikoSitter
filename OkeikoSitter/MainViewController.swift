@@ -89,9 +89,10 @@ final class MainViewController: UIViewController {
         print("設定ボタンがタップされました")
     }
     
-    @objc private func didTapUsersButton() {
-        // ユーザー切り替えボタンがタップされたときの処理
-        print("ユーザー切り替えボタンがタップされました")
+    // ユーザー切り替えボタンがタップされたときの処理
+    @objc private func didTapUsersButton(_ sender: UIButton) {
+        let settingVC = SettingViewController()
+                present(settingVC, animated: true)
     }
     
 }
