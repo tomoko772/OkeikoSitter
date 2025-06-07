@@ -84,16 +84,16 @@ final class MainViewController: UIViewController {
         self.navigationItem.rightBarButtonItems = [firstBarButtonItem, secondBarButtonItem]
     }
     
-    @objc private func didTapSettingButton() {
-        // 設定ボタンがタップされたときの処理
-        print("設定ボタンがタップされました")
+    // 設定ボタンがタップされたときの処理
+    @objc private func didTapSettingButton(_ sender: UIButton) {
+        let settingVC = SettingViewController()
+        present(settingVC, animated: true)
     }
     
     // ユーザー切り替えボタンがタップされたときの処理
     @objc private func didTapUsersButton(_ sender: UIButton) {
-        let settingVC = SettingViewController()
-                present(settingVC, animated: true)
+        let userVC = UserViewController()
+        present(userVC, animated: true)
     }
-    
 }
 
