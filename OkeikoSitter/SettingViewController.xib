@@ -17,8 +17,19 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qtt-px-bli">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                </scrollView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Qtt-px-bli" secondAttribute="trailing" id="VS4-Wl-Kmq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Qtt-px-bli" secondAttribute="bottom" id="c8x-hW-wHi"/>
+                <constraint firstItem="Qtt-px-bli" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gtY-lO-n3y"/>
+                <constraint firstItem="Qtt-px-bli" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="pyZ-pt-nNm"/>
+            </constraints>
             <point key="canvasLocation" x="-4" y="20"/>
         </view>
     </objects>
