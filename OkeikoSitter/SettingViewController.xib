@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,43 +19,541 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nBR-AG-VnO">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBR-AG-VnO">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GaA-o0-KpA">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="92"/>
-                        </stackView>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bzE-iT-OR9">
-                            <rect key="frame" x="0.0" y="114" width="393" height="92"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GaA-o0-KpA">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="820"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngl-4S-AcA" userLabel="余白">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="10"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="10" id="RZ5-CI-fXI"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bue-os-WYT" userLabel="キャンセルボタン、削除ボタン表示用UIView">
+                                    <rect key="frame" x="0.0" y="10" width="393" height="50"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAN-4g-avV" userLabel="キャンセルButton">
+                                            <rect key="frame" x="56" y="0.0" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="Y0q-et-bz0"/>
+                                                <constraint firstAttribute="width" constant="50" id="aUc-q4-10c"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain"/>
+                                        </button>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancel" translatesAutoresizingMaskIntoConstraints="NO" id="0bg-iN-lR2" userLabel="キャンセルボタンImage View">
+                                            <rect key="frame" x="40" y="0.0" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="1kT-Yu-wZg"/>
+                                                <constraint firstAttribute="height" constant="50" id="g9h-wM-g5v"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete" translatesAutoresizingMaskIntoConstraints="NO" id="xep-OI-iwj" userLabel="削除ボタンImage View">
+                                            <rect key="frame" x="337" y="8" width="30" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="Eje-1g-pht"/>
+                                                <constraint firstAttribute="height" constant="32" id="QSs-MZ-bMH"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2T-KF-Weo" userLabel="削除Button">
+                                            <rect key="frame" x="337" y="8" width="30" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="32" id="Bgx-zl-eRQ"/>
+                                                <constraint firstAttribute="width" constant="30" id="it4-vh-8gq"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="A2T-KF-Weo" secondAttribute="trailing" constant="26" id="5st-IG-zUe"/>
+                                        <constraint firstAttribute="height" constant="50" id="G0H-T4-g1h"/>
+                                        <constraint firstItem="0bg-iN-lR2" firstAttribute="top" secondItem="bue-os-WYT" secondAttribute="top" id="SXF-6D-Uck"/>
+                                        <constraint firstItem="BAN-4g-avV" firstAttribute="leading" secondItem="bue-os-WYT" secondAttribute="leading" constant="56" id="UpM-Uo-Am4"/>
+                                        <constraint firstAttribute="trailing" secondItem="xep-OI-iwj" secondAttribute="trailing" constant="26" id="bsv-XH-YnL"/>
+                                        <constraint firstItem="xep-OI-iwj" firstAttribute="top" secondItem="bue-os-WYT" secondAttribute="top" constant="8" id="flq-hf-me9"/>
+                                        <constraint firstItem="0bg-iN-lR2" firstAttribute="leading" secondItem="bue-os-WYT" secondAttribute="leading" constant="40" id="gxp-3N-4Zx"/>
+                                        <constraint firstItem="BAN-4g-avV" firstAttribute="top" secondItem="bue-os-WYT" secondAttribute="top" id="ilk-Ex-OGz"/>
+                                        <constraint firstItem="A2T-KF-Weo" firstAttribute="top" secondItem="bue-os-WYT" secondAttribute="top" constant="8" id="iyW-gw-zmi"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzE-iT-OR9" userLabel="ユーザー画像表示用UIVIew">
+                                    <rect key="frame" x="0.0" y="60" width="393" height="92"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K38-ae-l04">
+                                            <rect key="frame" x="155" y="0.6666666666666643" width="92" height="90.666666666666686"/>
+                                            <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="92" id="2WB-pt-DT0"/>
+                                                <constraint firstAttribute="width" constant="92" id="tpQ-lE-Icy"/>
+                                            </constraints>
+                                            <imageReference key="image" image="person.circle" catalog="system" symbolScale="default"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="92" id="Ci4-ec-Bpt"/>
+                                        <constraint firstItem="K38-ae-l04" firstAttribute="leading" secondItem="bzE-iT-OR9" secondAttribute="leading" constant="155" id="Vg6-q4-eXr"/>
+                                        <constraint firstItem="K38-ae-l04" firstAttribute="top" secondItem="bzE-iT-OR9" secondAttribute="top" id="d0y-aj-TgP"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWH-dD-kAs" userLabel="項目名「名前」表示用UIView">
+                                    <rect key="frame" x="0.0" y="152" width="393" height="40"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="名前" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbO-ng-fKC">
+                                            <rect key="frame" x="184.99999999999318" y="10.733087330873104" width="32" height="20.333333333333371"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="q7O-au-ZbV"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFb-uN-Ubh" userLabel="ユーザーネーム表示用UIVIew">
+                                    <rect key="frame" x="0.0" y="192" width="393" height="40"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ViW-gt-plj">
+                                            <rect key="frame" x="75" y="0.0" width="253" height="40"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="田島太郎" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Q4-Bf-bnE">
+                                                    <rect key="frame" x="92.666666666666657" y="8" width="67.666666666666657" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.94509803921568625" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="253" id="WWg-oH-Ny3"/>
+                                                <constraint firstAttribute="height" constant="40" id="eSB-9v-LNN"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="ViW-gt-plj" firstAttribute="top" secondItem="xFb-uN-Ubh" secondAttribute="top" id="0rW-ab-D1N"/>
+                                        <constraint firstItem="ViW-gt-plj" firstAttribute="leading" secondItem="xFb-uN-Ubh" secondAttribute="leading" constant="75" id="XJI-6g-gVO"/>
+                                        <constraint firstAttribute="height" constant="40" id="j72-Ct-qr0"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pSK-Am-hOa" userLabel="項目名「チャレンジ内容」表示用UIView">
+                                    <rect key="frame" x="0.0" y="232" width="393" height="40"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q3-4e-8SZ">
+                                            <rect key="frame" x="144.66666666666666" y="10.999999999999998" width="111.33333333333334" height="20.333333333333329"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="7Q3-4e-8SZ" firstAttribute="leading" secondItem="pSK-Am-hOa" secondAttribute="leading" constant="144.5" id="WFV-Up-A2D"/>
+                                        <constraint firstAttribute="height" constant="40" id="oVc-nN-ScG"/>
+                                        <constraint firstItem="7Q3-4e-8SZ" firstAttribute="top" secondItem="pSK-Am-hOa" secondAttribute="top" constant="11" id="qEC-aU-L7k"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQb-0t-5lM" userLabel="チャレンジ内容表示用UIView">
+                                    <rect key="frame" x="0.0" y="272" width="393" height="115"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYt-cH-SLA">
+                                            <rect key="frame" x="75" y="0.0" width="253" height="115"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="毎日５分バイオリンを練習" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oj-ba-xp3">
+                                                    <rect key="frame" x="25.666666666664923" y="48.232472324730224" width="203" height="22.000000000004434"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="253" id="JqR-J9-cSR"/>
+                                                <constraint firstAttribute="height" constant="115" id="XWx-Tm-HcA"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="115" id="gBa-P6-6sL"/>
+                                        <constraint firstItem="fYt-cH-SLA" firstAttribute="top" secondItem="YQb-0t-5lM" secondAttribute="top" id="mQG-7b-yuE"/>
+                                        <constraint firstItem="fYt-cH-SLA" firstAttribute="leading" secondItem="YQb-0t-5lM" secondAttribute="leading" constant="75" id="wOL-ZG-VPC"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6c-a8-OZF" userLabel="項目名「もらえるポイント数」表示用UIView">
+                                    <rect key="frame" x="0.0" y="387" width="393" height="40"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="チャレンジ内容ができたときにもらえるポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQf-Us-rvT">
+                                            <rect key="frame" x="17.999999999993179" y="10.733087330873104" width="366" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="pUU-vh-oxW"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYJ-I6-zJn" userLabel="もらえるポイント数表示用UIView">
+                                    <rect key="frame" x="0.0" y="427" width="393" height="40"/>
+                                    <subviews>
+                                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRl-IB-Knu">
+                                            <rect key="frame" x="325" y="0.0" width="34" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="34" id="4dN-f4-sCh"/>
+                                                <constraint firstAttribute="height" constant="34" id="l5u-MX-cao"/>
+                                            </constraints>
+                                        </pickerView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhr-8u-PrT">
+                                            <rect key="frame" x="75" y="0.0" width="253" height="40"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSW-a2-v8u">
+                                                    <rect key="frame" x="84.666666666666657" y="8" width="85" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="FlM-kj-5u0"/>
+                                                <constraint firstAttribute="width" constant="253" id="GBU-jU-yLu"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="lhr-8u-PrT" firstAttribute="top" secondItem="oYJ-I6-zJn" secondAttribute="top" id="3U7-gK-Laq"/>
+                                        <constraint firstItem="lhr-8u-PrT" firstAttribute="leading" secondItem="oYJ-I6-zJn" secondAttribute="leading" constant="75" id="Ezj-Uu-LnZ"/>
+                                        <constraint firstItem="HRl-IB-Knu" firstAttribute="top" secondItem="oYJ-I6-zJn" secondAttribute="top" id="LfM-1m-XQr"/>
+                                        <constraint firstAttribute="height" constant="40" id="di3-bw-cr9"/>
+                                        <constraint firstAttribute="trailing" secondItem="HRl-IB-Knu" secondAttribute="trailing" constant="34" id="lZm-xb-Vcr"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="reA-qO-eem" userLabel="項目名「ボーナスポイント数」表示用UIView">
+                                    <rect key="frame" x="0.0" y="467" width="393" height="40"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ボーナスポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd1-0d-DCo">
+                                            <rect key="frame" x="128.99999999999318" y="10.733087330873104" width="144" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="Tf0-MM-qxr"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMg-Kc-nCx" userLabel="ボーナスポイント数表示用UIVIew">
+                                    <rect key="frame" x="0.0" y="507" width="393" height="40"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8z-Th-a0f">
+                                            <rect key="frame" x="75" y="0.0" width="253" height="40"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afu-uu-2D3">
+                                                    <rect key="frame" x="84.666666666666657" y="8" width="85" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="253" id="Gi8-ar-jGB"/>
+                                                <constraint firstAttribute="height" constant="40" id="GvR-79-kcs"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="l8z-Th-a0f" firstAttribute="leading" secondItem="rMg-Kc-nCx" secondAttribute="leading" constant="75" id="339-yj-OuH"/>
+                                        <constraint firstAttribute="height" constant="40" id="BbJ-Zw-AWG"/>
+                                        <constraint firstItem="l8z-Th-a0f" firstAttribute="top" secondItem="rMg-Kc-nCx" secondAttribute="top" id="cmk-QB-nsF"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvb-p1-j61" userLabel="項目名「目標ポイント数」表示用UIVIew">
+                                    <rect key="frame" x="0.0" y="547" width="393" height="40"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="目標ポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbB-dr-kXD">
+                                            <rect key="frame" x="144.99999999999318" y="10.733087330873104" width="112" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="kMO-1p-l6o"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHg-cv-90O" userLabel="目標ポイント数表示用UIVIew">
+                                    <rect key="frame" x="0.0" y="587" width="393" height="40"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkr-vs-fax">
+                                            <rect key="frame" x="75" y="0.0" width="253" height="40"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="３０ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jz-v0-iov">
+                                                    <rect key="frame" x="76.666666666666657" y="8" width="102" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="253" id="mv6-x9-Hpa"/>
+                                                <constraint firstAttribute="height" constant="40" id="zIY-B9-lKf"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="UM2-96-h5P"/>
+                                        <constraint firstItem="kkr-vs-fax" firstAttribute="leading" secondItem="dHg-cv-90O" secondAttribute="leading" constant="75" id="Vua-eo-NvF"/>
+                                        <constraint firstItem="kkr-vs-fax" firstAttribute="top" secondItem="dHg-cv-90O" secondAttribute="top" id="jG0-3K-1zk"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7f1-li-kO0" userLabel="項目名「チャレンジ日数」表示用UIVIew">
+                                    <rect key="frame" x="0.0" y="627" width="393" height="40"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="チャレンジ日数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOU-Ls-nao">
+                                            <rect key="frame" x="144.99999999999318" y="10.733087330873104" width="112" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="YgC-Q8-G9X"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1Y-B4-ine" userLabel="チャレンジ日数表示用UIVIew">
+                                    <rect key="frame" x="0.0" y="667" width="393" height="40"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1c9-2Q-KmT">
+                                            <rect key="frame" x="75" y="0.0" width="253" height="40"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="３０日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWg-Pb-buF">
+                                                    <rect key="frame" x="102.66666666666666" y="8" width="51" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="OTX-UM-OVu"/>
+                                                <constraint firstAttribute="width" constant="253" id="huR-xG-dQn"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="1c9-2Q-KmT" firstAttribute="top" secondItem="f1Y-B4-ine" secondAttribute="top" id="Iru-Fi-cfm"/>
+                                        <constraint firstItem="1c9-2Q-KmT" firstAttribute="leading" secondItem="f1Y-B4-ine" secondAttribute="leading" constant="75" id="bAf-Yv-bxX"/>
+                                        <constraint firstAttribute="height" constant="40" id="nx3-WH-6JE"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opf-dd-72v" userLabel="ご褒美登録ボタンのUIVIew">
+                                    <rect key="frame" x="0.0" y="707" width="393" height="51"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdi-lv-qXG" userLabel="背景の黄色いUIVIew">
+                                            <rect key="frame" x="75" y="11" width="253" height="40"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gq-V1-6gF" userLabel="透明なご褒美登録ボタン">
+                                                    <rect key="frame" x="0.0" y="0.0" width="253" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="253" id="gU1-PA-EN7"/>
+                                                        <constraint firstAttribute="height" constant="40" id="mc6-EQ-QRF"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain"/>
+                                                </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gift" translatesAutoresizingMaskIntoConstraints="NO" id="ne4-ze-stH">
+                                                    <rect key="frame" x="37" y="6" width="29" height="29"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ご褒美の登録" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgg-Fh-HvZ">
+                                                    <rect key="frame" x="81" y="8.9999999999999982" width="95.666666666666686" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                            <constraints>
+                                                <constraint firstItem="Pgg-Fh-HvZ" firstAttribute="top" secondItem="Tdi-lv-qXG" secondAttribute="top" constant="9" id="6w2-CX-A65"/>
+                                                <constraint firstAttribute="width" constant="253" id="BDF-2p-9pb"/>
+                                                <constraint firstItem="Pgg-Fh-HvZ" firstAttribute="leading" secondItem="ne4-ze-stH" secondAttribute="trailing" constant="15" id="HU0-EI-GYp"/>
+                                                <constraint firstAttribute="height" constant="40" id="M1c-5d-fdG"/>
+                                                <constraint firstItem="2gq-V1-6gF" firstAttribute="leading" secondItem="Tdi-lv-qXG" secondAttribute="leading" id="Wcc-gx-ItI"/>
+                                                <constraint firstItem="ne4-ze-stH" firstAttribute="top" secondItem="Tdi-lv-qXG" secondAttribute="top" constant="6" id="fHO-d3-bnE"/>
+                                                <constraint firstItem="ne4-ze-stH" firstAttribute="leading" secondItem="Tdi-lv-qXG" secondAttribute="leading" constant="37" id="lu4-Dz-2mO"/>
+                                                <constraint firstItem="2gq-V1-6gF" firstAttribute="top" secondItem="Tdi-lv-qXG" secondAttribute="top" id="xVK-aM-ilm"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="51" id="ctc-A3-GB9"/>
+                                        <constraint firstItem="Tdi-lv-qXG" firstAttribute="top" secondItem="opf-dd-72v" secondAttribute="top" constant="11" id="mjd-st-zH5"/>
+                                        <constraint firstItem="Tdi-lv-qXG" firstAttribute="leading" secondItem="opf-dd-72v" secondAttribute="leading" constant="75" id="yFc-ne-3aK"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EJl-hk-2I9" userLabel="スペース用UIVIew">
+                                    <rect key="frame" x="0.0" y="758" width="393" height="11"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="11" id="95D-BX-o34"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kiA-Rj-Vlh" userLabel="完了ボタンのUIVIew">
+                                    <rect key="frame" x="0.0" y="769" width="393" height="51"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGx-M1-c8q" userLabel="背景の黄色いUIVIew">
+                                            <rect key="frame" x="75" y="20" width="253" height="40"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6s-wf-RIT" userLabel="透明なご褒美登録ボタン">
+                                                    <rect key="frame" x="0.0" y="0.0" width="253" height="65"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="65" id="r2X-ta-I9U"/>
+                                                        <constraint firstAttribute="width" constant="253" id="wNj-P2-1i7"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain"/>
+                                                </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="a9Q-1W-vAo">
+                                                    <rect key="frame" x="37" y="20" width="30" height="30"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完了" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKh-80-842">
+                                                    <rect key="frame" x="105" y="20" width="37.666666666666657" height="24"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.078431372549019607" green="0.67450980392156867" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="a9Q-1W-vAo" firstAttribute="leading" secondItem="GGx-M1-c8q" secondAttribute="leading" constant="37" id="J9D-9T-Pow"/>
+                                                <constraint firstItem="q6s-wf-RIT" firstAttribute="top" secondItem="GGx-M1-c8q" secondAttribute="top" constant="11" id="Knw-ug-aYa"/>
+                                                <constraint firstItem="q6s-wf-RIT" firstAttribute="top" secondItem="GGx-M1-c8q" secondAttribute="top" id="Ng1-NR-Phl"/>
+                                                <constraint firstItem="q6s-wf-RIT" firstAttribute="leading" secondItem="GGx-M1-c8q" secondAttribute="leading" id="Tme-2S-tQb"/>
+                                                <constraint firstAttribute="height" constant="65" id="UUs-y5-MhL"/>
+                                                <constraint firstItem="bKh-80-842" firstAttribute="top" secondItem="GGx-M1-c8q" secondAttribute="top" constant="20" id="Vaq-xo-wKc"/>
+                                                <constraint firstAttribute="width" constant="253" id="dy8-Kp-SaX"/>
+                                                <constraint firstItem="a9Q-1W-vAo" firstAttribute="top" secondItem="GGx-M1-c8q" secondAttribute="top" constant="20" id="iJV-Jh-G5g"/>
+                                                <constraint firstItem="bKh-80-842" firstAttribute="leading" secondItem="a9Q-1W-vAo" secondAttribute="trailing" constant="38" id="mR4-X0-2EG"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="GGx-M1-c8q" firstAttribute="leading" secondItem="kiA-Rj-Vlh" secondAttribute="leading" constant="75" id="9gZ-Ka-MMs"/>
+                                        <constraint firstAttribute="height" constant="51" id="LIK-QG-XRl"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="92" id="Ci4-ec-Bpt"/>
+                                <constraint firstItem="rMg-Kc-nCx" firstAttribute="top" secondItem="reA-qO-eem" secondAttribute="bottom" id="8MU-vd-Weo"/>
                             </constraints>
-                        </view>
+                        </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="GaA-o0-KpA" firstAttribute="leading" secondItem="nBR-AG-VnO" secondAttribute="leading" id="CDx-fm-GeO"/>
-                        <constraint firstItem="GaA-o0-KpA" firstAttribute="width" secondItem="nBR-AG-VnO" secondAttribute="width" id="Ua4-dn-XUf"/>
-                        <constraint firstItem="GaA-o0-KpA" firstAttribute="top" secondItem="nBR-AG-VnO" secondAttribute="top" id="b9L-Nt-CqA"/>
-                        <constraint firstItem="bzE-iT-OR9" firstAttribute="top" secondItem="nBR-AG-VnO" secondAttribute="top" constant="114" id="ePK-n4-ts2"/>
-                        <constraint firstAttribute="trailing" secondItem="GaA-o0-KpA" secondAttribute="trailing" id="fSH-JZ-veS"/>
+                        <constraint firstAttribute="bottom" secondItem="GaA-o0-KpA" secondAttribute="bottom" id="1fE-Bl-FAX"/>
+                        <constraint firstAttribute="trailing" secondItem="GaA-o0-KpA" secondAttribute="trailing" id="1tT-Sq-hEw"/>
+                        <constraint firstItem="GaA-o0-KpA" firstAttribute="leading" secondItem="nBR-AG-VnO" secondAttribute="leading" id="AUY-dF-eqj"/>
+                        <constraint firstItem="GaA-o0-KpA" firstAttribute="top" secondItem="nBR-AG-VnO" secondAttribute="top" id="J3g-l7-PVU"/>
+                        <constraint firstItem="GaA-o0-KpA" firstAttribute="leading" secondItem="nBR-AG-VnO" secondAttribute="leading" id="LiU-9E-IS1"/>
+                        <constraint firstItem="GaA-o0-KpA" firstAttribute="width" secondItem="nBR-AG-VnO" secondAttribute="width" id="U7m-SD-LYd"/>
+                        <constraint firstItem="GaA-o0-KpA" firstAttribute="top" secondItem="nBR-AG-VnO" secondAttribute="top" id="wTb-gX-KSN"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="nBR-AG-VnO" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="3eM-Du-ucq"/>
-                <constraint firstItem="nBR-AG-VnO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZcF-SJ-b1O"/>
-                <constraint firstAttribute="bottom" secondItem="nBR-AG-VnO" secondAttribute="bottom" id="lPa-GA-6jC"/>
-                <constraint firstItem="nBR-AG-VnO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="n3G-Ir-KB3"/>
+                <constraint firstAttribute="bottom" secondItem="nBR-AG-VnO" secondAttribute="bottom" id="TKv-IT-0gQ"/>
+                <constraint firstItem="nBR-AG-VnO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fZS-vT-k2B"/>
+                <constraint firstAttribute="trailing" secondItem="nBR-AG-VnO" secondAttribute="trailing" id="fl8-Gc-7C4"/>
+                <constraint firstItem="nBR-AG-VnO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yzL-e8-FhP"/>
             </constraints>
             <point key="canvasLocation" x="-5.343511450381679" y="19.718309859154932"/>
         </view>
     </objects>
     <resources>
+        <image name="cancel" width="50" height="50"/>
+        <image name="delete" width="30" height="32"/>
+        <image name="gift" width="29" height="29"/>
+        <image name="ic_check" width="30" height="30"/>
+        <image name="person.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

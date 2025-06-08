@@ -11,10 +11,15 @@ class SettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureBarButtonItems()
     }
 
     // MARK: - IBActions
+    
+}
+
+   // MARK: - Other Methods
+
+private func configureBarButtonItems() {
     
 }
