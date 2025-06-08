@@ -22,13 +22,21 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GaA-o0-KpA">
-                            <rect key="frame" x="0.0" y="67" width="393" height="773"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="92"/>
                         </stackView>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bzE-iT-OR9">
+                            <rect key="frame" x="0.0" y="114" width="393" height="92"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="92" id="Ci4-ec-Bpt"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <constraints>
                         <constraint firstItem="GaA-o0-KpA" firstAttribute="leading" secondItem="nBR-AG-VnO" secondAttribute="leading" id="CDx-fm-GeO"/>
                         <constraint firstItem="GaA-o0-KpA" firstAttribute="width" secondItem="nBR-AG-VnO" secondAttribute="width" id="Ua4-dn-XUf"/>
                         <constraint firstItem="GaA-o0-KpA" firstAttribute="top" secondItem="nBR-AG-VnO" secondAttribute="top" id="b9L-Nt-CqA"/>
+                        <constraint firstItem="bzE-iT-OR9" firstAttribute="top" secondItem="nBR-AG-VnO" secondAttribute="top" constant="114" id="ePK-n4-ts2"/>
                         <constraint firstAttribute="trailing" secondItem="GaA-o0-KpA" secondAttribute="trailing" id="fSH-JZ-veS"/>
                     </constraints>
                 </scrollView>
