@@ -18,8 +18,18 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qtt-px-bli">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qtt-px-bli">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="J5h-US-uFp">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="J5h-US-uFp" firstAttribute="leading" secondItem="Qtt-px-bli" secondAttribute="leading" id="hIX-11-THZ"/>
+                        <constraint firstAttribute="trailing" secondItem="J5h-US-uFp" secondAttribute="trailing" id="scd-6I-r4v"/>
+                        <constraint firstItem="J5h-US-uFp" firstAttribute="top" secondItem="Qtt-px-bli" secondAttribute="top" id="zF8-YP-ree"/>
+                    </constraints>
                 </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
