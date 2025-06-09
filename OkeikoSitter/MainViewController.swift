@@ -87,13 +87,17 @@ final class MainViewController: UIViewController {
     // 設定ボタンがタップされたときの処理
     @objc private func didTapSettingButton(_ sender: UIButton) {
         let settingVC = SettingViewController()
-        present(settingVC, animated: true)
+        let navController = UINavigationController(rootViewController: settingVC)
+        navController.modalPresentationStyle = .fullScreen
+        present(navController, animated: true)
     }
     
     // ユーザー切り替えボタンがタップされたときの処理
     @objc private func didTapUsersButton(_ sender: UIButton) {
         let userVC = UserViewController()
-        present(userVC, animated: true)
+        let navController = UINavigationController(rootViewController: userVC)
+        navController.modalPresentationStyle = .fullScreen
+        present(navController, animated: true)
     }
 }
 

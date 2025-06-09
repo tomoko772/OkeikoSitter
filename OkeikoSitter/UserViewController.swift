@@ -11,11 +11,20 @@ class UserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configureBarButtonItems()
         // Do any additional setup after loading the view.
     }
+    
+    // MARK: - IBActions
+    
 
 
+   // MARK: - Other Methods
+
+    private func configureBarButtonItems(){
+        
+    }
+    
     /*
     // MARK: - Navigation
 

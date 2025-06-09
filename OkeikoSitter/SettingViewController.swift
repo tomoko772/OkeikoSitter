@@ -8,15 +8,15 @@
 import UIKit
 
 class SettingViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBarButtonItems()
     }
-
+}
     // MARK: - IBActions
     
-}
+
 
    // MARK: - Other Methods
 
