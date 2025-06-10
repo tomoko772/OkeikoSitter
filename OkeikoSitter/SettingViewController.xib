@@ -34,58 +34,16 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bue-os-WYT" userLabel="キャンセルボタン、削除ボタン表示用UIView">
                                     <rect key="frame" x="0.0" y="10" width="393" height="50"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAN-4g-avV" userLabel="キャンセルButton">
-                                            <rect key="frame" x="56" y="0.0" width="50" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="Y0q-et-bz0"/>
-                                                <constraint firstAttribute="width" constant="50" id="aUc-q4-10c"/>
-                                            </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain"/>
-                                        </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancel" translatesAutoresizingMaskIntoConstraints="NO" id="0bg-iN-lR2" userLabel="キャンセルボタンImage View">
-                                            <rect key="frame" x="40" y="0.0" width="50" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="50" id="1kT-Yu-wZg"/>
-                                                <constraint firstAttribute="height" constant="50" id="g9h-wM-g5v"/>
-                                            </constraints>
-                                        </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete" translatesAutoresizingMaskIntoConstraints="NO" id="xep-OI-iwj" userLabel="削除ボタンImage View">
-                                            <rect key="frame" x="337" y="8" width="30" height="32"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="30" id="Eje-1g-pht"/>
-                                                <constraint firstAttribute="height" constant="32" id="QSs-MZ-bMH"/>
-                                            </constraints>
-                                        </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2T-KF-Weo" userLabel="削除Button">
-                                            <rect key="frame" x="337" y="8" width="30" height="32"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="32" id="Bgx-zl-eRQ"/>
-                                                <constraint firstAttribute="width" constant="30" id="it4-vh-8gq"/>
-                                            </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain"/>
-                                        </button>
-                                    </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="A2T-KF-Weo" secondAttribute="trailing" constant="26" id="5st-IG-zUe"/>
                                         <constraint firstAttribute="height" constant="50" id="G0H-T4-g1h"/>
-                                        <constraint firstItem="0bg-iN-lR2" firstAttribute="top" secondItem="bue-os-WYT" secondAttribute="top" id="SXF-6D-Uck"/>
-                                        <constraint firstItem="BAN-4g-avV" firstAttribute="leading" secondItem="bue-os-WYT" secondAttribute="leading" constant="56" id="UpM-Uo-Am4"/>
-                                        <constraint firstAttribute="trailing" secondItem="xep-OI-iwj" secondAttribute="trailing" constant="26" id="bsv-XH-YnL"/>
-                                        <constraint firstItem="xep-OI-iwj" firstAttribute="top" secondItem="bue-os-WYT" secondAttribute="top" constant="8" id="flq-hf-me9"/>
-                                        <constraint firstItem="0bg-iN-lR2" firstAttribute="leading" secondItem="bue-os-WYT" secondAttribute="leading" constant="40" id="gxp-3N-4Zx"/>
-                                        <constraint firstItem="BAN-4g-avV" firstAttribute="top" secondItem="bue-os-WYT" secondAttribute="top" id="ilk-Ex-OGz"/>
-                                        <constraint firstItem="A2T-KF-Weo" firstAttribute="top" secondItem="bue-os-WYT" secondAttribute="top" constant="8" id="iyW-gw-zmi"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzE-iT-OR9" userLabel="ユーザー画像表示用UIVIew">
                                     <rect key="frame" x="0.0" y="60" width="393" height="92"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K38-ae-l04">
-                                            <rect key="frame" x="155" y="0.6666666666666643" width="92" height="90.666666666666686"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K38-ae-l04">
+                                            <rect key="frame" x="155" y="4.6666666666666288" width="92" height="90.666666666666686"/>
                                             <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="92" id="2WB-pt-DT0"/>
@@ -468,15 +426,6 @@
                                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGx-M1-c8q" userLabel="背景の黄色いUIVIew">
                                             <rect key="frame" x="75" y="20" width="253" height="40"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6s-wf-RIT" userLabel="透明なご褒美登録ボタン">
-                                                    <rect key="frame" x="0.0" y="0.0" width="253" height="65"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="65" id="r2X-ta-I9U"/>
-                                                        <constraint firstAttribute="width" constant="253" id="wNj-P2-1i7"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain"/>
-                                                </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="a9Q-1W-vAo">
                                                     <rect key="frame" x="37" y="20" width="30" height="30"/>
                                                 </imageView>
@@ -490,9 +439,6 @@
                                             <color key="backgroundColor" red="0.078431372549019607" green="0.67450980392156867" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="a9Q-1W-vAo" firstAttribute="leading" secondItem="GGx-M1-c8q" secondAttribute="leading" constant="37" id="J9D-9T-Pow"/>
-                                                <constraint firstItem="q6s-wf-RIT" firstAttribute="top" secondItem="GGx-M1-c8q" secondAttribute="top" constant="11" id="Knw-ug-aYa"/>
-                                                <constraint firstItem="q6s-wf-RIT" firstAttribute="top" secondItem="GGx-M1-c8q" secondAttribute="top" id="Ng1-NR-Phl"/>
-                                                <constraint firstItem="q6s-wf-RIT" firstAttribute="leading" secondItem="GGx-M1-c8q" secondAttribute="leading" id="Tme-2S-tQb"/>
                                                 <constraint firstAttribute="height" constant="65" id="UUs-y5-MhL"/>
                                                 <constraint firstItem="bKh-80-842" firstAttribute="top" secondItem="GGx-M1-c8q" secondAttribute="top" constant="20" id="Vaq-xo-wKc"/>
                                                 <constraint firstAttribute="width" constant="253" id="dy8-Kp-SaX"/>
@@ -508,8 +454,8 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="GGx-M1-c8q" firstAttribute="leading" secondItem="kiA-Rj-Vlh" secondAttribute="leading" constant="75" id="9gZ-Ka-MMs"/>
                                         <constraint firstAttribute="height" constant="51" id="LIK-QG-XRl"/>
+                                        <constraint firstItem="GGx-M1-c8q" firstAttribute="leading" secondItem="kiA-Rj-Vlh" secondAttribute="leading" constant="75" id="amc-Wp-vS6"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -544,8 +490,6 @@
         </view>
     </objects>
     <resources>
-        <image name="cancel" width="50" height="50"/>
-        <image name="delete" width="30" height="32"/>
         <image name="gift" width="29" height="29"/>
         <image name="ic_check" width="30" height="30"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
