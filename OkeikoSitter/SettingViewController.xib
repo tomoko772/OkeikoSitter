@@ -9,8 +9,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserViewController" customModule="OkeikoSitter" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingViewController" customModule="OkeikoSitter" customModuleProvider="target">
             <connections>
+                <outlet property="bonusPointLabel" destination="afu-uu-2D3" id="afe-zS-Td8"/>
+                <outlet property="challengeDaysLabel" destination="XWg-Pb-buF" id="sPY-vA-wUT"/>
+                <outlet property="challengePointLabel" destination="YSW-a2-v8u" id="sLE-wG-9Lu"/>
+                <outlet property="challengeTaskLabel" destination="2Oj-ba-xp3" id="xpz-At-mkQ"/>
+                <outlet property="goalPointLabel" destination="3jz-v0-iov" id="d5p-q5-eYV"/>
+                <outlet property="nameLabel" destination="0Q4-Bf-bnE" id="sov-xZ-Zzg"/>
+                <outlet property="userImageView" destination="K38-ae-l04" id="ncn-4n-yNP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,7 +30,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GaA-o0-KpA">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="820"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="962"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngl-4S-AcA" userLabel="余白">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="10"/>
@@ -42,8 +49,8 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzE-iT-OR9" userLabel="ユーザー画像表示用UIVIew">
                                     <rect key="frame" x="0.0" y="60" width="393" height="92"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K38-ae-l04">
-                                            <rect key="frame" x="155" y="4.6666666666666288" width="92" height="90.666666666666686"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K38-ae-l04">
+                                            <rect key="frame" x="150.66666666666666" y="0.6666666666666643" width="92" height="90.666666666666686"/>
                                             <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="92" id="2WB-pt-DT0"/>
@@ -55,16 +62,16 @@
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="92" id="Ci4-ec-Bpt"/>
-                                        <constraint firstItem="K38-ae-l04" firstAttribute="leading" secondItem="bzE-iT-OR9" secondAttribute="leading" constant="155" id="Vg6-q4-eXr"/>
+                                        <constraint firstItem="K38-ae-l04" firstAttribute="centerX" secondItem="bzE-iT-OR9" secondAttribute="centerX" id="SLJ-M0-VF8"/>
                                         <constraint firstItem="K38-ae-l04" firstAttribute="top" secondItem="bzE-iT-OR9" secondAttribute="top" id="d0y-aj-TgP"/>
+                                        <constraint firstAttribute="bottom" secondItem="K38-ae-l04" secondAttribute="bottom" id="ugh-zY-rg5"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWH-dD-kAs" userLabel="項目名「名前」表示用UIView">
                                     <rect key="frame" x="0.0" y="152" width="393" height="40"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="名前" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbO-ng-fKC">
-                                            <rect key="frame" x="184.99999999999318" y="10.733087330873104" width="32" height="20.333333333333371"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbO-ng-fKC">
+                                            <rect key="frame" x="180.66666666666666" y="9.9999999999999982" width="32" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -72,6 +79,8 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
+                                        <constraint firstItem="EbO-ng-fKC" firstAttribute="centerX" secondItem="vWH-dD-kAs" secondAttribute="centerX" id="YzN-Iv-S52"/>
+                                        <constraint firstItem="EbO-ng-fKC" firstAttribute="centerY" secondItem="vWH-dD-kAs" secondAttribute="centerY" id="lEt-S1-pqL"/>
                                         <constraint firstAttribute="height" constant="40" id="q7O-au-ZbV"/>
                                     </constraints>
                                 </view>
@@ -79,11 +88,10 @@
                                     <rect key="frame" x="0.0" y="192" width="393" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ViW-gt-plj">
-                                            <rect key="frame" x="75" y="0.0" width="253" height="40"/>
+                                            <rect key="frame" x="70" y="0.0" width="253" height="40"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="田島太郎" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Q4-Bf-bnE">
-                                                    <rect key="frame" x="92.666666666666657" y="8" width="67.666666666666657" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="田島太郎" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Q4-Bf-bnE">
+                                                    <rect key="frame" x="92.666666666666657" y="9.3333333333333446" width="67.666666666666657" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -92,7 +100,9 @@
                                             <color key="backgroundColor" red="1" green="0.94509803921568625" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="253" id="WWg-oH-Ny3"/>
+                                                <constraint firstItem="0Q4-Bf-bnE" firstAttribute="centerX" secondItem="ViW-gt-plj" secondAttribute="centerX" id="eBY-cY-aZk"/>
                                                 <constraint firstAttribute="height" constant="40" id="eSB-9v-LNN"/>
+                                                <constraint firstItem="0Q4-Bf-bnE" firstAttribute="centerY" secondItem="ViW-gt-plj" secondAttribute="centerY" id="fjb-XW-cyN"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -104,7 +114,8 @@
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="ViW-gt-plj" firstAttribute="top" secondItem="xFb-uN-Ubh" secondAttribute="top" id="0rW-ab-D1N"/>
-                                        <constraint firstItem="ViW-gt-plj" firstAttribute="leading" secondItem="xFb-uN-Ubh" secondAttribute="leading" constant="75" id="XJI-6g-gVO"/>
+                                        <constraint firstAttribute="bottom" secondItem="ViW-gt-plj" secondAttribute="bottom" id="TIE-iI-nbZ"/>
+                                        <constraint firstItem="ViW-gt-plj" firstAttribute="centerX" secondItem="xFb-uN-Ubh" secondAttribute="centerX" id="Zas-zb-fzb"/>
                                         <constraint firstAttribute="height" constant="40" id="j72-Ct-qr0"/>
                                     </constraints>
                                 </view>
@@ -112,7 +123,7 @@
                                     <rect key="frame" x="0.0" y="232" width="393" height="40"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q3-4e-8SZ">
-                                            <rect key="frame" x="144.66666666666666" y="10.999999999999998" width="111.33333333333334" height="20.333333333333329"/>
+                                            <rect key="frame" x="141" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -120,20 +131,19 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="7Q3-4e-8SZ" firstAttribute="leading" secondItem="pSK-Am-hOa" secondAttribute="leading" constant="144.5" id="WFV-Up-A2D"/>
+                                        <constraint firstItem="7Q3-4e-8SZ" firstAttribute="centerX" secondItem="pSK-Am-hOa" secondAttribute="centerX" id="KoD-YT-w2C"/>
                                         <constraint firstAttribute="height" constant="40" id="oVc-nN-ScG"/>
-                                        <constraint firstItem="7Q3-4e-8SZ" firstAttribute="top" secondItem="pSK-Am-hOa" secondAttribute="top" constant="11" id="qEC-aU-L7k"/>
+                                        <constraint firstItem="7Q3-4e-8SZ" firstAttribute="centerY" secondItem="pSK-Am-hOa" secondAttribute="centerY" id="u1t-dp-Tel"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQb-0t-5lM" userLabel="チャレンジ内容表示用UIView">
                                     <rect key="frame" x="0.0" y="272" width="393" height="115"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYt-cH-SLA">
-                                            <rect key="frame" x="75" y="0.0" width="253" height="115"/>
+                                            <rect key="frame" x="70" y="0.0" width="253" height="115"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="毎日５分バイオリンを練習" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oj-ba-xp3">
-                                                    <rect key="frame" x="25.666666666664923" y="48.232472324730224" width="203" height="22.000000000004434"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="毎日５分バイオリンを練習" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oj-ba-xp3">
+                                                    <rect key="frame" x="25.333333333333329" y="46.666666666666686" width="202.33333333333337" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -141,6 +151,8 @@
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             <constraints>
+                                                <constraint firstItem="2Oj-ba-xp3" firstAttribute="centerX" secondItem="fYt-cH-SLA" secondAttribute="centerX" id="2pN-rH-f77"/>
+                                                <constraint firstItem="2Oj-ba-xp3" firstAttribute="centerY" secondItem="fYt-cH-SLA" secondAttribute="centerY" id="HjA-DZ-nuw"/>
                                                 <constraint firstAttribute="width" constant="253" id="JqR-J9-cSR"/>
                                                 <constraint firstAttribute="height" constant="115" id="XWx-Tm-HcA"/>
                                             </constraints>
@@ -153,17 +165,17 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="fYt-cH-SLA" secondAttribute="bottom" id="3RJ-qf-VbZ"/>
+                                        <constraint firstItem="fYt-cH-SLA" firstAttribute="centerX" secondItem="YQb-0t-5lM" secondAttribute="centerX" id="Cou-fu-4hD"/>
                                         <constraint firstAttribute="height" constant="115" id="gBa-P6-6sL"/>
                                         <constraint firstItem="fYt-cH-SLA" firstAttribute="top" secondItem="YQb-0t-5lM" secondAttribute="top" id="mQG-7b-yuE"/>
-                                        <constraint firstItem="fYt-cH-SLA" firstAttribute="leading" secondItem="YQb-0t-5lM" secondAttribute="leading" constant="75" id="wOL-ZG-VPC"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6c-a8-OZF" userLabel="項目名「もらえるポイント数」表示用UIView">
                                     <rect key="frame" x="0.0" y="387" width="393" height="40"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="チャレンジ内容ができたときにもらえるポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQf-Us-rvT">
-                                            <rect key="frame" x="17.999999999993179" y="10.733087330873104" width="366" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容ができたときにもらえるポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQf-Us-rvT">
+                                            <rect key="frame" x="13.666666666666657" y="9.9999999999999982" width="366" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -171,25 +183,19 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
+                                        <constraint firstItem="FQf-Us-rvT" firstAttribute="centerY" secondItem="G6c-a8-OZF" secondAttribute="centerY" id="2VM-xp-iMO"/>
                                         <constraint firstAttribute="height" constant="40" id="pUU-vh-oxW"/>
+                                        <constraint firstItem="FQf-Us-rvT" firstAttribute="centerX" secondItem="G6c-a8-OZF" secondAttribute="centerX" id="sbO-be-Lyb"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYJ-I6-zJn" userLabel="もらえるポイント数表示用UIView">
                                     <rect key="frame" x="0.0" y="427" width="393" height="40"/>
                                     <subviews>
-                                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRl-IB-Knu">
-                                            <rect key="frame" x="325" y="0.0" width="34" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="34" id="4dN-f4-sCh"/>
-                                                <constraint firstAttribute="height" constant="34" id="l5u-MX-cao"/>
-                                            </constraints>
-                                        </pickerView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhr-8u-PrT">
-                                            <rect key="frame" x="75" y="0.0" width="253" height="40"/>
+                                            <rect key="frame" x="70" y="0.0" width="253" height="40"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSW-a2-v8u">
-                                                    <rect key="frame" x="84.666666666666657" y="8" width="85" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSW-a2-v8u">
+                                                    <rect key="frame" x="84.333333333333343" y="9.3333333333333162" width="84.333333333333343" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -197,8 +203,10 @@
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstItem="YSW-a2-v8u" firstAttribute="centerX" secondItem="lhr-8u-PrT" secondAttribute="centerX" id="3ra-cF-1a9"/>
                                                 <constraint firstAttribute="height" constant="40" id="FlM-kj-5u0"/>
                                                 <constraint firstAttribute="width" constant="253" id="GBU-jU-yLu"/>
+                                                <constraint firstItem="YSW-a2-v8u" firstAttribute="centerY" secondItem="lhr-8u-PrT" secondAttribute="centerY" id="m53-uH-hey"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -206,22 +214,34 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1I-AD-PnX" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                            <rect key="frame" x="323" y="3" width="34" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="SOx-BU-Xwf"/>
+                                                <constraint firstAttribute="width" constant="34" id="jFy-K0-DJA"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="arrow" imagePadding="0.0"/>
+                                            <connections>
+                                                <action selector="challengePointMenuButtonTapped:" destination="-1" eventType="touchUpInside" id="cCo-LW-FBa"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="lhr-8u-PrT" firstAttribute="top" secondItem="oYJ-I6-zJn" secondAttribute="top" id="3U7-gK-Laq"/>
-                                        <constraint firstItem="lhr-8u-PrT" firstAttribute="leading" secondItem="oYJ-I6-zJn" secondAttribute="leading" constant="75" id="Ezj-Uu-LnZ"/>
-                                        <constraint firstItem="HRl-IB-Knu" firstAttribute="top" secondItem="oYJ-I6-zJn" secondAttribute="top" id="LfM-1m-XQr"/>
+                                        <constraint firstItem="L1I-AD-PnX" firstAttribute="leading" secondItem="lhr-8u-PrT" secondAttribute="trailing" id="8h7-rA-GJe"/>
+                                        <constraint firstItem="lhr-8u-PrT" firstAttribute="centerX" secondItem="oYJ-I6-zJn" secondAttribute="centerX" id="Kuc-aS-174"/>
+                                        <constraint firstItem="L1I-AD-PnX" firstAttribute="centerY" secondItem="oYJ-I6-zJn" secondAttribute="centerY" id="VhZ-i1-r7T"/>
                                         <constraint firstAttribute="height" constant="40" id="di3-bw-cr9"/>
-                                        <constraint firstAttribute="trailing" secondItem="HRl-IB-Knu" secondAttribute="trailing" constant="34" id="lZm-xb-Vcr"/>
+                                        <constraint firstAttribute="bottom" secondItem="lhr-8u-PrT" secondAttribute="bottom" id="dsr-V8-kb0"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="reA-qO-eem" userLabel="項目名「ボーナスポイント数」表示用UIView">
                                     <rect key="frame" x="0.0" y="467" width="393" height="40"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ボーナスポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd1-0d-DCo">
-                                            <rect key="frame" x="128.99999999999318" y="10.733087330873104" width="144" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ボーナスポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd1-0d-DCo">
+                                            <rect key="frame" x="125.00000000000001" y="9.9999999999999982" width="143.33333333333337" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -229,18 +249,19 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
+                                        <constraint firstItem="sd1-0d-DCo" firstAttribute="centerX" secondItem="reA-qO-eem" secondAttribute="centerX" id="EMa-m3-coW"/>
                                         <constraint firstAttribute="height" constant="40" id="Tf0-MM-qxr"/>
+                                        <constraint firstItem="sd1-0d-DCo" firstAttribute="centerY" secondItem="reA-qO-eem" secondAttribute="centerY" id="oXf-a6-wtp"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMg-Kc-nCx" userLabel="ボーナスポイント数表示用UIVIew">
                                     <rect key="frame" x="0.0" y="507" width="393" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8z-Th-a0f">
-                                            <rect key="frame" x="75" y="0.0" width="253" height="40"/>
+                                            <rect key="frame" x="70" y="0.0" width="253" height="40"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afu-uu-2D3">
-                                                    <rect key="frame" x="84.666666666666657" y="8" width="85" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afu-uu-2D3">
+                                                    <rect key="frame" x="84.333333333333343" y="9.333333333333373" width="84.333333333333343" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -248,8 +269,10 @@
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstItem="afu-uu-2D3" firstAttribute="centerX" secondItem="l8z-Th-a0f" secondAttribute="centerX" id="ErT-wB-sGB"/>
                                                 <constraint firstAttribute="width" constant="253" id="Gi8-ar-jGB"/>
                                                 <constraint firstAttribute="height" constant="40" id="GvR-79-kcs"/>
+                                                <constraint firstItem="afu-uu-2D3" firstAttribute="centerY" secondItem="l8z-Th-a0f" secondAttribute="centerY" id="TxJ-0t-6KJ"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -257,20 +280,34 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uiU-wp-kL7" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                            <rect key="frame" x="323" y="3" width="34" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="Kvx-va-gB9"/>
+                                                <constraint firstAttribute="width" constant="34" id="RXG-dc-lUS"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="arrow"/>
+                                            <connections>
+                                                <action selector="bonusPointMenuButtonTapped:" destination="-1" eventType="touchUpInside" id="7vj-Yg-4u2"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="l8z-Th-a0f" firstAttribute="leading" secondItem="rMg-Kc-nCx" secondAttribute="leading" constant="75" id="339-yj-OuH"/>
+                                        <constraint firstItem="l8z-Th-a0f" firstAttribute="centerX" secondItem="rMg-Kc-nCx" secondAttribute="centerX" id="5Ky-Sl-aY3"/>
                                         <constraint firstAttribute="height" constant="40" id="BbJ-Zw-AWG"/>
+                                        <constraint firstItem="uiU-wp-kL7" firstAttribute="centerY" secondItem="rMg-Kc-nCx" secondAttribute="centerY" id="P5c-fo-VNM"/>
+                                        <constraint firstItem="uiU-wp-kL7" firstAttribute="leading" secondItem="l8z-Th-a0f" secondAttribute="trailing" id="QpP-6x-kVf"/>
                                         <constraint firstItem="l8z-Th-a0f" firstAttribute="top" secondItem="rMg-Kc-nCx" secondAttribute="top" id="cmk-QB-nsF"/>
+                                        <constraint firstAttribute="bottom" secondItem="l8z-Th-a0f" secondAttribute="bottom" id="vta-Qh-fnE"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvb-p1-j61" userLabel="項目名「目標ポイント数」表示用UIVIew">
                                     <rect key="frame" x="0.0" y="547" width="393" height="40"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="目標ポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbB-dr-kXD">
-                                            <rect key="frame" x="144.99999999999318" y="10.733087330873104" width="112" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目標ポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbB-dr-kXD">
+                                            <rect key="frame" x="141" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -278,6 +315,8 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
+                                        <constraint firstItem="hbB-dr-kXD" firstAttribute="centerY" secondItem="fvb-p1-j61" secondAttribute="centerY" id="Qnr-NB-xm8"/>
+                                        <constraint firstItem="hbB-dr-kXD" firstAttribute="centerX" secondItem="fvb-p1-j61" secondAttribute="centerX" id="j9o-cJ-7av"/>
                                         <constraint firstAttribute="height" constant="40" id="kMO-1p-l6o"/>
                                     </constraints>
                                 </view>
@@ -285,11 +324,10 @@
                                     <rect key="frame" x="0.0" y="587" width="393" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkr-vs-fax">
-                                            <rect key="frame" x="75" y="0.0" width="253" height="40"/>
+                                            <rect key="frame" x="70" y="0.0" width="253" height="40"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="３０ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jz-v0-iov">
-                                                    <rect key="frame" x="76.666666666666657" y="8" width="102" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="３０ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jz-v0-iov">
+                                                    <rect key="frame" x="76" y="9.333333333333373" width="101.33333333333331" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -297,7 +335,9 @@
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstItem="3jz-v0-iov" firstAttribute="centerY" secondItem="kkr-vs-fax" secondAttribute="centerY" id="bSz-tg-ioi"/>
                                                 <constraint firstAttribute="width" constant="253" id="mv6-x9-Hpa"/>
+                                                <constraint firstItem="3jz-v0-iov" firstAttribute="centerX" secondItem="kkr-vs-fax" secondAttribute="centerX" id="wFf-fx-TDJ"/>
                                                 <constraint firstAttribute="height" constant="40" id="zIY-B9-lKf"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -306,20 +346,34 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXH-DH-jAr" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                            <rect key="frame" x="323" y="3" width="34" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="7kR-xp-mMu"/>
+                                                <constraint firstAttribute="width" constant="34" id="QP7-T7-BrJ"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="arrow"/>
+                                            <connections>
+                                                <action selector="goalPointMenuButtonTapped:" destination="-1" eventType="touchUpInside" id="eTp-By-lHw"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
+                                        <constraint firstItem="kkr-vs-fax" firstAttribute="centerX" secondItem="dHg-cv-90O" secondAttribute="centerX" id="7Az-Qf-zmF"/>
                                         <constraint firstAttribute="height" constant="40" id="UM2-96-h5P"/>
-                                        <constraint firstItem="kkr-vs-fax" firstAttribute="leading" secondItem="dHg-cv-90O" secondAttribute="leading" constant="75" id="Vua-eo-NvF"/>
                                         <constraint firstItem="kkr-vs-fax" firstAttribute="top" secondItem="dHg-cv-90O" secondAttribute="top" id="jG0-3K-1zk"/>
+                                        <constraint firstAttribute="bottom" secondItem="kkr-vs-fax" secondAttribute="bottom" id="mLW-gw-UuW"/>
+                                        <constraint firstItem="SXH-DH-jAr" firstAttribute="leading" secondItem="kkr-vs-fax" secondAttribute="trailing" id="tmn-2D-Qn0"/>
+                                        <constraint firstItem="SXH-DH-jAr" firstAttribute="centerY" secondItem="dHg-cv-90O" secondAttribute="centerY" id="uMr-I6-NK8"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7f1-li-kO0" userLabel="項目名「チャレンジ日数」表示用UIVIew">
                                     <rect key="frame" x="0.0" y="627" width="393" height="40"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="チャレンジ日数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOU-Ls-nao">
-                                            <rect key="frame" x="144.99999999999318" y="10.733087330873104" width="112" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ日数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOU-Ls-nao">
+                                            <rect key="frame" x="141" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -328,17 +382,18 @@
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="YgC-Q8-G9X"/>
+                                        <constraint firstItem="lOU-Ls-nao" firstAttribute="centerX" secondItem="7f1-li-kO0" secondAttribute="centerX" id="YhT-vG-KRv"/>
+                                        <constraint firstItem="lOU-Ls-nao" firstAttribute="centerY" secondItem="7f1-li-kO0" secondAttribute="centerY" id="zXN-0f-OrQ"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1Y-B4-ine" userLabel="チャレンジ日数表示用UIVIew">
                                     <rect key="frame" x="0.0" y="667" width="393" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1c9-2Q-KmT">
-                                            <rect key="frame" x="75" y="0.0" width="253" height="40"/>
+                                            <rect key="frame" x="70" y="0.0" width="253" height="40"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="３０日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWg-Pb-buF">
-                                                    <rect key="frame" x="102.66666666666666" y="8" width="51" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="３０日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWg-Pb-buF">
+                                                    <rect key="frame" x="101.33333333333334" y="9.333333333333373" width="50.666666666666657" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -346,7 +401,9 @@
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstItem="XWg-Pb-buF" firstAttribute="centerX" secondItem="1c9-2Q-KmT" secondAttribute="centerX" id="AB9-Yg-zpH"/>
                                                 <constraint firstAttribute="height" constant="40" id="OTX-UM-OVu"/>
+                                                <constraint firstItem="XWg-Pb-buF" firstAttribute="centerY" secondItem="1c9-2Q-KmT" secondAttribute="centerY" id="Odt-ZT-1oF"/>
                                                 <constraint firstAttribute="width" constant="253" id="huR-xG-dQn"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -355,107 +412,94 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLB-iu-A3w" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                            <rect key="frame" x="323" y="3" width="34" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="Mvm-nQ-4WQ"/>
+                                                <constraint firstAttribute="width" constant="34" id="Vy6-q4-Sjd"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="arrow"/>
+                                            <connections>
+                                                <action selector="challengeDaysMenuButtonTapped:" destination="-1" eventType="touchUpInside" id="KFw-h2-3tc"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="1c9-2Q-KmT" firstAttribute="top" secondItem="f1Y-B4-ine" secondAttribute="top" id="Iru-Fi-cfm"/>
-                                        <constraint firstItem="1c9-2Q-KmT" firstAttribute="leading" secondItem="f1Y-B4-ine" secondAttribute="leading" constant="75" id="bAf-Yv-bxX"/>
-                                        <constraint firstAttribute="height" constant="40" id="nx3-WH-6JE"/>
+                                        <constraint firstItem="1c9-2Q-KmT" firstAttribute="top" secondItem="f1Y-B4-ine" secondAttribute="top" id="0AQ-oM-hpR"/>
+                                        <constraint firstItem="aLB-iu-A3w" firstAttribute="centerY" secondItem="f1Y-B4-ine" secondAttribute="centerY" id="W01-EH-BRj"/>
+                                        <constraint firstItem="1c9-2Q-KmT" firstAttribute="centerX" secondItem="f1Y-B4-ine" secondAttribute="centerX" id="adv-uL-Wvp"/>
+                                        <constraint firstItem="aLB-iu-A3w" firstAttribute="leading" secondItem="1c9-2Q-KmT" secondAttribute="trailing" id="jUG-dQ-TSh"/>
+                                        <constraint firstAttribute="height" constant="40" id="kqN-QT-tfV"/>
+                                        <constraint firstAttribute="bottom" secondItem="1c9-2Q-KmT" secondAttribute="bottom" id="ob7-7x-glQ"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opf-dd-72v" userLabel="ご褒美登録ボタンのUIVIew">
                                     <rect key="frame" x="0.0" y="707" width="393" height="51"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdi-lv-qXG" userLabel="背景の黄色いUIVIew">
-                                            <rect key="frame" x="75" y="11" width="253" height="40"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gq-V1-6gF" userLabel="透明なご褒美登録ボタン">
-                                                    <rect key="frame" x="0.0" y="0.0" width="253" height="40"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="253" id="gU1-PA-EN7"/>
-                                                        <constraint firstAttribute="height" constant="40" id="mc6-EQ-QRF"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain"/>
-                                                </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gift" translatesAutoresizingMaskIntoConstraints="NO" id="ne4-ze-stH">
-                                                    <rect key="frame" x="37" y="6" width="29" height="29"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ご褒美の登録" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgg-Fh-HvZ">
-                                                    <rect key="frame" x="81" y="8.9999999999999982" width="95.666666666666686" height="20.333333333333329"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gq-V1-6gF" userLabel="透明なご褒美登録ボタン" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                            <rect key="frame" x="70" y="11" width="253" height="40"/>
+                                            <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstItem="Pgg-Fh-HvZ" firstAttribute="top" secondItem="Tdi-lv-qXG" secondAttribute="top" constant="9" id="6w2-CX-A65"/>
-                                                <constraint firstAttribute="width" constant="253" id="BDF-2p-9pb"/>
-                                                <constraint firstItem="Pgg-Fh-HvZ" firstAttribute="leading" secondItem="ne4-ze-stH" secondAttribute="trailing" constant="15" id="HU0-EI-GYp"/>
-                                                <constraint firstAttribute="height" constant="40" id="M1c-5d-fdG"/>
-                                                <constraint firstItem="2gq-V1-6gF" firstAttribute="leading" secondItem="Tdi-lv-qXG" secondAttribute="leading" id="Wcc-gx-ItI"/>
-                                                <constraint firstItem="ne4-ze-stH" firstAttribute="top" secondItem="Tdi-lv-qXG" secondAttribute="top" constant="6" id="fHO-d3-bnE"/>
-                                                <constraint firstItem="ne4-ze-stH" firstAttribute="leading" secondItem="Tdi-lv-qXG" secondAttribute="leading" constant="37" id="lu4-Dz-2mO"/>
-                                                <constraint firstItem="2gq-V1-6gF" firstAttribute="top" secondItem="Tdi-lv-qXG" secondAttribute="top" id="xVK-aM-ilm"/>
+                                                <constraint firstAttribute="width" constant="253" id="gU1-PA-EN7"/>
+                                                <constraint firstAttribute="height" constant="40" id="mc6-EQ-QRF"/>
                                             </constraints>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="gift" title="  ご褒美の登録"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                     <integer key="value" value="8"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
-                                        </view>
+                                            <connections>
+                                                <action selector="presentRegisterButtonTappedWith_sender:" destination="-1" eventType="touchUpInside" id="bry-6E-T21"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="51" id="ctc-A3-GB9"/>
-                                        <constraint firstItem="Tdi-lv-qXG" firstAttribute="top" secondItem="opf-dd-72v" secondAttribute="top" constant="11" id="mjd-st-zH5"/>
-                                        <constraint firstItem="Tdi-lv-qXG" firstAttribute="leading" secondItem="opf-dd-72v" secondAttribute="leading" constant="75" id="yFc-ne-3aK"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EJl-hk-2I9" userLabel="スペース用UIVIew">
-                                    <rect key="frame" x="0.0" y="758" width="393" height="11"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="11" id="95D-BX-o34"/>
+                                        <constraint firstItem="2gq-V1-6gF" firstAttribute="centerX" secondItem="opf-dd-72v" secondAttribute="centerX" id="6Vo-pp-hWH"/>
+                                        <constraint firstAttribute="bottom" secondItem="2gq-V1-6gF" secondAttribute="bottom" id="MqZ-T3-NoP"/>
+                                        <constraint firstItem="2gq-V1-6gF" firstAttribute="top" secondItem="opf-dd-72v" secondAttribute="top" constant="11" id="dXa-Lp-4NG"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kiA-Rj-Vlh" userLabel="完了ボタンのUIVIew">
-                                    <rect key="frame" x="0.0" y="769" width="393" height="51"/>
+                                    <rect key="frame" x="0.0" y="758" width="393" height="76"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGx-M1-c8q" userLabel="背景の黄色いUIVIew">
-                                            <rect key="frame" x="75" y="20" width="253" height="40"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="a9Q-1W-vAo">
-                                                    <rect key="frame" x="37" y="20" width="30" height="30"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完了" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKh-80-842">
-                                                    <rect key="frame" x="105" y="20" width="37.666666666666657" height="24"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.078431372549019607" green="0.67450980392156867" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnn-Xv-qJv" userLabel="透明な完了Button" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                            <rect key="frame" x="70" y="11" width="253" height="65"/>
+                                            <color key="backgroundColor" red="0.078431372550000003" green="0.67450980390000004" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstItem="a9Q-1W-vAo" firstAttribute="leading" secondItem="GGx-M1-c8q" secondAttribute="leading" constant="37" id="J9D-9T-Pow"/>
-                                                <constraint firstAttribute="height" constant="65" id="UUs-y5-MhL"/>
-                                                <constraint firstItem="bKh-80-842" firstAttribute="top" secondItem="GGx-M1-c8q" secondAttribute="top" constant="20" id="Vaq-xo-wKc"/>
-                                                <constraint firstAttribute="width" constant="253" id="dy8-Kp-SaX"/>
-                                                <constraint firstItem="a9Q-1W-vAo" firstAttribute="top" secondItem="GGx-M1-c8q" secondAttribute="top" constant="20" id="iJV-Jh-G5g"/>
-                                                <constraint firstItem="bKh-80-842" firstAttribute="leading" secondItem="a9Q-1W-vAo" secondAttribute="trailing" constant="38" id="mR4-X0-2EG"/>
+                                                <constraint firstAttribute="height" constant="65" id="JJ8-tv-6nT"/>
+                                                <constraint firstAttribute="width" constant="253" id="fms-4B-DDA"/>
                                             </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="ic_check" title=" 完了"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                     <integer key="value" value="8"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
-                                        </view>
+                                            <connections>
+                                                <action selector="doneButtonTapped:" destination="-1" eventType="touchUpInside" id="Ns6-ZL-ulR"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="51" id="LIK-QG-XRl"/>
-                                        <constraint firstItem="GGx-M1-c8q" firstAttribute="leading" secondItem="kiA-Rj-Vlh" secondAttribute="leading" constant="75" id="amc-Wp-vS6"/>
+                                        <constraint firstItem="dnn-Xv-qJv" firstAttribute="centerX" secondItem="kiA-Rj-Vlh" secondAttribute="centerX" id="5BU-py-bih"/>
+                                        <constraint firstAttribute="bottom" secondItem="dnn-Xv-qJv" secondAttribute="bottom" id="5uw-ln-wXp"/>
+                                        <constraint firstItem="dnn-Xv-qJv" firstAttribute="top" secondItem="kiA-Rj-Vlh" secondAttribute="top" constant="11" id="RSO-8R-hw8"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxB-WS-orr">
+                                    <rect key="frame" x="0.0" y="834" width="393" height="128"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="128" id="Tvw-Pc-JZ9"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -490,6 +534,7 @@
         </view>
     </objects>
     <resources>
+        <image name="arrow" width="34" height="34"/>
         <image name="gift" width="29" height="29"/>
         <image name="ic_check" width="30" height="30"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>

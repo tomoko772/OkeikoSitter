@@ -89,7 +89,7 @@ final class MainViewController: UIViewController {
         let settingVC = SettingViewController()
         let navController = UINavigationController(rootViewController: settingVC)
         navController.modalPresentationStyle = .fullScreen
-        present(navController, animated: true)
+        navigationController?.present(navController, animated: true)
     }
     
     // ユーザー切り替えボタンがタップされたときの処理
@@ -97,7 +97,7 @@ final class MainViewController: UIViewController {
         let userVC = UserViewController()
         let navController = UINavigationController(rootViewController: userVC)
         navController.modalPresentationStyle = .fullScreen
-        present(navController, animated: true)
+        navigationController?.present(navController, animated: true)
     }
 }
 
