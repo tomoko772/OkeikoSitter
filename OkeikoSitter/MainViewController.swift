@@ -84,15 +84,20 @@ final class MainViewController: UIViewController {
         self.navigationItem.rightBarButtonItems = [firstBarButtonItem, secondBarButtonItem]
     }
     
-    @objc private func didTapSettingButton() {
-        // 設定ボタンがタップされたときの処理
-        print("設定ボタンがタップされました")
+    // 設定ボタンがタップされたときの処理
+    @objc private func didTapSettingButton(_ sender: UIButton) {
+        let settingVC = SettingViewController()
+        let navController = UINavigationController(rootViewController: settingVC)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
     }
     
-    @objc private func didTapUsersButton() {
-        // ユーザー切り替えボタンがタップされたときの処理
-        print("ユーザー切り替えボタンがタップされました")
+    // ユーザー切り替えボタンがタップされたときの処理
+    @objc private func didTapUsersButton(_ sender: UIButton) {
+        let userVC = UserViewController()
+        let navController = UINavigationController(rootViewController: userVC)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
     }
-    
 }
 
