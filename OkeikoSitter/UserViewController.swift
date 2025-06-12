@@ -23,11 +23,22 @@ class UserViewController: UIViewController {
     
     // MARK: - IBActions
     
-
-
-   // MARK: - Other Methods
-
+    
+    
+    // MARK: - Other Methods
+    
     private func configureBarButtonItems(){
-        
+        // 左端のキャンセルボタン（アイコン）
+        let cancelImage = UIImage(named: "cancel")
+        let cancelButton = UIBarButtonItem(image: cancelImage,
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(cancelButtonPressed(_:)))
+        navigationItem.leftBarButtonItem = cancelButton
+    }
+    
+    @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
 }
+
