@@ -11,27 +11,24 @@ import UIKit
 class HomeUserTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
     ///ユーザーイメージビュー
-    @IBOutlet private weak var UserImageView: UIImageView!
+    @IBOutlet private weak var userImageView: UIImageView!
     ///ユーザー名ラベル
-    @IBOutlet private weak var UserNameLabel: UILabel!
+    @IBOutlet private weak var userNameLabel: UILabel!
     
     
     // MARK: - View Life-Cycle Methods
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     // MARK: - IBActions
     
     ///ユーザー選択ボタン
     @IBAction private func UserSelectionButtonTapped(_ sender: Any) {
+    }
+    
+    // MARK: - Other Methods
+    func configure(imageString: String, userName: String) {
+        self.userImageView.image = UIImage(named: imageString)
+        self.userNameLabel.text = userName
     }
     
 }

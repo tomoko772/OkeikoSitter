@@ -66,8 +66,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="Scl-j3-yql"/>
             <connections>
-                <outlet property="UserImageView" destination="ivb-hp-xaM" id="78s-A3-sNa"/>
-                <outlet property="UserNameLabel" destination="2eY-pN-23a" id="ibY-3F-Jyk"/>
+                <outlet property="userImageView" destination="ivb-hp-xaM" id="78s-A3-sNa"/>
+                <outlet property="userNameLabel" destination="2eY-pN-23a" id="ibY-3F-Jyk"/>
             </connections>
             <point key="canvasLocation" x="83.969465648854964" y="19.718309859154932"/>
         </tableViewCell>
