@@ -30,7 +30,7 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var remainingDays: UILabel!
     /// GIF画像を表示するためにIBOutlet接続
     @IBOutlet private weak var gifImage: UIImageView!
-    /// GIF画像を表示するためにIBOutlet接
+    /// GIF画像を表示するためにIBOutlet接続
     @IBOutlet private weak var gifImage2: UIImageView!
     
     // MARK: - View Life-Cycle Methods
