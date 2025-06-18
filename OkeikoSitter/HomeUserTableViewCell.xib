@@ -1,75 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="HomeUserTableViewCell" customModule="OkeikoSitter" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="UserTableViewCell" customModule="OkeikoSitter" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ivb-hp-xaM">
-                        <rect key="frame" x="13" y="19" width="60" height="60"/>
-                        <color key="tintColor" red="0.32549019607843138" green="0.39215686274509803" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ivb-hp-xaM">
+                        <rect key="frame" x="16" y="16.666666666666668" width="60" height="58.666666666666657"/>
+                        <color key="tintColor" systemColor="tableBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="Vgk-DK-pnl"/>
                             <constraint firstAttribute="height" constant="60" id="crN-Jv-7Gb"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="45"/>
+                                <integer key="value" value="30"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmL-oG-t7a">
-                        <rect key="frame" x="73" y="29" width="205" height="40"/>
-                        <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDC-GB-9Ar">
+                        <rect key="frame" x="76" y="26" width="208" height="40"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="田島太郎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zA9-3S-PxQ">
+                                <rect key="frame" x="72.333333333333343" y="9.6666666666666643" width="63.666666666666657" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.92156862750000001" green="0.99607843139999996" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.078431372549019607" green="0.68235294117647061" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="205" id="Awb-Te-T6A"/>
-                            <constraint firstAttribute="height" constant="40" id="gV6-cr-Zbl"/>
+                            <constraint firstItem="zA9-3S-PxQ" firstAttribute="centerY" secondItem="YDC-GB-9Ar" secondAttribute="centerY" id="3A1-rM-myY"/>
+                            <constraint firstItem="zA9-3S-PxQ" firstAttribute="centerX" secondItem="YDC-GB-9Ar" secondAttribute="centerX" id="4GH-tm-q1M"/>
+                            <constraint firstAttribute="height" constant="40" id="p7Q-Q8-xeO"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadisu">
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="8"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <action selector="UserSelectionButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="66Z-Hg-2AA"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="田島太郎" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eY-pN-23a">
-                        <rect key="frame" x="128" y="38.666666666666664" width="64" height="21"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                        <color key="textColor" red="0.92156862750000001" green="1" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                 </subviews>
                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="ivb-hp-xaM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="1fX-Ti-nxr"/>
-                    <constraint firstItem="ivb-hp-xaM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="4f8-x0-y5E"/>
-                    <constraint firstItem="2eY-pN-23a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Mxz-8t-70L"/>
-                    <constraint firstItem="rmL-oG-t7a" firstAttribute="leading" secondItem="ivb-hp-xaM" secondAttribute="trailing" id="Pob-7i-eG8"/>
-                    <constraint firstItem="2eY-pN-23a" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="vLy-AF-sUi"/>
-                    <constraint firstItem="rmL-oG-t7a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="29" id="wx6-PZ-Pmo"/>
+                    <constraint firstItem="ivb-hp-xaM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="1fX-Ti-nxr"/>
+                    <constraint firstItem="ivb-hp-xaM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="4f8-x0-y5E"/>
+                    <constraint firstAttribute="trailing" secondItem="YDC-GB-9Ar" secondAttribute="trailing" constant="36" id="92h-Sz-joC"/>
+                    <constraint firstItem="YDC-GB-9Ar" firstAttribute="leading" secondItem="ivb-hp-xaM" secondAttribute="trailing" id="J8H-Kl-oaJ"/>
+                    <constraint firstAttribute="bottom" secondItem="ivb-hp-xaM" secondAttribute="bottom" constant="16" id="aZ9-vj-bXK"/>
+                    <constraint firstItem="YDC-GB-9Ar" firstAttribute="centerY" secondItem="ivb-hp-xaM" secondAttribute="centerY" id="mXx-zk-7xj"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="Scl-j3-yql"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="userImageView" destination="ivb-hp-xaM" id="78s-A3-sNa"/>
-                <outlet property="userNameLabel" destination="2eY-pN-23a" id="ibY-3F-Jyk"/>
+                <outlet property="userNameLabel" destination="zA9-3S-PxQ" id="JXJ-UV-Hr7"/>
             </connections>
             <point key="canvasLocation" x="83.969465648854964" y="19.718309859154932"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="person.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="tableBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
