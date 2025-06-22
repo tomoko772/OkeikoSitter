@@ -32,7 +32,7 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBarButtonItems()
-       
+        
     }
     
     // MARK: - IBActions
@@ -55,6 +55,10 @@ class SettingViewController: UIViewController {
     
     /// ご褒美登録ボタンをタップした
     @IBAction private func presentRegisterButtonTapped(_sender: UIButton) {
+        let presentVC = PresentViewController()
+        let navController = UINavigationController(rootViewController: presentVC)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
     }
     
     /// 完了ボタンをタップした
@@ -87,5 +91,10 @@ class SettingViewController: UIViewController {
     
     @objc func deleteButtonPressed(_ sender: UIBarButtonItem) {
         print("ユーザーが削除されます")
+    }
+    
+    // ご褒美登録ボタンがタップされたときの処理
+    private func presentRegisterButtonTapped() {
+        
     }
 }

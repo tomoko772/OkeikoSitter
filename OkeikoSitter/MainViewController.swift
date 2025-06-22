@@ -60,6 +60,10 @@ final class MainViewController: UIViewController {
     
     /// ご褒美ボタンを押した時に呼ばれる関数
     @IBAction private func presentButtonTapped(_ sender: Any) {
+        let presentVC = PresentViewController()
+        let navController = UINavigationController(rootViewController: presentVC)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
     }
     
     // MARK: - Other Methods
