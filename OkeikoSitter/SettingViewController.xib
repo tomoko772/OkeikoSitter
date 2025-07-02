@@ -12,10 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingViewController" customModule="OkeikoSitter" customModuleProvider="target">
             <connections>
                 <outlet property="bonusPointLabel" destination="afu-uu-2D3" id="afe-zS-Td8"/>
+                <outlet property="bonusPointMenuButton" destination="uiU-wp-kL7" id="7tz-5v-pEc"/>
                 <outlet property="challengeDaysLabel" destination="XWg-Pb-buF" id="sPY-vA-wUT"/>
+                <outlet property="challengeDaysMenuButton" destination="aLB-iu-A3w" id="eIb-O1-AoX"/>
                 <outlet property="challengePointLabel" destination="YSW-a2-v8u" id="sLE-wG-9Lu"/>
+                <outlet property="challengePointMenuButton" destination="L1I-AD-PnX" id="eU6-sk-55K"/>
                 <outlet property="challengeTaskLabel" destination="2Oj-ba-xp3" id="xpz-At-mkQ"/>
                 <outlet property="goalPointLabel" destination="3jz-v0-iov" id="d5p-q5-eYV"/>
+                <outlet property="goalPointMenuButton" destination="SXH-DH-jAr" id="bxv-R5-kfV"/>
                 <outlet property="userImageView" destination="K38-ae-l04" id="ncn-4n-yNP"/>
                 <outlet property="userNameTextField" destination="GiU-HM-t4s" id="H49-N1-VLq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -225,9 +229,6 @@
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="arrow" imagePadding="0.0"/>
-                                            <connections>
-                                                <action selector="challengePointMenuButtonTapped:" destination="-1" eventType="touchUpInside" id="cCo-LW-FBa"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -291,9 +292,6 @@
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="arrow"/>
-                                            <connections>
-                                                <action selector="bonusPointMenuButtonTapped:" destination="-1" eventType="touchUpInside" id="7vj-Yg-4u2"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -357,9 +355,6 @@
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="arrow"/>
-                                            <connections>
-                                                <action selector="goalPointMenuButtonTapped:" destination="-1" eventType="touchUpInside" id="eTp-By-lHw"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -423,9 +418,6 @@
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="arrow"/>
-                                            <connections>
-                                                <action selector="challengeDaysMenuButtonTapped:" destination="-1" eventType="touchUpInside" id="KFw-h2-3tc"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
