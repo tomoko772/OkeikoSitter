@@ -14,8 +14,8 @@ class SettingViewController: UIViewController {
     
     /// ユーザー画像
     @IBOutlet private weak var userImageView: UIImageView!
-    /// ユーザー名ラベル
-    @IBOutlet private weak var nameLabel: UILabel!
+    /// ユーザー名テキストフィールド
+    @IBOutlet private weak var userNameTextField: UITextField!
     /// チャレンジ内容ラベル
     @IBOutlet private weak var challengeTaskLabel: UILabel!
     /// もらえるポイント数ラベル
