@@ -10,11 +10,18 @@ import Firebase
 
 struct Setting {
     let documentID: String
+    /// ユーザーネーム
     let userName: String
+    /// 目標達成時にもらえるポイント数
     let challengePoint: Int
+    /// ボーナスポイント数
     let bonusPoint: Int
+    /// 目標達成に必要な合計ポイント数
     let goalPoint: Int
+    /// 目標達成の期日（日数）
     let challengeDay: Int
+    /// 目標達成の課題内容
+    let challengeTask: String
 }
 
 extension Setting {

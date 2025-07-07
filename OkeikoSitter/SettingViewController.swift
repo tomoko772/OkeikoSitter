@@ -8,6 +8,7 @@
 import UIKit
 
 /// 設定画面
+
 class SettingViewController: UIViewController, UITextViewDelegate  {
     
     // MARK: - Properties
@@ -25,8 +26,7 @@ class SettingViewController: UIViewController, UITextViewDelegate  {
     @IBOutlet private weak var userImageView: UIImageView!
     /// ユーザー名テキストフィールド
     @IBOutlet private weak var userNameTextField: UITextField!
-    /// チャレンジ内容ラベル
-    @IBOutlet private weak var challengeTaskLabel: UILabel!
+    
     /// チャレンジ内容テキストビュー
     @IBOutlet private weak var challengeTaskTextView: UITextView!
     /// プレースホルダーラベル
@@ -58,7 +58,7 @@ class SettingViewController: UIViewController, UITextViewDelegate  {
         configureGoalPointMenuButton()
         configureChallengeDaysMenuButton()
         challengeTaskTextView.delegate = self
-            placeholderLabel.isHidden = !challengeTaskTextView.text.isEmpty
+        placeholderLabel.isHidden = !challengeTaskTextView.text.isEmpty
     }
     
     // MARK: - IBActions
@@ -190,6 +190,7 @@ class SettingViewController: UIViewController, UITextViewDelegate  {
         let challengePoint = challengePoint,
         let bonusPoint = bonusPoint,
         let goalPoint = goalPoint,
+        let challengeTask = challengeTaskTextView.text,
         let challengeDay = challengeDay else {
             return showAlert(title: "設定が済んでいません", message: "全ての項目を入力してください。")
         }
@@ -199,7 +200,7 @@ class SettingViewController: UIViewController, UITextViewDelegate  {
                            challengePoint: challengePoint,
                            bonusPoint: bonusPoint,
                            goalPoint: goalPoint,
-                           challengeDay: challengeDay)
+                           challengeDay: challengeDay, challengeTask: challengeTask )
         
         firebaseService.saveDataToFirestore(collection: "setting",
                                             data: data.toDictionary()) { [weak self] error in
@@ -207,20 +208,26 @@ class SettingViewController: UIViewController, UITextViewDelegate  {
             if let error = error {
                 self.showAlert(title: "データの保存エラー", message: "\(error)")
                 print("データの保存エラー: \(error)")
+                
+                
             } else {
-                self.showAlert(title: "登録しました！")
+                self.showAlert(title: "登録しました！") {
+                    self.dismiss(animated: true, completion: nil)
+                }
                 print("データが正常に保存されました")
-                dismiss(animated: true, completion: nil)
             }
         }
     }
     
     /// アラートを表示
-    private func showAlert(title: String, message: String = "") {
+    private func showAlert(title: String, message: String = "",
+                           completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            completion?()
+        })
         self.present(alert, animated: true, completion: nil)
     }
     
