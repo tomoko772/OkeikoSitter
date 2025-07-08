@@ -9,7 +9,7 @@ import UIKit
 
 /// 設定画面
 
-class SettingViewController: UIViewController, UITextViewDelegate  {
+final class SettingViewController: UIViewController, UITextViewDelegate  {
     
     // MARK: - Properties
     
