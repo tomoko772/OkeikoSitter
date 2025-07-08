@@ -12,6 +12,7 @@ import UIKit
 class SettingViewController: UIViewController, UITextViewDelegate  {
     
     // MARK: - Properties
+    
     private let defaultText = "ポイントを選択してください"
     /// FirebaseServiceのインスタンス
     private let firebaseService = FirebaseService.shared
