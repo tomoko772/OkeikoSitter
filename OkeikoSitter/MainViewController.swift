@@ -105,3 +105,6 @@ final class MainViewController: UIViewController {
     }
 }
 
+// MARK: - UITextViewDelegate
+extension SettingViewController: UITextViewDelegate {
+}
