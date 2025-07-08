@@ -27,7 +27,6 @@ final class SettingViewController: UIViewController, UITextViewDelegate  {
     @IBOutlet private weak var userImageView: UIImageView!
     /// ユーザー名テキストフィールド
     @IBOutlet private weak var userNameTextField: UITextField!
-    
     /// チャレンジ内容テキストビュー
     @IBOutlet private weak var challengeTaskTextView: UITextView!
     /// プレースホルダーラベル
