@@ -12,12 +12,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingViewController" customModule="OkeikoSitter" customModuleProvider="target">
             <connections>
                 <outlet property="bonusPointLabel" destination="afu-uu-2D3" id="afe-zS-Td8"/>
+                <outlet property="bonusPointMenuButton" destination="uiU-wp-kL7" id="7tz-5v-pEc"/>
                 <outlet property="challengeDaysLabel" destination="XWg-Pb-buF" id="sPY-vA-wUT"/>
+                <outlet property="challengeDaysMenuButton" destination="aLB-iu-A3w" id="eIb-O1-AoX"/>
                 <outlet property="challengePointLabel" destination="YSW-a2-v8u" id="sLE-wG-9Lu"/>
-                <outlet property="challengeTaskLabel" destination="2Oj-ba-xp3" id="xpz-At-mkQ"/>
+                <outlet property="challengePointMenuButton" destination="L1I-AD-PnX" id="eU6-sk-55K"/>
+                <outlet property="challengeTaskTextView" destination="Miz-NP-92I" id="UCb-Yk-Nbi"/>
                 <outlet property="goalPointLabel" destination="3jz-v0-iov" id="d5p-q5-eYV"/>
-                <outlet property="nameLabel" destination="0Q4-Bf-bnE" id="sov-xZ-Zzg"/>
+                <outlet property="goalPointMenuButton" destination="SXH-DH-jAr" id="bxv-R5-kfV"/>
+                <outlet property="placeholderLabel" destination="xaV-eV-PI1" id="CK1-TS-FW6"/>
                 <outlet property="userImageView" destination="K38-ae-l04" id="ncn-4n-yNP"/>
+                <outlet property="userNameTextField" destination="GiU-HM-t4s" id="H49-N1-VLq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -90,19 +95,22 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ViW-gt-plj">
                                             <rect key="frame" x="70" y="0.0" width="253" height="40"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="田島太郎" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Q4-Bf-bnE">
-                                                    <rect key="frame" x="92.666666666666657" y="9.3333333333333446" width="67.666666666666657" height="21.666666666666671"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ここに名前を入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GiU-HM-t4s">
+                                                    <rect key="frame" x="0.0" y="0.0" width="253" height="40"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" red="0.0" green="0.60000002384185791" blue="0.31764706969261169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="0.94509803921568625" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstItem="GiU-HM-t4s" firstAttribute="top" secondItem="ViW-gt-plj" secondAttribute="top" id="D6i-Ua-j9B"/>
+                                                <constraint firstAttribute="trailing" secondItem="GiU-HM-t4s" secondAttribute="trailing" id="Gqg-fu-fCB"/>
+                                                <constraint firstAttribute="bottom" secondItem="GiU-HM-t4s" secondAttribute="bottom" id="HWn-Fa-vEa"/>
                                                 <constraint firstAttribute="width" constant="253" id="WWg-oH-Ny3"/>
-                                                <constraint firstItem="0Q4-Bf-bnE" firstAttribute="centerX" secondItem="ViW-gt-plj" secondAttribute="centerX" id="eBY-cY-aZk"/>
                                                 <constraint firstAttribute="height" constant="40" id="eSB-9v-LNN"/>
-                                                <constraint firstItem="0Q4-Bf-bnE" firstAttribute="centerY" secondItem="ViW-gt-plj" secondAttribute="centerY" id="fjb-XW-cyN"/>
+                                                <constraint firstItem="GiU-HM-t4s" firstAttribute="leading" secondItem="ViW-gt-plj" secondAttribute="leading" id="kvL-iP-nHp"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -142,19 +150,30 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYt-cH-SLA">
                                             <rect key="frame" x="70" y="0.0" width="253" height="115"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="毎日５分バイオリンを練習" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oj-ba-xp3">
-                                                    <rect key="frame" x="25.333333333333329" y="46.666666666666686" width="202.33333333333337" height="21.666666666666671"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Miz-NP-92I" userLabel="チャレンジ内容入力用Text View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="253" height="115"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容を入力してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaV-eV-PI1" userLabel="プレースホルダーラベル">
+                                                    <rect key="frame" x="6.6666666666666714" y="48" width="239.66666666666663" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" systemColor="opaqueSeparatorColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             <constraints>
-                                                <constraint firstItem="2Oj-ba-xp3" firstAttribute="centerX" secondItem="fYt-cH-SLA" secondAttribute="centerX" id="2pN-rH-f77"/>
-                                                <constraint firstItem="2Oj-ba-xp3" firstAttribute="centerY" secondItem="fYt-cH-SLA" secondAttribute="centerY" id="HjA-DZ-nuw"/>
+                                                <constraint firstItem="xaV-eV-PI1" firstAttribute="centerX" secondItem="fYt-cH-SLA" secondAttribute="centerX" id="DTY-JP-jfh"/>
                                                 <constraint firstAttribute="width" constant="253" id="JqR-J9-cSR"/>
                                                 <constraint firstAttribute="height" constant="115" id="XWx-Tm-HcA"/>
+                                                <constraint firstItem="Miz-NP-92I" firstAttribute="top" secondItem="fYt-cH-SLA" secondAttribute="top" id="bTn-lI-Ctn"/>
+                                                <constraint firstAttribute="trailing" secondItem="Miz-NP-92I" secondAttribute="trailing" id="mrZ-iM-fdG"/>
+                                                <constraint firstAttribute="bottom" secondItem="Miz-NP-92I" secondAttribute="bottom" id="p5d-Pn-uSq"/>
+                                                <constraint firstItem="xaV-eV-PI1" firstAttribute="centerY" secondItem="fYt-cH-SLA" secondAttribute="centerY" id="uvG-iW-mEa"/>
+                                                <constraint firstItem="Miz-NP-92I" firstAttribute="leading" secondItem="fYt-cH-SLA" secondAttribute="leading" id="zmg-Sj-BEs"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -222,9 +241,6 @@
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="arrow" imagePadding="0.0"/>
-                                            <connections>
-                                                <action selector="challengePointMenuButtonTapped:" destination="-1" eventType="touchUpInside" id="cCo-LW-FBa"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -288,9 +304,6 @@
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="arrow"/>
-                                            <connections>
-                                                <action selector="bonusPointMenuButtonTapped:" destination="-1" eventType="touchUpInside" id="7vj-Yg-4u2"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -354,9 +367,6 @@
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="arrow"/>
-                                            <connections>
-                                                <action selector="goalPointMenuButtonTapped:" destination="-1" eventType="touchUpInside" id="eTp-By-lHw"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -420,9 +430,6 @@
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="arrow"/>
-                                            <connections>
-                                                <action selector="challengeDaysMenuButtonTapped:" destination="-1" eventType="touchUpInside" id="KFw-h2-3tc"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -538,6 +545,9 @@
         <image name="gift" width="29" height="29"/>
         <image name="ic_check" width="30" height="30"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

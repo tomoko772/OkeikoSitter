@@ -1,5 +1,5 @@
 //
-//  HomeUserTableViewCell.swift
+//  UserTableViewCell.swift
 //  OkeikoSitter
 //
 //  Created by Tomoko T. Nakao on 2025/06/16.

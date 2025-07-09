@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Pw-Mv-FNB">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="799"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="789"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b7V-Uw-vdh">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
@@ -70,8 +70,8 @@
                                                     <constraint firstItem="TVZ-Jd-Y65" firstAttribute="centerX" secondItem="b7V-Uw-vdh" secondAttribute="centerX" id="j90-Tl-fq9"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HGZ-sC-pCP">
-                                                <rect key="frame" x="28" y="114" width="337" height="685"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGZ-sC-pCP">
+                                                <rect key="frame" x="28" y="70" width="337" height="685"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OoN-oO-zkS">
                                                         <rect key="frame" x="32" y="14" width="273" height="55"/>
@@ -442,13 +442,12 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="HGZ-sC-pCP" firstAttribute="top" secondItem="b7V-Uw-vdh" secondAttribute="bottom" id="3TI-dc-Rd9"/>
                                             <constraint firstAttribute="trailing" secondItem="b7V-Uw-vdh" secondAttribute="trailing" id="5ni-4r-dzi"/>
                                             <constraint firstItem="b7V-Uw-vdh" firstAttribute="top" secondItem="6Pw-Mv-FNB" secondAttribute="top" id="7sp-0t-I5m"/>
                                             <constraint firstAttribute="trailing" secondItem="HGZ-sC-pCP" secondAttribute="trailing" constant="28" id="C4C-6O-7Nt"/>
                                             <constraint firstItem="b7V-Uw-vdh" firstAttribute="leading" secondItem="6Pw-Mv-FNB" secondAttribute="leading" id="DcN-nu-PHG"/>
                                             <constraint firstAttribute="bottom" secondItem="HGZ-sC-pCP" secondAttribute="bottom" constant="34" id="U2J-iD-ZgF"/>
-                                            <constraint firstItem="HGZ-sC-pCP" firstAttribute="top" secondItem="b7V-Uw-vdh" secondAttribute="bottom" constant="10" id="mFN-EN-k9n"/>
+                                            <constraint firstItem="HGZ-sC-pCP" firstAttribute="top" secondItem="b7V-Uw-vdh" secondAttribute="bottom" id="a4M-7f-dzp"/>
                                             <constraint firstItem="HGZ-sC-pCP" firstAttribute="leading" secondItem="6Pw-Mv-FNB" secondAttribute="leading" constant="28" id="uEa-62-eZV"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>

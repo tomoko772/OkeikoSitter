@@ -49,9 +49,9 @@ class UserViewController: UIViewController {
         userTableView.dataSource = self
         userTableView.delegate = self
         // カスタムセル
-        let nib = UINib(nibName: "HomeUserTableViewCell", bundle: nil)
+        let nib = UINib(nibName: "UserTableViewCell", bundle: nil)
         userTableView.register(nib, forCellReuseIdentifier: "Cell")
-        userTableView.rowHeight = UITableView.automaticDimension
+        userTableView.rowHeight = 78
     }
 }
 // MARK: - UITableViewDataSource
