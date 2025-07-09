@@ -7,7 +7,9 @@
 
 import UIKit
 import SwiftGifOrigin
+import FirebaseAuth
 
+/// メイン画面
 final class MainViewController: UIViewController {
     
     // MARK: - Properties
@@ -116,40 +118,36 @@ final class MainViewController: UIViewController {
     
     /// データを取得する
     private func fetchData() {
-        firebaseService.fetchDataFromFirestore(collection: "setting") { [weak self] documents, error in
-            guard let self = self else { return }
-            if let error = error {
-                print("データの取得エラー: \(error)")
-            } else if let documents = documents {
-                // 取得したデータを処理
-                let settings: [Setting] = documents.compactMap { doc in
-                    guard let data = doc.data() else {
-                        return nil
-                    }
-                    guard
-                        let userName = data["user_name"] as? String,
-                        let challengePoint = data["challenge_point"] as? Int,
-                        let bonusPoint = data["bonus_point"] as? Int,
-                        let goalPoint = data["goalPoint"] as? Int,
-                        let challengeDay = data["challenge_day"] as? Int,
-                        let challengeTask = data["challenge_task"] as? String
-                    else {
-                        return nil
-                    }
-                    
-                    return Setting(
-                        documentID: doc.documentID,
-                        userName: userName,
-                        challengePoint: challengePoint,
-                        bonusPoint: bonusPoint,
-                        goalPoint: goalPoint,
-                        challengeDay: challengeDay,
-                        challengeTask: challengeTask
-                    )
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            print("未ログインです")
+            return
+        }
+        
+        firebaseService.fetchByQuery(collection: "users",
+                                     field: "user_id",
+                                     isEqualTo: currentUserID,
+                                     as: User.self) { [weak self] users, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("取得エラー: \(error)")
+                    return
                 }
-                print("データの取得: \(settings)")
+                guard let user = users?.first else {
+                    print("ユーザーデータなし")
+                    return
+                }
+                self?.updateUI(with: user)
             }
         }
+    }
+
+    private func updateUI(with user: User) {
+        userNameLabel.text = user.userName
+        taskLabel.text = user.challengeTask
+        dailyPointLabel.text = "\(user.challengePoint) ポイント"
+        bonusPointButton.setTitle("\(user.bonusPoint) ポイント", for: .normal)
+        goalPointLabel.text = "\(user.goalPoint) ポイント"
+        remainingDaysLabel.text = "\(user.challengeDay) 日"
     }
 }
 

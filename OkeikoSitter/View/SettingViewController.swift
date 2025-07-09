@@ -6,9 +6,9 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 /// 設定画面
-
 final class SettingViewController: UIViewController {
     
     // MARK: - Properties
@@ -184,37 +184,46 @@ final class SettingViewController: UIViewController {
         challengeDaysMenuButton.showsMenuAsPrimaryAction = true
     }
     
+    /// 家族IDを取得
+    private func getCurrentUserFamilyID() -> String {
+        return ""
+    }
+    
     /// データを保存する
     private func saveData() {
+        guard let user = Auth.auth().currentUser else {
+            return showAlert(title: "ログインしてください")
+        }
+        
         guard let userName = userNameTextField.text,
+              !userName.isEmpty,
+              let challengeTask = challengeTaskTextView.text,
+              !challengeTask.isEmpty,
               let challengePoint = challengePoint,
               let bonusPoint = bonusPoint,
               let goalPoint = goalPoint,
-              let challengeTask = challengeTaskTextView.text,
               let challengeDay = challengeDay else {
             return showAlert(title: "設定が済んでいません", message: "全ての項目を入力してください。")
         }
         
-        let data = Setting(documentID: "setting",
-                           userName: userName,
-                           challengePoint: challengePoint,
-                           bonusPoint: bonusPoint,
-                           goalPoint: goalPoint,
-                           challengeDay: challengeDay, challengeTask: challengeTask )
+        let data: [String: Any] = [
+            "user_id": user.uid,
+            "user_name": userName,
+            "challenge_task": challengeTask,
+            "challenge_point": challengePoint,
+            "bonus_point": bonusPoint,
+            "goal_point": goalPoint,
+            "challenge_day": challengeDay
+        ]
         
-        firebaseService.saveDataToFirestore(collection: "setting",
-                                            data: data.toDictionary()) { [weak self] error in
+        firebaseService.save(collection: "users", data: data) { [weak self] error in
             guard let self = self else { return }
             if let error = error {
-                self.showAlert(title: "データの保存エラー", message: "\(error)")
-                print("データの保存エラー: \(error)")
-                
-                
+                self.showAlert(title: "データの保存エラー", message: error.localizedDescription)
             } else {
                 self.showAlert(title: "登録しました！") {
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true)
                 }
-                print("データが正常に保存されました")
             }
         }
     }
