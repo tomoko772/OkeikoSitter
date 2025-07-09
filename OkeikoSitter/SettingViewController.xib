@@ -150,7 +150,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYt-cH-SLA">
                                             <rect key="frame" x="70" y="0.0" width="253" height="115"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Miz-NP-92I" userLabel="チャレンジ内容入力用Text View">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Miz-NP-92I" userLabel="チャレンジ内容入力用Text View">
                                                     <rect key="frame" x="0.0" y="0.0" width="253" height="115"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>

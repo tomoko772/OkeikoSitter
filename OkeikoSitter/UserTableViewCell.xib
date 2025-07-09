@@ -12,12 +12,12 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="UserTableViewCell" customModule="OkeikoSitter" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ivb-hp-xaM">
-                        <rect key="frame" x="16" y="16.666666666666668" width="60" height="58.666666666666657"/>
+                        <rect key="frame" x="16" y="19.666666666666668" width="60" height="58.666666666666657"/>
                         <color key="tintColor" systemColor="tableBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="Vgk-DK-pnl"/>
@@ -30,7 +30,7 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDC-GB-9Ar">
-                        <rect key="frame" x="76" y="26" width="208" height="40"/>
+                        <rect key="frame" x="76" y="29" width="208" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="田島太郎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zA9-3S-PxQ">
                                 <rect key="frame" x="72.333333333333343" y="9.6666666666666643" width="63.666666666666657" height="21"/>
@@ -55,10 +55,9 @@
                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="ivb-hp-xaM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="1fX-Ti-nxr"/>
-                    <constraint firstItem="ivb-hp-xaM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="4f8-x0-y5E"/>
+                    <constraint firstItem="ivb-hp-xaM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7Ux-Qs-dFu"/>
                     <constraint firstAttribute="trailing" secondItem="YDC-GB-9Ar" secondAttribute="trailing" constant="36" id="92h-Sz-joC"/>
                     <constraint firstItem="YDC-GB-9Ar" firstAttribute="leading" secondItem="ivb-hp-xaM" secondAttribute="trailing" id="J8H-Kl-oaJ"/>
-                    <constraint firstAttribute="bottom" secondItem="ivb-hp-xaM" secondAttribute="bottom" constant="16" id="aZ9-vj-bXK"/>
                     <constraint firstItem="YDC-GB-9Ar" firstAttribute="centerY" secondItem="ivb-hp-xaM" secondAttribute="centerY" id="mXx-zk-7xj"/>
                 </constraints>
             </tableViewCellContentView>
