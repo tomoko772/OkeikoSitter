@@ -236,3 +236,7 @@ final class SettingViewController: UIViewController {
         placeholderLabel.isHidden = !challengeTaskTextView.text.isEmpty
     }
 }
+
+// MARK: - UITextViewDelegate
+extension SettingViewController: UITextViewDelegate {
+}
