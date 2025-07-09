@@ -10,24 +10,29 @@ import SwiftGifOrigin
 
 final class MainViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    /// FirebaseServiceのインスタンス
+    let firebaseService = FirebaseService.shared
+    
     // MARK: - IBOutlets
     
     /// ユーザー画像
-    @IBOutlet private weak var userImage: UIImageView!
-    /// ユーザーネーム
-    @IBOutlet private weak var userName: UIView!
-    /// 目標（課題）の内容
-    @IBOutlet private weak var task: UILabel!
-    /// 目標（課題）達成時にもらえるポイント数
-    @IBOutlet private weak var dailyPoint: UILabel!
-    /// ボーナスポイント数
-    @IBOutlet private weak var bonusPoint: UIButton!
-    /// 現在のポイント数の表示
-    @IBOutlet private weak var currentPoint: UILabel!
-    /// 目標ポイント数
-    @IBOutlet private weak var goalPoint: UILabel!
-    /// 残りの日数
-    @IBOutlet private weak var remainingDays: UILabel!
+    @IBOutlet private weak var userImageView: UIImageView!
+    /// ユーザーネームラベル
+    @IBOutlet private weak var userNameLabel: UILabel!
+    /// 目標（課題）の内容ラベル
+    @IBOutlet private weak var taskLabel: UILabel!
+    /// 目標（課題）達成時にもらえるポイント数ラベル
+    @IBOutlet private weak var dailyPointLabel: UILabel!
+    /// ボーナスポイント数ボタン
+    @IBOutlet private weak var bonusPointButton: UIButton!
+    /// 現在のポイント数の表示ラベル
+    @IBOutlet private weak var currentPointLabel: UILabel!
+    /// 目標ポイント数ラベル
+    @IBOutlet private weak var goalPointLabel: UILabel!
+    /// 残りの日数ラベル
+    @IBOutlet private weak var remainingDaysLabel: UILabel!
     /// GIF画像を表示するためにIBOutlet接続
     @IBOutlet private weak var gifImage: UIImageView!
     /// GIF画像を表示するためにIBOutlet接続
@@ -42,6 +47,11 @@ final class MainViewController: UIViewController {
         gifImage.contentMode = .center
         gifImage2.loadGif(name: "present")
         configureBarButtonItems()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchData()
     }
     
     // MARK: - IBActions
@@ -88,7 +98,7 @@ final class MainViewController: UIViewController {
         self.navigationItem.rightBarButtonItems = [firstBarButtonItem, secondBarButtonItem]
     }
     
-    // 設定ボタンがタップされたときの処理
+    /// 設定ボタンがタップされたときの処理
     @objc private func didTapSettingButton(_ sender: UIButton) {
         let settingVC = SettingViewController()
         let navController = UINavigationController(rootViewController: settingVC)
@@ -96,12 +106,50 @@ final class MainViewController: UIViewController {
         navigationController?.present(navController, animated: true)
     }
     
-    // ユーザー切り替えボタンがタップされたときの処理
+    /// ユーザー切り替えボタンがタップされたときの処理
     @objc private func didTapUsersButton(_ sender: UIButton) {
         let userVC = UserViewController()
         let navController = UINavigationController(rootViewController: userVC)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
+    }
+    
+    /// データを取得する
+    private func fetchData() {
+        firebaseService.fetchDataFromFirestore(collection: "setting") { [weak self] documents, error in
+            guard let self = self else { return }
+            if let error = error {
+                print("データの取得エラー: \(error)")
+            } else if let documents = documents {
+                // 取得したデータを処理
+                let settings: [Setting] = documents.compactMap { doc in
+                    guard let data = doc.data() else {
+                        return nil
+                    }
+                    guard
+                        let userName = data["user_name"] as? String,
+                        let challengePoint = data["challenge_point"] as? Int,
+                        let bonusPoint = data["bonus_point"] as? Int,
+                        let goalPoint = data["goalPoint"] as? Int,
+                        let challengeDay = data["challenge_day"] as? Int,
+                        let challengeTask = data["challenge_task"] as? String
+                    else {
+                        return nil
+                    }
+                    
+                    return Setting(
+                        documentID: doc.documentID,
+                        userName: userName,
+                        challengePoint: challengePoint,
+                        bonusPoint: bonusPoint,
+                        goalPoint: goalPoint,
+                        challengeDay: challengeDay,
+                        challengeTask: challengeTask
+                    )
+                }
+                print("データの取得: \(settings)")
+            }
+        }
     }
 }
 
