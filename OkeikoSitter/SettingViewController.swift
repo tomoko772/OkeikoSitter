@@ -187,11 +187,11 @@ final class SettingViewController: UIViewController {
     /// データを保存する
     private func saveData() {
         guard let userName = userNameTextField.text,
-        let challengePoint = challengePoint,
-        let bonusPoint = bonusPoint,
-        let goalPoint = goalPoint,
-        let challengeTask = challengeTaskTextView.text,
-        let challengeDay = challengeDay else {
+              let challengePoint = challengePoint,
+              let bonusPoint = bonusPoint,
+              let goalPoint = goalPoint,
+              let challengeTask = challengeTaskTextView.text,
+              let challengeDay = challengeDay else {
             return showAlert(title: "設定が済んでいません", message: "全ての項目を入力してください。")
         }
         
@@ -230,13 +230,12 @@ final class SettingViewController: UIViewController {
         })
         self.present(alert, animated: true, completion: nil)
     }
-    
-    /// チャレンジ内容UITextViewが空のときだけplaceholderLabelを表示
-    internal func textViewDidChange(_ challengeTaskTextView: UITextView) {
-        placeholderLabel.isHidden = !challengeTaskTextView.text.isEmpty
-    }
 }
 
 // MARK: - UITextViewDelegate
 extension SettingViewController: UITextViewDelegate {
+    /// チャレンジ内容UITextViewが空のときだけplaceholderLabelを表示
+    func textViewDidChange(_ challengeTaskTextView: UITextView) {
+        placeholderLabel.isHidden = !challengeTaskTextView.text.isEmpty
+    }
 }
