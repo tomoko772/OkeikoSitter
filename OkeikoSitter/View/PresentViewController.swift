@@ -8,7 +8,7 @@
 import UIKit
 
 /// ご褒美登録画面
-class PresentViewController: UIViewController {
+final class PresentViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet private weak var hiddenPlaceImageView: UIImageView!

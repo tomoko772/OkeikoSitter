@@ -70,10 +70,10 @@
                                                     <constraint firstItem="TVZ-Jd-Y65" firstAttribute="centerX" secondItem="b7V-Uw-vdh" secondAttribute="centerX" id="j90-Tl-fq9"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGZ-sC-pCP">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGZ-sC-pCP" userLabel="緑のView">
                                                 <rect key="frame" x="28" y="70" width="337" height="685"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OoN-oO-zkS">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OoN-oO-zkS" userLabel="チャレンジ内容View">
                                                         <rect key="frame" x="32" y="14" width="273" height="55"/>
                                                         <subviews>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2q-3o-EfC">
@@ -102,7 +102,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qud-c2-PTL" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qud-c2-PTL" userLabel="ポイント獲得Button" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
                                                         <rect key="frame" x="46" y="73" width="245" height="115"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="115" id="y9a-O4-Tfc"/>
@@ -121,7 +121,7 @@
                                                             <action selector="addButtonTapped:" destination="G8A-ao-Z37" eventType="touchUpInside" id="IfH-L4-ZET"/>
                                                         </connections>
                                                     </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aO0-YA-QaS">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aO0-YA-QaS" userLabel="黄色いView">
                                                         <rect key="frame" x="46" y="73" width="245" height="115"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtb-mp-PzB">
@@ -477,8 +477,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="Dog-in-9qq"/>
                     <connections>
+                        <outlet property="bonusPointButton" destination="bXo-ak-N0b" id="WvA-1i-LtV"/>
+                        <outlet property="currentPointLabel" destination="6cW-IU-c4O" id="yDE-sC-7lW"/>
+                        <outlet property="dailyPointLabel" destination="vtb-mp-PzB" id="yGT-3g-yY0"/>
                         <outlet property="gifImage" destination="Dl7-Mn-ck1" id="IUD-Xc-Jit"/>
                         <outlet property="gifImage2" destination="vBd-J9-KBJ" id="e2k-wn-e3y"/>
+                        <outlet property="goalPointLabel" destination="Pze-Sr-b4G" id="LoN-tw-zLA"/>
+                        <outlet property="remainingDaysLabel" destination="duu-kE-vVK" id="Lz3-eY-FTJ"/>
+                        <outlet property="taskLabel" destination="F6x-qg-RCo" id="2aa-JS-ygz"/>
+                        <outlet property="userImageView" destination="OvK-5u-h7g" id="6QC-a3-UtK"/>
+                        <outlet property="userNameLabel" destination="TVZ-Jd-Y65" id="jN6-j3-BER"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m72-Hw-t9o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

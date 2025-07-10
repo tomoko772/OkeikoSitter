@@ -8,7 +8,7 @@
 import UIKit
 
 /// ユーザー登録画面
-class UserViewController: UIViewController {
+final class UserViewController: UIViewController {
     
     // MARK: - IBOutlets
     

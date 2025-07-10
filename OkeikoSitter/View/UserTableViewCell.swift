@@ -8,7 +8,7 @@
 import UIKit
 
 /// ユーザー登録画面のセル
-class UserTableViewCell: UITableViewCell {
+final class UserTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
     
     /// ユーザーイメージビュー

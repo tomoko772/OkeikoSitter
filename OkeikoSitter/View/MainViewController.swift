@@ -7,27 +7,34 @@
 
 import UIKit
 import SwiftGifOrigin
+import FirebaseAuth
 
+/// メイン画面
 final class MainViewController: UIViewController {
+    
+    // MARK: - Properties
+    
+    /// FirebaseServiceのインスタンス
+    let firebaseService = FirebaseService.shared
     
     // MARK: - IBOutlets
     
     /// ユーザー画像
-    @IBOutlet private weak var userImage: UIImageView!
-    /// ユーザーネーム
-    @IBOutlet private weak var userName: UIView!
-    /// 目標（課題）の内容
-    @IBOutlet private weak var task: UILabel!
-    /// 目標（課題）達成時にもらえるポイント数
-    @IBOutlet private weak var dailyPoint: UILabel!
-    /// ボーナスポイント数
-    @IBOutlet private weak var bonusPoint: UIButton!
-    /// 現在のポイント数の表示
-    @IBOutlet private weak var currentPoint: UILabel!
-    /// 目標ポイント数
-    @IBOutlet private weak var goalPoint: UILabel!
-    /// 残りの日数
-    @IBOutlet private weak var remainingDays: UILabel!
+    @IBOutlet private weak var userImageView: UIImageView!
+    /// ユーザーネームラベル
+    @IBOutlet private weak var userNameLabel: UILabel!
+    /// 目標（課題）の内容ラベル
+    @IBOutlet private weak var taskLabel: UILabel!
+    /// 目標（課題）達成時にもらえるポイント数ラベル
+    @IBOutlet private weak var dailyPointLabel: UILabel!
+    /// ボーナスポイント数ボタン
+    @IBOutlet private weak var bonusPointButton: UIButton!
+    /// 現在のポイント数の表示ラベル
+    @IBOutlet private weak var currentPointLabel: UILabel!
+    /// 目標ポイント数ラベル
+    @IBOutlet private weak var goalPointLabel: UILabel!
+    /// 残りの日数ラベル
+    @IBOutlet private weak var remainingDaysLabel: UILabel!
     /// GIF画像を表示するためにIBOutlet接続
     @IBOutlet private weak var gifImage: UIImageView!
     /// GIF画像を表示するためにIBOutlet接続
@@ -42,6 +49,11 @@ final class MainViewController: UIViewController {
         gifImage.contentMode = .center
         gifImage2.loadGif(name: "present")
         configureBarButtonItems()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchData()
     }
     
     // MARK: - IBActions
@@ -88,7 +100,7 @@ final class MainViewController: UIViewController {
         self.navigationItem.rightBarButtonItems = [firstBarButtonItem, secondBarButtonItem]
     }
     
-    // 設定ボタンがタップされたときの処理
+    /// 設定ボタンがタップされたときの処理
     @objc private func didTapSettingButton(_ sender: UIButton) {
         let settingVC = SettingViewController()
         let navController = UINavigationController(rootViewController: settingVC)
@@ -96,12 +108,46 @@ final class MainViewController: UIViewController {
         navigationController?.present(navController, animated: true)
     }
     
-    // ユーザー切り替えボタンがタップされたときの処理
+    /// ユーザー切り替えボタンがタップされたときの処理
     @objc private func didTapUsersButton(_ sender: UIButton) {
         let userVC = UserViewController()
         let navController = UINavigationController(rootViewController: userVC)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
+    }
+    
+    /// データを取得する
+    private func fetchData() {
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            print("未ログインです")
+            return
+        }
+        
+        firebaseService.fetchByQuery(collection: "users",
+                                     field: "user_id",
+                                     isEqualTo: currentUserID,
+                                     as: User.self) { [weak self] users, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("取得エラー: \(error)")
+                    return
+                }
+                guard let user = users?.first else {
+                    print("ユーザーデータなし")
+                    return
+                }
+                self?.updateUI(with: user)
+            }
+        }
+    }
+
+    private func updateUI(with user: User) {
+        userNameLabel.text = user.userName
+        taskLabel.text = user.challengeTask
+        dailyPointLabel.text = "\(user.challengePoint) ポイント"
+        bonusPointButton.setTitle("\(user.bonusPoint) ポイント", for: .normal)
+        goalPointLabel.text = "\(user.goalPoint) ポイント"
+        remainingDaysLabel.text = "\(user.challengeDay) 日"
     }
 }
 
