@@ -9,7 +9,7 @@ import UIKit
 import SwiftGifOrigin
 import FirebaseAuth
 
-/// 最初の画面
+/// 新規アカウント登録の画面
 final class SignUpViewController: UIViewController {
     
     // MARK: - Properties
