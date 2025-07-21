@@ -31,7 +31,7 @@ final class SignUpViewController: UIViewController {
     // MARK: - IBActions
     
     /// 登録ボタンをタップ
-    @IBAction func RegistrationButtonTapped(_ sender: Any) {
+    @IBAction private func registrationButtonTapped(_ sender: Any) {
     }
     
     // MARK: - Other Methods
