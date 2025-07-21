@@ -1,5 +1,5 @@
 //
-//  InitialViewController.swift
+//  RegistrationlViewController.swift
 //  OkeikoSitter
 //
 //  Created by Tomoko T. Nakao on 2025/07/15.
@@ -9,7 +9,7 @@ import UIKit
 import SwiftGifOrigin
 
 /// 最初の画面
-final class InitialViewController: UIViewController {
+final class SignUpViewController: UIViewController {
 
     // MARK: - IBOutlets
     
@@ -30,7 +30,7 @@ final class InitialViewController: UIViewController {
     }
     
     /// 新規アカウント登録ボタンをタップ
-        @IBAction private func signUpButtonTapped(_ sender: Any) {
-        }
-        
+    @IBAction private func signUpButtonTapped(_ sender: Any) {
+    }
+    
 }
