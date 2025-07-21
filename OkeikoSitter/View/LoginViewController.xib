@@ -34,17 +34,17 @@
                         <constraint firstAttribute="width" constant="105" id="qyJ-Ve-I54"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AT5-M9-ORR">
-                    <rect key="frame" x="94" y="587" width="205" height="64"/>
-                    <color key="backgroundColor" red="0.078431372549019607" green="0.68235294117647061" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcf-gD-rqc" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                    <rect key="frame" x="94" y="524" width="205" height="64"/>
+                    <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="64" id="2gz-3R-C6W"/>
-                        <constraint firstAttribute="width" constant="205" id="jNG-9j-2ib"/>
+                        <constraint firstAttribute="height" constant="64" id="A43-Hc-nYC"/>
+                        <constraint firstAttribute="width" constant="205" id="fDJ-fA-O7k"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="新規アカウント登録">
-                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
+                    <buttonConfiguration key="configuration" style="plain" title="ログイン">
+                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </buttonConfiguration>
                     <userDefinedRuntimeAttributes>
@@ -53,11 +53,10 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="RegistrationButtonTapped:" destination="-1" eventType="touchUpInside" id="oZO-JW-yzh"/>
-                        <action selector="signUpButtonTapped:" destination="-1" eventType="touchUpInside" id="YqL-vK-JrB"/>
+                        <action selector="loginButtonTapped:" destination="-1" eventType="touchUpInside" id="4CP-92-cDJ"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG2-pA-EMO">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG2-pA-EMO" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
                     <rect key="frame" x="140" y="442" width="113" height="56"/>
                     <color key="backgroundColor" red="0.078431372550000003" green="0.68235294120000001" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -76,8 +75,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="RegistrationButtonTapped:" destination="-1" eventType="touchUpInside" id="nx1-UQ-w6k"/>
-                        <action selector="signUpButtonTapped:" destination="-1" eventType="touchUpInside" id="WHn-Kz-zjT"/>
+                        <action selector="forgotPasswordButtonTapped:" destination="-1" eventType="touchUpInside" id="VvH-e8-L9x"/>
                     </connections>
                 </button>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Eメール" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0CP-qB-IGN">
@@ -118,17 +116,17 @@
                         <action selector="passwordTextField:" destination="-1" eventType="editingDidEnd" id="ZIY-nb-LJi"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcf-gD-rqc">
-                    <rect key="frame" x="94" y="515" width="205" height="64"/>
-                    <color key="backgroundColor" red="0.078431372550000003" green="0.68235294120000001" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AT5-M9-ORR" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                    <rect key="frame" x="116.66666666666669" y="608" width="160" height="64"/>
+                    <color key="backgroundColor" red="0.078431372549019607" green="0.68235294117647061" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="64" id="A43-Hc-nYC"/>
-                        <constraint firstAttribute="width" constant="205" id="fDJ-fA-O7k"/>
+                        <constraint firstAttribute="height" constant="64" id="2gz-3R-C6W"/>
+                        <constraint firstAttribute="width" constant="160" id="jNG-9j-2ib"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="ログイン">
-                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                    <buttonConfiguration key="configuration" style="plain" title="新規アカウント登録">
+                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="15"/>
                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </buttonConfiguration>
                     <userDefinedRuntimeAttributes>
@@ -137,8 +135,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="RegistrationButtonTapped:" destination="-1" eventType="touchUpInside" id="LD1-jI-AJZ"/>
-                        <action selector="signUpButtonTapped:" destination="-1" eventType="touchUpInside" id="9Uz-aj-WkT"/>
+                        <action selector="signUPButtonTapped:" destination="-1" eventType="touchUpInside" id="4mE-ZG-RVH"/>
                     </connections>
                 </button>
             </subviews>
@@ -146,15 +143,15 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="0CP-qB-IGN" firstAttribute="top" secondItem="uAm-P0-u3K" secondAttribute="bottom" constant="19" id="AJ3-14-VuB"/>
-                <constraint firstItem="AT5-M9-ORR" firstAttribute="top" secondItem="fcf-gD-rqc" secondAttribute="bottom" constant="20" id="BJb-B7-7Ph"/>
-                <constraint firstItem="AT5-M9-ORR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="C9g-IT-Chb"/>
+                <constraint firstItem="fcf-gD-rqc" firstAttribute="top" secondItem="GG2-pA-EMO" secondAttribute="bottom" constant="26" id="DYX-Nx-Dhf"/>
                 <constraint firstItem="11O-c2-L2P" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EO9-qF-xkW"/>
+                <constraint firstItem="AT5-M9-ORR" firstAttribute="top" secondItem="fcf-gD-rqc" secondAttribute="bottom" constant="20" id="FV9-pK-jpO"/>
                 <constraint firstItem="GG2-pA-EMO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GQd-1e-QRt"/>
+                <constraint firstItem="fcf-gD-rqc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Kbc-lG-JM4"/>
                 <constraint firstItem="uAm-P0-u3K" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Nze-bk-yhH"/>
                 <constraint firstItem="0CP-qB-IGN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="U4z-HQ-tKb"/>
                 <constraint firstItem="0jj-wX-dhE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VP8-SS-NBQ"/>
                 <constraint firstItem="AT5-M9-ORR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bWh-US-i2A"/>
-                <constraint firstItem="AT5-M9-ORR" firstAttribute="top" secondItem="11O-c2-L2P" secondAttribute="bottom" constant="42" id="gOg-RI-ZxY"/>
                 <constraint firstItem="0jj-wX-dhE" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="76" id="qD5-Xy-uZL"/>
                 <constraint firstItem="uAm-P0-u3K" firstAttribute="top" secondItem="0jj-wX-dhE" secondAttribute="bottom" constant="35" id="qbX-7M-L4f"/>
                 <constraint firstItem="GG2-pA-EMO" firstAttribute="top" secondItem="11O-c2-L2P" secondAttribute="bottom" constant="8" id="sSL-Nx-ND5"/>

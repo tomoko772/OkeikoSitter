@@ -61,10 +61,6 @@ final class SignUpViewController: UIViewController {
     
     /// データを保存する
     private func saveData() {
-        guard let user = Auth.auth().currentUser else {
-            return showAlert(title: "ログインしてください")
-        }
-        
         guard let email = emailTextField.text,
               !email.isEmpty,
               let password = passwordTextField.text,

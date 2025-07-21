@@ -34,7 +34,7 @@
                         <constraint firstAttribute="width" constant="105" id="qyJ-Ve-I54"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AT5-M9-ORR">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AT5-M9-ORR" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
                     <rect key="frame" x="94" y="476" width="205" height="64"/>
                     <color key="backgroundColor" red="0.078431372549019607" green="0.68235294117647061" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -54,7 +54,6 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="RegistrationButtonTapped:" destination="-1" eventType="touchUpInside" id="oZO-JW-yzh"/>
-                        <action selector="signUpButtonTapped:" destination="-1" eventType="touchUpInside" id="YqL-vK-JrB"/>
                     </connections>
                 </button>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Eメール" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0CP-qB-IGN">

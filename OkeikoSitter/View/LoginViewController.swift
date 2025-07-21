@@ -34,9 +34,18 @@ final class LoginViewController: UIViewController {
     
     // MARK: - IBActions
     
-    /// 登録ボタンをタップ
-    @IBAction func RegistrationButtonTapped(_ sender: Any) {
-            
+    /// パスワードを忘れた場合ボタンをタップ
+    @IBAction func forgotPasswordButtonTapped(_ sender: Any) {
+    }
+    /// ログインボタンをタップ
+    @IBAction func loginButtonTapped(_ sender: Any) {
+    }
+    /// 新規アカウント登録ボタンをタップ
+    @IBAction func signUPButtonTapped(_ sender: Any) {
+        let signUpVC = SignUpViewController()
+        let navController = UINavigationController(rootViewController: signUpVC)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
     }
     
     // MARK: - Other Methods

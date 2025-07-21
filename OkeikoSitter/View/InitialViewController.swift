@@ -27,6 +27,10 @@ final class InitialViewController: UIViewController {
     
     /// ログインボタンをタップ
     @IBAction private func loginButtonTapped(_ sender: Any) {
+        let loginVC = LoginViewController()
+        let navController = UINavigationController(rootViewController: loginVC)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
     }
     
     /// 新規アカウント登録ボタンをタップ
