@@ -35,7 +35,7 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcf-gD-rqc" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
-                    <rect key="frame" x="94" y="524" width="205" height="64"/>
+                    <rect key="frame" x="94" y="527" width="205" height="64"/>
                     <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="A43-Hc-nYC"/>
@@ -54,28 +54,6 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="loginButtonTapped:" destination="-1" eventType="touchUpInside" id="4CP-92-cDJ"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG2-pA-EMO" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
-                    <rect key="frame" x="140" y="442" width="113" height="56"/>
-                    <color key="backgroundColor" red="0.078431372550000003" green="0.68235294120000001" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="56" id="B1m-VR-xAP"/>
-                        <constraint firstAttribute="width" constant="113" id="SbA-an-qmt"/>
-                    </constraints>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="パスワードを忘れた場合">
-                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="8"/>
-                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </buttonConfiguration>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="8"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="forgotPasswordButtonTapped:" destination="-1" eventType="touchUpInside" id="VvH-e8-L9x"/>
                     </connections>
                 </button>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Eメール" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0CP-qB-IGN">
@@ -116,8 +94,49 @@
                         <action selector="passwordTextField:" destination="-1" eventType="editingDidEnd" id="ZIY-nb-LJi"/>
                     </connections>
                 </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mo1-VR-0F4">
+                    <rect key="frame" x="126.66666666666669" y="441" width="140" height="60"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG2-pA-EMO" userLabel="パスワードを忘れた場合Button" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                            <rect key="frame" x="13.333333333333329" y="2" width="113" height="56"/>
+                            <color key="backgroundColor" red="0.078431372550000003" green="0.68235294120000001" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="56" id="B1m-VR-xAP"/>
+                                <constraint firstAttribute="width" constant="113" id="SbA-an-qmt"/>
+                            </constraints>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="forgotPasswordButtonTapped:" destination="-1" eventType="touchUpInside" id="VvH-e8-L9x"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKA-Lf-TwZ">
+                            <rect key="frame" x="21.999999999999979" y="9.6666666666666856" width="95.666666666666686" height="40.666666666666664"/>
+                            <string key="text">パスワードを
+忘れた場合</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="GG2-pA-EMO" firstAttribute="centerY" secondItem="Mo1-VR-0F4" secondAttribute="centerY" id="UV5-x2-D1c"/>
+                        <constraint firstItem="GG2-pA-EMO" firstAttribute="centerX" secondItem="Mo1-VR-0F4" secondAttribute="centerX" id="Ux0-xp-jCK"/>
+                        <constraint firstAttribute="width" constant="140" id="bJX-0T-M7k"/>
+                        <constraint firstAttribute="height" constant="60" id="cvP-X5-6CO"/>
+                        <constraint firstItem="EKA-Lf-TwZ" firstAttribute="centerY" secondItem="Mo1-VR-0F4" secondAttribute="centerY" id="kZz-Jb-tbT"/>
+                        <constraint firstItem="EKA-Lf-TwZ" firstAttribute="centerX" secondItem="Mo1-VR-0F4" secondAttribute="centerX" id="sfA-ZP-dEk"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AT5-M9-ORR" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
-                    <rect key="frame" x="116.66666666666669" y="608" width="160" height="64"/>
+                    <rect key="frame" x="116.66666666666669" y="611" width="160" height="64"/>
                     <color key="backgroundColor" red="0.078431372549019607" green="0.68235294117647061" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="2gz-3R-C6W"/>
@@ -143,10 +162,9 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="0CP-qB-IGN" firstAttribute="top" secondItem="uAm-P0-u3K" secondAttribute="bottom" constant="19" id="AJ3-14-VuB"/>
-                <constraint firstItem="fcf-gD-rqc" firstAttribute="top" secondItem="GG2-pA-EMO" secondAttribute="bottom" constant="26" id="DYX-Nx-Dhf"/>
+                <constraint firstItem="Mo1-VR-0F4" firstAttribute="top" secondItem="11O-c2-L2P" secondAttribute="bottom" constant="7" id="Awq-gP-6Lh"/>
                 <constraint firstItem="11O-c2-L2P" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EO9-qF-xkW"/>
-                <constraint firstItem="AT5-M9-ORR" firstAttribute="top" secondItem="fcf-gD-rqc" secondAttribute="bottom" constant="20" id="FV9-pK-jpO"/>
-                <constraint firstItem="GG2-pA-EMO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GQd-1e-QRt"/>
+                <constraint firstItem="AT5-M9-ORR" firstAttribute="top" secondItem="fcf-gD-rqc" secondAttribute="bottom" constant="20" id="JHX-fZ-DzC"/>
                 <constraint firstItem="fcf-gD-rqc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Kbc-lG-JM4"/>
                 <constraint firstItem="uAm-P0-u3K" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Nze-bk-yhH"/>
                 <constraint firstItem="0CP-qB-IGN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="U4z-HQ-tKb"/>
@@ -154,7 +172,8 @@
                 <constraint firstItem="AT5-M9-ORR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bWh-US-i2A"/>
                 <constraint firstItem="0jj-wX-dhE" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="76" id="qD5-Xy-uZL"/>
                 <constraint firstItem="uAm-P0-u3K" firstAttribute="top" secondItem="0jj-wX-dhE" secondAttribute="bottom" constant="35" id="qbX-7M-L4f"/>
-                <constraint firstItem="GG2-pA-EMO" firstAttribute="top" secondItem="11O-c2-L2P" secondAttribute="bottom" constant="8" id="sSL-Nx-ND5"/>
+                <constraint firstItem="fcf-gD-rqc" firstAttribute="top" secondItem="Mo1-VR-0F4" secondAttribute="bottom" constant="26" id="sOa-dr-Ec6"/>
+                <constraint firstItem="Mo1-VR-0F4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="skm-X7-VoU"/>
                 <constraint firstItem="11O-c2-L2P" firstAttribute="top" secondItem="0CP-qB-IGN" secondAttribute="bottom" constant="20" id="yrP-jE-5iI"/>
             </constraints>
             <point key="canvasLocation" x="52.671755725190835" y="20.422535211267608"/>
