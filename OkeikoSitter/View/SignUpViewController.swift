@@ -7,7 +7,6 @@
 
 import UIKit
 import SwiftGifOrigin
-import FirebaseAuth
 
 /// 新規アカウント登録の画面
 final class SignUpViewController: UIViewController {
