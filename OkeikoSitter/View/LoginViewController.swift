@@ -36,9 +36,11 @@ final class LoginViewController: UIViewController {
     /// パスワードを忘れた場合ボタンをタップ
     @IBAction private func forgotPasswordButtonTapped(_ sender: Any) {
     }
+    
     /// ログインボタンをタップ
     @IBAction private func loginButtonTapped(_ sender: Any) {
     }
+    
     /// 新規アカウント登録ボタンをタップ
     @IBAction private func signUPButtonTapped(_ sender: Any) {
         let signUpVC = SignUpViewController()
