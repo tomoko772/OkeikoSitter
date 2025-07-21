@@ -8,7 +8,7 @@
 import UIKit
 import SwiftGifOrigin
 
-/// 最初の画面
+/// ログイン画面
 final class LoginViewController: UIViewController {
     
     // MARK: - Properties
