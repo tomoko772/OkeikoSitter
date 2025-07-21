@@ -11,13 +11,6 @@ import SwiftGifOrigin
 /// 新規アカウント登録の画面
 final class SignUpViewController: UIViewController {
     
-    // MARK: - Properties
-    
-    /// FirebaseServiceのインスタンス
-    private let firebaseService = FirebaseService.shared
-    private var email: String = ""
-    private var password: String = ""
-    
     // MARK: - IBOutlets
     
     /// プレゼントGIF画像
