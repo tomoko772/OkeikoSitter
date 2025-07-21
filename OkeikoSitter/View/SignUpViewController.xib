@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="OkeikoSitter" customModuleProvider="target">
             <connections>
+                <outlet property="emailTextField" destination="0CP-qB-IGN" id="BCG-IQ-k7f"/>
+                <outlet property="passwordTextField" destination="11O-c2-L2P" id="VvP-If-8Yq"/>
                 <outlet property="presentGIFImageView" destination="uAm-P0-u3K" id="yo2-on-eWI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -32,16 +34,16 @@
                         <constraint firstAttribute="width" constant="105" id="qyJ-Ve-I54"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HkG-jL-rSO">
-                    <rect key="frame" x="94" y="315" width="205" height="64"/>
-                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AT5-M9-ORR">
+                    <rect key="frame" x="94" y="476" width="205" height="64"/>
+                    <color key="backgroundColor" red="0.078431372549019607" green="0.68235294117647061" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="205" id="GQ2-fl-fhb"/>
-                        <constraint firstAttribute="height" constant="64" id="sQf-Oh-zQC"/>
+                        <constraint firstAttribute="height" constant="64" id="2gz-3R-C6W"/>
+                        <constraint firstAttribute="width" constant="205" id="jNG-9j-2ib"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Eメール">
+                    <buttonConfiguration key="configuration" style="plain" title="登録">
                         <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </buttonConfiguration>
@@ -51,44 +53,65 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="loginButtonTapped:" destination="-1" eventType="touchUpInside" id="v1d-Mn-UPz"/>
+                        <action selector="RegistrationButtonTapped:" destination="-1" eventType="touchUpInside" id="oZO-JW-yzh"/>
+                        <action selector="signUpButtonTapped:" destination="-1" eventType="touchUpInside" id="YqL-vK-JrB"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9w-nN-kDn">
-                    <rect key="frame" x="94" y="427" width="205" height="64"/>
-                    <color key="backgroundColor" red="0.078431372549019607" green="0.68235294117647061" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Eメール" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0CP-qB-IGN">
+                    <rect key="frame" x="94" y="286" width="205" height="64"/>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="64" id="NbT-kM-mrd"/>
-                        <constraint firstAttribute="width" constant="205" id="k2a-OH-6Bb"/>
+                        <constraint firstAttribute="width" constant="205" id="JsP-Wx-fgP"/>
+                        <constraint firstAttribute="height" constant="64" id="YL4-mM-lLd"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="新規アカウント登録">
-                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
-                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </buttonConfiguration>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="signUpButtonTapped:" destination="-1" eventType="touchUpInside" id="M1s-UY-QAM"/>
+                        <action selector="emailTextField:" destination="-1" eventType="editingDidEnd" id="NrW-N3-DXi"/>
                     </connections>
-                </button>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="11O-c2-L2P">
+                    <rect key="frame" x="94" y="370" width="205" height="64"/>
+                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="GIo-Up-1fC"/>
+                        <constraint firstAttribute="width" constant="205" id="pIl-Yg-GZI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="passwordTextField:" destination="-1" eventType="editingDidEnd" id="ZIY-nb-LJi"/>
+                    </connections>
+                </textField>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="g9w-nN-kDn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Biu-Mq-1Ku"/>
-                <constraint firstItem="HkG-jL-rSO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Do3-Ad-sET"/>
+                <constraint firstItem="0CP-qB-IGN" firstAttribute="top" secondItem="uAm-P0-u3K" secondAttribute="bottom" constant="19" id="AJ3-14-VuB"/>
+                <constraint firstItem="AT5-M9-ORR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="C9g-IT-Chb"/>
+                <constraint firstItem="11O-c2-L2P" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EO9-qF-xkW"/>
                 <constraint firstItem="uAm-P0-u3K" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Nze-bk-yhH"/>
+                <constraint firstItem="0CP-qB-IGN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="U4z-HQ-tKb"/>
                 <constraint firstItem="0jj-wX-dhE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VP8-SS-NBQ"/>
-                <constraint firstItem="g9w-nN-kDn" firstAttribute="top" secondItem="HkG-jL-rSO" secondAttribute="bottom" constant="48" id="e5E-4S-EAt"/>
+                <constraint firstItem="AT5-M9-ORR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bWh-US-i2A"/>
+                <constraint firstItem="AT5-M9-ORR" firstAttribute="top" secondItem="11O-c2-L2P" secondAttribute="bottom" constant="42" id="gOg-RI-ZxY"/>
                 <constraint firstItem="0jj-wX-dhE" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="76" id="qD5-Xy-uZL"/>
                 <constraint firstItem="uAm-P0-u3K" firstAttribute="top" secondItem="0jj-wX-dhE" secondAttribute="bottom" constant="35" id="qbX-7M-L4f"/>
-                <constraint firstItem="HkG-jL-rSO" firstAttribute="top" secondItem="uAm-P0-u3K" secondAttribute="bottom" constant="48" id="xJQ-90-exs"/>
+                <constraint firstItem="11O-c2-L2P" firstAttribute="top" secondItem="0CP-qB-IGN" secondAttribute="bottom" constant="20" id="yrP-jE-5iI"/>
             </constraints>
-            <point key="canvasLocation" x="54" y="21"/>
+            <point key="canvasLocation" x="52.671755725190835" y="20.422535211267608"/>
         </view>
     </objects>
     <resources>

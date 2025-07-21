@@ -7,14 +7,26 @@
 
 import UIKit
 import SwiftGifOrigin
+import FirebaseAuth
 
 /// 最初の画面
 final class SignUpViewController: UIViewController {
     
+    // MARK: - Properties
+
+    /// FirebaseServiceのインスタンス
+        private let firebaseService = FirebaseService.shared
+    private var email: String = ""
+    private var password: String = ""
+
     // MARK: - IBOutlets
     
     /// プレゼントGIF画像
     @IBOutlet private weak var presentGIFImageView: UIImageView!
+    ///  Eメール
+    @IBOutlet private weak var emailTextField: UITextField!
+    /// パスワード
+    @IBOutlet private weak var passwordTextField: UITextField!
     
     // MARK: - View Life-Cycle Methods
     
@@ -26,12 +38,9 @@ final class SignUpViewController: UIViewController {
     
     // MARK: - IBActions
     
-    /// ログインボタンをタップ
-    @IBAction private func loginButtonTapped(_ sender: Any) {
-    }
-    
-    /// 新規アカウント登録ボタンをタップ
-    @IBAction private func signUpButtonTapped(_ sender: Any) {
+    /// 登録ボタンをタップ
+    @IBAction func RegistrationButtonTapped(_ sender: Any) {
+        saveData()
     }
     
     // MARK: - Other Methods
@@ -49,4 +58,49 @@ final class SignUpViewController: UIViewController {
     @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+    
+    /// データを保存する
+    private func saveData() {
+        guard let user = Auth.auth().currentUser else {
+            return showAlert(title: "ログインしてください")
+        }
+        
+        guard let email = emailTextField.text,
+              !email.isEmpty,
+              let password = passwordTextField.text,
+              !password.isEmpty
+               else {
+            return showAlert(title: "設定が済んでいません", message: "全ての項目を入力してください。")
+        }
+        
+        let data: [String: Any] = [
+            "email": email,
+            "password": password,
+        ]
+        
+        firebaseService.save(collection: "logindata", data: data) { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                self.showAlert(title: "データの保存エラー", message: error.localizedDescription)
+            } else {
+                self.showAlert(title: "登録しました！") {
+                    self.dismiss(animated: true)
+                }
+            }
+        }
+    }
+    
+    /// アラートを表示
+    private func showAlert(title: String, message: String = "",
+                           completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            completion?()
+        })
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    
 }
