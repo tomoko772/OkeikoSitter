@@ -17,12 +17,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        // UIWindowの生成とシーンへの紐付け
+        let window = UIWindow(windowScene: windowScene)
+        self.window = window
         // 初期ビューコントローラー
         let initialViewController: UIViewController
         
         // Firebaseの認証状態をチェック
-        if let user = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
             // ユーザーがログインしている場合、初期画面はHomeViewController
             initialViewController = MainViewController()
         } else {
