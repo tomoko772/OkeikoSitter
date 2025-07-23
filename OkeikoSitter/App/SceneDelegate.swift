@@ -14,31 +14,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        // UIWindowSceneを取得
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        // UIWindowの生成とシーンへの紐付け
+        
         let window = UIWindow(windowScene: windowScene)
         self.window = window
-        // 初期ビューコントローラー
+        
         let initialViewController: UIViewController
         
-        // Firebaseの認証状態をチェック
         if Auth.auth().currentUser != nil {
-            // ユーザーがログインしている場合、初期画面はHomeViewController
-            initialViewController = MainViewController()
+            // MainViewControllerはStoryboardから呼び出し
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController")
         } else {
-            // ユーザーがログインしていない場合、初期画面はLoginViewController
-            initialViewController = InitialViewController()
+            // InitialViewControllerはXIBから呼び出し
+            initialViewController = InitialViewController(nibName: "InitialViewController", bundle: nil)
         }
         
-        // UINavigationControllerに初期ビューコントローラーを設定
         let navigationController = UINavigationController(rootViewController: initialViewController)
-        
-        self.window?.rootViewController = navigationController
-        self.window?.makeKeyAndVisible()
-        
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

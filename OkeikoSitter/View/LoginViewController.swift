@@ -81,7 +81,8 @@ final class LoginViewController: UIViewController {
     
     /// メイン画面へ遷移
     private func navigateToMain() {
-        let vc = MainViewController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MainViewController")
         let navController = UINavigationController(rootViewController: vc)
         // SceneDelegateのwindowを取得
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
