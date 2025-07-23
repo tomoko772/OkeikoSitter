@@ -76,6 +76,11 @@ final class SettingViewController: UIViewController {
         saveData()
     }
     
+    /// ログアウトボタンをタップした
+    @IBAction private func logoutButtonTapped(_ sender: UIButton) {
+        showLogoutAlert()
+    }
+    
     // MARK: - Other Methods
     
     private func configureBarButtonItems() {
@@ -237,6 +242,55 @@ final class SettingViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
             completion?()
         })
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    /// ログアウトをする
+    private func logout() {
+        do {
+            // 成功時
+            try Auth.auth().signOut()
+            print("User signed out successfully")
+            // ログアウト後にログイン画面に戻る
+            navigateToLogin()
+        } catch let signOutError as NSError {
+            // エラー時
+            showAlert(title: "エラーが発生しました",
+                      message: "Error signing out: \(signOutError.localizedDescription)")
+        }
+    }
+    
+    /// ログイン画面へ遷移
+    private func navigateToLogin() {
+        let loginVC = LoginViewController()
+        let navVC = UINavigationController(rootViewController: loginVC)
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.window?.rootViewController = navVC
+        }
+    }
+    
+    /// 「ログアウトしますか？」のアラートを表示
+    private func showLogoutAlert() {
+        let alert = UIAlertController(title: "ログアウトしますか？",
+                                      message: "",
+                                      preferredStyle: .alert)
+        //　「いいえ」ボタン
+        let cancelAction = UIAlertAction(title: "いいえ",
+                                         style: .cancel,
+                                         handler: { (action: UIAlertAction) -> Void in
+            // ボタンが押された時の処理
+        })
+        
+        // 「はい」ボタン
+        let logoutAction = UIAlertAction(title: "はい",
+                                         style: .default,
+                                         handler: { (action: UIAlertAction) -> Void in
+            // ボタンが押された時の処理
+            self.logout()
+        })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(logoutAction)
         self.present(alert, animated: true, completion: nil)
     }
 }

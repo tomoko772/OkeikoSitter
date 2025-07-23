@@ -44,6 +44,7 @@ final class LoginViewController: UIViewController {
             showAlert(message: "Emailアドレスとパスワードが空です")
             return
         }
+        signIn(email: email, password: password)
     }
     
     /// 新規アカウント登録ボタンをタップ
@@ -56,7 +57,7 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Other Methods
     
-    /// サインインをする
+    /// サインイン（ログイン）をする
     private func signIn(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error = error as NSError? {
