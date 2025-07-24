@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g7u-HK-wJ8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g7u-HK-wJ8">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +13,7 @@
             <objects>
                 <navigationController id="g7u-HK-wJ8" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fVe-zX-Nbg">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -27,13 +27,13 @@
         <!--Main View Controller-->
         <scene sceneID="fnh-tQ-iXW">
             <objects>
-                <viewController id="G8A-ao-Z37" customClass="MainViewController" customModule="OkeikoSitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="G8A-ao-Z37" customClass="MainViewController" customModule="OkeikoSitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="woP-PD-5z0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gey-sm-KR3">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="162" width="393" height="622"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Pw-Mv-FNB">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="789"/>
@@ -76,7 +76,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OoN-oO-zkS" userLabel="チャレンジ内容View">
                                                         <rect key="frame" x="32" y="14" width="273" height="55"/>
                                                         <subviews>
-                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2q-3o-EfC">
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2q-3o-EfC" userLabel="☆チャレンジ内容   （達成したらクリックしよう↓）">
                                                                 <rect key="frame" x="24.666666666666686" y="8.3333333333333428" width="224" height="38.333333333333336"/>
                                                                 <string key="text">☆チャレンジ内容 
 　（達成したらクリックしよう↓）</string>
@@ -118,7 +118,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="addButtonTapped:" destination="G8A-ao-Z37" eventType="touchUpInside" id="IfH-L4-ZET"/>
+                                                            <action selector="addButtonTapped:" destination="G8A-ao-Z37" eventType="touchUpInside" id="YQc-Nh-Kar"/>
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aO0-YA-QaS" userLabel="黄色いView">
@@ -175,7 +175,7 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXo-ak-N0b">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXo-ak-N0b" userLabel="ボーナスButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="245" height="49"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="49" id="89g-ae-Edj"/>
@@ -183,7 +183,7 @@
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain"/>
                                                                 <connections>
-                                                                    <action selector="addBonusButtonTapped:" destination="G8A-ao-Z37" eventType="touchUpInside" id="ivW-eY-Tr3"/>
+                                                                    <action selector="addBonusButtonTapped:" destination="G8A-ao-Z37" eventType="touchUpInside" id="Igd-fN-X1R"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -271,7 +271,7 @@
                                                                             <constraint firstAttribute="height" constant="25" id="Oza-zV-SzT"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Mk-pT-Yyu" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Mk-pT-Yyu" userLabel="残りの日数Button" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="243" height="75"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="75" id="0pR-Wc-bD9"/>
@@ -284,7 +284,7 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                         <connections>
-                                                                            <action selector="calendarButtonTapped:" destination="G8A-ao-Z37" eventType="touchUpInside" id="MDa-8J-J1F"/>
+                                                                            <action selector="calendarButtonTapped:" destination="G8A-ao-Z37" eventType="touchUpInside" id="bgS-hf-1yU"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -370,7 +370,7 @@
                                                                     <constraint firstAttribute="height" constant="73" id="Dez-9l-qtC"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Msq-co-iEf" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Msq-co-iEf" userLabel="ご褒美Button" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="245" height="75"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="75" id="oPD-bt-W7x"/>
@@ -383,7 +383,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="presentButtonTapped:" destination="G8A-ao-Z37" eventType="touchUpInside" id="i5l-pe-XKm"/>
+                                                                    <action selector="presentButtonTapped:" destination="G8A-ao-Z37" eventType="touchUpInside" id="MNZ-gR-cX9"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -477,16 +477,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="Dog-in-9qq"/>
                     <connections>
-                        <outlet property="bonusPointButton" destination="bXo-ak-N0b" id="WvA-1i-LtV"/>
-                        <outlet property="currentPointLabel" destination="6cW-IU-c4O" id="yDE-sC-7lW"/>
-                        <outlet property="dailyPointLabel" destination="vtb-mp-PzB" id="yGT-3g-yY0"/>
-                        <outlet property="gifImage" destination="Dl7-Mn-ck1" id="IUD-Xc-Jit"/>
-                        <outlet property="gifImage2" destination="vBd-J9-KBJ" id="e2k-wn-e3y"/>
-                        <outlet property="goalPointLabel" destination="Pze-Sr-b4G" id="LoN-tw-zLA"/>
-                        <outlet property="remainingDaysLabel" destination="duu-kE-vVK" id="Lz3-eY-FTJ"/>
-                        <outlet property="taskLabel" destination="F6x-qg-RCo" id="2aa-JS-ygz"/>
-                        <outlet property="userImageView" destination="OvK-5u-h7g" id="6QC-a3-UtK"/>
-                        <outlet property="userNameLabel" destination="TVZ-Jd-Y65" id="jN6-j3-BER"/>
+                        <outlet property="currentPointLabel" destination="6cW-IU-c4O" id="wUw-7g-KeC"/>
+                        <outlet property="dailyPointLabel" destination="vtb-mp-PzB" id="0dn-84-QqM"/>
+                        <outlet property="gifImage" destination="Dl7-Mn-ck1" id="tku-1P-tjs"/>
+                        <outlet property="gifImage2" destination="vBd-J9-KBJ" id="Daj-9R-HY0"/>
+                        <outlet property="goalPointLabel" destination="Pze-Sr-b4G" id="UsS-1h-T1P"/>
+                        <outlet property="remainingDaysLabel" destination="duu-kE-vVK" id="d3n-0f-q4o"/>
+                        <outlet property="taskLabel" destination="F6x-qg-RCo" id="XfF-VS-79t"/>
+                        <outlet property="userImageView" destination="OvK-5u-h7g" id="QSc-xs-VdV"/>
+                        <outlet property="userNameLabel" destination="TVZ-Jd-Y65" id="a9j-CC-XcL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m72-Hw-t9o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

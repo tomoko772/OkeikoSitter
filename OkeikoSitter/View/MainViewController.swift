@@ -27,8 +27,6 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var taskLabel: UILabel!
     /// 目標（課題）達成時にもらえるポイント数ラベル
     @IBOutlet private weak var dailyPointLabel: UILabel!
-    /// ボーナスポイント数ボタン
-    @IBOutlet private weak var bonusPointButton: UIButton!
     /// 現在のポイント数の表示ラベル
     @IBOutlet private weak var currentPointLabel: UILabel!
     /// 目標ポイント数ラベル
@@ -58,7 +56,7 @@ final class MainViewController: UIViewController {
     
     // MARK: - IBActions
     
-    /// 目標が表示されたボタンを押した時に呼ばれる関数
+    /// ポイント獲得ボタンを押した時に呼ばれる関数
     @IBAction private func addButtonTapped(_ sender: Any) {
     }
     
@@ -145,7 +143,8 @@ final class MainViewController: UIViewController {
         userNameLabel.text = user.userName
         taskLabel.text = user.challengeTask
         dailyPointLabel.text = "\(user.challengePoint) ポイント"
-        bonusPointButton.setTitle("\(user.bonusPoint) ポイント", for: .normal)
+//        currentPointLabel.text = "現在　\(user.currentPoint) ポイント"
+//        bonusPointButton.setTitle("\(user.bonusPoint) ポイント", for: .normal)
         goalPointLabel.text = "\(user.goalPoint) ポイント"
         remainingDaysLabel.text = "\(user.challengeDay) 日"
     }

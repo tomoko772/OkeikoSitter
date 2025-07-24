@@ -7,15 +7,15 @@
 
 import UIKit
 import SwiftGifOrigin
+import FirebaseAuth
 
 /// ログイン画面
 final class LoginViewController: UIViewController {
     
     // MARK: - Properties
-
+    
     
     // MARK: - IBOutlets
-    
     /// プレゼントGIF画像
     @IBOutlet private weak var presentGIFImageView: UIImageView!
     ///  Eメール
@@ -38,7 +38,13 @@ final class LoginViewController: UIViewController {
     }
     
     /// ログインボタンをタップ
-    @IBAction private func loginButtonTapped(_ sender: Any) {
+    @IBAction private func loginButtonTapped(_ sender: UIButton) {
+        guard let email = emailTextField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty else {
+            showAlert(message: "Emailアドレスとパスワードが空です")
+            return
+        }
+        signIn(email: email, password: password)
     }
     
     /// 新規アカウント登録ボタンをタップ
@@ -50,6 +56,55 @@ final class LoginViewController: UIViewController {
     }
     
     // MARK: - Other Methods
+    
+    /// サインイン（ログイン）をする
+    private func signIn(email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let error = error as NSError? {
+                switch error.code {
+                case AuthErrorCode.wrongPassword.rawValue:
+                    self.showAlert(message: "パスワードが間違っています。")
+                case AuthErrorCode.invalidEmail.rawValue:
+                    self.showAlert(message: "無効なメールアドレスです。")
+                case AuthErrorCode.userNotFound.rawValue:
+                    self.showAlert(message: "ユーザーが見つかりません。")
+                default:
+                    self.showAlert(message: "ログインに失敗しました。")
+                }
+                return
+            }
+            // ログイン成功
+            print("User signed in successfully")
+            // メイン画面に遷移
+            self.navigateToMain()
+        }
+    }
+    
+    /// メイン画面へ遷移
+    private func navigateToMain() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MainViewController")
+        let navController = UINavigationController(rootViewController: vc)
+        // SceneDelegateのwindowを取得
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+           let window = sceneDelegate.window {
+            window.rootViewController = navController
+            window.makeKeyAndVisible()
+            
+            // トランジションをアニメーションで
+            let transition = CATransition()
+            transition.type = .fade
+            transition.duration = 0.3
+            window.layer.add(transition, forKey: kCATransition)
+        }
+    }
+    
+    /// アラートを表示
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true, completion: nil)
+    }
     
     private func configureBarButtonItems() {
         // 左端のキャンセルボタン（アイコン）

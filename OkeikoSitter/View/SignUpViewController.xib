@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="OkeikoSitter" customModuleProvider="target">
             <connections>
                 <outlet property="emailTextField" destination="0CP-qB-IGN" id="BCG-IQ-k7f"/>
-                <outlet property="passwordTextField" destination="11O-c2-L2P" id="VvP-If-8Yq"/>
+                <outlet property="passwordTextField" destination="11O-c2-L2P" id="srS-aT-ioA"/>
                 <outlet property="presentGIFImageView" destination="uAm-P0-u3K" id="yo2-on-eWI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -71,9 +71,6 @@
                             <integer key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="emailTextField:" destination="-1" eventType="editingDidEnd" id="NrW-N3-DXi"/>
-                    </connections>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="11O-c2-L2P">
                     <rect key="frame" x="94" y="374.66666666666669" width="205" height="64"/>
@@ -90,9 +87,6 @@
                             <integer key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="passwordTextField:" destination="-1" eventType="editingDidEnd" id="ZIY-nb-LJi"/>
-                    </connections>
                 </textField>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -110,7 +104,7 @@
                 <constraint firstItem="uAm-P0-u3K" firstAttribute="top" secondItem="0jj-wX-dhE" secondAttribute="bottom" constant="35" id="qbX-7M-L4f"/>
                 <constraint firstItem="11O-c2-L2P" firstAttribute="top" secondItem="0CP-qB-IGN" secondAttribute="bottom" constant="20" id="yrP-jE-5iI"/>
             </constraints>
-            <point key="canvasLocation" x="52.671755725190835" y="20.422535211267608"/>
+            <point key="canvasLocation" x="60" y="18"/>
         </view>
     </objects>
     <resources>

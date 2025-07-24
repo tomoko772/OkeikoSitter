@@ -24,7 +24,7 @@ struct User: Codable {
     // MARK: - Properties
     
     let userID: String
-    let familyID: String
+    let familyID: String?
     let userName: String
     let challengeTask: String
     let challengePoint: Int
