@@ -100,10 +100,7 @@ final class MainViewController: UIViewController {
     
     /// 設定ボタンがタップされたときの処理
     @objc private func didTapSettingButton(_ sender: UIButton) {
-        let settingVC = SettingViewController()
-        let navController = UINavigationController(rootViewController: settingVC)
-        navController.modalPresentationStyle = .fullScreen
-        navigationController?.present(navController, animated: true)
+        navigateToSetting()
     }
     
     /// ユーザー切り替えボタンがタップされたときの処理
@@ -132,21 +129,30 @@ final class MainViewController: UIViewController {
                 }
                 guard let user = users?.first else {
                     print("ユーザーデータなし")
+                    self?.navigateToSetting()
                     return
                 }
                 self?.updateUI(with: user)
             }
         }
     }
-
+    
     private func updateUI(with user: User) {
         userNameLabel.text = user.userName
         taskLabel.text = user.challengeTask
         dailyPointLabel.text = "\(user.challengePoint) ポイント"
-//        currentPointLabel.text = "現在　\(user.currentPoint) ポイント"
-//        bonusPointButton.setTitle("\(user.bonusPoint) ポイント", for: .normal)
+        //        currentPointLabel.text = "現在　\(user.currentPoint) ポイント"
+        //        bonusPointButton.setTitle("\(user.bonusPoint) ポイント", for: .normal)
         goalPointLabel.text = "\(user.goalPoint) ポイント"
         remainingDaysLabel.text = "\(user.challengeDay) 日"
+    }
+    
+    /// 設定画面へ遷移
+    private func navigateToSetting() {
+        let settingVC = SettingViewController()
+        let navController = UINavigationController(rootViewController: settingVC)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
     }
 }
 
