@@ -48,6 +48,13 @@ final class SettingViewController: UIViewController {
     /// チャレンジ日数ボタン
     @IBOutlet private weak var challengeDaysMenuButton: PressableButton!
     
+    // MARK: - IBAction
+    
+    /// ユーザー画像ボタンをタップした
+    @IBAction private func userImageButtonTapped(_ sender: Any) {
+        presentImagePicker()
+    }
+    
     // MARK: - View Life-Cycle Methods
     
     override func viewDidLoad() {
@@ -292,6 +299,40 @@ final class SettingViewController: UIViewController {
         alert.addAction(cancelAction)
         alert.addAction(logoutAction)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    /// プロフィール画像をアップロード
+    private func uploadProfileImage(_ image: UIImage) {
+        guard let imageData = image.jpegData(compressionQuality: 0.8),
+              let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        let path = "profile_images/\(userID).jpg"
+        
+        firebaseService.uploadDataToStorage(data: imageData, path: path) { [weak self] url, error in
+            if let error = error {
+                self?.showAlert(title: "画像アップロード失敗", message: error.localizedDescription)
+                return
+            }
+            guard let downloadURL = url else {
+                self?.showAlert(title: "画像URL取得失敗")
+                return
+            }
+            print("アップロード成功: \(downloadURL)")
+            // Firestoreのユーザードキュメントに画像URLを保存したい場合はここで更新
+            self?.saveProfileImageURL(downloadURL.absoluteString)
+        }
+    }
+    
+    /// プロフィール画像を保存
+    private func saveProfileImageURL(_ urlString: String) {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        let data = ["profile_image_url": urlString]
+        firebaseService.update(collection: "users", documentID: userID, data: data) { [weak self] error in
+            if let error = error {
+                self?.showAlert(title: "プロフィール画像URL保存失敗", message: error.localizedDescription)
+            }
+        }
     }
 }
 

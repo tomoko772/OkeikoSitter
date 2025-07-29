@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -54,7 +54,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzE-iT-OR9" userLabel="ユーザー画像表示用UIVIew">
                                     <rect key="frame" x="0.0" y="60" width="393" height="92"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K38-ae-l04">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K38-ae-l04">
                                             <rect key="frame" x="150.66666666666666" y="0.6666666666666643" width="92" height="90.666666666666686"/>
                                             <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
@@ -62,13 +62,33 @@
                                                 <constraint firstAttribute="width" constant="92" id="tpQ-lE-Icy"/>
                                             </constraints>
                                             <imageReference key="image" image="person.crop.circle" catalog="system" symbolScale="default"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="46"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNd-O5-zrF">
+                                            <rect key="frame" x="150.66666666666666" y="0.0" width="92" height="92"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="92" id="MCe-mk-bnm"/>
+                                                <constraint firstAttribute="width" constant="92" id="uDB-fV-bv3"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain"/>
+                                            <connections>
+                                                <action selector="userImageButtonTapped:" destination="-1" eventType="touchUpInside" id="a61-Rc-ATx"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="uNd-O5-zrF" secondAttribute="bottom" id="5Ef-Cu-EGx"/>
                                         <constraint firstAttribute="height" constant="92" id="Ci4-ec-Bpt"/>
                                         <constraint firstItem="K38-ae-l04" firstAttribute="centerX" secondItem="bzE-iT-OR9" secondAttribute="centerX" id="SLJ-M0-VF8"/>
                                         <constraint firstItem="K38-ae-l04" firstAttribute="top" secondItem="bzE-iT-OR9" secondAttribute="top" id="d0y-aj-TgP"/>
+                                        <constraint firstItem="uNd-O5-zrF" firstAttribute="top" secondItem="bzE-iT-OR9" secondAttribute="top" id="m8R-7i-tvQ"/>
+                                        <constraint firstItem="uNd-O5-zrF" firstAttribute="centerX" secondItem="bzE-iT-OR9" secondAttribute="centerX" id="q71-n6-1qK"/>
                                         <constraint firstAttribute="bottom" secondItem="K38-ae-l04" secondAttribute="bottom" id="ugh-zY-rg5"/>
                                     </constraints>
                                 </view>
@@ -576,7 +596,7 @@
         <image name="ic_check" width="30" height="30"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
