@@ -343,3 +343,32 @@ extension SettingViewController: UITextViewDelegate {
         placeholderLabel.isHidden = !challengeTaskTextView.text.isEmpty
     }
 }
+
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+
+extension SettingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    /// イメージピッカーを表示
+    private func presentImagePicker() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true)
+    }
+    
+    /// 選択完了時
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        picker.dismiss(animated: true)
+        if let selectedImage = info[.originalImage] as? UIImage {
+            userImageView.image = selectedImage
+            // ここでアップロードするなどの処理を行う
+            uploadProfileImage(selectedImage)
+        }
+    }
+    
+    /// キャンセル時
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+}
