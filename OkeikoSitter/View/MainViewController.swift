@@ -17,6 +17,13 @@ final class MainViewController: UIViewController {
     /// FirebaseServiceのインスタンス
     let firebaseService = FirebaseService.shared
     
+    /// 現在のポイント
+    private var currentPoint: Int = 0
+    /// チャレンジポイント
+    private var challengePoint: Int = 0
+    /// ボーナスポイント
+    private var bonusPoint: Int = 0
+    
     // MARK: - IBOutlets
     
     /// ユーザー画像
@@ -27,6 +34,8 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var taskLabel: UILabel!
     /// 目標（課題）達成時にもらえるポイント数ラベル
     @IBOutlet private weak var dailyPointLabel: UILabel!
+    /// ボーナスポイントラベル
+    @IBOutlet private weak var bonusPointLabel: UILabel!
     /// 現在のポイント数の表示ラベル
     @IBOutlet private weak var currentPointLabel: UILabel!
     /// 目標ポイント数ラベル
@@ -57,19 +66,23 @@ final class MainViewController: UIViewController {
     // MARK: - IBActions
     
     /// ポイント獲得ボタンを押した時に呼ばれる関数
-    @IBAction private func addButtonTapped(_ sender: Any) {
+    @IBAction private func addButtonTapped(_ sender: UIButton) {
+        currentPoint = currentPoint + challengePoint
+        currentPointLabel.text = "現在　\(currentPoint)　ポイント"
     }
     
     /// ボーナスボタンを押した時に呼ばれる関数
-    @IBAction private func addBonusButtonTapped(_ sender: Any) {
+    @IBAction private func addBonusButtonTapped(_ sender: UIButton) {
+        currentPoint = currentPoint + bonusPoint
+        currentPointLabel.text = "現在　\(currentPoint)　ポイント"
     }
-    
+
     /// 残り日数が表示されたボタンを押した時に呼ばれる関数
-    @IBAction private func calendarButtonTapped(_ sender: Any) {
+    @IBAction private func calendarButtonTapped(_ sender: UIButton) {
     }
     
     /// ご褒美ボタンを押した時に呼ばれる関数
-    @IBAction private func presentButtonTapped(_ sender: Any) {
+    @IBAction private func presentButtonTapped(_ sender: UIButton) {
         let presentVC = PresentViewController()
         let navController = UINavigationController(rootViewController: presentVC)
         navController.modalPresentationStyle = .fullScreen
@@ -132,7 +145,21 @@ final class MainViewController: UIViewController {
                     self?.navigateToSetting()
                     return
                 }
+                self?.challengePoint = user.challengePoint
+                self?.bonusPoint = user.bonusPoint
+                self?.fetchImage(userID: user.userID)
                 self?.updateUI(with: user)
+            }
+        }
+    }
+    
+    /// 画像を取得
+    private func fetchImage(userID: String) {
+        FirebaseService.shared.fetchImageFromStorage(path: "profile_images/\(userID).jpg") { image in
+            if let image = image {
+                self.userImageView.image = image
+            } else {
+                print("画像の読み込みに失敗しました")
             }
         }
     }
@@ -141,9 +168,9 @@ final class MainViewController: UIViewController {
         userNameLabel.text = user.userName
         taskLabel.text = user.challengeTask
         dailyPointLabel.text = "\(user.challengePoint) ポイント"
-        //        currentPointLabel.text = "現在　\(user.currentPoint) ポイント"
-        //        bonusPointButton.setTitle("\(user.bonusPoint) ポイント", for: .normal)
-        goalPointLabel.text = "\(user.goalPoint) ポイント"
+        currentPointLabel.text = "現在　\(currentPoint) ポイント"
+        bonusPointLabel.text = "\(user.bonusPoint) ポイント"
+        goalPointLabel.text = "目標　\(user.goalPoint)　ポイント"
         remainingDaysLabel.text = "\(user.challengeDay) 日"
     }
     

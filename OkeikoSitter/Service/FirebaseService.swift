@@ -109,6 +109,32 @@ final class FirebaseService {
         }
     }
     
+    /// Storage内の画像データをUIImageとして取得するメソッド
+    func fetchImageFromStorage(path: String,
+                               maxSizeInMB: Int = 5,
+                               completion: @escaping (UIImage?) -> Void) {
+        let ref = storage.reference().child(path)
+        let maxSize = Int64(maxSizeInMB) * 1024 * 1024
+        
+        ref.getData(maxSize: maxSize) { data, error in
+            if let error = error {
+                print("画像取得失敗: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+            
+            guard let data = data, let image = UIImage(data: data) else {
+                print("画像データの変換に失敗")
+                completion(nil)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completion(image)
+            }
+        }
+    }
+    
     /// Storage内のファイルを削除するメソッド
     func deleteFileFromStorage(path: String,
                                completion: @escaping (Error?) -> Void) {
