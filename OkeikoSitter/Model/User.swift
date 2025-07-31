@@ -19,6 +19,7 @@ struct User: Codable {
         case bonusPoint = "bonus_point"
         case goalPoint = "goal_point"
         case challengeDay = "challenge_day"
+        case profileImageURL = "profile_image_url"
     }
     
     // MARK: - Properties
@@ -31,4 +32,5 @@ struct User: Codable {
     let bonusPoint: Int
     let goalPoint: Int
     let challengeDay: Int
+    let profileImageURL: String?
 }
