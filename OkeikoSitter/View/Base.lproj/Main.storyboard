@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g7u-HK-wJ8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g7u-HK-wJ8">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +13,7 @@
             <objects>
                 <navigationController id="g7u-HK-wJ8" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fVe-zX-Nbg">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -33,10 +33,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gey-sm-KR3">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="162" width="393" height="622"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Pw-Mv-FNB">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="789"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="801"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b7V-Uw-vdh">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
@@ -71,13 +71,13 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGZ-sC-pCP" userLabel="緑のView">
-                                                <rect key="frame" x="28" y="70" width="337" height="685"/>
+                                                <rect key="frame" x="28" y="82" width="337" height="685"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OoN-oO-zkS" userLabel="チャレンジ内容View">
                                                         <rect key="frame" x="32" y="14" width="273" height="55"/>
                                                         <subviews>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2q-3o-EfC" userLabel="☆チャレンジ内容   （達成したらクリックしよう↓）">
-                                                                <rect key="frame" x="24.666666666666686" y="8.3333333333333428" width="224" height="38.333333333333336"/>
+                                                                <rect key="frame" x="24.666666666666686" y="8.3333333333333144" width="224" height="38.333333333333336"/>
                                                                 <string key="text">☆チャレンジ内容 
 　（達成したらクリックしよう↓）</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -445,7 +445,7 @@
                                             <constraint firstAttribute="trailing" secondItem="HGZ-sC-pCP" secondAttribute="trailing" constant="28" id="C4C-6O-7Nt"/>
                                             <constraint firstItem="b7V-Uw-vdh" firstAttribute="leading" secondItem="6Pw-Mv-FNB" secondAttribute="leading" id="DcN-nu-PHG"/>
                                             <constraint firstAttribute="bottom" secondItem="HGZ-sC-pCP" secondAttribute="bottom" constant="34" id="U2J-iD-ZgF"/>
-                                            <constraint firstItem="HGZ-sC-pCP" firstAttribute="top" secondItem="b7V-Uw-vdh" secondAttribute="bottom" id="a4M-7f-dzp"/>
+                                            <constraint firstItem="HGZ-sC-pCP" firstAttribute="top" secondItem="b7V-Uw-vdh" secondAttribute="bottom" constant="12" id="a4M-7f-dzp"/>
                                             <constraint firstItem="HGZ-sC-pCP" firstAttribute="leading" secondItem="6Pw-Mv-FNB" secondAttribute="leading" constant="28" id="uEa-62-eZV"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>

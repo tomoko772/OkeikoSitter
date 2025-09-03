@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -171,11 +171,11 @@
                                             <rect key="frame" x="70" y="0.0" width="253" height="115"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Miz-NP-92I" userLabel="チャレンジ内容入力用Text View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="253" height="115"/>
+                                                    <rect key="frame" x="16" y="16" width="221" height="83"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容を入力してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaV-eV-PI1" userLabel="プレースホルダーラベル">
                                                     <rect key="frame" x="6.6666666666666714" y="48" width="239.66666666666663" height="19.333333333333329"/>
@@ -189,11 +189,11 @@
                                                 <constraint firstItem="xaV-eV-PI1" firstAttribute="centerX" secondItem="fYt-cH-SLA" secondAttribute="centerX" id="DTY-JP-jfh"/>
                                                 <constraint firstAttribute="width" constant="253" id="JqR-J9-cSR"/>
                                                 <constraint firstAttribute="height" constant="115" id="XWx-Tm-HcA"/>
-                                                <constraint firstItem="Miz-NP-92I" firstAttribute="top" secondItem="fYt-cH-SLA" secondAttribute="top" id="bTn-lI-Ctn"/>
-                                                <constraint firstAttribute="trailing" secondItem="Miz-NP-92I" secondAttribute="trailing" id="mrZ-iM-fdG"/>
-                                                <constraint firstAttribute="bottom" secondItem="Miz-NP-92I" secondAttribute="bottom" id="p5d-Pn-uSq"/>
+                                                <constraint firstItem="Miz-NP-92I" firstAttribute="top" secondItem="fYt-cH-SLA" secondAttribute="top" constant="16" id="bTn-lI-Ctn"/>
+                                                <constraint firstAttribute="trailing" secondItem="Miz-NP-92I" secondAttribute="trailing" constant="16" id="mrZ-iM-fdG"/>
+                                                <constraint firstAttribute="bottom" secondItem="Miz-NP-92I" secondAttribute="bottom" constant="16" id="p5d-Pn-uSq"/>
                                                 <constraint firstItem="xaV-eV-PI1" firstAttribute="centerY" secondItem="fYt-cH-SLA" secondAttribute="centerY" id="uvG-iW-mEa"/>
-                                                <constraint firstItem="Miz-NP-92I" firstAttribute="leading" secondItem="fYt-cH-SLA" secondAttribute="leading" id="zmg-Sj-BEs"/>
+                                                <constraint firstItem="Miz-NP-92I" firstAttribute="leading" secondItem="fYt-cH-SLA" secondAttribute="leading" constant="16" id="zmg-Sj-BEs"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -504,7 +504,7 @@
                                             </constraints>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="ic_check" title=" 完了"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="ic_check" title=" 保存"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                     <integer key="value" value="8"/>
