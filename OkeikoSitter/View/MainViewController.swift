@@ -15,8 +15,11 @@ final class MainViewController: UIViewController {
     // MARK: - Properties
     
     /// FirebaseServiceのインスタンス
-    let firebaseService = FirebaseService.shared
-    
+    private let firebaseService = FirebaseService.shared
+    /// ユーザー情報
+    private var user: User?
+    /// プロフィール画像
+    private var profileImage: UIImage?
     /// 現在のポイント
     private var currentPoint: Int = 0
     /// チャレンジポイント
@@ -65,23 +68,23 @@ final class MainViewController: UIViewController {
     
     // MARK: - IBActions
     
-    /// ポイント獲得ボタンを押した時に呼ばれる関数
+    /// ポイント獲得ボタンをタップ
     @IBAction private func addButtonTapped(_ sender: UIButton) {
         currentPoint = currentPoint + challengePoint
         currentPointLabel.text = "現在　\(currentPoint)　ポイント"
     }
     
-    /// ボーナスボタンを押した時に呼ばれる関数
+    /// ボーナスボタンをタップ
     @IBAction private func addBonusButtonTapped(_ sender: UIButton) {
         currentPoint = currentPoint + bonusPoint
         currentPointLabel.text = "現在　\(currentPoint)　ポイント"
     }
 
-    /// 残り日数が表示されたボタンを押した時に呼ばれる関数
+    /// 残り日数が表示されたボタンをタップ
     @IBAction private func calendarButtonTapped(_ sender: UIButton) {
     }
     
-    /// ご褒美ボタンを押した時に呼ばれる関数
+    /// ご褒美ボタンをタップ
     @IBAction private func presentButtonTapped(_ sender: UIButton) {
         let presentVC = PresentViewController()
         let navController = UINavigationController(rootViewController: presentVC)
@@ -135,6 +138,7 @@ final class MainViewController: UIViewController {
                                      field: "user_id",
                                      isEqualTo: currentUserID,
                                      as: User.self) { [weak self] users, error in
+            guard let self = self else { return }
             DispatchQueue.main.async {
                 if let error = error {
                     print("取得エラー: \(error)")
@@ -142,13 +146,14 @@ final class MainViewController: UIViewController {
                 }
                 guard let user = users?.first else {
                     print("ユーザーデータなし")
-                    self?.navigateToSetting()
+                    self.navigateToSetting()
                     return
                 }
-                self?.challengePoint = user.challengePoint
-                self?.bonusPoint = user.bonusPoint
-                self?.fetchImage(userID: user.userID)
-                self?.updateUI(with: user)
+                self.challengePoint = user.challengePoint
+                self.bonusPoint = user.bonusPoint
+                self.user = user
+                self.fetchImage(userID: user.userID)
+                self.updateUI(with: user)
             }
         }
     }
@@ -158,6 +163,7 @@ final class MainViewController: UIViewController {
         FirebaseService.shared.fetchImageFromStorage(path: "profile_images/\(userID).jpg") { image in
             if let image = image {
                 self.userImageView.image = image
+                self.profileImage = image
             } else {
                 print("画像の読み込みに失敗しました")
             }
@@ -167,16 +173,16 @@ final class MainViewController: UIViewController {
     private func updateUI(with user: User) {
         userNameLabel.text = user.userName
         taskLabel.text = user.challengeTask
-        dailyPointLabel.text = "\(user.challengePoint) ポイント"
+        dailyPointLabel.text = "+\(user.challengePoint) ポイント"
         currentPointLabel.text = "現在　\(currentPoint) ポイント"
-        bonusPointLabel.text = "\(user.bonusPoint) ポイント"
+        bonusPointLabel.text = "ボーナス+\(user.bonusPoint) ポイント"
         goalPointLabel.text = "目標　\(user.goalPoint)　ポイント"
         remainingDaysLabel.text = "\(user.challengeDay) 日"
     }
     
     /// 設定画面へ遷移
     private func navigateToSetting() {
-        let settingVC = SettingViewController()
+        let settingVC = SettingViewController(image: profileImage, user: user)
         let navController = UINavigationController(rootViewController: settingVC)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
