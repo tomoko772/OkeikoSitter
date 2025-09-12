@@ -163,24 +163,12 @@ final class SettingViewController: UIViewController {
                                            target: self,
                                            action: #selector(cancelButtonPressed(_:)))
         navigationItem.leftBarButtonItem = cancelButton
-        
-        // 右端の削除ボタン（アイコン）
-        let deleteImage = UIImage(named: "delete")
-        let deleteButton = UIBarButtonItem(image: deleteImage,
-                                           style: .plain,
-                                           target: self,
-                                           action: #selector(deleteButtonPressed(_:)))
-        navigationItem.rightBarButtonItem = deleteButton
     }
     
     @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-    
-    @objc func deleteButtonPressed(_ sender: UIBarButtonItem) {
-        print("ユーザーが削除されます")
-    }
-    
+        
     private func configureChallengePointMenuButton() {
         let challengePointMenu = UIMenu(title: "", children: [
             UIAction(title: "1") { _ in
