@@ -10,10 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PresentViewController" customModule="OkeikoSitter" customModuleProvider="target">
             <connections>
-                <outlet property="hiddenPlaceImageView" destination="hX2-s5-jyB" id="19j-1Q-O9O"/>
                 <outlet property="hiddenPlaceLabel" destination="rsU-ZA-gDq" id="6IX-p0-t9j"/>
                 <outlet property="presentMarkImageView" destination="yo1-Be-j2z" id="vpt-7a-Shn"/>
                 <outlet property="quesitonMarkImageView" destination="tlA-T2-JfT" id="zAt-cq-4ko"/>
+                <outlet property="rewardImageView" destination="hX2-s5-jyB" id="19j-1Q-O9O"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -140,7 +140,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="1" green="0.94509803921568625" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="hX2-s5-jyB" firstAttribute="leading" secondItem="RlC-5G-K0g" secondAttribute="leading" id="O8U-t0-Qyb"/>
                                                 <constraint firstItem="yo1-Be-j2z" firstAttribute="centerX" secondItem="RlC-5G-K0g" secondAttribute="centerX" id="S3q-tT-K1M"/>
