@@ -13,19 +13,15 @@ final class UserSession {
     
     /// ユーザーIDを保持
     private(set) var userID: String?
-    /// ファミリーIDを保持
-    private(set) var familyID: String?
     
     /// 初回取得時に設定する
-    func setUserID(userID: String, familyID: String) {
+    func setUserID(userID: String) {
         self.userID = userID
-        self.familyID = familyID
     }
     
     /// クリアしたいとき（ログアウトなど）
     func clear() {
         self.userID = nil
-        self.familyID = nil
     }
 }
 

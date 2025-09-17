@@ -154,7 +154,7 @@ final class MainViewController: UIViewController {
                 self.user = user
                 self.fetchImage(userID: user.userID)
                 self.updateUI(with: user)
-                UserSession.shared.setUserID(userID: user.userID, familyID: user.familyID)
+                UserSession.shared.setUserID(userID: user.userID)
             }
         }
     }

@@ -12,7 +12,6 @@ struct User: Codable {
     
     enum CodingKeys: String, CodingKey {
         case userID = "user_id"
-        case familyID = "family_id"
         case userName = "user_name"
         case challengeTask = "challenge_task"
         case challengePoint = "challenge_point"
@@ -25,7 +24,6 @@ struct User: Codable {
     // MARK: - Properties
     
     let userID: String
-    let familyID: String
     let userName: String
     let challengeTask: String
     let challengePoint: Int
