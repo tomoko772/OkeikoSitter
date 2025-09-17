@@ -9,6 +9,15 @@ import UIKit
 
 /// ご褒美登録画面
 final class PresentViewController: UIViewController {
+   
+    // MARK: - Properties
+    
+    /// 隠し場所
+    private var hidingPlace: String?
+    ///　目標が達成の有無
+    private var isGoalAchieved: Bool = false
+    
+    
     // MARK: - IBOutlets
     
     /// ご褒美画像
