@@ -19,18 +19,18 @@ struct User: Codable {
         case bonusPoint = "bonus_point"
         case goalPoint = "goal_point"
         case challengeDay = "challenge_day"
-        case profileImageURL = "profile_image_url"
+        case hiddenPlace = "hidden_place"
     }
     
     // MARK: - Properties
     
     let userID: String
-    let familyID: String?
+    let familyID: String
     let userName: String
     let challengeTask: String
     let challengePoint: Int
     let bonusPoint: Int
     let goalPoint: Int
     let challengeDay: Int
-    let profileImageURL: String?
+    let hiddenPlace: String
 }
