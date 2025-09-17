@@ -9,13 +9,13 @@ import UIKit
 
 /// ご褒美登録画面
 final class PresentViewController: UIViewController {
-   
+    
     // MARK: - Properties
     
     /// 隠し場所
-    private var hidingPlace: String?
+    private var hidingPlace: String? = nil
     ///　目標が達成の有無
-    private var isGoalAchieved: Bool = false
+    private var isGoalReached = false
     
     
     // MARK: - IBOutlets
@@ -44,6 +44,7 @@ final class PresentViewController: UIViewController {
     }
     
     @IBAction private func registrationButtonTapped(_ sender: Any) {
+        enterHiddenPlace()
     }
     
     // MARK: - Other Methods
@@ -109,6 +110,37 @@ final class PresentViewController: UIViewController {
         picker.sourceType = sourceType
         picker.delegate = self
         present(picker, animated: true)
+    }
+    
+    /// 隠し場所を入力
+    private func enterHiddenPlace() {
+        let alert = UIAlertController(title: "隠し場所登録", message: "隠し場所を入力してください", preferredStyle: .alert)
+        alert.addTextField { $0.placeholder = "例: ソファの下" }
+        let ok = UIAlertAction(title: "登録", style: .default) { [weak self] _ in
+            guard let self = self, let input = alert.textFields?.first?.text, !input.isEmpty else { return }
+            self.hidingPlace = input
+            self.updateUI()
+        }
+        alert.addAction(ok)
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
+        present(alert, animated: true)
+    }
+    
+    /// 隠し場所の表示の有無の更新
+    private func updateUI() {
+        if isGoalReached, let place = hidingPlace, !place.isEmpty {
+            hiddenPlaceLabel.text = place
+            hiddenPlaceLabel.isHidden = false
+            quesitonMarkImageView.isHidden = true
+        } else {
+            hiddenPlaceLabel.isHidden = true
+            quesitonMarkImageView.isHidden = false
+        }
+    }
+    
+    private func achievementDidUpdate() {
+        isGoalReached = true
+        updateUI()
     }
 }
 
