@@ -26,15 +26,13 @@ final class SettingViewController: UIViewController {
     private var selectedGoalPoint: Int?
     /// 選択したチャレンジ日数
     private var selectedChallengeDay: Int?
-    /// ユーザー情報
-    private var user: User?
     
     // MARK: - IBOutlets
     
     /// ユーザー画像
     @IBOutlet private weak var userImageView: UIImageView!
-    /// ユーザー名テキストフィールド
-    @IBOutlet private weak var userNameTextField: UITextField!
+    /// ユーザー名ラベル
+    @IBOutlet private weak var userNameLabel: UILabel!
     /// チャレンジ内容テキストビュー
     @IBOutlet private weak var challengeTaskTextView: UITextView!
     /// プレースホルダーラベル
@@ -56,23 +54,12 @@ final class SettingViewController: UIViewController {
     /// チャレンジ日数ボタン
     @IBOutlet private weak var challengeDaysMenuButton: PressableButton!
     
-    // MARK: - Initializers
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - View Life-Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTapGesture()
         configureUI()
-        configureTextField()
         configureTextView()
         configureBarButtonItems()
         configureChallengePointMenuButton()
@@ -122,8 +109,9 @@ final class SettingViewController: UIViewController {
     }
     
     private func configureUI() {
-        if let user = user {
-            userNameTextField.text = user.userName
+        if let user = UserSession.shared.currentUser {
+            userImageView.image = user.profileImage
+            userNameLabel.text = user.userName
             challengeTaskTextView.text = user.challengeTask
             challengePointLabel.text = "\(user.challengePoint)ポイント"
             selectedChallengePoint = user.challengePoint
@@ -143,10 +131,6 @@ final class SettingViewController: UIViewController {
         if let image = selectedImage {
             userImageView.image = image
         }
-    }
-    
-    private func configureTextField() {
-        userNameTextField.delegate = self
     }
     
     private func configureTextView() {
@@ -254,7 +238,7 @@ final class SettingViewController: UIViewController {
             return showAlert(title: "ログインしてください")
         }
         
-        guard let userName = userNameTextField.text,
+        guard let userName = userNameLabel.text,
               !userName.isEmpty,
               let challengeTask = challengeTaskTextView.text,
               !challengeTask.isEmpty,
@@ -395,17 +379,6 @@ final class SettingViewController: UIViewController {
                 }
             }
         }
-    }
-}
-
-// MARK: - UITextFieldDelegate
-
-extension SettingViewController: UITextFieldDelegate {
-    /// returnキーを押された時のメソッド
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // キーボードを閉じる
-        textField.resignFirstResponder()
-        return true
     }
 }
 

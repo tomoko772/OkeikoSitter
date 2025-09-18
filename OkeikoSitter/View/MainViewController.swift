@@ -184,7 +184,7 @@ final class MainViewController: UIViewController {
 
     private func updateUI(with user: UserSessionUser) {
         userNameLabel.text = user.userName
-        taskLabel.text = user.challengeTask
+        taskLabel.text = user.challengeTask.isEmpty ? "設定してください" : user.challengeTask
         dailyPointLabel.text = "+\(user.challengePoint) ポイント"
         currentPointLabel.text = "現在　\(user.currentPoint) ポイント"
         bonusPointLabel.text = "ボーナス+\(user.bonusPoint) ポイント"
