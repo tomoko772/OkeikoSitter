@@ -58,9 +58,7 @@ final class SettingViewController: UIViewController {
     
     // MARK: - Initializers
     
-    init(image: UIImage?, user: User?) {
-        self.selectedImage = image
-        self.user = user
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     

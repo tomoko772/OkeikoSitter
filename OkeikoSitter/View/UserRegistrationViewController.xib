@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserRegistrationViewController" customModule="OkeikoSitter" customModuleProvider="target">
+            <connections>
+                <outlet property="profileImageView" destination="AvJ-NW-A40" id="Jv5-n7-Dj0"/>
+                <outlet property="userNameTextField" destination="hdU-Js-9vZ" id="LHO-sS-uqA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AvJ-NW-A40">
+                    <rect key="frame" x="136.66666666666666" y="168" width="119.99999999999997" height="120"/>
+                    <color key="backgroundColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="nU7-XT-60z"/>
+                        <constraint firstAttribute="height" constant="120" id="tbW-R1-REK"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="60"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dW7-24-Q00">
+                    <rect key="frame" x="136.66666666666666" y="168" width="119.99999999999997" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="8fk-qm-5cN"/>
+                        <constraint firstAttribute="width" constant="120" id="DqM-YO-uva"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain"/>
+                    <connections>
+                        <action selector="imageSelectionButtonTapped:" destination="-1" eventType="touchUpInside" id="yHl-4l-A5f"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hdU-Js-9vZ">
+                    <rect key="frame" x="136.66666666666666" y="338" width="119.99999999999997" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="0V8-es-L51"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BA1-hj-alG">
+                    <rect key="frame" x="48" y="632" width="297" height="32"/>
+                    <color key="backgroundColor" red="0.87450980389999999" green="0.82745098039999998" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="rFZ-XK-54P"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="登録"/>
+                    <connections>
+                        <action selector="saveButtonTapped:" destination="-1" eventType="touchUpInside" id="77o-kw-yNh"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="AvJ-NW-A40" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ATr-rt-PQK"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BA1-hj-alG" secondAttribute="trailing" constant="48" id="J0w-sK-2Jd"/>
+                <constraint firstItem="dW7-24-Q00" firstAttribute="centerY" secondItem="AvJ-NW-A40" secondAttribute="centerY" id="Kep-ud-zpz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BA1-hj-alG" secondAttribute="bottom" constant="120" id="Nbw-F2-8fH"/>
+                <constraint firstItem="dW7-24-Q00" firstAttribute="centerX" secondItem="AvJ-NW-A40" secondAttribute="centerX" id="QrY-8Q-Jw1"/>
+                <constraint firstItem="hdU-Js-9vZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="d8a-41-A4W"/>
+                <constraint firstItem="hdU-Js-9vZ" firstAttribute="top" secondItem="AvJ-NW-A40" secondAttribute="bottom" constant="50" id="lJn-e9-Kr3"/>
+                <constraint firstItem="AvJ-NW-A40" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="pXh-rX-QrD"/>
+                <constraint firstItem="BA1-hj-alG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="48" id="y0J-3W-va0"/>
+            </constraints>
+            <point key="canvasLocation" x="64.885496183206101" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

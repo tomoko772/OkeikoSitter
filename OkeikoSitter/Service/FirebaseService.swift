@@ -36,30 +36,26 @@ final class FirebaseService {
     }
     
     /// 取得
-    func fetchByQuery<T: Codable>(
+    func fetchDocument<T: Codable>(
         collection: String,
-        field: String,
-        isEqualTo value: Any,
-        as type: T.Type,
-        completion: @escaping ([T]?, Error?) -> Void
+        documentID: String,
+        completion: @escaping (T?, Error?) -> Void
     ) {
-        db.collection(collection)
-            .whereField(field, isEqualTo: value)
-            .getDocuments { snapshot, error in
-                if let error = error {
-                    completion(nil, error)
-                    return
-                }
-                guard let documents = snapshot?.documents else {
-                    completion([], nil)
-                    return
-                }
-                
-                let objects = documents.compactMap { self.decodeDocument($0, as: T.self) }
-                completion(objects, nil)
+        let docRef = db.collection(collection).document(documentID)
+        docRef.getDocument { snapshot, error in
+            if let error = error {
+                completion(nil, error)
+                return
             }
+            guard let snapshot = snapshot, snapshot.exists else {
+                completion(nil, nil)
+                return
+            }
+            let object = self.decodeDocument(snapshot, as: T.self)
+            completion(object, nil)
+        }
     }
-    
+
     func decodeDocument<T: Codable>(_ doc: DocumentSnapshot, as type: T.Type) -> T? {
         guard let data = doc.data() else { return nil }
         

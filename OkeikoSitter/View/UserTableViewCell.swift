@@ -18,8 +18,12 @@ final class UserTableViewCell: UITableViewCell {
     
     // MARK: - Other Methods
     
-    func configure(imageString: String, userName: String) {
-        self.userImageView.image = UIImage(named: imageString)
+    func configure(profileImage: UIImage?, userName: String) {
+        if let profileImage = profileImage {
+            self.userImageView.image = profileImage
+        } else {
+            self.userImageView.image = UIImage(systemName: "person.circle")
+        }
         self.userNameLabel.text = userName
     }
     

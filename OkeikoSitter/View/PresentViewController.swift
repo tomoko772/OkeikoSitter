@@ -159,7 +159,7 @@ final class PresentViewController: UIViewController {
     
     /// 隠し場所を登録
     private func registerHiddenPlace(hiddenPlace: String) {
-        guard let userID = UserSession.shared.userID else { return }
+        guard let userID = UserSession.shared.accountID else { return }
         let saveToData: [String: Any] = [
             "hidden_place": hiddenPlace
         ]
