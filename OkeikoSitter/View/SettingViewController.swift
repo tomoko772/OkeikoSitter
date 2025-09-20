@@ -251,7 +251,6 @@ final class SettingViewController: UIViewController {
         
         let saveData: [String: Any] = [
             "user_id": user.uid,
-            "user_name": userName,
             "challenge_task": challengeTask,
             "challenge_point": challengePoint,
             "bonus_point": bonusPoint,
@@ -260,7 +259,7 @@ final class SettingViewController: UIViewController {
         ]
         // 画像を保存
         if let selectedImage = selectedImage {
-            uploadProfileImage(selectedImage, data: saveData)
+            uploadProfileImage(userName: userName,image: selectedImage, data: saveData)
         } else {
             self.saveData(userID: user.uid, saveData: saveData)
         }
@@ -328,13 +327,12 @@ final class SettingViewController: UIViewController {
     }
     
     /// プロフィール画像をアップロード
-    private func uploadProfileImage(_ image: UIImage, data: [String: Any]) {
-        guard let imageData = image.jpegData(compressionQuality: 0.8),
-              let userID = Auth.auth().currentUser?.uid else {
+    private func uploadProfileImage(userName: String, image: UIImage, data: [String: Any]) {
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             return
         }
-        let path = "profile_images/\(userID).jpg"
-        
+        let path = "profile_images/\(userName).jpg"
+
         firebaseService.uploadDataToStorage(data: imageData, path: path) { [weak self] url, error in
             if let error = error {
                 self?.showAlert(title: "画像アップロード失敗", message: error.localizedDescription)
@@ -354,20 +352,28 @@ final class SettingViewController: UIViewController {
     private func saveProfileImageURL(_ urlString: String, saveData: [String: Any]) {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         let image = ["profile_image_url": urlString]
-        firebaseService.update(collection: "users", documentID: userID, data: image) { [weak self] error in
+
+        firebaseService.update(collection: "users",
+                               documentID: userID, data: image) { [weak self] error in
             guard let self = self else { return }
             if let error = error {
                 self.showAlert(title: "プロフィール画像URL保存失敗", message: error.localizedDescription)
             }
-            
+
+            // UserSession に反映
+            UserSession.shared.updateCurrentUser(profileImageURL: urlString,
+                                                 profileImage: self.selectedImage)
+
             // 成功したら、他の項目の保存処理に入る
             self.saveData(userID: userID, saveData: saveData)
         }
     }
-    
+
     /// データを保存
     private func saveData(userID: String, saveData: [String: Any]) {
-        self.firebaseService.save(collection: "users", documentID: userID, data: saveData) { [weak self] error in
+        self.firebaseService.update(collection: "users",
+                                    documentID: userID,
+                                    data: ["current_user": saveData]) { [weak self] error in
             guard let self = self else { return }
             if let error = error {
                 self.showAlert(title: "データの保存エラー", message: error.localizedDescription)

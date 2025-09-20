@@ -29,6 +29,7 @@ struct UserSessionUser {
     let hiddenPlace: String
     /// プロフィール画像
     var profileImage: UIImage?
+    var profileImageURL: String?
     /// 現在のポイント
     var currentPoint: Int = 0
 
@@ -42,7 +43,9 @@ struct UserSessionUser {
          goalPoint: Int = 0,
          challengeDay: Int = 0,
          hiddenPlace: String = "",
-         profileImage: UIImage?) {
+         profileImage: UIImage?,
+         profileImageURL: String?,
+         currentPoint: Int) {
         self.isParent = isParent
         self.userName = userName
         self.challengeTask = challengeTask
@@ -52,5 +55,7 @@ struct UserSessionUser {
         self.challengeDay = challengeDay
         self.hiddenPlace = hiddenPlace
         self.profileImage = profileImage
+        self.profileImageURL = profileImageURL
+        self.currentPoint = currentPoint
     }
 }

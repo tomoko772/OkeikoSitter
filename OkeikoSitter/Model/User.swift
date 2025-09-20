@@ -20,6 +20,7 @@ struct User: Codable {
         case challengeDay = "challenge_day"
         case hiddenPlace = "hidden_place"
         case currentPoint = "current_point"
+        case profileImageURL = "profile_image_url"
     }
     
     // MARK: - Properties
@@ -42,4 +43,6 @@ struct User: Codable {
     let hiddenPlace: String
     /// 現在のポイント
     let currentPoint: Int
+    /// プロフィール画像
+    let profileImageURL: String?
 }

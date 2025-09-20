@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 /// デリゲートのプロトコル
 protocol UserViewControllerDelegete: AnyObject {
@@ -17,9 +18,10 @@ final class UserViewController: UIViewController {
 
     // MARK: - Stored Properties
 
+    /// FirebaseServiceのインスタンス
+    private let firebaseService = FirebaseService.shared
     /// デリゲートのプロパティ
     weak var delegate: UserViewControllerDelegete?
-    private var users: [UserSessionUser] = UserSession.shared.users
 
     // MARK: - IBOutlets
     
@@ -32,6 +34,7 @@ final class UserViewController: UIViewController {
         super.viewDidLoad()
         configureBarButtonItems()
         configureTableView()
+        fetchData()
     }
     
     // MARK: - IBActions
@@ -86,6 +89,7 @@ final class UserViewController: UIViewController {
                 "goal_point": selectedUser.goalPoint,
                 "challenge_day": selectedUser.challengeDay,
                 "hidden_place": selectedUser.hiddenPlace,
+                "profile_image_url": selectedUser.profileImageURL ?? "",
                 "current_point": selectedUser.currentPoint
             ]
             FirebaseService.shared.update(
@@ -104,20 +108,83 @@ final class UserViewController: UIViewController {
         }
     }
 
+    /// データを取得する
+    private func fetchData() {
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+
+        firebaseService.fetchDocument(collection: "users",
+                                      documentID: currentUserID) { (accountData: Account?, error) in
+            if let error = error {
+                print("取得エラー: \(error)")
+                return
+            }
+
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                guard let firestoreUsers = accountData?.users, !firestoreUsers.isEmpty else { return }
+
+                // UserSession にセット
+                let sessionUsers = firestoreUsers.map { user in
+                    UserSessionUser(
+                        isParent: user.isParent,
+                        userName: user.userName,
+                        challengeTask: user.challengeTask,
+                        challengePoint: user.challengePoint,
+                        bonusPoint: user.bonusPoint,
+                        goalPoint: user.goalPoint,
+                        challengeDay: user.challengeDay,
+                        hiddenPlace: user.hiddenPlace,
+                        profileImage: nil,
+                        profileImageURL: user.profileImageURL,
+                        currentPoint: user.challengePoint
+                    )
+                }
+                UserSession.shared.setUsers(sessionUsers)
+
+                // TableView 更新
+                self.userTableView.reloadData()
+
+                // 画像を取得
+                self.fetchUserImages()
+            }
+        }
+    }
+
+    /// プロフィール画像を取得
+    private func fetchUserImages() {
+        for (index, user) in UserSession.shared.users.enumerated() {
+            // 既に画像がある場合は取得しない
+            if user.profileImage != nil { continue }
+
+            FirebaseService.shared.fetchImageFromStorage(path: "profile_images/\(user.userName).jpg") { image in
+                guard let image = image else { return }
+
+                // UserSessionUser に画像をセット
+                UserSession.shared.updateProfileImage(for: user.userName, image: image)
+
+                // 該当セルだけ更新
+                DispatchQueue.main.async {
+                    self.userTableView.reloadRows(at: [IndexPath(row: index, section: 0)],
+                                                  with: .automatic)
+                }
+            }
+        }
+    }
 }
 // MARK: - UITableViewDataSource
 
 extension UserViewController: UITableViewDataSource {
     /// データの数（＝セルの数）を返すメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return UserSession.shared.users.count
     }
     
     /// 各セルの内容を返すメソッド
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let user = users[indexPath.row]
+        let user = UserSession.shared.users[indexPath.row]
         // 再利用可能な cell を得る
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)as! UserTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell",
+                                                 for: indexPath)as! UserTableViewCell
         cell.configure(profileImage: user.profileImage, userName: user.userName)
         return cell
     }
@@ -128,7 +195,7 @@ extension UserViewController: UITableViewDataSource {
 extension UserViewController: UITableViewDelegate {
     /// セルをタップされた時のメソッド
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedUser = users[indexPath.row]
+        let selectedUser = UserSession.shared.users[indexPath.row]
         UserSession.shared.selectCurrentUser(user: selectedUser)
         // Firestore に currentUser を保存
         saveCurrentUser(selectedUser: selectedUser)
@@ -139,8 +206,7 @@ extension UserViewController: UITableViewDelegate {
 
 extension UserViewController: UserRegistrationViewControllerDelegete {
     func didTapSaveButton() {
-        users = UserSession.shared.users
-        userTableView.reloadData()
+        fetchData()
     }
 }
 

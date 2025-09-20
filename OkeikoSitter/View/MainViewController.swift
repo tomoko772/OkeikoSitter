@@ -49,11 +49,8 @@ final class MainViewController: UIViewController {
         gifImage.contentMode = .center
         gifImage2.loadGif(name: "present")
         configureBarButtonItems()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         fetchData()
+//        deleteData()
     }
 
     // MARK: - IBActions
@@ -63,15 +60,17 @@ final class MainViewController: UIViewController {
         guard let currentPoint = UserSession.shared.currentUser?.currentPoint,
               let challengePoint = UserSession.shared.currentUser?.challengePoint else { return }
         UserSession.shared.updateCurrentPoint(currentPoint + challengePoint)
-        currentPointLabel.text = "現在　\(currentPoint)　ポイント"
+        currentPointLabel.text = "現在　\(currentPoint + challengePoint)　ポイント"
+        saveCurrentPoint(currentPoint: currentPoint + challengePoint)
     }
 
     /// ボーナスボタンをタップ
     @IBAction private func addBonusButtonTapped(_ sender: UIButton) {
         guard let currentPoint = UserSession.shared.currentUser?.currentPoint,
               let bonusPoint = UserSession.shared.currentUser?.bonusPoint else { return }
-        UserSession.shared.updateBonusPoint(currentPoint + bonusPoint)
-        currentPointLabel.text = "現在　\(currentPoint)　ポイント"
+        UserSession.shared.updateCurrentPoint(currentPoint + bonusPoint)
+        currentPointLabel.text = "現在　\(currentPoint + bonusPoint)　ポイント"
+        saveCurrentPoint(currentPoint: currentPoint + bonusPoint)
     }
 
     /// 残り日数が表示されたボタンをタップ
@@ -118,6 +117,26 @@ final class MainViewController: UIViewController {
         navigateToUsers()
     }
 
+    /// 現在のポイントを保存
+    private func saveCurrentPoint(currentPoint: Int) {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("未ログインです")
+            return
+        }
+        let saveData: [String: Any] = ["current_point": currentPoint]
+        self.firebaseService.update(collection: "users",
+                                    documentID: userID,
+                                    data: ["current_user": saveData]) { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                self.showAlert(title: "データの保存エラー", message: error.localizedDescription)
+            } else {
+                print("保存データ：\(saveData)")
+                self.dismiss(animated: true)
+            }
+        }
+    }
+
     /// データを取得する
     private func fetchData() {
         guard let currentUserID = Auth.auth().currentUser?.uid else {
@@ -149,17 +168,22 @@ final class MainViewController: UIViewController {
                         goalPoint: currentUserData.goalPoint,
                         challengeDay: currentUserData.challengeDay,
                         hiddenPlace: currentUserData.hiddenPlace,
-                        profileImage: UIImage() // Storage から後で取得
+                        profileImage: UIImage(),
+                        profileImageURL: currentUserData.profileImageURL,
+                        currentPoint: currentUserData.currentPoint
                     )
 
                     // 現在のユーザーにセット
                     UserSession.shared.selectCurrentUser(user: user)
+                    print("ユーザー情報：\(user)")
 
                     // UI 更新
                     self.updateUI(with: user)
 
                     // 画像取得
-                    self.fetchImage(userID: currentUserID)
+                    if let profileImageURLString = currentUserData.profileImageURL {
+                        fetchImage(from: profileImageURLString)
+                    }
                 } else {
                     print("カレントユーザーがいない")
                     self.navigateToUsers()
@@ -169,17 +193,17 @@ final class MainViewController: UIViewController {
     }
     
     /// 画像を取得
-    private func fetchImage(userID: String) {
-        FirebaseService.shared.fetchImageFromStorage(path: "profile_images/\(userID).jpg") { image in
-            DispatchQueue.main.async {
-                if let image = image {
-                    UserSession.shared.updateProfileImage(image)
+    private func fetchImage(from urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        // URL から UIImage を取得（キャッシュなどは任意）
+        URLSession.shared.dataTask(with: url) { data, _, _ in
+            if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
                     self.userImageView.image = image
-                } else {
-                    print("画像の読み込みに失敗しました")
+                    UserSession.shared.updateProfileImage(image)
                 }
             }
-        }
+        }.resume()
     }
 
     private func updateUI(with user: UserSessionUser) {
@@ -208,6 +232,33 @@ final class MainViewController: UIViewController {
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
     }
+
+    /// アラートを表示
+    private func showAlert(title: String, message: String = "",
+                           completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            completion?()
+        })
+        self.present(alert, animated: true, completion: nil)
+    }
+
+//    /// データを削除する
+//    private func deleteData() {
+//        guard let currentUserID = Auth.auth().currentUser?.uid else {
+//            print("未ログインです")
+//            return
+//        }
+//        FirebaseService.shared.delete(collection: "users", documentID: currentUserID) { error in
+//            if let error = error {
+//                print("削除エラー: \(error)")
+//            } else {
+//                print("削除成功")
+//            }
+//        }
+//    }
 }
 
 // MARK: - UserViewControllerDelegete

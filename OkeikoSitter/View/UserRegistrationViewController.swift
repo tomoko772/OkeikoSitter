@@ -63,10 +63,8 @@ final class UserRegistrationViewController: UIViewController {
     /// プロフィール画像をアップロード
     private func uploadProfileImage(_ image: UIImage, userName: String) {
         guard let imageData = image.jpegData(compressionQuality: 0.8),
-              let userID = Auth.auth().currentUser?.uid else {
-            return
-        }
-        let path = "profile_images/\(userID).jpg"
+              let userID = Auth.auth().currentUser?.uid else { return }
+        let path = "profile_images/\(userName).jpg"
 
         firebaseService.uploadDataToStorage(data: imageData, path: path) { [weak self] url, error in
             if let error = error {
@@ -81,32 +79,25 @@ final class UserRegistrationViewController: UIViewController {
             // Firestoreのユーザードキュメントに画像URLを保存したい場合はここで更新
             self?.saveProfileImageURL(downloadURL.absoluteString,
                                       userID: userID,
-                                      userName: userName,
-                                      profileImage: image)
+                                      userName: userName)
         }
     }
 
     /// プロフィール画像を保存
-    private func saveProfileImageURL(_ urlString: String,
-                                     userID: String,
-                                     userName: String,
-                                     profileImage: UIImage) {
-        let image = ["profile_image_url": urlString]
-        firebaseService.update(collection: "users", documentID: userID, data: image) { [weak self] error in
+    private func saveProfileImageURL(_ urlString: String, userID: String, userName: String) {
+        let imageData = ["profile_image_url": urlString]
+        firebaseService.update(collection: "users", documentID: userID, data: imageData) { [weak self] error in
             guard let self = self else { return }
             if let error = error {
                 self.showAlert(title: "プロフィール画像URL保存失敗", message: error.localizedDescription)
             }
-
-            // 成功したら、他の項目の保存処理に入る
-            self.saveData(userID: userID, userName: userName, profileImage: profileImage)
+            self.saveData(userID: userID, userName: userName, profileImageURL: urlString)
         }
     }
 
     /// ユーザーを保存
-    private func saveData(userID: String, userName: String, profileImage: UIImage) {
+    private func saveData(userID: String, userName: String, profileImageURL: String) {
         let newUserData: [String: Any] = [
-            "account_id": userID,
             "is_parent": true,
             "user_name": userName,
             "challenge_task": "",
@@ -115,16 +106,20 @@ final class UserRegistrationViewController: UIViewController {
             "goal_point": 0,
             "challenge_day": 0,
             "hidden_place": "",
-            "current_point": 0
+            "current_point": 0,
+            "profile_image_url": profileImageURL
         ]
-        self.firebaseService.save(collection: "users",
-                                  documentID: userID,
-                                  data: ["users": FieldValue.arrayUnion([newUserData])]) { [weak self] error in
+
+        firebaseService.update(
+            collection: "users",
+            documentID: userID,
+            data: ["users": FieldValue.arrayUnion([newUserData])]
+        ) { [weak self] error in
             guard let self = self else { return }
             if let error = error {
                 self.showAlert(title: "ユーザー登録失敗", message: error.localizedDescription)
             } else {
-                // アプリ内の users にも追加
+                // UserSession に追加
                 let newUser = UserSessionUser(
                     isParent: true,
                     userName: userName,
@@ -134,9 +129,12 @@ final class UserRegistrationViewController: UIViewController {
                     goalPoint: 0,
                     challengeDay: 0,
                     hiddenPlace: "",
-                    profileImage: profileImage
+                    profileImage: nil,
+                    profileImageURL: profileImageURL,
+                    currentPoint: 0
                 )
                 UserSession.shared.addUser(user: newUser)
+
                 self.showAlert(title: "登録しました！") {
                     self.delegate?.didTapSaveButton()
                     self.navigationController?.popViewController(animated: true)
