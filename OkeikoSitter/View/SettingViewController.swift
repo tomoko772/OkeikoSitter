@@ -26,15 +26,13 @@ final class SettingViewController: UIViewController {
     private var selectedGoalPoint: Int?
     /// 選択したチャレンジ日数
     private var selectedChallengeDay: Int?
-    /// ユーザー情報
-    private var user: User?
     
     // MARK: - IBOutlets
     
     /// ユーザー画像
     @IBOutlet private weak var userImageView: UIImageView!
-    /// ユーザー名テキストフィールド
-    @IBOutlet private weak var userNameTextField: UITextField!
+    /// ユーザー名ラベル
+    @IBOutlet private weak var userNameLabel: UILabel!
     /// チャレンジ内容テキストビュー
     @IBOutlet private weak var challengeTaskTextView: UITextView!
     /// プレースホルダーラベル
@@ -56,25 +54,12 @@ final class SettingViewController: UIViewController {
     /// チャレンジ日数ボタン
     @IBOutlet private weak var challengeDaysMenuButton: PressableButton!
     
-    // MARK: - Initializers
-    
-    init(image: UIImage?, user: User?) {
-        self.selectedImage = image
-        self.user = user
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - View Life-Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTapGesture()
         configureUI()
-        configureTextField()
         configureTextView()
         configureBarButtonItems()
         configureChallengePointMenuButton()
@@ -124,8 +109,9 @@ final class SettingViewController: UIViewController {
     }
     
     private func configureUI() {
-        if let user = user {
-            userNameTextField.text = user.userName
+        if let user = UserSession.shared.currentUser {
+            userImageView.image = user.profileImage
+            userNameLabel.text = user.userName
             challengeTaskTextView.text = user.challengeTask
             challengePointLabel.text = "\(user.challengePoint)ポイント"
             selectedChallengePoint = user.challengePoint
@@ -145,10 +131,6 @@ final class SettingViewController: UIViewController {
         if let image = selectedImage {
             userImageView.image = image
         }
-    }
-    
-    private func configureTextField() {
-        userNameTextField.delegate = self
     }
     
     private func configureTextView() {
@@ -256,7 +238,7 @@ final class SettingViewController: UIViewController {
             return showAlert(title: "ログインしてください")
         }
         
-        guard let userName = userNameTextField.text,
+        guard let userName = userNameLabel.text,
               !userName.isEmpty,
               let challengeTask = challengeTaskTextView.text,
               !challengeTask.isEmpty,
@@ -269,7 +251,6 @@ final class SettingViewController: UIViewController {
         
         let saveData: [String: Any] = [
             "user_id": user.uid,
-            "user_name": userName,
             "challenge_task": challengeTask,
             "challenge_point": challengePoint,
             "bonus_point": bonusPoint,
@@ -278,7 +259,7 @@ final class SettingViewController: UIViewController {
         ]
         // 画像を保存
         if let selectedImage = selectedImage {
-            uploadProfileImage(selectedImage, data: saveData)
+            uploadProfileImage(userName: userName,image: selectedImage, data: saveData)
         } else {
             self.saveData(userID: user.uid, saveData: saveData)
         }
@@ -346,13 +327,12 @@ final class SettingViewController: UIViewController {
     }
     
     /// プロフィール画像をアップロード
-    private func uploadProfileImage(_ image: UIImage, data: [String: Any]) {
-        guard let imageData = image.jpegData(compressionQuality: 0.8),
-              let userID = Auth.auth().currentUser?.uid else {
+    private func uploadProfileImage(userName: String, image: UIImage, data: [String: Any]) {
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             return
         }
-        let path = "profile_images/\(userID).jpg"
-        
+        let path = "profile_images/\(userName).jpg"
+
         firebaseService.uploadDataToStorage(data: imageData, path: path) { [weak self] url, error in
             if let error = error {
                 self?.showAlert(title: "画像アップロード失敗", message: error.localizedDescription)
@@ -372,20 +352,28 @@ final class SettingViewController: UIViewController {
     private func saveProfileImageURL(_ urlString: String, saveData: [String: Any]) {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         let image = ["profile_image_url": urlString]
-        firebaseService.update(collection: "users", documentID: userID, data: image) { [weak self] error in
+
+        firebaseService.update(collection: "users",
+                               documentID: userID, data: image) { [weak self] error in
             guard let self = self else { return }
             if let error = error {
                 self.showAlert(title: "プロフィール画像URL保存失敗", message: error.localizedDescription)
             }
-            
+
+            // UserSession に反映
+            UserSession.shared.updateCurrentUser(profileImageURL: urlString,
+                                                 profileImage: self.selectedImage)
+
             // 成功したら、他の項目の保存処理に入る
             self.saveData(userID: userID, saveData: saveData)
         }
     }
-    
+
     /// データを保存
     private func saveData(userID: String, saveData: [String: Any]) {
-        self.firebaseService.save(collection: "users", documentID: userID, data: saveData) { [weak self] error in
+        self.firebaseService.update(collection: "users",
+                                    documentID: userID,
+                                    data: ["current_user": saveData]) { [weak self] error in
             guard let self = self else { return }
             if let error = error {
                 self.showAlert(title: "データの保存エラー", message: error.localizedDescription)
@@ -397,17 +385,6 @@ final class SettingViewController: UIViewController {
                 }
             }
         }
-    }
-}
-
-// MARK: - UITextFieldDelegate
-
-extension SettingViewController: UITextFieldDelegate {
-    /// returnキーを押された時のメソッド
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // キーボードを閉じる
-        textField.resignFirstResponder()
-        return true
     }
 }
 

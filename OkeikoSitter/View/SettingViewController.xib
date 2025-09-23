@@ -22,7 +22,7 @@
                 <outlet property="goalPointMenuButton" destination="SXH-DH-jAr" id="bxv-R5-kfV"/>
                 <outlet property="placeholderLabel" destination="xaV-eV-PI1" id="CK1-TS-FW6"/>
                 <outlet property="userImageView" destination="K38-ae-l04" id="ncn-4n-yNP"/>
-                <outlet property="userNameTextField" destination="GiU-HM-t4s" id="H49-N1-VLq"/>
+                <outlet property="userNameLabel" destination="puQ-nb-VZC" id="fYE-Vn-ag6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,7 +35,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GaA-o0-KpA">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1037"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="997"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngl-4S-AcA" userLabel="余白">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="10"/>
@@ -92,63 +92,25 @@
                                         <constraint firstAttribute="bottom" secondItem="K38-ae-l04" secondAttribute="bottom" id="ugh-zY-rg5"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWH-dD-kAs" userLabel="項目名「名前」表示用UIView">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFb-uN-Ubh" userLabel="ユーザーネーム表示用UIVIew">
                                     <rect key="frame" x="0.0" y="152" width="393" height="40"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbO-ng-fKC">
-                                            <rect key="frame" x="180.66666666666666" y="9.9999999999999982" width="32" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前未設定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puQ-nb-VZC">
+                                            <rect key="frame" x="131" y="3.3333333333333428" width="131" height="33.666666666666664"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="EbO-ng-fKC" firstAttribute="centerX" secondItem="vWH-dD-kAs" secondAttribute="centerX" id="YzN-Iv-S52"/>
-                                        <constraint firstItem="EbO-ng-fKC" firstAttribute="centerY" secondItem="vWH-dD-kAs" secondAttribute="centerY" id="lEt-S1-pqL"/>
-                                        <constraint firstAttribute="height" constant="40" id="q7O-au-ZbV"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFb-uN-Ubh" userLabel="ユーザーネーム表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="192" width="393" height="40"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ViW-gt-plj">
-                                            <rect key="frame" x="70" y="0.0" width="253" height="40"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ここに名前を入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GiU-HM-t4s">
-                                                    <rect key="frame" x="0.0" y="0.0" width="253" height="40"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="textColor" red="0.0" green="0.60000002384185791" blue="0.31764706969261169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                            <color key="backgroundColor" red="1" green="0.94509803921568625" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="GiU-HM-t4s" firstAttribute="top" secondItem="ViW-gt-plj" secondAttribute="top" id="D6i-Ua-j9B"/>
-                                                <constraint firstAttribute="trailing" secondItem="GiU-HM-t4s" secondAttribute="trailing" id="Gqg-fu-fCB"/>
-                                                <constraint firstAttribute="bottom" secondItem="GiU-HM-t4s" secondAttribute="bottom" id="HWn-Fa-vEa"/>
-                                                <constraint firstAttribute="width" constant="253" id="WWg-oH-Ny3"/>
-                                                <constraint firstAttribute="height" constant="40" id="eSB-9v-LNN"/>
-                                                <constraint firstItem="GiU-HM-t4s" firstAttribute="leading" secondItem="ViW-gt-plj" secondAttribute="leading" id="kvL-iP-nHp"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="ViW-gt-plj" firstAttribute="top" secondItem="xFb-uN-Ubh" secondAttribute="top" id="0rW-ab-D1N"/>
-                                        <constraint firstAttribute="bottom" secondItem="ViW-gt-plj" secondAttribute="bottom" id="TIE-iI-nbZ"/>
-                                        <constraint firstItem="ViW-gt-plj" firstAttribute="centerX" secondItem="xFb-uN-Ubh" secondAttribute="centerX" id="Zas-zb-fzb"/>
+                                        <constraint firstItem="puQ-nb-VZC" firstAttribute="centerY" secondItem="xFb-uN-Ubh" secondAttribute="centerY" id="0Ci-6F-Vt4"/>
                                         <constraint firstAttribute="height" constant="40" id="j72-Ct-qr0"/>
+                                        <constraint firstItem="puQ-nb-VZC" firstAttribute="centerX" secondItem="xFb-uN-Ubh" secondAttribute="centerX" id="qvM-MY-r98"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pSK-Am-hOa" userLabel="項目名「チャレンジ内容」表示用UIView">
-                                    <rect key="frame" x="0.0" y="232" width="393" height="40"/>
+                                    <rect key="frame" x="0.0" y="192" width="393" height="40"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q3-4e-8SZ">
                                             <rect key="frame" x="141" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
@@ -165,7 +127,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQb-0t-5lM" userLabel="チャレンジ内容表示用UIView">
-                                    <rect key="frame" x="0.0" y="272" width="393" height="115"/>
+                                    <rect key="frame" x="0.0" y="232" width="393" height="115"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYt-cH-SLA">
                                             <rect key="frame" x="70" y="0.0" width="253" height="115"/>
@@ -211,7 +173,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6c-a8-OZF" userLabel="項目名「もらえるポイント数」表示用UIView">
-                                    <rect key="frame" x="0.0" y="387" width="393" height="40"/>
+                                    <rect key="frame" x="0.0" y="347" width="393" height="40"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容ができたときにもらえるポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQf-Us-rvT">
                                             <rect key="frame" x="13.666666666666657" y="9.9999999999999982" width="366" height="20.333333333333329"/>
@@ -228,7 +190,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYJ-I6-zJn" userLabel="もらえるポイント数表示用UIView">
-                                    <rect key="frame" x="0.0" y="427" width="393" height="40"/>
+                                    <rect key="frame" x="0.0" y="387" width="393" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhr-8u-PrT">
                                             <rect key="frame" x="70" y="0.0" width="253" height="40"/>
@@ -274,7 +236,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="reA-qO-eem" userLabel="項目名「ボーナスポイント数」表示用UIView">
-                                    <rect key="frame" x="0.0" y="467" width="393" height="40"/>
+                                    <rect key="frame" x="0.0" y="427" width="393" height="40"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ボーナスポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd1-0d-DCo">
                                             <rect key="frame" x="125.00000000000001" y="9.9999999999999982" width="143.33333333333337" height="20.333333333333329"/>
@@ -291,13 +253,13 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMg-Kc-nCx" userLabel="ボーナスポイント数表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="507" width="393" height="40"/>
+                                    <rect key="frame" x="0.0" y="467" width="393" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8z-Th-a0f">
                                             <rect key="frame" x="70" y="0.0" width="253" height="40"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afu-uu-2D3">
-                                                    <rect key="frame" x="84.333333333333343" y="9.333333333333373" width="84.333333333333343" height="21.666666666666671"/>
+                                                    <rect key="frame" x="84.333333333333343" y="9.3333333333333162" width="84.333333333333343" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -337,7 +299,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvb-p1-j61" userLabel="項目名「目標ポイント数」表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="547" width="393" height="40"/>
+                                    <rect key="frame" x="0.0" y="507" width="393" height="40"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目標ポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbB-dr-kXD">
                                             <rect key="frame" x="141" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
@@ -354,7 +316,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHg-cv-90O" userLabel="目標ポイント数表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="587" width="393" height="40"/>
+                                    <rect key="frame" x="0.0" y="547" width="393" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkr-vs-fax">
                                             <rect key="frame" x="70" y="0.0" width="253" height="40"/>
@@ -400,7 +362,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7f1-li-kO0" userLabel="項目名「チャレンジ日数」表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="627" width="393" height="40"/>
+                                    <rect key="frame" x="0.0" y="587" width="393" height="40"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ日数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOU-Ls-nao">
                                             <rect key="frame" x="141" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
@@ -417,7 +379,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1Y-B4-ine" userLabel="チャレンジ日数表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="667" width="393" height="40"/>
+                                    <rect key="frame" x="0.0" y="627" width="393" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1c9-2Q-KmT">
                                             <rect key="frame" x="70" y="0.0" width="253" height="40"/>
@@ -463,7 +425,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opf-dd-72v" userLabel="ご褒美登録ボタンのUIVIew">
-                                    <rect key="frame" x="0.0" y="707" width="393" height="51"/>
+                                    <rect key="frame" x="0.0" y="667" width="393" height="51"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gq-V1-6gF" userLabel="透明なご褒美登録ボタン" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
                                             <rect key="frame" x="70" y="11" width="253" height="40"/>
@@ -493,7 +455,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kiA-Rj-Vlh" userLabel="完了ボタンのUIVIew">
-                                    <rect key="frame" x="0.0" y="758" width="393" height="76"/>
+                                    <rect key="frame" x="0.0" y="718" width="393" height="76"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnn-Xv-qJv" userLabel="透明な完了Button" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
                                             <rect key="frame" x="70" y="11" width="253" height="65"/>
@@ -523,7 +485,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uJ-oM-RbM" userLabel="ログアウトボタンのUIVIew">
-                                    <rect key="frame" x="0.0" y="834" width="393" height="75"/>
+                                    <rect key="frame" x="0.0" y="794" width="393" height="75"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUc-50-Mj0" userLabel="ログアウトButton" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
                                             <rect key="frame" x="94" y="11" width="205" height="64"/>
@@ -553,7 +515,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxB-WS-orr">
-                                    <rect key="frame" x="0.0" y="909" width="393" height="128"/>
+                                    <rect key="frame" x="0.0" y="869" width="393" height="128"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="128" id="Tvw-Pc-JZ9"/>
@@ -596,7 +558,7 @@
         <image name="ic_check" width="30" height="30"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
