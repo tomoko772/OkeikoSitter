@@ -17,37 +17,37 @@ protocol UserRegistrationViewControllerDelegete: AnyObject {
 
 /// ユーザーを登録する画面
 final class UserRegistrationViewController: UIViewController {
-
+    
     // MARK: - Stored Properties
-
+    
     /// FirebaseServiceのインスタンス
     private let firebaseService = FirebaseService.shared
     /// 選択した画像
     private var selectedImage: UIImage?
     /// デリゲートのプロパティ
     weak var delegate: UserRegistrationViewControllerDelegete?
-
+    
     // MARK: - IBOutlets
-
+    
     /// プロフィール画像
     @IBOutlet private weak var profileImageView: UIImageView!
     /// ユーザー名テキストフィールド
     @IBOutlet private weak var userNameTextField: UITextField!
-
+    
     // MARK: - View Life-Cycle Methods
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        gifImage2.loadGif(name: "present")
         // Do any additional setup after loading the view.
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
     // MARK: - IBActions
-
+    
     /// 画像選択ボタンをタップした
     @IBAction private func imageSelectionButtonTapped(_ sender: Any) {
         presentImagePicker()
@@ -57,15 +57,20 @@ final class UserRegistrationViewController: UIViewController {
         guard let userName = userNameTextField.text, let image = selectedImage else { return }
         uploadProfileImage(image, userName: userName)
     }
-
+    
+    // MARK: - IBOutlets
+    
+    /// GIF画像を表示するためにIBOutlet接続
+    @IBOutlet private weak var gifImage2: UIImageView!
+    
     // MARK: - Other Methods
-
+    
     /// プロフィール画像をアップロード
     private func uploadProfileImage(_ image: UIImage, userName: String) {
         guard let imageData = image.jpegData(compressionQuality: 0.8),
               let userID = Auth.auth().currentUser?.uid else { return }
         let path = "profile_images/\(userName).jpg"
-
+        
         firebaseService.uploadDataToStorage(data: imageData, path: path) { [weak self] url, error in
             if let error = error {
                 self?.showAlert(title: "画像アップロード失敗", message: error.localizedDescription)
@@ -82,7 +87,7 @@ final class UserRegistrationViewController: UIViewController {
                                       userName: userName)
         }
     }
-
+    
     /// プロフィール画像を保存
     private func saveProfileImageURL(_ urlString: String, userID: String, userName: String) {
         let imageData = ["profile_image_url": urlString]
@@ -94,7 +99,7 @@ final class UserRegistrationViewController: UIViewController {
             self.saveData(userID: userID, userName: userName, profileImageURL: urlString)
         }
     }
-
+    
     /// ユーザーを保存
     private func saveData(userID: String, userName: String, profileImageURL: String) {
         let newUserData: [String: Any] = [
@@ -109,7 +114,7 @@ final class UserRegistrationViewController: UIViewController {
             "current_point": 0,
             "profile_image_url": profileImageURL
         ]
-
+        
         firebaseService.update(
             collection: "users",
             documentID: userID,
@@ -134,7 +139,7 @@ final class UserRegistrationViewController: UIViewController {
                     currentPoint: 0
                 )
                 UserSession.shared.addUser(user: newUser)
-
+                
                 self.showAlert(title: "登録しました！") {
                     self.delegate?.didTapSaveButton()
                     self.navigationController?.popViewController(animated: true)
@@ -142,7 +147,7 @@ final class UserRegistrationViewController: UIViewController {
             }
         }
     }
-
+    
     /// アラートを表示
     private func showAlert(title: String, message: String = "",
                            completion: (() -> Void)? = nil) {
@@ -159,7 +164,7 @@ final class UserRegistrationViewController: UIViewController {
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 
 extension UserRegistrationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     /// イメージピッカーを表示
     private func presentImagePicker() {
         let picker = UIImagePickerController()
@@ -167,7 +172,7 @@ extension UserRegistrationViewController: UIImagePickerControllerDelegate, UINav
         picker.sourceType = .photoLibrary
         present(picker, animated: true)
     }
-
+    
     /// 選択完了時
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
@@ -177,7 +182,7 @@ extension UserRegistrationViewController: UIImagePickerControllerDelegate, UINav
             self.selectedImage = selectedImage
         }
     }
-
+    
     /// キャンセル時
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
