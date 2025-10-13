@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="gifImage2" destination="Czm-Gj-3lr" id="LGt-tT-1qp"/>
                 <outlet property="profileImageView" destination="AvJ-NW-A40" id="Jv5-n7-Dj0"/>
+                <outlet property="userNameTextField" destination="jhc-bE-OmL" id="rIh-zJ-TsS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

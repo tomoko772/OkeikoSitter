@@ -204,7 +204,7 @@ extension UserViewController: UITableViewDelegate {
 
 // MARK: - UserRegistrationViewControllerDelegete
 
-extension UserViewController: UserRegistrationViewControllerDelegete {
+extension UserViewController: UserRegistrationViewControllerDelegate {
     func didTapSaveButton() {
         fetchData()
     }

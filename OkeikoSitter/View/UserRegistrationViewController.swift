@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 /// デリゲートのプロトコル
-protocol UserRegistrationViewControllerDelegete: AnyObject {
+protocol UserRegistrationViewControllerDelegate: AnyObject {
     /// 登録ボタンがタップされた
     func didTapSaveButton()
 }
@@ -25,7 +25,7 @@ final class UserRegistrationViewController: UIViewController {
     /// 選択した画像
     private var selectedImage: UIImage?
     /// デリゲートのプロパティ
-    weak var delegate: UserRegistrationViewControllerDelegete?
+    weak var delegate: UserRegistrationViewControllerDelegate?
     
     // MARK: - IBOutlets
     
@@ -33,6 +33,9 @@ final class UserRegistrationViewController: UIViewController {
     @IBOutlet private weak var profileImageView: UIImageView!
     /// ユーザー名テキストフィールド
     @IBOutlet private weak var userNameTextField: UITextField!
+    
+    /// GIF画像を表示するためにIBOutlet接続
+    @IBOutlet private weak var gifImage2: UIImageView!
     
     // MARK: - View Life-Cycle Methods
     
@@ -57,11 +60,6 @@ final class UserRegistrationViewController: UIViewController {
         guard let userName = userNameTextField.text, let image = selectedImage else { return }
         uploadProfileImage(image, userName: userName)
     }
-    
-    // MARK: - IBOutlets
-    
-    /// GIF画像を表示するためにIBOutlet接続
-    @IBOutlet private weak var gifImage2: UIImageView!
     
     // MARK: - Other Methods
     
