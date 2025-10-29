@@ -33,9 +33,10 @@ final class UserRegistrationViewController: UIViewController {
     @IBOutlet private weak var profileImageView: UIImageView!
     /// ユーザー名テキストフィールド
     @IBOutlet private weak var userNameTextField: UITextField!
-    
     /// GIF画像を表示するためにIBOutlet接続
     @IBOutlet private weak var gifImage2: UIImageView!
+    /// 登録ボタン
+    @IBOutlet private weak var registrationButton: UIButton!
     
     // MARK: - View Life-Cycle Methods
     
@@ -58,6 +59,7 @@ final class UserRegistrationViewController: UIViewController {
     /// 登録ボタンをタップした
     @IBAction private func saveButtonTapped(_ sender: Any) {
         guard let userName = userNameTextField.text, let image = selectedImage else { return }
+        registrationButton.isEnabled = false
         uploadProfileImage(image, userName: userName)
     }
     
@@ -119,6 +121,7 @@ final class UserRegistrationViewController: UIViewController {
             data: ["users": FieldValue.arrayUnion([newUserData])]
         ) { [weak self] error in
             guard let self = self else { return }
+            self.registrationButton.isEnabled = true
             if let error = error {
                 self.showAlert(title: "ユーザー登録失敗", message: error.localizedDescription)
             } else {
@@ -138,10 +141,7 @@ final class UserRegistrationViewController: UIViewController {
                 )
                 UserSession.shared.addUser(user: newUser)
                 
-                self.showAlert(title: "登録しました！") {
-                    self.delegate?.didTapSaveButton()
-                    self.navigationController?.popViewController(animated: true)
-                }
+                self.showSuccessAlert()
             }
         }
     }
@@ -156,6 +156,21 @@ final class UserRegistrationViewController: UIViewController {
             completion?()
         })
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    /// 成功アラートを表示
+    private func showSuccessAlert( ) {
+        let alert = UIAlertController(title: "登録しました！",
+                                      message: "",
+                                      preferredStyle: .alert)
+      
+        self.present(alert, animated: true, completion: nil)
+        // 1秒後に自動で閉じる
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            alert.dismiss(animated: true)
+            self.delegate?.didTapSaveButton()
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 

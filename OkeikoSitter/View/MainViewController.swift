@@ -244,7 +244,7 @@ final class MainViewController: UIViewController {
         })
         self.present(alert, animated: true, completion: nil)
     }
-
+// TODO: デバッグ用で使うので、最終的には消す
 //    /// データを削除する
 //    private func deleteData() {
 //        guard let currentUserID = Auth.auth().currentUser?.uid else {
@@ -261,9 +261,9 @@ final class MainViewController: UIViewController {
 //    }
 }
 
-// MARK: - UserViewControllerDelegete
+// MARK: - UserListViewControllerDelegete
 
-extension MainViewController: UserViewControllerDelegete {
+extension MainViewController: UserListViewControllerDelegete {
     func didSelectCurrentUser() {
         fetchData()
     }

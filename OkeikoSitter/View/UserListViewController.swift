@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 
 /// デリゲートのプロトコル
-protocol UserViewControllerDelegete: AnyObject {
+protocol UserListViewControllerDelegete: AnyObject {
     func didSelectCurrentUser()
 }
 
@@ -21,7 +21,7 @@ final class UserListViewController: UIViewController {
     /// FirebaseServiceのインスタンス
     private let firebaseService = FirebaseService.shared
     /// デリゲートのプロパティ
-    weak var delegate: UserViewControllerDelegete?
+    weak var delegate: UserListViewControllerDelegete?
     
     // MARK: - IBOutlets
     
