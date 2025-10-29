@@ -226,7 +226,7 @@ final class MainViewController: UIViewController {
 
     /// ユーザー一覧画面へ遷移
     private func navigateToUsers() {
-        let userVC = UserViewController()
+        let userVC = UserListViewController()
         userVC.delegate = self
         let navController = UINavigationController(rootViewController: userVC)
         navController.modalPresentationStyle = .fullScreen
