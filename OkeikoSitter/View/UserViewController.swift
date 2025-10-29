@@ -22,7 +22,9 @@ final class UserViewController: UIViewController {
     private let firebaseService = FirebaseService.shared
     /// デリゲートのプロパティ
     weak var delegate: UserViewControllerDelegete?
-
+    ///  ダブルタップ防止フラグ
+    private var isRegistering = false
+    
     // MARK: - IBOutlets
     
     /// テーブルビューを表示するためのIBOutlet接続
