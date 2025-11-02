@@ -55,7 +55,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ユーザー登録" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WpI-58-6jK">
-                    <rect key="frame" x="82" y="159" width="238" height="29"/>
+                    <rect key="frame" x="129" y="159" width="135" height="29"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -105,15 +105,14 @@
                 <constraint firstItem="AvJ-NW-A40" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9lr-Gt-E8u"/>
                 <constraint firstItem="dW7-24-Q00" firstAttribute="top" secondItem="Czm-Gj-3lr" secondAttribute="bottom" id="KoX-ld-AU1"/>
                 <constraint firstItem="Czm-Gj-3lr" firstAttribute="top" secondItem="WpI-58-6jK" secondAttribute="bottom" id="LmW-4S-Ohk"/>
+                <constraint firstItem="WpI-58-6jK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XJ1-Hh-nkY"/>
                 <constraint firstItem="WpI-58-6jK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="Y88-Ip-kCI"/>
                 <constraint firstItem="jhc-bE-OmL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cYP-r3-OHZ"/>
                 <constraint firstItem="dW7-24-Q00" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ccv-YM-ya3"/>
                 <constraint firstItem="q35-P8-JBg" firstAttribute="top" secondItem="AvJ-NW-A40" secondAttribute="bottom" constant="25" id="fgf-Ng-0m7"/>
                 <constraint firstItem="jhc-bE-OmL" firstAttribute="top" secondItem="q35-P8-JBg" secondAttribute="bottom" constant="13" id="hfa-B8-cGC"/>
                 <constraint firstItem="AvJ-NW-A40" firstAttribute="top" secondItem="Czm-Gj-3lr" secondAttribute="bottom" id="sge-M8-9z9"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WpI-58-6jK" secondAttribute="trailing" constant="73" id="u7R-Og-OWP"/>
                 <constraint firstItem="q35-P8-JBg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="usM-XS-Bq6"/>
-                <constraint firstItem="WpI-58-6jK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="82" id="vaq-xw-s9l"/>
                 <constraint firstItem="BA1-hj-alG" firstAttribute="top" secondItem="jhc-bE-OmL" secondAttribute="bottom" constant="66" id="xhJ-Oa-Bfw"/>
             </constraints>
             <point key="canvasLocation" x="64.885496183206101" y="19.718309859154932"/>
