@@ -55,9 +55,17 @@ final class FirebaseService {
             completion(object, nil)
         }
     }
-
+    
     func decodeDocument<T: Codable>(_ doc: DocumentSnapshot, as type: T.Type) -> T? {
-        guard let data = doc.data() else { return nil }
+        guard var data = doc.data() else { return nil }
+        
+        // 🔹 TimestampをDateに変換
+        for (key, value) in data {
+            if let timestamp = value as? Timestamp {
+                let formatter = ISO8601DateFormatter()
+                data[key] = formatter.string(from: timestamp.dateValue())
+            }
+        }
         
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])

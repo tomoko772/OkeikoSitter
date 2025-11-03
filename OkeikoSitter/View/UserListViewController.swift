@@ -1,5 +1,5 @@
 //
-//  UserViewController.swift
+//  UserListViewController.swift
 //  OkeikoSitter
 //
 //  Created by Tomoko T. Nakao on 2025/06/07.
@@ -9,20 +9,20 @@ import UIKit
 import FirebaseAuth
 
 /// デリゲートのプロトコル
-protocol UserViewControllerDelegete: AnyObject {
+protocol UserListViewControllerDelegete: AnyObject {
     func didSelectCurrentUser()
 }
 
-/// ユーザー登録画面
-final class UserViewController: UIViewController {
+/// ユーザー一覧画面
+final class UserListViewController: UIViewController {
 
     // MARK: - Stored Properties
 
     /// FirebaseServiceのインスタンス
     private let firebaseService = FirebaseService.shared
     /// デリゲートのプロパティ
-    weak var delegate: UserViewControllerDelegete?
-
+    weak var delegate: UserListViewControllerDelegete?
+    
     // MARK: - IBOutlets
     
     /// テーブルビューを表示するためのIBOutlet接続
@@ -173,7 +173,7 @@ final class UserViewController: UIViewController {
 }
 // MARK: - UITableViewDataSource
 
-extension UserViewController: UITableViewDataSource {
+extension UserListViewController: UITableViewDataSource {
     /// データの数（＝セルの数）を返すメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return UserSession.shared.users.count
@@ -192,7 +192,7 @@ extension UserViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension UserViewController: UITableViewDelegate {
+extension UserListViewController: UITableViewDelegate {
     /// セルをタップされた時のメソッド
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedUser = UserSession.shared.users[indexPath.row]
@@ -204,7 +204,7 @@ extension UserViewController: UITableViewDelegate {
 
 // MARK: - UserRegistrationViewControllerDelegete
 
-extension UserViewController: UserRegistrationViewControllerDelegete {
+extension UserListViewController: UserRegistrationViewControllerDelegate {
     func didTapSaveButton() {
         fetchData()
     }
