@@ -80,3 +80,20 @@ final class UserSession {
         self.currentUser = nil
     }
 }
+
+extension UserSessionUser {
+    func toDictionary() -> [String: Any] {
+        return [
+            "is_parent": isParent,
+            "user_name": userName,
+            "challenge_task": challengeTask,
+            "challenge_point": challengePoint,
+            "bonus_point": bonusPoint,
+            "goal_point": goalPoint,
+            "challenge_day": challengeDay,
+            "hidden_place": hiddenPlace,
+            "profile_image_url": profileImageURL ?? "",
+            "current_point": currentPoint
+        ]
+    }
+}
