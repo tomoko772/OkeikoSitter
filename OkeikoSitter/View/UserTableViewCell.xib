@@ -29,11 +29,11 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDC-GB-9Ar">
-                        <rect key="frame" x="76" y="29" width="208" height="40"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDC-GB-9Ar" userLabel="Green View">
+                        <rect key="frame" x="84" y="29" width="177" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="田島太郎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zA9-3S-PxQ">
-                                <rect key="frame" x="72.333333333333343" y="9.6666666666666643" width="63.666666666666657" height="21"/>
+                                <rect key="frame" x="56.666666666666657" y="9.6666666666666643" width="63.666666666666657" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.99607843139999996" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -51,14 +51,35 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete" translatesAutoresizingMaskIntoConstraints="NO" id="MCc-88-YyS">
+                        <rect key="frame" x="269" y="33" width="35" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="8ne-hc-Sir"/>
+                            <constraint firstAttribute="height" constant="32" id="gsr-Tg-omI"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bD1-mF-BNb">
+                        <rect key="frame" x="261" y="0.0" width="59" height="98"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain"/>
+                        <connections>
+                            <action selector="deleteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vMG-LX-aXl"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="ivb-hp-xaM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="1fX-Ti-nxr"/>
                     <constraint firstItem="ivb-hp-xaM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7Ux-Qs-dFu"/>
-                    <constraint firstAttribute="trailing" secondItem="YDC-GB-9Ar" secondAttribute="trailing" constant="36" id="92h-Sz-joC"/>
-                    <constraint firstItem="YDC-GB-9Ar" firstAttribute="leading" secondItem="ivb-hp-xaM" secondAttribute="trailing" id="J8H-Kl-oaJ"/>
+                    <constraint firstAttribute="trailing" secondItem="MCc-88-YyS" secondAttribute="trailing" constant="16" id="Bh8-IW-Thv"/>
+                    <constraint firstItem="YDC-GB-9Ar" firstAttribute="leading" secondItem="ivb-hp-xaM" secondAttribute="trailing" constant="8" id="J8H-Kl-oaJ"/>
+                    <constraint firstItem="bD1-mF-BNb" firstAttribute="leading" secondItem="YDC-GB-9Ar" secondAttribute="trailing" id="MFG-mV-pNl"/>
+                    <constraint firstItem="MCc-88-YyS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YvD-hb-Wdj"/>
+                    <constraint firstAttribute="trailing" secondItem="bD1-mF-BNb" secondAttribute="trailing" id="bK1-be-zQ0"/>
+                    <constraint firstItem="MCc-88-YyS" firstAttribute="leading" secondItem="YDC-GB-9Ar" secondAttribute="trailing" constant="8" id="kHU-7q-lHs"/>
                     <constraint firstItem="YDC-GB-9Ar" firstAttribute="centerY" secondItem="ivb-hp-xaM" secondAttribute="centerY" id="mXx-zk-7xj"/>
+                    <constraint firstItem="bD1-mF-BNb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qcb-eT-UGV"/>
+                    <constraint firstAttribute="bottom" secondItem="bD1-mF-BNb" secondAttribute="bottom" id="xLI-aN-BFl"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,10 +87,11 @@
                 <outlet property="userImageView" destination="ivb-hp-xaM" id="78s-A3-sNa"/>
                 <outlet property="userNameLabel" destination="zA9-3S-PxQ" id="JXJ-UV-Hr7"/>
             </connections>
-            <point key="canvasLocation" x="83.969465648854964" y="19.718309859154932"/>
+            <point key="canvasLocation" x="248.85496183206106" y="45.774647887323944"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="delete" width="30" height="32"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <systemColor name="tableBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
