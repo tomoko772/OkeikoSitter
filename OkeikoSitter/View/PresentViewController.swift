@@ -16,8 +16,6 @@ final class PresentViewController: UIViewController {
     private var hidingPlace: String = ""
     /// 目標達成の有無
     private var isGoalReached: Bool = false
-    /// 親かどうか
-    private var isParent: Bool = false
     /// FirebaseServiceのインスタンス
     private let firebaseService = FirebaseService.shared
     
@@ -49,12 +47,9 @@ final class PresentViewController: UIViewController {
     
     /// 隠し場所登録・変更ボタンをタップした
     @IBAction private func registrationButtonTapped(_ sender: Any) {
-        if isParent {
-            enterHiddenPlace()
-        } else {
-            showAlert(title: "この操作はできません",
-                      message: "保護者の方にお願いしてください")
-        }
+        let dialogVC = CustomInputDialogViewController()
+        dialogVC.modalPresentationStyle = .overCurrentContext
+        present(dialogVC, animated: true)
     }
     
     // MARK: - Other Methods
@@ -137,47 +132,6 @@ final class PresentViewController: UIViewController {
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
-    }
-    
-    /// 隠し場所を入力
-    private func enterHiddenPlace() {
-        let alert = UIAlertController(title: "隠し場所登録",
-                                      message: "隠し場所を入力してください",
-                                      preferredStyle: .alert)
-        alert.addTextField { $0.placeholder = "例: ソファの下" }
-        let ok = UIAlertAction(title: "登録", style: .default) { [weak self] _ in
-            guard let self = self,
-                  let input = alert.textFields?.first?.text,
-                  !input.isEmpty else { return }
-            self.hidingPlace = input
-            self.registerHiddenPlace(hiddenPlace: input)
-        }
-        alert.addAction(ok)
-        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
-        present(alert, animated: true)
-    }
-    
-    /// 隠し場所を登録
-    private func registerHiddenPlace(hiddenPlace: String) {
-        guard let userID = UserSession.shared.accountID else { return }
-        let saveToData: [String: Any] = [
-            "hidden_place": hiddenPlace
-        ]
-        saveData(userID: userID, saveData: saveToData)
-    }
-    
-    /// データを保存
-    private func saveData(userID: String, saveData: [String: Any]) {
-        self.firebaseService.save(collection: "users", documentID: userID, data: saveData) { [weak self] error in
-            guard let self = self else { return }
-            if let error = error {
-                self.showAlert(title: "データの保存エラー", message: error.localizedDescription)
-            } else {
-                print("保存データ：\(saveData)")
-                print("userID：\(userID)")
-                self.showAlert(title: "登録しました！", message: "")
-            }
-        }
     }
 }
 

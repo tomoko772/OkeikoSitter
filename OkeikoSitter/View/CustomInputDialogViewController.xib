@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomInputDialogViewController" customModule="OkeikoSitter" customModuleProvider="target">
+            <connections>
+                <outlet property="hiddenPlaceTextField" destination="ICM-xf-fIn" id="wWz-Qp-pHH"/>
+                <outlet property="pinTextField" destination="96W-1a-EFL" id="c0i-uk-Why"/>
+                <outlet property="pinkView" destination="DCF-o2-VSh" id="Fi3-FJ-tPb"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1x-Wh-ayp" userLabel="ぼかしView">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5XQ-8N-UYk" userLabel="ダイアログView">
+                    <rect key="frame" x="42.666666666666657" y="265" width="308" height="322"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DCF-o2-VSh" userLabel="ピンクView">
+                            <rect key="frame" x="0.0" y="0.0" width="308" height="79"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gift" translatesAutoresizingMaskIntoConstraints="NO" id="Uxp-5f-Snj">
+                                    <rect key="frame" x="20" y="15.666666666666686" width="67" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="67" id="J79-vp-rQO"/>
+                                        <constraint firstAttribute="height" constant="48" id="Scm-EB-gzq"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　保護者の方に　 　入力してもらって 　ください" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39Q-ZO-abR">
+                                    <rect key="frame" x="95" y="11.000000000000004" width="193" height="57.333333333333343"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <color key="textColor" red="0.078431372549019607" green="0.68235294117647061" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.99215686274509807" green="0.82745098039215681" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="79" id="9oA-42-iLX"/>
+                                <constraint firstItem="39Q-ZO-abR" firstAttribute="leading" secondItem="Uxp-5f-Snj" secondAttribute="trailing" constant="8" id="N3p-n4-DL3"/>
+                                <constraint firstItem="39Q-ZO-abR" firstAttribute="centerY" secondItem="DCF-o2-VSh" secondAttribute="centerY" id="clT-dv-E8b"/>
+                                <constraint firstItem="Uxp-5f-Snj" firstAttribute="leading" secondItem="DCF-o2-VSh" secondAttribute="leading" constant="20" id="ggf-Q2-ysP"/>
+                                <constraint firstItem="Uxp-5f-Snj" firstAttribute="centerY" secondItem="DCF-o2-VSh" secondAttribute="centerY" id="oBy-ad-pWu"/>
+                                <constraint firstAttribute="trailing" secondItem="39Q-ZO-abR" secondAttribute="trailing" constant="20" id="xsw-ga-eHn"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81c-qN-z9Y">
+                            <rect key="frame" x="14" y="97" width="280" height="64"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="隠し場所を入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ICM-xf-fIn">
+                                    <rect key="frame" x="14" y="15" width="252" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" red="0.92156862745098034" green="1" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ICM-xf-fIn" secondAttribute="trailing" constant="14" id="2ye-e7-pmt"/>
+                                <constraint firstAttribute="height" constant="64" id="S3Z-Hf-P1L"/>
+                                <constraint firstItem="ICM-xf-fIn" firstAttribute="leading" secondItem="81c-qN-z9Y" secondAttribute="leading" constant="14" id="gtB-AF-OJG"/>
+                                <constraint firstItem="ICM-xf-fIn" firstAttribute="centerY" secondItem="81c-qN-z9Y" secondAttribute="centerY" id="lz5-9O-O1M"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbB-fS-bow">
+                            <rect key="frame" x="14" y="169" width="280" height="64"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="暗証番号を入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="96W-1a-EFL">
+                                    <rect key="frame" x="14" y="15" width="252" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" red="0.92156862750000001" green="1" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="96W-1a-EFL" secondAttribute="trailing" constant="14" id="PcW-5K-tPr"/>
+                                <constraint firstAttribute="height" constant="64" id="QmH-2w-vv1"/>
+                                <constraint firstItem="96W-1a-EFL" firstAttribute="leading" secondItem="RbB-fS-bow" secondAttribute="leading" constant="14" id="XH0-Kz-KsT"/>
+                                <constraint firstItem="96W-1a-EFL" firstAttribute="centerY" secondItem="RbB-fS-bow" secondAttribute="centerY" id="h17-wO-rGb"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="nam-2E-KIb">
+                            <rect key="frame" x="30" y="249" width="248" height="48"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AxJ-7Y-ukO" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="117" height="48"/>
+                                    <color key="backgroundColor" red="0.99607843137254903" green="0.73725490196078436" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.078431372550000003" green="0.68235294120000001" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="登録"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="registerTapped:" destination="-1" eventType="touchUpInside" id="9z3-TC-n1D"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZJ-s6-k00" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                    <rect key="frame" x="131" y="0.0" width="117" height="48"/>
+                                    <color key="backgroundColor" red="1" green="0.90980392156862744" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.078431372550000003" green="0.68235294120000001" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="キャンセル"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="cancelTapped:" destination="-1" eventType="touchUpInside" id="1fX-iW-usn"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.94509803921568625" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="322" id="3cX-mi-tFk"/>
+                        <constraint firstAttribute="width" constant="308" id="5D9-fk-W2k"/>
+                        <constraint firstAttribute="trailing" secondItem="81c-qN-z9Y" secondAttribute="trailing" constant="14" id="CXV-Fm-lzt"/>
+                        <constraint firstItem="81c-qN-z9Y" firstAttribute="top" secondItem="DCF-o2-VSh" secondAttribute="bottom" constant="18" id="Cp5-RR-Mlu"/>
+                        <constraint firstAttribute="trailing" secondItem="RbB-fS-bow" secondAttribute="trailing" constant="14" id="Q5O-vA-MxS"/>
+                        <constraint firstAttribute="trailing" secondItem="DCF-o2-VSh" secondAttribute="trailing" id="VSd-bQ-GEo"/>
+                        <constraint firstItem="nam-2E-KIb" firstAttribute="leading" secondItem="5XQ-8N-UYk" secondAttribute="leading" constant="30" id="ZyB-ZJ-XZY"/>
+                        <constraint firstItem="81c-qN-z9Y" firstAttribute="leading" secondItem="5XQ-8N-UYk" secondAttribute="leading" constant="14" id="c9y-wW-uHv"/>
+                        <constraint firstItem="DCF-o2-VSh" firstAttribute="leading" secondItem="5XQ-8N-UYk" secondAttribute="leading" id="cyb-gx-umC"/>
+                        <constraint firstItem="nam-2E-KIb" firstAttribute="top" secondItem="RbB-fS-bow" secondAttribute="bottom" constant="16" id="cyh-7e-raQ"/>
+                        <constraint firstAttribute="trailing" secondItem="nam-2E-KIb" secondAttribute="trailing" constant="30" id="diJ-vS-LZW"/>
+                        <constraint firstItem="RbB-fS-bow" firstAttribute="leading" secondItem="5XQ-8N-UYk" secondAttribute="leading" constant="14" id="snV-ku-kXQ"/>
+                        <constraint firstItem="DCF-o2-VSh" firstAttribute="top" secondItem="5XQ-8N-UYk" secondAttribute="top" id="tyW-hW-U3H"/>
+                        <constraint firstItem="RbB-fS-bow" firstAttribute="top" secondItem="81c-qN-z9Y" secondAttribute="bottom" constant="8" id="wQd-XT-xfC"/>
+                        <constraint firstAttribute="bottom" secondItem="nam-2E-KIb" secondAttribute="bottom" constant="25" id="yym-q9-qqD"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="b1x-Wh-ayp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JX3-Ac-Hte"/>
+                <constraint firstItem="5XQ-8N-UYk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="h96-cR-BOt"/>
+                <constraint firstItem="b1x-Wh-ayp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="iIN-4M-97L"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="b1x-Wh-ayp" secondAttribute="trailing" id="iom-bs-UuP"/>
+                <constraint firstItem="5XQ-8N-UYk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="jJt-up-yh5"/>
+                <constraint firstAttribute="bottom" secondItem="b1x-Wh-ayp" secondAttribute="bottom" id="v2d-u9-HSN"/>
+            </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="8"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="127.48091603053435" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="gift" width="29" height="29"/>
+    </resources>
+</document>
