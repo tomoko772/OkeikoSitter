@@ -160,7 +160,6 @@ final class MainViewController: UIViewController {
                 if let currentUserData = accountData?.currentUser {
                     // UserSessionUser に変換
                     let user = UserSessionUser(
-                        isParent: currentUserData.isParent,
                         userName: currentUserData.userName,
                         challengeTask: currentUserData.challengeTask,
                         challengePoint: currentUserData.challengePoint,

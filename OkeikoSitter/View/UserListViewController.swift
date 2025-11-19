@@ -126,7 +126,6 @@ final class UserListViewController: UIViewController {
                 // UserSession にセット
                 let sessionUsers = firestoreUsers.map { user in
                     UserSessionUser(
-                        isParent: user.isParent,
                         userName: user.userName,
                         challengeTask: user.challengeTask,
                         challengePoint: user.challengePoint,

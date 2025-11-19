@@ -18,6 +18,8 @@ final class PresentViewController: UIViewController {
     private var isGoalReached: Bool = false
     /// FirebaseServiceのインスタンス
     private let firebaseService = FirebaseService.shared
+    /// 暗唱番号が登録されているかどうか
+    private var isPinRegistered: Bool = false
     
     // MARK: - IBOutlets
     
@@ -47,9 +49,19 @@ final class PresentViewController: UIViewController {
     
     /// 隠し場所登録・変更ボタンをタップした
     @IBAction private func registrationButtonTapped(_ sender: Any) {
-        let dialogVC = CustomInputDialogViewController()
-        dialogVC.modalPresentationStyle = .overCurrentContext
-        present(dialogVC, animated: true)
+        guard let userID = UserSession.shared.accountID else { return }
+        checkPinRegistered(for: userID) { [weak self] (isRegistered, pin) in
+            DispatchQueue.main.async {
+                if isRegistered {
+                    self?.presentPinInputDialog(pin: pin)
+                } else {
+                    let dialogVC = CustomInputDialogViewController(pin: pin,
+                                                                   dialogMode: .registerHiddenPlaceAndPin)
+                    dialogVC.modalPresentationStyle = .overCurrentContext
+                    self?.present(dialogVC, animated: true)
+                }
+            }
+        }
     }
     
     // MARK: - Other Methods
@@ -133,6 +145,29 @@ final class PresentViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
+    
+    /// 暗唱番号が登録済みかのチェック
+    private func checkPinRegistered(for userID: String, completion: @escaping (Bool, Int?) -> Void) {
+        firebaseService.fetchDocument(collection: "users", documentID: userID) { (user: User?, error) in
+            guard let user = user, error == nil else {
+                completion(false, nil)
+                return
+            }
+            if let pin = user.pin {
+                completion(true, pin)
+            } else {
+                completion(false, nil)
+            }
+        }
+    }
+    
+    /// 登録済みの場合のダイアログを表示
+    private func presentPinInputDialog(pin: Int?) {
+        let dialogVC = CustomInputDialogViewController(pin: pin, dialogMode: .pinOnly)
+        dialogVC.modalPresentationStyle = .overCurrentContext
+        present(dialogVC, animated: true)
+    }
+    
 }
 
 // MARK: - Extension
