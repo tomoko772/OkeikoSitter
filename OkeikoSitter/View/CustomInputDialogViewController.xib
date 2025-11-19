@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomInputDialogViewController" customModule="OkeikoSitter" customModuleProvider="target">
             <connections>
+                <outlet property="certificationButton" destination="EPr-O6-jZ9" id="F0T-mN-KeY"/>
                 <outlet property="hiddenPlaceTextField" destination="ICM-xf-fIn" id="wWz-Qp-pHH"/>
+                <outlet property="inputHiddenPlaceView" destination="81c-qN-z9Y" id="xYk-8d-FhS"/>
                 <outlet property="pinTextField" destination="96W-1a-EFL" id="c0i-uk-Why"/>
                 <outlet property="pinkView" destination="DCF-o2-VSh" id="Fi3-FJ-tPb"/>
+                <outlet property="pinkViewBottomConstraint" destination="SFe-bU-25R" id="Jd2-s7-qi0"/>
+                <outlet property="registrationButton" destination="AxJ-7Y-ukO" id="o7S-Da-90e"/>
+                <outlet property="titleLabel" destination="39Q-ZO-abR" id="gGB-Tc-wDb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -59,56 +65,64 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81c-qN-z9Y">
-                            <rect key="frame" x="14" y="97" width="280" height="64"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eYh-dD-5uI">
+                            <rect key="frame" x="14" y="97" width="280" height="136"/>
                             <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="隠し場所を入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ICM-xf-fIn">
-                                    <rect key="frame" x="14" y="15" width="252" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81c-qN-z9Y">
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="64"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="隠し場所を入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ICM-xf-fIn">
+                                            <rect key="frame" x="14" y="15" width="252" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.92156862745098034" green="1" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="ICM-xf-fIn" secondAttribute="trailing" constant="14" id="2ye-e7-pmt"/>
+                                        <constraint firstAttribute="height" constant="64" id="S3Z-Hf-P1L"/>
+                                        <constraint firstItem="ICM-xf-fIn" firstAttribute="leading" secondItem="81c-qN-z9Y" secondAttribute="leading" constant="14" id="gtB-AF-OJG"/>
+                                        <constraint firstItem="ICM-xf-fIn" firstAttribute="centerY" secondItem="81c-qN-z9Y" secondAttribute="centerY" id="lz5-9O-O1M"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbB-fS-bow">
+                                    <rect key="frame" x="0.0" y="72" width="280" height="64"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="暗証番号を入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="96W-1a-EFL">
+                                            <rect key="frame" x="14" y="15" width="252" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.92156862750000001" green="1" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="96W-1a-EFL" secondAttribute="trailing" constant="14" id="PcW-5K-tPr"/>
+                                        <constraint firstAttribute="height" constant="64" id="QmH-2w-vv1"/>
+                                        <constraint firstItem="96W-1a-EFL" firstAttribute="leading" secondItem="RbB-fS-bow" secondAttribute="leading" constant="14" id="XH0-Kz-KsT"/>
+                                        <constraint firstItem="96W-1a-EFL" firstAttribute="centerY" secondItem="RbB-fS-bow" secondAttribute="centerY" id="h17-wO-rGb"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.92156862745098034" green="1" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="ICM-xf-fIn" secondAttribute="trailing" constant="14" id="2ye-e7-pmt"/>
-                                <constraint firstAttribute="height" constant="64" id="S3Z-Hf-P1L"/>
-                                <constraint firstItem="ICM-xf-fIn" firstAttribute="leading" secondItem="81c-qN-z9Y" secondAttribute="leading" constant="14" id="gtB-AF-OJG"/>
-                                <constraint firstItem="ICM-xf-fIn" firstAttribute="centerY" secondItem="81c-qN-z9Y" secondAttribute="centerY" id="lz5-9O-O1M"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="8"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbB-fS-bow">
-                            <rect key="frame" x="14" y="169" width="280" height="64"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="暗証番号を入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="96W-1a-EFL">
-                                    <rect key="frame" x="14" y="15" width="252" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                            </subviews>
-                            <color key="backgroundColor" red="0.92156862750000001" green="1" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="96W-1a-EFL" secondAttribute="trailing" constant="14" id="PcW-5K-tPr"/>
-                                <constraint firstAttribute="height" constant="64" id="QmH-2w-vv1"/>
-                                <constraint firstItem="96W-1a-EFL" firstAttribute="leading" secondItem="RbB-fS-bow" secondAttribute="leading" constant="14" id="XH0-Kz-KsT"/>
-                                <constraint firstItem="96W-1a-EFL" firstAttribute="centerY" secondItem="RbB-fS-bow" secondAttribute="centerY" id="h17-wO-rGb"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="8"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
+                        </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="nam-2E-KIb">
-                            <rect key="frame" x="30" y="249" width="248" height="48"/>
+                            <rect key="frame" x="14" y="252" width="280" height="45"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AxJ-7Y-ukO" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="117" height="48"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="133" height="45"/>
                                     <color key="backgroundColor" red="0.99607843137254903" green="0.73725490196078436" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="YHt-8P-atI"/>
+                                    </constraints>
                                     <color key="tintColor" red="0.078431372550000003" green="0.68235294120000001" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="登録"/>
@@ -121,9 +135,30 @@
                                         <action selector="registerTapped:" destination="-1" eventType="touchUpInside" id="9z3-TC-n1D"/>
                                     </connections>
                                 </button>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPr-O6-jZ9" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                    <rect key="frame" x="140" y="0.0" width="0.0" height="45"/>
+                                    <color key="backgroundColor" name="AccentColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="bLf-mb-hFy"/>
+                                    </constraints>
+                                    <color key="tintColor" red="0.078431372550000003" green="0.67450980390000004" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="認証する"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="certificationButtonTapped:" destination="-1" eventType="touchUpInside" id="ZVr-Jq-snt"/>
+                                    </connections>
+                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZJ-s6-k00" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
-                                    <rect key="frame" x="131" y="0.0" width="117" height="48"/>
+                                    <rect key="frame" x="147" y="0.0" width="133" height="45"/>
                                     <color key="backgroundColor" red="1" green="0.90980392156862744" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="60z-Wz-q9n"/>
+                                    </constraints>
                                     <color key="tintColor" red="0.078431372550000003" green="0.68235294120000001" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="キャンセル"/>
@@ -142,20 +177,16 @@
                     <color key="backgroundColor" red="1" green="0.94509803921568625" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="322" id="3cX-mi-tFk"/>
+                        <constraint firstItem="nam-2E-KIb" firstAttribute="leading" secondItem="5XQ-8N-UYk" secondAttribute="leading" constant="14" id="3tm-m5-6tm"/>
+                        <constraint firstAttribute="trailing" secondItem="nam-2E-KIb" secondAttribute="trailing" constant="14" id="45V-Bq-SZh"/>
                         <constraint firstAttribute="width" constant="308" id="5D9-fk-W2k"/>
-                        <constraint firstAttribute="trailing" secondItem="81c-qN-z9Y" secondAttribute="trailing" constant="14" id="CXV-Fm-lzt"/>
-                        <constraint firstItem="81c-qN-z9Y" firstAttribute="top" secondItem="DCF-o2-VSh" secondAttribute="bottom" constant="18" id="Cp5-RR-Mlu"/>
-                        <constraint firstAttribute="trailing" secondItem="RbB-fS-bow" secondAttribute="trailing" constant="14" id="Q5O-vA-MxS"/>
+                        <constraint firstItem="eYh-dD-5uI" firstAttribute="leading" secondItem="5XQ-8N-UYk" secondAttribute="leading" constant="14" id="92r-za-oiS"/>
+                        <constraint firstAttribute="bottom" secondItem="nam-2E-KIb" secondAttribute="bottom" constant="25" id="Rtz-sk-5Nf"/>
+                        <constraint firstItem="eYh-dD-5uI" firstAttribute="top" secondItem="DCF-o2-VSh" secondAttribute="bottom" constant="18" id="SFe-bU-25R"/>
                         <constraint firstAttribute="trailing" secondItem="DCF-o2-VSh" secondAttribute="trailing" id="VSd-bQ-GEo"/>
-                        <constraint firstItem="nam-2E-KIb" firstAttribute="leading" secondItem="5XQ-8N-UYk" secondAttribute="leading" constant="30" id="ZyB-ZJ-XZY"/>
-                        <constraint firstItem="81c-qN-z9Y" firstAttribute="leading" secondItem="5XQ-8N-UYk" secondAttribute="leading" constant="14" id="c9y-wW-uHv"/>
                         <constraint firstItem="DCF-o2-VSh" firstAttribute="leading" secondItem="5XQ-8N-UYk" secondAttribute="leading" id="cyb-gx-umC"/>
-                        <constraint firstItem="nam-2E-KIb" firstAttribute="top" secondItem="RbB-fS-bow" secondAttribute="bottom" constant="16" id="cyh-7e-raQ"/>
-                        <constraint firstAttribute="trailing" secondItem="nam-2E-KIb" secondAttribute="trailing" constant="30" id="diJ-vS-LZW"/>
-                        <constraint firstItem="RbB-fS-bow" firstAttribute="leading" secondItem="5XQ-8N-UYk" secondAttribute="leading" constant="14" id="snV-ku-kXQ"/>
+                        <constraint firstAttribute="trailing" secondItem="eYh-dD-5uI" secondAttribute="trailing" constant="14" id="sBL-ne-zpY"/>
                         <constraint firstItem="DCF-o2-VSh" firstAttribute="top" secondItem="5XQ-8N-UYk" secondAttribute="top" id="tyW-hW-U3H"/>
-                        <constraint firstItem="RbB-fS-bow" firstAttribute="top" secondItem="81c-qN-z9Y" secondAttribute="bottom" constant="8" id="wQd-XT-xfC"/>
-                        <constraint firstAttribute="bottom" secondItem="nam-2E-KIb" secondAttribute="bottom" constant="25" id="yym-q9-qqD"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -184,5 +215,8 @@
     </objects>
     <resources>
         <image name="gift" width="29" height="29"/>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -26,14 +26,24 @@ final class CustomInputDialogViewController: UIViewController {
     var pin: Int?
     
     // MARK: - IBOutlets
-    
+
+    /// タイトルラベル
+    @IBOutlet private weak var titleLabel: UILabel!
+    /// ピンクビューとのパディング
+    @IBOutlet private weak var pinkViewBottomConstraint: NSLayoutConstraint!
     /// 隠し場所テキストフィールド
     @IBOutlet private weak var hiddenPlaceTextField: UITextField!
     /// 暗唱番号テキストフィールド
     @IBOutlet private weak var pinTextField: UITextField!
     /// ピンクビュー
     @IBOutlet private weak var pinkView: UIView!
-    
+    /// 隠し場所の入力ビュー
+    @IBOutlet private weak var inputHiddenPlaceView: UIView!
+    /// 登録ボタン
+    @IBOutlet private weak var registrationButton: PressableButton!
+    /// 認証するボタン
+    @IBOutlet private weak var certificationButton: PressableButton!
+
     // MARK: - Initializers
     
     init(pin: Int?, dialogMode: DialogMode) {
@@ -66,29 +76,15 @@ final class CustomInputDialogViewController: UIViewController {
     
     /// 登録ボタンをタップした
     @IBAction private func registerTapped(_ sender: UIButton) {
-        switch dialogMode {
-        case .pinOnly:
-            guard let pinText = pinTextField.text, !pinText.isEmpty else {
-                showAlert(title: "暗唱番号を入力してください", message: "")
-                return
-            }
-            if let pin = Int(pinText) {
-                validatePin(pin)
-            } else {
-                showAlert(title: "数字を入力してください", message: "")
-            }
-            
-        case .registerHiddenPlaceAndPin:
-            guard let hiddenPlaceText = hiddenPlaceTextField.text, !hiddenPlaceText.isEmpty,
-                  let pinText = pinTextField.text, !pinText.isEmpty else {
-                showAlert(title: "隠し場所と暗唱番号を入力してください", message: "")
-                return
-            }
-            if let pin = Int(pinText) {
-                registerHiddenPlace(hiddenPlace: hiddenPlaceText, pin: pin)
-            } else {
-                showAlert(title: "数字を入力してください", message: "")
-            }
+        guard let hiddenPlaceText = hiddenPlaceTextField.text, !hiddenPlaceText.isEmpty,
+              let pinText = pinTextField.text, !pinText.isEmpty else {
+            showAlert(title: "隠し場所と暗唱番号を入力してください", message: "")
+            return
+        }
+        if let pin = Int(pinText) {
+            registerHiddenPlace(hiddenPlace: hiddenPlaceText, pin: pin)
+        } else {
+            showAlert(title: "数字を入力してください", message: "")
         }
     }
     
@@ -96,20 +92,37 @@ final class CustomInputDialogViewController: UIViewController {
     @IBAction private func cancelTapped(_ sender: UIButton) {
         dismiss(animated: true)
     }
+
+    /// 認証するボタンをタップした
+    @IBAction private func certificationButtonTapped(_ sender: UIButton) {
+        guard let pinText = pinTextField.text, !pinText.isEmpty else {
+            showAlert(title: "暗唱番号を入力してください", message: "")
+            return
+        }
+        if let pin = Int(pinText) {
+            validatePin(pin)
+        } else {
+            showAlert(title: "数字を入力してください", message: "")
+        }
+    }
     
+
     // MARK: - Other Methods
     
     private func configureUI() {
         switch dialogMode {
         case .pinOnly:
-            hiddenPlaceTextField.isHidden = true
-            pinTextField.isHidden = false
-            pinTextField.placeholder = "暗唱番号を入力してください"
+            titleLabel.text = "認証してください"
+            pinkViewBottomConstraint.constant = 32
+            inputHiddenPlaceView.isHidden = true
+            certificationButton.isHidden = false
+            registrationButton.isHidden = true
         case .registerHiddenPlaceAndPin:
-            hiddenPlaceTextField.isHidden = false
-            pinTextField.isHidden = false
-            hiddenPlaceTextField.placeholder = "隠し場所を入力してください"
-            pinTextField.placeholder = "暗唱番号を入力してください"
+            titleLabel.text = "保護者の方に\n入力してもらって\nください"
+            pinkViewBottomConstraint.constant = 18
+            inputHiddenPlaceView.isHidden = false
+            certificationButton.isHidden = true
+            registrationButton.isHidden = false
         }
     }
     
@@ -140,21 +153,24 @@ final class CustomInputDialogViewController: UIViewController {
     }
     
     /// アラートを表示
-    private func showAlert(title: String, message: String) {
+    private func showAlert(title: String, message: String, onOk: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            onOk?()
+        })
         present(alert, animated: true)
     }
-    
+
     /// 暗唱番号の検証
     private func validatePin(_ pin: Int) {
         // Userモデルにpinプロパティがある前提
         if self.pin == pin {
             // 正しい場合の処理（画面遷移やご褒美表示など）
-            self.showAlert(title: "認証成功", message: "")
-            self.dismiss(animated: true)
+            self.showAlert(title: "認証成功", message: "") {
+                self.dismiss(animated: true)
+            }
         } else {
             // 誤りの場合
             self.showAlert(title: "暗唱番号が違います", message: "")

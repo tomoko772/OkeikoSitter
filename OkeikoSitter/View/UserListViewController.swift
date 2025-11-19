@@ -126,16 +126,16 @@ final class UserListViewController: UIViewController {
                 // UserSession にセット
                 let sessionUsers = firestoreUsers.map { user in
                     UserSessionUser(
-                        userName: user.userName,
-                        challengeTask: user.challengeTask,
-                        challengePoint: user.challengePoint,
-                        bonusPoint: user.bonusPoint,
-                        goalPoint: user.goalPoint,
-                        challengeDay: user.challengeDay,
-                        hiddenPlace: user.hiddenPlace,
+                        userName: user.userName ?? "",
+                        challengeTask: user.challengeTask ?? "",
+                        challengePoint: user.challengePoint ?? 0,
+                        bonusPoint: user.bonusPoint ?? 0,
+                        goalPoint: user.goalPoint ?? 0,
+                        challengeDay: user.challengeDay ?? 0,
+                        hiddenPlace: user.hiddenPlace ?? "",
                         profileImage: nil,
                         profileImageURL: user.profileImageURL,
-                        currentPoint: user.challengePoint
+                        currentPoint: user.challengePoint ?? 0
                     )
                 }
                 UserSession.shared.setUsers(sessionUsers)

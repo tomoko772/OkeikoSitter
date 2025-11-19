@@ -26,21 +26,21 @@ struct User: Codable {
     // MARK: - Properties
     
     /// ユーザーの名前
-    let userName: String
+    let userName: String?
     /// チャレンジ内容
-    let challengeTask: String
+    let challengeTask: String?
     /// チャレンジポイント
-    let challengePoint: Int
+    let challengePoint: Int?
     /// ボーナスポイント
-    let bonusPoint: Int
+    let bonusPoint: Int?
     /// 目標ポイント
-    let goalPoint: Int
+    let goalPoint: Int?
     /// チャレンジ日数
-    let challengeDay: Int
+    let challengeDay: Int?
     /// ご褒美の隠し場所
-    let hiddenPlace: String
+    let hiddenPlace: String?
     /// 現在のポイント
-    let currentPoint: Int
+    let currentPoint: Int?
     /// プロフィール画像
     let profileImageURL: String?
     /// 暗唱番号

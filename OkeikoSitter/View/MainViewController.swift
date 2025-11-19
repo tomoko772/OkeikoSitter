@@ -160,16 +160,16 @@ final class MainViewController: UIViewController {
                 if let currentUserData = accountData?.currentUser {
                     // UserSessionUser に変換
                     let user = UserSessionUser(
-                        userName: currentUserData.userName,
-                        challengeTask: currentUserData.challengeTask,
-                        challengePoint: currentUserData.challengePoint,
-                        bonusPoint: currentUserData.bonusPoint,
-                        goalPoint: currentUserData.goalPoint,
-                        challengeDay: currentUserData.challengeDay,
-                        hiddenPlace: currentUserData.hiddenPlace,
+                        userName: currentUserData.userName ?? "",
+                        challengeTask: currentUserData.challengeTask ?? "",
+                        challengePoint: currentUserData.challengePoint ?? 0,
+                        bonusPoint: currentUserData.bonusPoint ?? 0,
+                        goalPoint: currentUserData.goalPoint ?? 0,
+                        challengeDay: currentUserData.challengeDay ?? 0,
+                        hiddenPlace: currentUserData.hiddenPlace ?? "",
                         profileImage: UIImage(),
                         profileImageURL: currentUserData.profileImageURL,
-                        currentPoint: currentUserData.currentPoint
+                        currentPoint: currentUserData.currentPoint ?? 0
                     )
 
                     // 現在のユーザーにセット
