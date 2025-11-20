@@ -11,8 +11,6 @@ struct UserSessionUser {
 
     // MARK: - Type Properties
 
-    /// 親かどうか
-    let isParent: Bool
     /// ユーザー名
     var userName: String
     /// チャレンジ内容
@@ -32,11 +30,12 @@ struct UserSessionUser {
     var profileImageURL: String?
     /// 現在のポイント
     var currentPoint: Int = 0
+    /// 暗証番号
+    var pin: Int?
 
     // MARK: - Initializers
 
-    init(isParent: Bool = true,
-         userName: String,
+    init(userName: String,
          challengeTask: String = "",
          challengePoint: Int = 0,
          bonusPoint: Int = 0,
@@ -45,8 +44,8 @@ struct UserSessionUser {
          hiddenPlace: String = "",
          profileImage: UIImage?,
          profileImageURL: String?,
-         currentPoint: Int) {
-        self.isParent = isParent
+         currentPoint: Int,
+         pin: Int?) {
         self.userName = userName
         self.challengeTask = challengeTask
         self.challengePoint = challengePoint
@@ -57,5 +56,6 @@ struct UserSessionUser {
         self.profileImage = profileImage
         self.profileImageURL = profileImageURL
         self.currentPoint = currentPoint
+        self.pin = pin
     }
 }

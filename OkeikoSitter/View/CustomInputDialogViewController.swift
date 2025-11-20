@@ -18,13 +18,21 @@ enum DialogMode {
 final class CustomInputDialogViewController: UIViewController {
     
     // MARK: - Properties
-    /// FirebaseServiceのインスタンス
-    private let firebaseService = FirebaseService.shared
-    /// 表示モード
-    var dialogMode: DialogMode
+
+    /// 隠し場所・PIN を親に渡すコールバック
+    var onRegister: ((String, Int) -> Void)?
+    /// 入力PIN を親に渡すコールバック
+    var onValidate: ((Int) -> Void)?
     /// 暗唱番号
     var pin: Int?
-    
+
+    // MARK: - Computed Properties
+
+    /// 表示モード
+    var dialogMode: DialogMode {
+        didSet { updateUIForMode() }
+    }
+
     // MARK: - IBOutlets
 
     /// タイトルラベル
@@ -63,6 +71,8 @@ final class CustomInputDialogViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        pinTextField.delegate = self
+        pinTextField.keyboardType = .numberPad
     }
     
     override func viewDidLayoutSubviews() {
@@ -76,16 +86,21 @@ final class CustomInputDialogViewController: UIViewController {
     
     /// 登録ボタンをタップした
     @IBAction private func registerTapped(_ sender: UIButton) {
-        guard let hiddenPlaceText = hiddenPlaceTextField.text, !hiddenPlaceText.isEmpty,
+        // 隠し場所・PIN が入力されているかチェック
+        guard let hidden = hiddenPlaceTextField.text, !hidden.isEmpty,
               let pinText = pinTextField.text, !pinText.isEmpty else {
             showAlert(title: "隠し場所と暗唱番号を入力してください", message: "")
             return
         }
-        if let pin = Int(pinText) {
-            registerHiddenPlace(hiddenPlace: hiddenPlaceText, pin: pin)
-        } else {
-            showAlert(title: "数字を入力してください", message: "")
+
+        // PINは数字4桁まで
+        guard pinText.count == 4, let pin = Int(pinText) else {
+            showAlert(title: "暗唱番号は4桁の数字で入力してください", message: "")
+            return
         }
+
+        // 登録コールバック
+        onRegister?(hidden, pin)
     }
     
     /// キャンセルボタンをタップした
@@ -95,21 +110,30 @@ final class CustomInputDialogViewController: UIViewController {
 
     /// 認証するボタンをタップした
     @IBAction private func certificationButtonTapped(_ sender: UIButton) {
+        // PIN入力があるかチェック
         guard let pinText = pinTextField.text, !pinText.isEmpty else {
             showAlert(title: "暗唱番号を入力してください", message: "")
             return
         }
-        if let pin = Int(pinText) {
-            validatePin(pin)
-        } else {
-            showAlert(title: "数字を入力してください", message: "")
+
+        // PINは数字4桁まで
+        guard pinText.count == 4, let pin = Int(pinText) else {
+            showAlert(title: "暗唱番号は4桁の数字で入力してください", message: "")
+            return
         }
+
+        // 認証コールバック
+        onValidate?(pin)
     }
     
 
     // MARK: - Other Methods
     
     private func configureUI() {
+        updateUIForMode()
+    }
+
+    private func updateUIForMode() {
         switch dialogMode {
         case .pinOnly:
             titleLabel.text = "認証してください"
@@ -125,55 +149,43 @@ final class CustomInputDialogViewController: UIViewController {
             registrationButton.isHidden = false
         }
     }
-    
-    /// 隠し場所を登録
-    private func registerHiddenPlace(hiddenPlace: String, pin: Int) {
-        guard let userID = UserSession.shared.accountID else { return }
-        let saveToData: [String: Any] = [
-            "hidden_place": hiddenPlace,
-            "pin": pin
-        ]
-        saveData(userID: userID, saveData: saveToData)
-    }
-    
-    /// データを保存
-    private func saveData(userID: String, saveData: [String: Any]) {
-        self.firebaseService.update(collection: "users", documentID: userID, data: saveData) { [weak self] error in
-            guard let self = self else { return }
-            if let error = error {
-                self.showAlert(title: "データの保存エラー", message: error.localizedDescription)
-            } else {
-                print("保存データ：\(saveData)")
-                print("userID：\(userID)")
-                self.dismiss(animated: true)
-                self.showAlert(title: "登録しました！", message: "")
-                
-            }
-        }
-    }
-    
-    /// アラートを表示
-    private func showAlert(title: String, message: String, onOk: (() -> Void)? = nil) {
+
+    func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-            onOk?()
-        })
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
 
-    /// 暗唱番号の検証
-    private func validatePin(_ pin: Int) {
-        // Userモデルにpinプロパティがある前提
-        if self.pin == pin {
-            // 正しい場合の処理（画面遷移やご褒美表示など）
-            self.showAlert(title: "認証成功", message: "") {
-                self.dismiss(animated: true)
-            }
-        } else {
-            // 誤りの場合
-            self.showAlert(title: "暗唱番号が違います", message: "")
-        }
+    /// 認証成功後にUIを隠し場所入力モードに切り替える
+    func switchToRegisterMode(withHiddenPlace hiddenPlace: String) {
+        self.dialogMode = .registerHiddenPlaceAndPin
+        self.titleLabel.text = "変更しますか？"
+
+        // 隠し場所をテキストフィールドに表示
+        self.hiddenPlaceTextField.text = hiddenPlace
+
+        // UIの切り替え
+        self.inputHiddenPlaceView.isHidden = false
+        self.registrationButton.isHidden = false
+        self.certificationButton.isHidden = true
+    }
+}
+
+extension CustomInputDialogViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        guard textField == pinTextField else { return true }
+
+        // 入力後のテキストを計算
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+
+        // 数字のみかつ4桁まで
+        let isNumeric = string.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+        return updatedText.count <= 4 && isNumeric
     }
 }

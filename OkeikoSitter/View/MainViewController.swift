@@ -169,7 +169,8 @@ final class MainViewController: UIViewController {
                         hiddenPlace: currentUserData.hiddenPlace ?? "",
                         profileImage: UIImage(),
                         profileImageURL: currentUserData.profileImageURL,
-                        currentPoint: currentUserData.currentPoint ?? 0
+                        currentPoint: currentUserData.currentPoint ?? 0,
+                        pin: currentUserData.pin ?? 0
                     )
 
                     // 現在のユーザーにセット

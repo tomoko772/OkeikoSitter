@@ -81,7 +81,6 @@ final class UserListViewController: UIViewController {
         if let accountID = UserSession.shared.accountID {
             // Firestoreに current_user として保存
             let currentUserData: [String: Any] = [
-                "is_parent": selectedUser.isParent,
                 "user_name": selectedUser.userName,
                 "challenge_task": selectedUser.challengeTask,
                 "challenge_point": selectedUser.challengePoint,
@@ -135,7 +134,8 @@ final class UserListViewController: UIViewController {
                         hiddenPlace: user.hiddenPlace ?? "",
                         profileImage: nil,
                         profileImageURL: user.profileImageURL,
-                        currentPoint: user.challengePoint ?? 0
+                        currentPoint: user.challengePoint ?? 0,
+                        pin: user.pin ?? 0
                     )
                 }
                 UserSession.shared.setUsers(sessionUsers)
