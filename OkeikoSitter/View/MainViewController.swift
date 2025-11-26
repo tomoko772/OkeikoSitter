@@ -50,7 +50,6 @@ final class MainViewController: UIViewController {
         gifImage2.loadGif(name: "present")
         configureBarButtonItems()
         fetchData()
-//        deleteData()
     }
 
     // MARK: - IBActions
@@ -240,21 +239,6 @@ final class MainViewController: UIViewController {
         })
         self.present(alert, animated: true, completion: nil)
     }
-// TODO: デバッグ用で使うので、最終的には消す
-//    /// データを削除する
-//    private func deleteData() {
-//        guard let currentUserID = Auth.auth().currentUser?.uid else {
-//            print("未ログインです")
-//            return
-//        }
-//        FirebaseService.shared.delete(collection: "users", documentID: currentUserID) { error in
-//            if let error = error {
-//                print("削除エラー: \(error)")
-//            } else {
-//                print("削除成功")
-//            }
-//        }
-//    }
 }
 
 // MARK: - UserListViewControllerDelegete
