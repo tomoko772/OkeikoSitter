@@ -103,7 +103,6 @@ final class UserRegistrationViewController: UIViewController {
     /// ユーザーを保存
     private func saveData(userID: String, userName: String, profileImageURL: String) {
         let newUserData: [String: Any] = [
-            "is_parent": true,
             "user_name": userName,
             "challenge_task": "",
             "challenge_point": 0,
@@ -127,7 +126,6 @@ final class UserRegistrationViewController: UIViewController {
             } else {
                 // UserSession に追加
                 let newUser = UserSessionUser(
-                    isParent: true,
                     userName: userName,
                     challengeTask: "",
                     challengePoint: 0,
@@ -137,7 +135,8 @@ final class UserRegistrationViewController: UIViewController {
                     hiddenPlace: "",
                     profileImage: nil,
                     profileImageURL: profileImageURL,
-                    currentPoint: 0
+                    currentPoint: 0,
+                    pin: nil
                 )
                 UserSession.shared.addUser(user: newUser)
                 

@@ -11,7 +11,6 @@ struct User: Codable {
     // MARK: - Enums
     
     enum CodingKeys: String, CodingKey {
-        case isParent = "is_parent"
         case userName = "user_name"
         case challengeTask = "challenge_task"
         case challengePoint = "challenge_point"
@@ -21,28 +20,29 @@ struct User: Codable {
         case hiddenPlace = "hidden_place"
         case currentPoint = "current_point"
         case profileImageURL = "profile_image_url"
+        case pin = "pin"
     }
     
     // MARK: - Properties
-
-    /// 親かどうか
-    let isParent: Bool
+    
     /// ユーザーの名前
-    let userName: String
+    let userName: String?
     /// チャレンジ内容
-    let challengeTask: String
+    let challengeTask: String?
     /// チャレンジポイント
-    let challengePoint: Int
+    let challengePoint: Int?
     /// ボーナスポイント
-    let bonusPoint: Int
+    let bonusPoint: Int?
     /// 目標ポイント
-    let goalPoint: Int
+    let goalPoint: Int?
     /// チャレンジ日数
-    let challengeDay: Int
+    let challengeDay: Int?
     /// ご褒美の隠し場所
-    let hiddenPlace: String
+    let hiddenPlace: String?
     /// 現在のポイント
-    let currentPoint: Int
+    let currentPoint: Int?
     /// プロフィール画像
     let profileImageURL: String?
+    /// 暗唱番号
+    let pin: Int?
 }

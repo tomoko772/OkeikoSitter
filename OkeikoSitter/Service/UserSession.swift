@@ -84,7 +84,6 @@ final class UserSession {
 extension UserSessionUser {
     func toDictionary() -> [String: Any] {
         return [
-            "is_parent": isParent,
             "user_name": userName,
             "challenge_task": challengeTask,
             "challenge_point": challengePoint,
