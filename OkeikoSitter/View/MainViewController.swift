@@ -139,16 +139,12 @@ final class MainViewController: UIViewController {
 
     /// データを取得する
     private func fetchData() {
-        guard let currentUserID = Auth.auth().currentUser?.uid else {
+        guard let userID = Auth.auth().currentUser?.uid else {
             print("未ログインです")
             return
         }
 
-        // アカウントIDを設定
-        UserSession.shared.setUserID(accountID: currentUserID)
-
-        // Firestore から単一ドキュメントを取得
-        firebaseService.fetchDocument(collection: "users", documentID: currentUserID) { (accountData: Account?, error) in
+        firebaseService.fetchDocument(collection: "users", documentID: userID) { (accountData: Account?, error) in
             if let error = error {
                 print("取得エラー: \(error)")
                 return
@@ -167,26 +163,25 @@ final class MainViewController: UIViewController {
                         goalPoint: currentUserData.goalPoint ?? 0,
                         challengeDay: currentUserData.challengeDay ?? 0,
                         hiddenPlace: currentUserData.hiddenPlace ?? "",
-                        profileImage: UIImage(),
+                        profileImage: nil,
                         profileImageURL: currentUserData.profileImageURL,
                         currentPoint: currentUserData.currentPoint ?? 0,
-                        pin: currentUserData.pin ?? 0
+                        pin: currentUserData.pin
                     )
 
-                    // 現在のユーザーにセット
+                    // UserSession に反映
                     UserSession.shared.selectCurrentUser(user: user)
-                    print("ユーザー情報：\(user)")
 
                     // UI 更新
                     self.updateUI(with: user)
 
                     // 画像取得
-                    if let profileImageURLString = currentUserData.profileImageURL {
-                        fetchImage(from: profileImageURLString)
+                    if let profileImageURL = currentUserData.profileImageURL {
+                        self.fetchImage(from: profileImageURL)
                     }
+
                 } else {
-                    print("カレントユーザーがいない")
-                    self.navigateToUsers()
+                    print("current_user が存在しません")
                 }
             }
         }
@@ -195,7 +190,7 @@ final class MainViewController: UIViewController {
     /// 画像を取得
     private func fetchImage(from urlString: String) {
         guard let url = URL(string: urlString) else { return }
-        // URL から UIImage を取得（キャッシュなどは任意）
+
         URLSession.shared.dataTask(with: url) { data, _, _ in
             if let data = data, let image = UIImage(data: data) {
                 DispatchQueue.main.async {
@@ -219,6 +214,7 @@ final class MainViewController: UIViewController {
     /// 設定画面へ遷移
     private func navigateToSetting() {
         let settingVC = SettingViewController()
+        settingVC.delegate = self
         let navController = UINavigationController(rootViewController: settingVC)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
@@ -265,6 +261,14 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: UserListViewControllerDelegete {
     func didSelectCurrentUser() {
+        fetchData()
+    }
+}
+
+// MARK: - SettingViewControllerDelegate
+
+extension MainViewController: SettingViewControllerDelegate {
+    func settingViewControllerDidUpdateData() {
         fetchData()
     }
 }

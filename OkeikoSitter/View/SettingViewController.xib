@@ -115,6 +115,9 @@
                                                             <integer key="value" value="8"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="imageSaveButtonTapped:" destination="-1" eventType="touchUpInside" id="y1u-g6-8qA"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -482,7 +485,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="doneButtonTapped:" destination="-1" eventType="touchUpInside" id="Ns6-ZL-ulR"/>
+                                                                        <action selector="saveButtonTapped:" destination="-1" eventType="touchUpInside" id="Ns6-ZL-ulR"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
