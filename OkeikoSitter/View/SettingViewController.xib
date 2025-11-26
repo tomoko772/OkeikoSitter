@@ -35,7 +35,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GaA-o0-KpA">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="997"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1296.6666666666667"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngl-4S-AcA" userLabel="余白">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="10"/>
@@ -51,52 +51,11 @@
                                         <constraint firstAttribute="height" constant="50" id="G0H-T4-g1h"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzE-iT-OR9" userLabel="ユーザー画像表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="60" width="393" height="92"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K38-ae-l04">
-                                            <rect key="frame" x="150.66666666666666" y="0.6666666666666643" width="92" height="90.666666666666686"/>
-                                            <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="92" id="2WB-pt-DT0"/>
-                                                <constraint firstAttribute="width" constant="92" id="tpQ-lE-Icy"/>
-                                            </constraints>
-                                            <imageReference key="image" image="person.crop.circle" catalog="system" symbolScale="default"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="46"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNd-O5-zrF">
-                                            <rect key="frame" x="150.66666666666666" y="0.0" width="92" height="92"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="92" id="MCe-mk-bnm"/>
-                                                <constraint firstAttribute="width" constant="92" id="uDB-fV-bv3"/>
-                                            </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain"/>
-                                            <connections>
-                                                <action selector="userImageButtonTapped:" destination="-1" eventType="touchUpInside" id="a61-Rc-ATx"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="uNd-O5-zrF" secondAttribute="bottom" id="5Ef-Cu-EGx"/>
-                                        <constraint firstAttribute="height" constant="92" id="Ci4-ec-Bpt"/>
-                                        <constraint firstItem="K38-ae-l04" firstAttribute="centerX" secondItem="bzE-iT-OR9" secondAttribute="centerX" id="SLJ-M0-VF8"/>
-                                        <constraint firstItem="K38-ae-l04" firstAttribute="top" secondItem="bzE-iT-OR9" secondAttribute="top" id="d0y-aj-TgP"/>
-                                        <constraint firstItem="uNd-O5-zrF" firstAttribute="top" secondItem="bzE-iT-OR9" secondAttribute="top" id="m8R-7i-tvQ"/>
-                                        <constraint firstItem="uNd-O5-zrF" firstAttribute="centerX" secondItem="bzE-iT-OR9" secondAttribute="centerX" id="q71-n6-1qK"/>
-                                        <constraint firstAttribute="bottom" secondItem="K38-ae-l04" secondAttribute="bottom" id="ugh-zY-rg5"/>
-                                    </constraints>
-                                </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFb-uN-Ubh" userLabel="ユーザーネーム表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="152" width="393" height="40"/>
+                                    <rect key="frame" x="0.0" y="60" width="393" height="40"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前未設定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puQ-nb-VZC">
-                                            <rect key="frame" x="131" y="3.3333333333333428" width="131" height="33.666666666666664"/>
+                                            <rect key="frame" x="131" y="3.3333333333333357" width="131" height="33.666666666666664"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -109,323 +68,464 @@
                                         <constraint firstItem="puQ-nb-VZC" firstAttribute="centerX" secondItem="xFb-uN-Ubh" secondAttribute="centerX" id="qvM-MY-r98"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pSK-Am-hOa" userLabel="項目名「チャレンジ内容」表示用UIView">
-                                    <rect key="frame" x="0.0" y="192" width="393" height="40"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzE-iT-OR9" userLabel="ユーザー画像表示用UIVIew">
+                                    <rect key="frame" x="0.0" y="100" width="393" height="269"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q3-4e-8SZ">
-                                            <rect key="frame" x="141" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="7Q3-4e-8SZ" firstAttribute="centerX" secondItem="pSK-Am-hOa" secondAttribute="centerX" id="KoD-YT-w2C"/>
-                                        <constraint firstAttribute="height" constant="40" id="oVc-nN-ScG"/>
-                                        <constraint firstItem="7Q3-4e-8SZ" firstAttribute="centerY" secondItem="pSK-Am-hOa" secondAttribute="centerY" id="u1t-dp-Tel"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQb-0t-5lM" userLabel="チャレンジ内容表示用UIView">
-                                    <rect key="frame" x="0.0" y="232" width="393" height="115"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYt-cH-SLA">
-                                            <rect key="frame" x="70" y="0.0" width="253" height="115"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LkF-GQ-T4T" userLabel="枠View">
+                                            <rect key="frame" x="24" y="24" width="345" height="221"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Miz-NP-92I" userLabel="チャレンジ内容入力用Text View">
-                                                    <rect key="frame" x="16" y="16" width="221" height="83"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
-                                                </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容を入力してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaV-eV-PI1" userLabel="プレースホルダーラベル">
-                                                    <rect key="frame" x="6.6666666666666714" y="48" width="239.66666666666663" height="19.333333333333329"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" systemColor="opaqueSeparatorColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K38-ae-l04">
+                                                    <rect key="frame" x="126.66666666666666" y="24.666666666666664" width="92" height="90.666666666666686"/>
+                                                    <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="92" id="2WB-pt-DT0"/>
+                                                        <constraint firstAttribute="width" constant="92" id="tpQ-lE-Icy"/>
+                                                    </constraints>
+                                                    <imageReference key="image" image="person.crop.circle" catalog="system" symbolScale="default"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="46"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNd-O5-zrF">
+                                                    <rect key="frame" x="126.66666666666666" y="24" width="92" height="92"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="92" id="MCe-mk-bnm"/>
+                                                        <constraint firstAttribute="width" constant="92" id="uDB-fV-bv3"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain"/>
+                                                    <connections>
+                                                        <action selector="userImageButtonTapped:" destination="-1" eventType="touchUpInside" id="a61-Rc-ATx"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TI1-BU-oH8" userLabel="透明な完了Button" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                                    <rect key="frame" x="46" y="132" width="253" height="65"/>
+                                                    <color key="backgroundColor" red="0.078431372550000003" green="0.67450980390000004" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="65" id="IDY-46-c0m"/>
+                                                        <constraint firstAttribute="width" constant="253" id="s7y-Rk-2oF"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="ic_check" title=" 保存"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstItem="xaV-eV-PI1" firstAttribute="centerX" secondItem="fYt-cH-SLA" secondAttribute="centerX" id="DTY-JP-jfh"/>
-                                                <constraint firstAttribute="width" constant="253" id="JqR-J9-cSR"/>
-                                                <constraint firstAttribute="height" constant="115" id="XWx-Tm-HcA"/>
-                                                <constraint firstItem="Miz-NP-92I" firstAttribute="top" secondItem="fYt-cH-SLA" secondAttribute="top" constant="16" id="bTn-lI-Ctn"/>
-                                                <constraint firstAttribute="trailing" secondItem="Miz-NP-92I" secondAttribute="trailing" constant="16" id="mrZ-iM-fdG"/>
-                                                <constraint firstAttribute="bottom" secondItem="Miz-NP-92I" secondAttribute="bottom" constant="16" id="p5d-Pn-uSq"/>
-                                                <constraint firstItem="xaV-eV-PI1" firstAttribute="centerY" secondItem="fYt-cH-SLA" secondAttribute="centerY" id="uvG-iW-mEa"/>
-                                                <constraint firstItem="Miz-NP-92I" firstAttribute="leading" secondItem="fYt-cH-SLA" secondAttribute="leading" constant="16" id="zmg-Sj-BEs"/>
+                                                <constraint firstAttribute="bottom" secondItem="TI1-BU-oH8" secondAttribute="bottom" constant="24" id="3tb-AR-Nf6"/>
+                                                <constraint firstItem="K38-ae-l04" firstAttribute="top" secondItem="LkF-GQ-T4T" secondAttribute="top" constant="24" id="6tf-Ao-5dP"/>
+                                                <constraint firstItem="K38-ae-l04" firstAttribute="centerX" secondItem="LkF-GQ-T4T" secondAttribute="centerX" id="8fi-qI-bac"/>
+                                                <constraint firstItem="TI1-BU-oH8" firstAttribute="centerX" secondItem="LkF-GQ-T4T" secondAttribute="centerX" id="JJH-eU-Qy3"/>
+                                                <constraint firstItem="K38-ae-l04" firstAttribute="centerX" secondItem="uNd-O5-zrF" secondAttribute="centerX" id="Y23-TW-V76"/>
+                                                <constraint firstItem="K38-ae-l04" firstAttribute="centerY" secondItem="uNd-O5-zrF" secondAttribute="centerY" id="YjZ-Ox-pDs"/>
+                                                <constraint firstItem="TI1-BU-oH8" firstAttribute="top" secondItem="uNd-O5-zrF" secondAttribute="bottom" constant="16" id="e86-x4-t7e"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="fYt-cH-SLA" secondAttribute="bottom" id="3RJ-qf-VbZ"/>
-                                        <constraint firstItem="fYt-cH-SLA" firstAttribute="centerX" secondItem="YQb-0t-5lM" secondAttribute="centerX" id="Cou-fu-4hD"/>
-                                        <constraint firstAttribute="height" constant="115" id="gBa-P6-6sL"/>
-                                        <constraint firstItem="fYt-cH-SLA" firstAttribute="top" secondItem="YQb-0t-5lM" secondAttribute="top" id="mQG-7b-yuE"/>
+                                        <constraint firstItem="LkF-GQ-T4T" firstAttribute="top" secondItem="bzE-iT-OR9" secondAttribute="top" constant="24" id="17y-GF-MRc"/>
+                                        <constraint firstAttribute="trailing" secondItem="LkF-GQ-T4T" secondAttribute="trailing" constant="24" id="JA8-W6-vB5"/>
+                                        <constraint firstItem="LkF-GQ-T4T" firstAttribute="leading" secondItem="bzE-iT-OR9" secondAttribute="leading" constant="24" id="MOc-MF-vZs"/>
+                                        <constraint firstAttribute="bottom" secondItem="LkF-GQ-T4T" secondAttribute="bottom" constant="24" id="Rde-ht-n1k"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6c-a8-OZF" userLabel="項目名「もらえるポイント数」表示用UIView">
-                                    <rect key="frame" x="0.0" y="347" width="393" height="40"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RkS-QS-e3L" userLabel="各種設定View">
+                                    <rect key="frame" x="0.0" y="368.99999999999994" width="393" height="673.66666666666652"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容ができたときにもらえるポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQf-Us-rvT">
-                                            <rect key="frame" x="13.666666666666657" y="9.9999999999999982" width="366" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="FQf-Us-rvT" firstAttribute="centerY" secondItem="G6c-a8-OZF" secondAttribute="centerY" id="2VM-xp-iMO"/>
-                                        <constraint firstAttribute="height" constant="40" id="pUU-vh-oxW"/>
-                                        <constraint firstItem="FQf-Us-rvT" firstAttribute="centerX" secondItem="G6c-a8-OZF" secondAttribute="centerX" id="sbO-be-Lyb"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYJ-I6-zJn" userLabel="もらえるポイント数表示用UIView">
-                                    <rect key="frame" x="0.0" y="387" width="393" height="40"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhr-8u-PrT">
-                                            <rect key="frame" x="70" y="0.0" width="253" height="40"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fk3-hg-X6H" userLabel="枠View">
+                                            <rect key="frame" x="24" y="24" width="345" height="625.66666666666663"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSW-a2-v8u">
-                                                    <rect key="frame" x="84.333333333333343" y="9.3333333333333162" width="84.333333333333343" height="21.666666666666671"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iVS-QO-Bfb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="601.66666666666663"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pSK-Am-hOa" userLabel="項目名「チャレンジ内容」表示用UIView">
+                                                            <rect key="frame" x="0.0" y="0.0" width="345" height="40"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q3-4e-8SZ">
+                                                                    <rect key="frame" x="117" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstItem="7Q3-4e-8SZ" firstAttribute="centerX" secondItem="pSK-Am-hOa" secondAttribute="centerX" id="KoD-YT-w2C"/>
+                                                                <constraint firstAttribute="height" constant="40" id="oVc-nN-ScG"/>
+                                                                <constraint firstItem="7Q3-4e-8SZ" firstAttribute="centerY" secondItem="pSK-Am-hOa" secondAttribute="centerY" id="u1t-dp-Tel"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQb-0t-5lM" userLabel="チャレンジ内容表示用UIView">
+                                                            <rect key="frame" x="0.0" y="40" width="345" height="115"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYt-cH-SLA">
+                                                                    <rect key="frame" x="46" y="0.0" width="253" height="115"/>
+                                                                    <subviews>
+                                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Miz-NP-92I" userLabel="チャレンジ内容入力用Text View">
+                                                                            <rect key="frame" x="16" y="16" width="221" height="83"/>
+                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                                        </textView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ内容を入力してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaV-eV-PI1" userLabel="プレースホルダーラベル">
+                                                                            <rect key="frame" x="6.6666666666666714" y="48" width="239.66666666666663" height="19.333333333333329"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                            <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="xaV-eV-PI1" firstAttribute="centerX" secondItem="fYt-cH-SLA" secondAttribute="centerX" id="DTY-JP-jfh"/>
+                                                                        <constraint firstAttribute="width" constant="253" id="JqR-J9-cSR"/>
+                                                                        <constraint firstAttribute="height" constant="115" id="XWx-Tm-HcA"/>
+                                                                        <constraint firstItem="Miz-NP-92I" firstAttribute="top" secondItem="fYt-cH-SLA" secondAttribute="top" constant="16" id="bTn-lI-Ctn"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="Miz-NP-92I" secondAttribute="trailing" constant="16" id="mrZ-iM-fdG"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="Miz-NP-92I" secondAttribute="bottom" constant="16" id="p5d-Pn-uSq"/>
+                                                                        <constraint firstItem="xaV-eV-PI1" firstAttribute="centerY" secondItem="fYt-cH-SLA" secondAttribute="centerY" id="uvG-iW-mEa"/>
+                                                                        <constraint firstItem="Miz-NP-92I" firstAttribute="leading" secondItem="fYt-cH-SLA" secondAttribute="leading" constant="16" id="zmg-Sj-BEs"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="8"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="fYt-cH-SLA" secondAttribute="bottom" id="3RJ-qf-VbZ"/>
+                                                                <constraint firstItem="fYt-cH-SLA" firstAttribute="centerX" secondItem="YQb-0t-5lM" secondAttribute="centerX" id="Cou-fu-4hD"/>
+                                                                <constraint firstAttribute="height" constant="115" id="gBa-P6-6sL"/>
+                                                                <constraint firstItem="fYt-cH-SLA" firstAttribute="top" secondItem="YQb-0t-5lM" secondAttribute="top" id="mQG-7b-yuE"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQf-Us-rvT">
+                                                            <rect key="frame" x="0.0" y="155" width="345" height="90.666666666666686"/>
+                                                            <string key="text">チャレンジ内容ができたときに
+もらえるポイント数</string>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYJ-I6-zJn" userLabel="もらえるポイント数表示用UIView">
+                                                            <rect key="frame" x="0.0" y="245.66666666666663" width="345" height="40"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhr-8u-PrT">
+                                                                    <rect key="frame" x="46" y="0.0" width="253" height="40"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSW-a2-v8u">
+                                                                            <rect key="frame" x="84.333333333333343" y="9.333333333333373" width="84.333333333333343" height="21.666666666666671"/>
+                                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                                            <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="YSW-a2-v8u" firstAttribute="centerX" secondItem="lhr-8u-PrT" secondAttribute="centerX" id="3ra-cF-1a9"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="FlM-kj-5u0"/>
+                                                                        <constraint firstAttribute="width" constant="253" id="GBU-jU-yLu"/>
+                                                                        <constraint firstItem="YSW-a2-v8u" firstAttribute="centerY" secondItem="lhr-8u-PrT" secondAttribute="centerY" id="m53-uH-hey"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="8"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1I-AD-PnX" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                                                    <rect key="frame" x="299" y="3" width="34" height="34"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="34" id="SOx-BU-Xwf"/>
+                                                                        <constraint firstAttribute="width" constant="34" id="jFy-K0-DJA"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="arrow" imagePadding="0.0"/>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstItem="lhr-8u-PrT" firstAttribute="top" secondItem="oYJ-I6-zJn" secondAttribute="top" id="3U7-gK-Laq"/>
+                                                                <constraint firstItem="L1I-AD-PnX" firstAttribute="leading" secondItem="lhr-8u-PrT" secondAttribute="trailing" id="8h7-rA-GJe"/>
+                                                                <constraint firstItem="lhr-8u-PrT" firstAttribute="centerX" secondItem="oYJ-I6-zJn" secondAttribute="centerX" id="Kuc-aS-174"/>
+                                                                <constraint firstItem="L1I-AD-PnX" firstAttribute="centerY" secondItem="oYJ-I6-zJn" secondAttribute="centerY" id="VhZ-i1-r7T"/>
+                                                                <constraint firstAttribute="height" constant="40" id="di3-bw-cr9"/>
+                                                                <constraint firstAttribute="bottom" secondItem="lhr-8u-PrT" secondAttribute="bottom" id="dsr-V8-kb0"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="reA-qO-eem" userLabel="項目名「ボーナスポイント数」表示用UIView">
+                                                            <rect key="frame" x="0.0" y="285.66666666666663" width="345" height="40"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ボーナスポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd1-0d-DCo">
+                                                                    <rect key="frame" x="101.00000000000001" y="9.9999999999999982" width="143.33333333333337" height="20.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstItem="sd1-0d-DCo" firstAttribute="centerX" secondItem="reA-qO-eem" secondAttribute="centerX" id="EMa-m3-coW"/>
+                                                                <constraint firstAttribute="height" constant="40" id="Tf0-MM-qxr"/>
+                                                                <constraint firstItem="sd1-0d-DCo" firstAttribute="centerY" secondItem="reA-qO-eem" secondAttribute="centerY" id="oXf-a6-wtp"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMg-Kc-nCx" userLabel="ボーナスポイント数表示用UIVIew">
+                                                            <rect key="frame" x="0.0" y="325.66666666666663" width="345" height="40"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8z-Th-a0f">
+                                                                    <rect key="frame" x="46" y="0.0" width="253" height="40"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afu-uu-2D3">
+                                                                            <rect key="frame" x="84.333333333333343" y="9.333333333333373" width="84.333333333333343" height="21.666666666666671"/>
+                                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                                            <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="afu-uu-2D3" firstAttribute="centerX" secondItem="l8z-Th-a0f" secondAttribute="centerX" id="ErT-wB-sGB"/>
+                                                                        <constraint firstAttribute="width" constant="253" id="Gi8-ar-jGB"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="GvR-79-kcs"/>
+                                                                        <constraint firstItem="afu-uu-2D3" firstAttribute="centerY" secondItem="l8z-Th-a0f" secondAttribute="centerY" id="TxJ-0t-6KJ"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="8"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uiU-wp-kL7" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                                                    <rect key="frame" x="299" y="3" width="34" height="34"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="34" id="Kvx-va-gB9"/>
+                                                                        <constraint firstAttribute="width" constant="34" id="RXG-dc-lUS"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="arrow"/>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstItem="l8z-Th-a0f" firstAttribute="centerX" secondItem="rMg-Kc-nCx" secondAttribute="centerX" id="5Ky-Sl-aY3"/>
+                                                                <constraint firstAttribute="height" constant="40" id="BbJ-Zw-AWG"/>
+                                                                <constraint firstItem="uiU-wp-kL7" firstAttribute="centerY" secondItem="rMg-Kc-nCx" secondAttribute="centerY" id="P5c-fo-VNM"/>
+                                                                <constraint firstItem="uiU-wp-kL7" firstAttribute="leading" secondItem="l8z-Th-a0f" secondAttribute="trailing" id="QpP-6x-kVf"/>
+                                                                <constraint firstItem="l8z-Th-a0f" firstAttribute="top" secondItem="rMg-Kc-nCx" secondAttribute="top" id="cmk-QB-nsF"/>
+                                                                <constraint firstAttribute="bottom" secondItem="l8z-Th-a0f" secondAttribute="bottom" id="vta-Qh-fnE"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvb-p1-j61" userLabel="項目名「目標ポイント数」表示用UIVIew">
+                                                            <rect key="frame" x="0.0" y="365.66666666666663" width="345" height="40"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目標ポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbB-dr-kXD">
+                                                                    <rect key="frame" x="117" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstItem="hbB-dr-kXD" firstAttribute="centerY" secondItem="fvb-p1-j61" secondAttribute="centerY" id="Qnr-NB-xm8"/>
+                                                                <constraint firstItem="hbB-dr-kXD" firstAttribute="centerX" secondItem="fvb-p1-j61" secondAttribute="centerX" id="j9o-cJ-7av"/>
+                                                                <constraint firstAttribute="height" constant="40" id="kMO-1p-l6o"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHg-cv-90O" userLabel="目標ポイント数表示用UIVIew">
+                                                            <rect key="frame" x="0.0" y="405.66666666666663" width="345" height="40"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkr-vs-fax">
+                                                                    <rect key="frame" x="46" y="0.0" width="253" height="40"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="３０ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jz-v0-iov">
+                                                                            <rect key="frame" x="76" y="9.333333333333373" width="101.33333333333331" height="21.666666666666671"/>
+                                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                                            <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="3jz-v0-iov" firstAttribute="centerY" secondItem="kkr-vs-fax" secondAttribute="centerY" id="bSz-tg-ioi"/>
+                                                                        <constraint firstAttribute="width" constant="253" id="mv6-x9-Hpa"/>
+                                                                        <constraint firstItem="3jz-v0-iov" firstAttribute="centerX" secondItem="kkr-vs-fax" secondAttribute="centerX" id="wFf-fx-TDJ"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="zIY-B9-lKf"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="8"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXH-DH-jAr" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                                                    <rect key="frame" x="299" y="3" width="34" height="34"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="34" id="7kR-xp-mMu"/>
+                                                                        <constraint firstAttribute="width" constant="34" id="QP7-T7-BrJ"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="arrow"/>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstItem="kkr-vs-fax" firstAttribute="centerX" secondItem="dHg-cv-90O" secondAttribute="centerX" id="7Az-Qf-zmF"/>
+                                                                <constraint firstAttribute="height" constant="40" id="UM2-96-h5P"/>
+                                                                <constraint firstItem="kkr-vs-fax" firstAttribute="top" secondItem="dHg-cv-90O" secondAttribute="top" id="jG0-3K-1zk"/>
+                                                                <constraint firstAttribute="bottom" secondItem="kkr-vs-fax" secondAttribute="bottom" id="mLW-gw-UuW"/>
+                                                                <constraint firstItem="SXH-DH-jAr" firstAttribute="leading" secondItem="kkr-vs-fax" secondAttribute="trailing" id="tmn-2D-Qn0"/>
+                                                                <constraint firstItem="SXH-DH-jAr" firstAttribute="centerY" secondItem="dHg-cv-90O" secondAttribute="centerY" id="uMr-I6-NK8"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7f1-li-kO0" userLabel="項目名「チャレンジ日数」表示用UIVIew">
+                                                            <rect key="frame" x="0.0" y="445.66666666666663" width="345" height="40"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ日数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOU-Ls-nao">
+                                                                    <rect key="frame" x="117" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="YgC-Q8-G9X"/>
+                                                                <constraint firstItem="lOU-Ls-nao" firstAttribute="centerX" secondItem="7f1-li-kO0" secondAttribute="centerX" id="YhT-vG-KRv"/>
+                                                                <constraint firstItem="lOU-Ls-nao" firstAttribute="centerY" secondItem="7f1-li-kO0" secondAttribute="centerY" id="zXN-0f-OrQ"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1Y-B4-ine" userLabel="チャレンジ日数表示用UIVIew">
+                                                            <rect key="frame" x="0.0" y="485.66666666666663" width="345" height="40"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1c9-2Q-KmT">
+                                                                    <rect key="frame" x="46" y="0.0" width="253" height="40"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="３０日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWg-Pb-buF">
+                                                                            <rect key="frame" x="101.33333333333334" y="9.333333333333373" width="50.666666666666657" height="21.666666666666671"/>
+                                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                                            <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="XWg-Pb-buF" firstAttribute="centerX" secondItem="1c9-2Q-KmT" secondAttribute="centerX" id="AB9-Yg-zpH"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="OTX-UM-OVu"/>
+                                                                        <constraint firstItem="XWg-Pb-buF" firstAttribute="centerY" secondItem="1c9-2Q-KmT" secondAttribute="centerY" id="Odt-ZT-1oF"/>
+                                                                        <constraint firstAttribute="width" constant="253" id="huR-xG-dQn"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="8"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLB-iu-A3w" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                                                    <rect key="frame" x="299" y="3" width="34" height="34"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="34" id="Mvm-nQ-4WQ"/>
+                                                                        <constraint firstAttribute="width" constant="34" id="Vy6-q4-Sjd"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="arrow"/>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstItem="1c9-2Q-KmT" firstAttribute="top" secondItem="f1Y-B4-ine" secondAttribute="top" id="0AQ-oM-hpR"/>
+                                                                <constraint firstItem="aLB-iu-A3w" firstAttribute="centerY" secondItem="f1Y-B4-ine" secondAttribute="centerY" id="W01-EH-BRj"/>
+                                                                <constraint firstItem="1c9-2Q-KmT" firstAttribute="centerX" secondItem="f1Y-B4-ine" secondAttribute="centerX" id="adv-uL-Wvp"/>
+                                                                <constraint firstItem="aLB-iu-A3w" firstAttribute="leading" secondItem="1c9-2Q-KmT" secondAttribute="trailing" id="jUG-dQ-TSh"/>
+                                                                <constraint firstAttribute="height" constant="40" id="kqN-QT-tfV"/>
+                                                                <constraint firstAttribute="bottom" secondItem="1c9-2Q-KmT" secondAttribute="bottom" id="ob7-7x-glQ"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kiA-Rj-Vlh" userLabel="完了ボタンのUIVIew">
+                                                            <rect key="frame" x="0.0" y="525.66666666666663" width="345" height="76"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnn-Xv-qJv" userLabel="透明な完了Button" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                                                    <rect key="frame" x="46" y="11" width="253" height="65"/>
+                                                                    <color key="backgroundColor" red="0.078431372550000003" green="0.67450980390000004" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="65" id="JJ8-tv-6nT"/>
+                                                                        <constraint firstAttribute="width" constant="253" id="fms-4B-DDA"/>
+                                                                    </constraints>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="ic_check" title=" 保存"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="8"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="doneButtonTapped:" destination="-1" eventType="touchUpInside" id="Ns6-ZL-ulR"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstItem="dnn-Xv-qJv" firstAttribute="centerX" secondItem="kiA-Rj-Vlh" secondAttribute="centerX" id="5BU-py-bih"/>
+                                                                <constraint firstAttribute="bottom" secondItem="dnn-Xv-qJv" secondAttribute="bottom" id="5uw-ln-wXp"/>
+                                                                <constraint firstItem="dnn-Xv-qJv" firstAttribute="top" secondItem="kiA-Rj-Vlh" secondAttribute="top" constant="11" id="RSO-8R-hw8"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
-                                            <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstItem="YSW-a2-v8u" firstAttribute="centerX" secondItem="lhr-8u-PrT" secondAttribute="centerX" id="3ra-cF-1a9"/>
-                                                <constraint firstAttribute="height" constant="40" id="FlM-kj-5u0"/>
-                                                <constraint firstAttribute="width" constant="253" id="GBU-jU-yLu"/>
-                                                <constraint firstItem="YSW-a2-v8u" firstAttribute="centerY" secondItem="lhr-8u-PrT" secondAttribute="centerY" id="m53-uH-hey"/>
+                                                <constraint firstItem="iVS-QO-Bfb" firstAttribute="leading" secondItem="fk3-hg-X6H" secondAttribute="leading" id="Mm2-Yk-v1d"/>
+                                                <constraint firstAttribute="bottom" secondItem="iVS-QO-Bfb" secondAttribute="bottom" constant="24" id="MrS-Os-sF1"/>
+                                                <constraint firstAttribute="trailing" secondItem="iVS-QO-Bfb" secondAttribute="trailing" id="UAN-Hw-QDS"/>
+                                                <constraint firstItem="iVS-QO-Bfb" firstAttribute="top" secondItem="fk3-hg-X6H" secondAttribute="top" id="dLB-qy-pWh"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="8"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1I-AD-PnX" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
-                                            <rect key="frame" x="323" y="3" width="34" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="34" id="SOx-BU-Xwf"/>
-                                                <constraint firstAttribute="width" constant="34" id="jFy-K0-DJA"/>
-                                            </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="arrow" imagePadding="0.0"/>
-                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="lhr-8u-PrT" firstAttribute="top" secondItem="oYJ-I6-zJn" secondAttribute="top" id="3U7-gK-Laq"/>
-                                        <constraint firstItem="L1I-AD-PnX" firstAttribute="leading" secondItem="lhr-8u-PrT" secondAttribute="trailing" id="8h7-rA-GJe"/>
-                                        <constraint firstItem="lhr-8u-PrT" firstAttribute="centerX" secondItem="oYJ-I6-zJn" secondAttribute="centerX" id="Kuc-aS-174"/>
-                                        <constraint firstItem="L1I-AD-PnX" firstAttribute="centerY" secondItem="oYJ-I6-zJn" secondAttribute="centerY" id="VhZ-i1-r7T"/>
-                                        <constraint firstAttribute="height" constant="40" id="di3-bw-cr9"/>
-                                        <constraint firstAttribute="bottom" secondItem="lhr-8u-PrT" secondAttribute="bottom" id="dsr-V8-kb0"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="reA-qO-eem" userLabel="項目名「ボーナスポイント数」表示用UIView">
-                                    <rect key="frame" x="0.0" y="427" width="393" height="40"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ボーナスポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd1-0d-DCo">
-                                            <rect key="frame" x="125.00000000000001" y="9.9999999999999982" width="143.33333333333337" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="sd1-0d-DCo" firstAttribute="centerX" secondItem="reA-qO-eem" secondAttribute="centerX" id="EMa-m3-coW"/>
-                                        <constraint firstAttribute="height" constant="40" id="Tf0-MM-qxr"/>
-                                        <constraint firstItem="sd1-0d-DCo" firstAttribute="centerY" secondItem="reA-qO-eem" secondAttribute="centerY" id="oXf-a6-wtp"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMg-Kc-nCx" userLabel="ボーナスポイント数表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="467" width="393" height="40"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8z-Th-a0f">
-                                            <rect key="frame" x="70" y="0.0" width="253" height="40"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="１ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afu-uu-2D3">
-                                                    <rect key="frame" x="84.333333333333343" y="9.3333333333333162" width="84.333333333333343" height="21.666666666666671"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="afu-uu-2D3" firstAttribute="centerX" secondItem="l8z-Th-a0f" secondAttribute="centerX" id="ErT-wB-sGB"/>
-                                                <constraint firstAttribute="width" constant="253" id="Gi8-ar-jGB"/>
-                                                <constraint firstAttribute="height" constant="40" id="GvR-79-kcs"/>
-                                                <constraint firstItem="afu-uu-2D3" firstAttribute="centerY" secondItem="l8z-Th-a0f" secondAttribute="centerY" id="TxJ-0t-6KJ"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uiU-wp-kL7" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
-                                            <rect key="frame" x="323" y="3" width="34" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="34" id="Kvx-va-gB9"/>
-                                                <constraint firstAttribute="width" constant="34" id="RXG-dc-lUS"/>
-                                            </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="arrow"/>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="l8z-Th-a0f" firstAttribute="centerX" secondItem="rMg-Kc-nCx" secondAttribute="centerX" id="5Ky-Sl-aY3"/>
-                                        <constraint firstAttribute="height" constant="40" id="BbJ-Zw-AWG"/>
-                                        <constraint firstItem="uiU-wp-kL7" firstAttribute="centerY" secondItem="rMg-Kc-nCx" secondAttribute="centerY" id="P5c-fo-VNM"/>
-                                        <constraint firstItem="uiU-wp-kL7" firstAttribute="leading" secondItem="l8z-Th-a0f" secondAttribute="trailing" id="QpP-6x-kVf"/>
-                                        <constraint firstItem="l8z-Th-a0f" firstAttribute="top" secondItem="rMg-Kc-nCx" secondAttribute="top" id="cmk-QB-nsF"/>
-                                        <constraint firstAttribute="bottom" secondItem="l8z-Th-a0f" secondAttribute="bottom" id="vta-Qh-fnE"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvb-p1-j61" userLabel="項目名「目標ポイント数」表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="507" width="393" height="40"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目標ポイント数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbB-dr-kXD">
-                                            <rect key="frame" x="141" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="hbB-dr-kXD" firstAttribute="centerY" secondItem="fvb-p1-j61" secondAttribute="centerY" id="Qnr-NB-xm8"/>
-                                        <constraint firstItem="hbB-dr-kXD" firstAttribute="centerX" secondItem="fvb-p1-j61" secondAttribute="centerX" id="j9o-cJ-7av"/>
-                                        <constraint firstAttribute="height" constant="40" id="kMO-1p-l6o"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHg-cv-90O" userLabel="目標ポイント数表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="547" width="393" height="40"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkr-vs-fax">
-                                            <rect key="frame" x="70" y="0.0" width="253" height="40"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="３０ポイント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jz-v0-iov">
-                                                    <rect key="frame" x="76" y="9.333333333333373" width="101.33333333333331" height="21.666666666666671"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="3jz-v0-iov" firstAttribute="centerY" secondItem="kkr-vs-fax" secondAttribute="centerY" id="bSz-tg-ioi"/>
-                                                <constraint firstAttribute="width" constant="253" id="mv6-x9-Hpa"/>
-                                                <constraint firstItem="3jz-v0-iov" firstAttribute="centerX" secondItem="kkr-vs-fax" secondAttribute="centerX" id="wFf-fx-TDJ"/>
-                                                <constraint firstAttribute="height" constant="40" id="zIY-B9-lKf"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXH-DH-jAr" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
-                                            <rect key="frame" x="323" y="3" width="34" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="34" id="7kR-xp-mMu"/>
-                                                <constraint firstAttribute="width" constant="34" id="QP7-T7-BrJ"/>
-                                            </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="arrow"/>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="kkr-vs-fax" firstAttribute="centerX" secondItem="dHg-cv-90O" secondAttribute="centerX" id="7Az-Qf-zmF"/>
-                                        <constraint firstAttribute="height" constant="40" id="UM2-96-h5P"/>
-                                        <constraint firstItem="kkr-vs-fax" firstAttribute="top" secondItem="dHg-cv-90O" secondAttribute="top" id="jG0-3K-1zk"/>
-                                        <constraint firstAttribute="bottom" secondItem="kkr-vs-fax" secondAttribute="bottom" id="mLW-gw-UuW"/>
-                                        <constraint firstItem="SXH-DH-jAr" firstAttribute="leading" secondItem="kkr-vs-fax" secondAttribute="trailing" id="tmn-2D-Qn0"/>
-                                        <constraint firstItem="SXH-DH-jAr" firstAttribute="centerY" secondItem="dHg-cv-90O" secondAttribute="centerY" id="uMr-I6-NK8"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7f1-li-kO0" userLabel="項目名「チャレンジ日数」表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="587" width="393" height="40"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ日数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOU-Ls-nao">
-                                            <rect key="frame" x="141" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="YgC-Q8-G9X"/>
-                                        <constraint firstItem="lOU-Ls-nao" firstAttribute="centerX" secondItem="7f1-li-kO0" secondAttribute="centerX" id="YhT-vG-KRv"/>
-                                        <constraint firstItem="lOU-Ls-nao" firstAttribute="centerY" secondItem="7f1-li-kO0" secondAttribute="centerY" id="zXN-0f-OrQ"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1Y-B4-ine" userLabel="チャレンジ日数表示用UIVIew">
-                                    <rect key="frame" x="0.0" y="627" width="393" height="40"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1c9-2Q-KmT">
-                                            <rect key="frame" x="70" y="0.0" width="253" height="40"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="３０日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWg-Pb-buF">
-                                                    <rect key="frame" x="101.33333333333334" y="9.333333333333373" width="50.666666666666657" height="21.666666666666671"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="XWg-Pb-buF" firstAttribute="centerX" secondItem="1c9-2Q-KmT" secondAttribute="centerX" id="AB9-Yg-zpH"/>
-                                                <constraint firstAttribute="height" constant="40" id="OTX-UM-OVu"/>
-                                                <constraint firstItem="XWg-Pb-buF" firstAttribute="centerY" secondItem="1c9-2Q-KmT" secondAttribute="centerY" id="Odt-ZT-1oF"/>
-                                                <constraint firstAttribute="width" constant="253" id="huR-xG-dQn"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLB-iu-A3w" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
-                                            <rect key="frame" x="323" y="3" width="34" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="34" id="Mvm-nQ-4WQ"/>
-                                                <constraint firstAttribute="width" constant="34" id="Vy6-q4-Sjd"/>
-                                            </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="arrow"/>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="1c9-2Q-KmT" firstAttribute="top" secondItem="f1Y-B4-ine" secondAttribute="top" id="0AQ-oM-hpR"/>
-                                        <constraint firstItem="aLB-iu-A3w" firstAttribute="centerY" secondItem="f1Y-B4-ine" secondAttribute="centerY" id="W01-EH-BRj"/>
-                                        <constraint firstItem="1c9-2Q-KmT" firstAttribute="centerX" secondItem="f1Y-B4-ine" secondAttribute="centerX" id="adv-uL-Wvp"/>
-                                        <constraint firstItem="aLB-iu-A3w" firstAttribute="leading" secondItem="1c9-2Q-KmT" secondAttribute="trailing" id="jUG-dQ-TSh"/>
-                                        <constraint firstAttribute="height" constant="40" id="kqN-QT-tfV"/>
-                                        <constraint firstAttribute="bottom" secondItem="1c9-2Q-KmT" secondAttribute="bottom" id="ob7-7x-glQ"/>
+                                        <constraint firstItem="fk3-hg-X6H" firstAttribute="top" secondItem="RkS-QS-e3L" secondAttribute="top" constant="24" id="AaZ-2z-6Tc"/>
+                                        <constraint firstAttribute="bottom" secondItem="fk3-hg-X6H" secondAttribute="bottom" constant="24" id="Ggc-4a-o3t"/>
+                                        <constraint firstAttribute="trailing" secondItem="fk3-hg-X6H" secondAttribute="trailing" constant="24" id="QES-fW-Q5U"/>
+                                        <constraint firstItem="fk3-hg-X6H" firstAttribute="leading" secondItem="RkS-QS-e3L" secondAttribute="leading" constant="24" id="azU-pI-X5Y"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opf-dd-72v" userLabel="ご褒美登録ボタンのUIVIew">
-                                    <rect key="frame" x="0.0" y="667" width="393" height="51"/>
+                                    <rect key="frame" x="0.0" y="1042.6666666666667" width="393" height="51"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gq-V1-6gF" userLabel="透明なご褒美登録ボタン" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
                                             <rect key="frame" x="70" y="11" width="253" height="40"/>
@@ -454,38 +554,8 @@
                                         <constraint firstItem="2gq-V1-6gF" firstAttribute="top" secondItem="opf-dd-72v" secondAttribute="top" constant="11" id="dXa-Lp-4NG"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kiA-Rj-Vlh" userLabel="完了ボタンのUIVIew">
-                                    <rect key="frame" x="0.0" y="718" width="393" height="76"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnn-Xv-qJv" userLabel="透明な完了Button" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
-                                            <rect key="frame" x="70" y="11" width="253" height="65"/>
-                                            <color key="backgroundColor" red="0.078431372550000003" green="0.67450980390000004" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="65" id="JJ8-tv-6nT"/>
-                                                <constraint firstAttribute="width" constant="253" id="fms-4B-DDA"/>
-                                            </constraints>
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="ic_check" title=" 保存"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="doneButtonTapped:" destination="-1" eventType="touchUpInside" id="Ns6-ZL-ulR"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="dnn-Xv-qJv" firstAttribute="centerX" secondItem="kiA-Rj-Vlh" secondAttribute="centerX" id="5BU-py-bih"/>
-                                        <constraint firstAttribute="bottom" secondItem="dnn-Xv-qJv" secondAttribute="bottom" id="5uw-ln-wXp"/>
-                                        <constraint firstItem="dnn-Xv-qJv" firstAttribute="top" secondItem="kiA-Rj-Vlh" secondAttribute="top" constant="11" id="RSO-8R-hw8"/>
-                                    </constraints>
-                                </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uJ-oM-RbM" userLabel="ログアウトボタンのUIVIew">
-                                    <rect key="frame" x="0.0" y="794" width="393" height="75"/>
+                                    <rect key="frame" x="0.0" y="1093.6666666666667" width="393" height="75"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUc-50-Mj0" userLabel="ログアウトButton" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
                                             <rect key="frame" x="94" y="11" width="205" height="64"/>
@@ -515,16 +585,13 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxB-WS-orr">
-                                    <rect key="frame" x="0.0" y="869" width="393" height="128"/>
+                                    <rect key="frame" x="0.0" y="1168.6666666666667" width="393" height="128"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="128" id="Tvw-Pc-JZ9"/>
                                     </constraints>
                                 </view>
                             </subviews>
-                            <constraints>
-                                <constraint firstItem="rMg-Kc-nCx" firstAttribute="top" secondItem="reA-qO-eem" secondAttribute="bottom" id="8MU-vd-Weo"/>
-                            </constraints>
                         </stackView>
                     </subviews>
                     <constraints>
@@ -558,7 +625,7 @@
         <image name="ic_check" width="30" height="30"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

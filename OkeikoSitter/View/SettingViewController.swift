@@ -28,11 +28,11 @@ final class SettingViewController: UIViewController {
     private var selectedChallengeDay: Int?
     
     // MARK: - IBOutlets
-    
-    /// ユーザー画像
-    @IBOutlet private weak var userImageView: UIImageView!
+
     /// ユーザー名ラベル
     @IBOutlet private weak var userNameLabel: UILabel!
+    /// ユーザー画像
+    @IBOutlet private weak var userImageView: UIImageView!
     /// チャレンジ内容テキストビュー
     @IBOutlet private weak var challengeTaskTextView: UITextView!
     /// プレースホルダーラベル
@@ -110,7 +110,7 @@ final class SettingViewController: UIViewController {
     
     private func configureUI() {
         if let user = UserSession.shared.currentUser {
-            userImageView.image = user.profileImage
+            userImageView.image = user.profileImage ?? UIImage(systemName: "person.crop.circle")
             userNameLabel.text = user.userName
             challengeTaskTextView.text = user.challengeTask
             challengePointLabel.text = "\(user.challengePoint)ポイント"
@@ -128,9 +128,7 @@ final class SettingViewController: UIViewController {
             challengeDaysLabel.text = "日数を選択してください"
         }
         
-        if let image = selectedImage {
-            userImageView.image = image
-        }
+        userImageView.image = selectedImage ?? UIImage(systemName: "person.crop.circle")
     }
     
     private func configureTextView() {
