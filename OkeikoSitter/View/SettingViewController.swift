@@ -8,6 +8,10 @@
 import UIKit
 import FirebaseAuth
 
+protocol SettingViewControllerDelegate: AnyObject {
+    func settingViewControllerDidUpdateData()
+}
+
 /// 設定画面
 final class SettingViewController: UIViewController {
     
@@ -26,13 +30,15 @@ final class SettingViewController: UIViewController {
     private var selectedGoalPoint: Int?
     /// 選択したチャレンジ日数
     private var selectedChallengeDay: Int?
-    
+    /// デリゲート
+    weak var delegate: SettingViewControllerDelegate?
+
     // MARK: - IBOutlets
-    
-    /// ユーザー画像
-    @IBOutlet private weak var userImageView: UIImageView!
+
     /// ユーザー名ラベル
     @IBOutlet private weak var userNameLabel: UILabel!
+    /// ユーザー画像
+    @IBOutlet private weak var userImageView: UIImageView!
     /// チャレンジ内容テキストビュー
     @IBOutlet private weak var challengeTaskTextView: UITextView!
     /// プレースホルダーラベル
@@ -76,18 +82,41 @@ final class SettingViewController: UIViewController {
     @IBAction private func userImageButtonTapped(_ sender: Any) {
         presentImagePicker()
     }
-    
+
+    /// 画像の保存ボタンをタップした
+    @IBAction private func imageSaveButtonTapped(_ sender: Any) {
+        guard Auth.auth().currentUser != nil else {
+            return showAlert(title: "ログインしてください")
+        }
+
+        guard let selectedImage = selectedImage else {
+            return showAlert(title: "画像が選択されていません")
+        }
+
+        // userNameLabel からユーザー名を取得（ユーザーIDで保存したいならそれでOK）
+        guard let userName = userNameLabel.text, !userName.isEmpty else {
+            return showAlert(title: "ユーザー名が取得できません")
+        }
+
+        uploadProfileImage(userName: userName, image: selectedImage)
+    }
+
     /// ご褒美登録ボタンをタップした
-    @IBAction private func presentRegisterButtonTapped(_sender: UIButton) {
+    @IBAction private func presentRegisterButtonTapped(_ sender: UIButton) {
         let presentVC = PresentViewController()
         let navController = UINavigationController(rootViewController: presentVC)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
     }
     
-    /// 完了ボタンをタップした
-    @IBAction private func doneButtonTapped(_ sender: UIButton) {
-        validateSaveData()
+    /// 各種設定の保存ボタンをタップした
+    @IBAction private func saveButtonTapped(_ sender: UIButton) {
+        validateSaveData { [weak self] success in
+            guard let self = self else { return }
+            if success {
+                self.delegate?.settingViewControllerDidUpdateData()
+            }
+        }
     }
     
     /// ログアウトボタンをタップした
@@ -110,7 +139,6 @@ final class SettingViewController: UIViewController {
     
     private func configureUI() {
         if let user = UserSession.shared.currentUser {
-            userImageView.image = user.profileImage
             userNameLabel.text = user.userName
             challengeTaskTextView.text = user.challengeTask
             challengePointLabel.text = "\(user.challengePoint)ポイント"
@@ -121,15 +149,21 @@ final class SettingViewController: UIViewController {
             selectedGoalPoint = user.goalPoint
             challengeDaysLabel.text = "\(user.challengeDay)日"
             selectedChallengeDay = user.challengeDay
+
+            if let profileImage = user.profileImage {
+                userImageView.image = profileImage
+                selectedImage = profileImage
+            } else if let profileImageURL = user.profileImageURL {
+                fetchImage(from: profileImageURL)
+            } else {
+                userImageView.image = UIImage(systemName: "person.crop.circle")
+            }
         } else {
             challengePointLabel.text = defaultText
             bonusPointLabel.text = defaultText
             goalPointLabel.text = defaultText
             challengeDaysLabel.text = "日数を選択してください"
-        }
-        
-        if let image = selectedImage {
-            userImageView.image = image
+            userImageView.image = UIImage(systemName: "person.crop.circle")
         }
     }
     
@@ -140,14 +174,15 @@ final class SettingViewController: UIViewController {
     private func configureBarButtonItems() {
         // 左端のキャンセルボタン（アイコン）
         let cancelImage = UIImage(named: "cancel")
-        let cancelButton = UIBarButtonItem(image: cancelImage,
+        let closeButton = UIBarButtonItem(image: cancelImage,
                                            style: .plain,
                                            target: self,
-                                           action: #selector(cancelButtonPressed(_:)))
-        navigationItem.leftBarButtonItem = cancelButton
+                                           action: #selector(closeButtonTapped(_:)))
+        navigationItem.leftBarButtonItem = closeButton
     }
     
-    @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func closeButtonTapped(_ sender: UIBarButtonItem) {
+        self.delegate?.settingViewControllerDidUpdateData()
         dismiss(animated: true, completion: nil)
     }
         
@@ -233,48 +268,48 @@ final class SettingViewController: UIViewController {
     }
     
     /// データをチェックする
-    private func validateSaveData() {
+    private func validateSaveData(completion: ((Bool) -> Void)? = nil) {
         guard let user = Auth.auth().currentUser else {
-            return showAlert(title: "ログインしてください")
+            showAlert(title: "ログインしてください")
+            completion?(false)
+            return
         }
-        
-        guard let userName = userNameLabel.text,
-              !userName.isEmpty,
-              let challengeTask = challengeTaskTextView.text,
-              !challengeTask.isEmpty,
+
+        // 必須項目チェック（画像と名前は除外）
+        guard let challengeTask = challengeTaskTextView.text, !challengeTask.isEmpty,
               let challengePoint = selectedChallengePoint,
               let bonusPoint = selectedBonusPoint,
               let goalPoint = selectedGoalPoint,
               let challengeDay = selectedChallengeDay else {
-            return showAlert(title: "設定が済んでいません", message: "全ての項目を入力してください。")
+            showAlert(title: "設定が済んでいません", message: "全ての項目を入力してください。")
+            completion?(false)
+            return
         }
-        
-        let saveData: [String: Any] = [
-            "user_id": user.uid,
+
+        let dataToSave: [String: Any] = [
             "challenge_task": challengeTask,
             "challenge_point": challengePoint,
             "bonus_point": bonusPoint,
             "goal_point": goalPoint,
             "challenge_day": challengeDay
         ]
-        // 画像を保存
-        if let selectedImage = selectedImage {
-            uploadProfileImage(userName: userName,image: selectedImage, data: saveData)
-        } else {
-            self.saveData(userID: user.uid, saveData: saveData)
+
+        saveData(userID: user.uid, saveData: dataToSave) { success in
+            completion?(success)
         }
     }
-    
+
     /// アラートを表示
     private func showAlert(title: String, message: String = "",
                            completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-            completion?()
-        })
         self.present(alert, animated: true, completion: nil)
+        // 1秒後に自動で閉じる
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            alert.dismiss(animated: true)
+        }
     }
     
     /// ログアウトをする
@@ -327,7 +362,7 @@ final class SettingViewController: UIViewController {
     }
     
     /// プロフィール画像をアップロード
-    private func uploadProfileImage(userName: String, image: UIImage, data: [String: Any]) {
+    private func uploadProfileImage(userName: String, image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             return
         }
@@ -344,47 +379,67 @@ final class SettingViewController: UIViewController {
             }
             print("アップロード成功: \(downloadURL)")
             // Firestoreのユーザードキュメントに画像URLを保存したい場合はここで更新
-            self?.saveProfileImageURL(downloadURL.absoluteString, saveData: data)
+            self?.saveProfileImageURL(downloadURL.absoluteString)
         }
     }
     
-    /// プロフィール画像を保存
-    private func saveProfileImageURL(_ urlString: String, saveData: [String: Any]) {
+    /// プロフィール画像URLを保存
+    private func saveProfileImageURL(_ urlString: String) {
         guard let userID = Auth.auth().currentUser?.uid else { return }
-        let image = ["profile_image_url": urlString]
 
-        firebaseService.update(collection: "users",
-                               documentID: userID, data: image) { [weak self] error in
+        // 修正: current_user 内に profile_image_url を入れる形に変更
+        let data: [String: Any] = ["current_user": ["profile_image_url": urlString]]
+
+        firebaseService.update(collection: "users", documentID: userID, data: data) { [weak self] error in
             guard let self = self else { return }
+
             if let error = error {
-                self.showAlert(title: "プロフィール画像URL保存失敗", message: error.localizedDescription)
+                self.showAlert(title: "画像保存失敗", message: error.localizedDescription)
+                return
             }
 
-            // UserSession に反映
-            UserSession.shared.updateCurrentUser(profileImageURL: urlString,
-                                                 profileImage: self.selectedImage)
+            // 修正: UserSession にも反映
+            UserSession.shared.updateCurrentUser(profileImageURL: urlString, profileImage: self.selectedImage)
 
-            // 成功したら、他の項目の保存処理に入る
-            self.saveData(userID: userID, saveData: saveData)
+            // 修正: delegate を通して Main 画面に更新通知
+            self.delegate?.settingViewControllerDidUpdateData()
+
+            // 修正: UI 更新
+            self.userImageView.image = self.selectedImage
+            self.showAlert(title: "画像を保存しました！")
         }
     }
 
     /// データを保存
-    private func saveData(userID: String, saveData: [String: Any]) {
-        self.firebaseService.update(collection: "users",
-                                    documentID: userID,
-                                    data: ["current_user": saveData]) { [weak self] error in
+    private func saveData(userID: String, saveData: [String: Any], completion: ((Bool) -> Void)? = nil) {
+        firebaseService.update(collection: "users",
+                               documentID: userID,
+                               data: ["current_user": saveData]) { [weak self] error in
             guard let self = self else { return }
             if let error = error {
                 self.showAlert(title: "データの保存エラー", message: error.localizedDescription)
+                completion?(false)
             } else {
-                print("保存データ：\(saveData)")
-                print("userID：\(userID)")
-                self.showAlert(title: "登録しました！") {
-                    self.dismiss(animated: true)
-                }
+                self.showAlert(title: "設定を保存しました！")
+                completion?(true)
             }
         }
+    }
+
+    /// 画像を取得
+    private func fetchImage(from urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+
+        URLSession.shared.dataTask(with: url) { data, _, _ in
+            if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.userImageView.image = image
+                    self.selectedImage = image
+                    // UserSessionにも反映
+                    UserSession.shared.updateCurrentUser(profileImageURL: urlString, profileImage: image)
+                }
+            }
+        }.resume()
     }
 }
 
