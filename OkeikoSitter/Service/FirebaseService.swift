@@ -145,6 +145,9 @@ final class FirebaseService {
         let ref = storage.reference().child(path)
         ref.delete(completion: completion)
     }
+}
+
+extension FirebaseService {
 
     /// users配列内の特定ユーザーとcurrent_userを同時に更新
     func updateUserAndCurrentUser(
@@ -156,44 +159,64 @@ final class FirebaseService {
     ) {
         let docRef = db.collection(collection).document(documentID)
 
-        // まず現在のドキュメントを取得
         docRef.getDocument { snapshot, error in
             if let error = error {
+                print("❌ ドキュメント取得エラー: \(error)")
                 completion(error)
                 return
             }
 
             guard let snapshot = snapshot,
                   snapshot.exists,
-                  var data = snapshot.data(),
-                  var users = data["users"] as? [[String: Any]] else {
+                  let data = snapshot.data(),
+                  var users = data["users"] as? [[String: Any]],
+                  var currentUser = data["current_user"] as? [String: Any] else {
+                print("❌ データが存在しません")
                 completion(NSError(domain: "FirebaseService",
                                    code: -1,
-                                   userInfo: [NSLocalizedDescriptionKey: "ユーザーデータが見つかりません"]))
+                                   userInfo: [NSLocalizedDescriptionKey: "データが存在しません"]))
                 return
             }
 
-            // users配列内の該当ユーザーを検索して更新
-            if let index = users.firstIndex(where: {
+            print("📝 保存前 current_user: \(currentUser)")
+            print("📝 検索するユーザー名: \(userName)")
+
+            // user_name で users配列から該当ユーザーを検索
+            guard let userIndex = users.firstIndex(where: {
                 ($0["user_name"] as? String) == userName
-            }) {
-                // 既存のユーザーデータに新しいデータをマージ
-                users[index].merge(userData) { (_, new) in new }
-            } else {
-                // ユーザーが見つからない場合はエラー
+            }) else {
+                print("❌ ユーザー '\(userName)' が見つかりません")
+                print("📝 存在するユーザー: \(users.compactMap { $0["user_name"] as? String })")
                 completion(NSError(domain: "FirebaseService",
                                    code: -1,
-                                   userInfo: [NSLocalizedDescriptionKey: "ユーザーが見つかりません"]))
+                                   userInfo: [NSLocalizedDescriptionKey: "ユーザー '\(userName)' が見つかりません"]))
                 return
             }
 
-            // current_user と users を両方更新
+            print("✅ ユーザーが見つかりました (index: \(userIndex))")
+            print("📝 更新前 users[\(userIndex)]: \(users[userIndex])")
+
+            //  既存データにマージ（上書きではなく部分更新）
+            currentUser.merge(userData) { (_, new) in new }
+            users[userIndex].merge(userData) { (_, new) in new }
+
+            print("📝 更新後 current_user: \(currentUser)")
+            print("📝 更新後 users[\(userIndex)]: \(users[userIndex])")
+
+            // 完全なデータで更新（merge: trueで既存データを保持）
             let updateData: [String: Any] = [
-                "current_user": userData,
+                "current_user": currentUser,
                 "users": users
             ]
 
-            docRef.setData(updateData, merge: true, completion: completion)
+            docRef.setData(updateData, merge: true) { error in
+                if let error = error {
+                    print("❌ Firestore更新エラー: \(error)")
+                } else {
+                    print("✅ Firestore更新成功")
+                }
+                completion(error)
+            }
         }
     }
 }

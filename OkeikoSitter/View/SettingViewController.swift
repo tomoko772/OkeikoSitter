@@ -394,7 +394,7 @@ final class SettingViewController: UIViewController {
         let userName = currentUser.userName
         let imageData = ["profile_image_url": urlString]
 
-        // 🔹 専用メソッドで両方を更新
+        // 両方を更新
         firebaseService.updateUserAndCurrentUser(
             collection: "users",
             documentID: userID,
@@ -408,16 +408,12 @@ final class SettingViewController: UIViewController {
                 return
             }
 
-            // UserSession を更新
-            UserSession.shared.updateCurrentUser(
-                profileImage: self.selectedImage,
-                profileImageURL: urlString
-            )
+            var updatedUser = currentUser
+            updatedUser.profileImageURL = urlString
+            updatedUser.profileImage = self.selectedImage
+            UserSession.shared.selectCurrentUser(user: updatedUser)
 
-            // delegate 通知
             self.delegate?.settingViewControllerDidUpdateData()
-
-            // UI 更新
             self.userImageView.image = self.selectedImage
             self.showAlert(title: "画像を保存しました！")
         }
@@ -433,7 +429,7 @@ final class SettingViewController: UIViewController {
 
         let userName = currentUser.userName
 
-        // 🔹 専用メソッドで両方を更新
+        // 両方を更新
         firebaseService.updateUserAndCurrentUser(
             collection: "users",
             documentID: userID,
@@ -456,13 +452,26 @@ final class SettingViewController: UIViewController {
 
     /// UserSession を更新
     private func updateUserSession(with data: [String: Any]) {
-        UserSession.shared.updateCurrentUser(
-            challengeTask: data["challenge_task"] as? String,
-            challengePoint: data["challenge_point"] as? Int,
-            bonusPoint: data["bonus_point"] as? Int,
-            goalPoint: data["goal_point"] as? Int,
-            challengeDay: data["challenge_day"] as? Int
-        )
+        guard var user = UserSession.shared.currentUser else { return }
+
+        if let challengeTask = data["challenge_task"] as? String {
+            user.challengeTask = challengeTask
+        }
+        if let challengePoint = data["challenge_point"] as? Int {
+            user.challengePoint = challengePoint
+        }
+        if let bonusPoint = data["bonus_point"] as? Int {
+            user.bonusPoint = bonusPoint
+        }
+        if let goalPoint = data["goal_point"] as? Int {
+            user.goalPoint = goalPoint
+        }
+        if let challengeDay = data["challenge_day"] as? Int {
+            user.challengeDay = challengeDay
+        }
+
+        // 更新したユーザーをセット
+        UserSession.shared.selectCurrentUser(user: user)
     }
 
     /// 画像を取得
