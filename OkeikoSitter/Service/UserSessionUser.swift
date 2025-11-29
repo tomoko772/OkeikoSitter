@@ -14,17 +14,17 @@ struct UserSessionUser {
     /// ユーザー名
     var userName: String
     /// チャレンジ内容
-    let challengeTask: String
+    var challengeTask: String
     /// チャレンジポイント
-    let challengePoint: Int
+    var challengePoint: Int
     /// ボーナスポイント
     var bonusPoint: Int
     /// 目標ポイント
-    let goalPoint: Int
+    var goalPoint: Int
     /// チャレンジ日数
-    let challengeDay: Int
+    var challengeDay: Int
     /// ご褒美の隠し場所
-    let hiddenPlace: String
+    var hiddenPlace: String
     /// プロフィール画像
     var profileImage: UIImage?
     var profileImageURL: String?

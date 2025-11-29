@@ -118,20 +118,29 @@ final class MainViewController: UIViewController {
 
     /// 現在のポイントを保存
     private func saveCurrentPoint(currentPoint: Int) {
-        guard let userID = Auth.auth().currentUser?.uid else {
-            print("未ログインです")
+        guard let userID = Auth.auth().currentUser?.uid,
+              let currentUser = UserSession.shared.currentUser else {
+            print("未ログインまたはユーザー情報がありません")
             return
         }
+
+        let userName = currentUser.userName
         let saveData: [String: Any] = ["current_point": currentPoint]
-        self.firebaseService.update(collection: "users",
-                                    documentID: userID,
-                                    data: ["current_user": saveData]) { [weak self] error in
+
+        // current_user と users配列の両方を更新
+        firebaseService.updateUserAndCurrentUser(
+            collection: "users",
+            documentID: userID,
+            userName: userName,
+            userData: saveData
+        ) { [weak self] error in
             guard let self = self else { return }
+
             if let error = error {
                 self.showAlert(title: "データの保存エラー", message: error.localizedDescription)
             } else {
-                print("保存データ：\(saveData)")
-                self.dismiss(animated: true)
+                UserSession.shared.updateCurrentPoint(currentPoint)
+                print("ポイント保存成功: \(currentPoint)")
             }
         }
     }
@@ -142,7 +151,7 @@ final class MainViewController: UIViewController {
             print("未ログインです")
             return
         }
-
+        UserSession.shared.setUserID(accountID: userID)
         firebaseService.fetchDocument(collection: "users", documentID: userID) { (accountData: Account?, error) in
             if let error = error {
                 print("取得エラー: \(error)")
@@ -153,6 +162,26 @@ final class MainViewController: UIViewController {
                 guard let self = self else { return }
 
                 if let currentUserData = accountData?.currentUser {
+                    print("📊 取得したポイント: \(currentUserData.currentPoint ?? -1)")
+                    if let allUsers = accountData?.users {
+                        let sessionUsers = allUsers.map { user in
+                            UserSessionUser(
+                                userName: user.userName ?? "",
+                                challengeTask: user.challengeTask ?? "",
+                                challengePoint: user.challengePoint ?? 0,
+                                bonusPoint: user.bonusPoint ?? 0,
+                                goalPoint: user.goalPoint ?? 0,
+                                challengeDay: user.challengeDay ?? 0,
+                                hiddenPlace: user.hiddenPlace ?? "",
+                                profileImage: nil,
+                                profileImageURL: user.profileImageURL,
+                                currentPoint: user.currentPoint ?? 0,
+                                pin: user.pin
+                            )
+                        }
+                        UserSession.shared.setUsers(sessionUsers)
+                        print("📝 UserSessionにユーザーをセット: \(sessionUsers.count)人")
+                    }
                     // UserSessionUser に変換
                     let user = UserSessionUser(
                         userName: currentUserData.userName ?? "",
@@ -181,6 +210,7 @@ final class MainViewController: UIViewController {
 
                 } else {
                     print("current_user が存在しません")
+                    navigateToUsers()
                 }
             }
         }

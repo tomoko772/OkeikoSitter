@@ -56,11 +56,39 @@ final class UserSession {
     }
 
     /// カレントユーザー情報を更新
-    func updateCurrentUser(profileImageURL: String?, profileImage: UIImage?) {
+    func updateCurrentUser(
+        userName: String? = nil,
+        challengeTask: String? = nil,
+        challengePoint: Int? = nil,
+        bonusPoint: Int? = nil,
+        goalPoint: Int? = nil,
+        challengeDay: Int? = nil,
+        hiddenPlace: String? = nil,
+        profileImage: UIImage? = nil,
+        profileImageURL: String? = nil,
+        currentPoint: Int? = nil,
+        pin: Int? = nil
+    ) {
         guard var user = currentUser else { return }
-        user.profileImageURL = profileImageURL
-        user.profileImage = profileImage
-        currentUser = user
+
+        if let userName = userName { user.userName = userName }
+        if let challengeTask = challengeTask { user.challengeTask = challengeTask }
+        if let challengePoint = challengePoint { user.challengePoint = challengePoint }
+        if let bonusPoint = bonusPoint { user.bonusPoint = bonusPoint }
+        if let goalPoint = goalPoint { user.goalPoint = goalPoint }
+        if let challengeDay = challengeDay { user.challengeDay = challengeDay }
+        if let hiddenPlace = hiddenPlace { user.hiddenPlace = hiddenPlace }
+        if let profileImage = profileImage { user.profileImage = profileImage }
+        if let profileImageURL = profileImageURL { user.profileImageURL = profileImageURL }
+        if let currentPoint = currentPoint { user.currentPoint = currentPoint }
+        if let pin = pin { user.pin = pin }
+
+        self.currentUser = user
+
+        // users配列内の該当ユーザーも更新
+        if let index = users.firstIndex(where: { $0.userName == user.userName }) {
+            users[index] = user
+        }
     }
 
     /// ユーザー画像を更新
