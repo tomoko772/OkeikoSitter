@@ -104,6 +104,8 @@ final class UserListViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
             }
+        } else {
+            print("accountIDがnil")
         }
     }
     

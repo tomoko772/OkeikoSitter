@@ -142,7 +142,7 @@ final class MainViewController: UIViewController {
             print("未ログインです")
             return
         }
-
+        UserSession.shared.setUserID(accountID: userID)
         firebaseService.fetchDocument(collection: "users", documentID: userID) { (accountData: Account?, error) in
             if let error = error {
                 print("取得エラー: \(error)")
@@ -181,6 +181,7 @@ final class MainViewController: UIViewController {
 
                 } else {
                     print("current_user が存在しません")
+                    navigateToUsers()
                 }
             }
         }
