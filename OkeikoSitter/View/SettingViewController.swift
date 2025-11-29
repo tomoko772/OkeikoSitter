@@ -385,12 +385,22 @@ final class SettingViewController: UIViewController {
     
     /// プロフィール画像URLを保存
     private func saveProfileImageURL(_ urlString: String) {
-        guard let userID = Auth.auth().currentUser?.uid else { return }
+        guard let userID = Auth.auth().currentUser?.uid,
+              let currentUser = UserSession.shared.currentUser else {
+            showAlert(title: "ユーザー情報が取得できません")
+            return
+        }
 
-        // 修正: current_user 内に profile_image_url を入れる形に変更
-        let data: [String: Any] = ["current_user": ["profile_image_url": urlString]]
+        let userName = currentUser.userName
+        let imageData = ["profile_image_url": urlString]
 
-        firebaseService.update(collection: "users", documentID: userID, data: data) { [weak self] error in
+        // 🔹 専用メソッドで両方を更新
+        firebaseService.updateUserAndCurrentUser(
+            collection: "users",
+            documentID: userID,
+            userName: userName,
+            userData: imageData
+        ) { [weak self] error in
             guard let self = self else { return }
 
             if let error = error {
@@ -398,13 +408,16 @@ final class SettingViewController: UIViewController {
                 return
             }
 
-            // 修正: UserSession にも反映
-            UserSession.shared.updateCurrentUser(profileImageURL: urlString, profileImage: self.selectedImage)
+            // UserSession を更新
+            UserSession.shared.updateCurrentUser(
+                profileImage: self.selectedImage,
+                profileImageURL: urlString
+            )
 
-            // 修正: delegate を通して Main 画面に更新通知
+            // delegate 通知
             self.delegate?.settingViewControllerDidUpdateData()
 
-            // 修正: UI 更新
+            // UI 更新
             self.userImageView.image = self.selectedImage
             self.showAlert(title: "画像を保存しました！")
         }
@@ -412,18 +425,44 @@ final class SettingViewController: UIViewController {
 
     /// データを保存
     private func saveData(userID: String, saveData: [String: Any], completion: ((Bool) -> Void)? = nil) {
-        firebaseService.update(collection: "users",
-                               documentID: userID,
-                               data: ["current_user": saveData]) { [weak self] error in
+        guard let currentUser = UserSession.shared.currentUser else {
+            showAlert(title: "ユーザー情報が取得できません")
+            completion?(false)
+            return
+        }
+
+        let userName = currentUser.userName
+
+        // 🔹 専用メソッドで両方を更新
+        firebaseService.updateUserAndCurrentUser(
+            collection: "users",
+            documentID: userID,
+            userName: userName,
+            userData: saveData
+        ) { [weak self] error in
             guard let self = self else { return }
+
             if let error = error {
                 self.showAlert(title: "データの保存エラー", message: error.localizedDescription)
                 completion?(false)
             } else {
+                // UserSession も更新
+                self.updateUserSession(with: saveData)
                 self.showAlert(title: "設定を保存しました！")
                 completion?(true)
             }
         }
+    }
+
+    /// UserSession を更新
+    private func updateUserSession(with data: [String: Any]) {
+        UserSession.shared.updateCurrentUser(
+            challengeTask: data["challenge_task"] as? String,
+            challengePoint: data["challenge_point"] as? Int,
+            bonusPoint: data["bonus_point"] as? Int,
+            goalPoint: data["goal_point"] as? Int,
+            challengeDay: data["challenge_day"] as? Int
+        )
     }
 
     /// 画像を取得
@@ -436,7 +475,8 @@ final class SettingViewController: UIViewController {
                     self.userImageView.image = image
                     self.selectedImage = image
                     // UserSessionにも反映
-                    UserSession.shared.updateCurrentUser(profileImageURL: urlString, profileImage: image)
+                    UserSession.shared
+                        .updateCurrentUser(profileImage: image, profileImageURL: urlString)
                 }
             }
         }.resume()

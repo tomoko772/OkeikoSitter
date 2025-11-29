@@ -145,4 +145,55 @@ final class FirebaseService {
         let ref = storage.reference().child(path)
         ref.delete(completion: completion)
     }
+
+    /// users配列内の特定ユーザーとcurrent_userを同時に更新
+    func updateUserAndCurrentUser(
+        collection: String,
+        documentID: String,
+        userName: String,
+        userData: [String: Any],
+        completion: @escaping (Error?) -> Void
+    ) {
+        let docRef = db.collection(collection).document(documentID)
+
+        // まず現在のドキュメントを取得
+        docRef.getDocument { snapshot, error in
+            if let error = error {
+                completion(error)
+                return
+            }
+
+            guard let snapshot = snapshot,
+                  snapshot.exists,
+                  var data = snapshot.data(),
+                  var users = data["users"] as? [[String: Any]] else {
+                completion(NSError(domain: "FirebaseService",
+                                   code: -1,
+                                   userInfo: [NSLocalizedDescriptionKey: "ユーザーデータが見つかりません"]))
+                return
+            }
+
+            // users配列内の該当ユーザーを検索して更新
+            if let index = users.firstIndex(where: {
+                ($0["user_name"] as? String) == userName
+            }) {
+                // 既存のユーザーデータに新しいデータをマージ
+                users[index].merge(userData) { (_, new) in new }
+            } else {
+                // ユーザーが見つからない場合はエラー
+                completion(NSError(domain: "FirebaseService",
+                                   code: -1,
+                                   userInfo: [NSLocalizedDescriptionKey: "ユーザーが見つかりません"]))
+                return
+            }
+
+            // current_user と users を両方更新
+            let updateData: [String: Any] = [
+                "current_user": userData,
+                "users": users
+            ]
+
+            docRef.setData(updateData, merge: true, completion: completion)
+        }
+    }
 }
