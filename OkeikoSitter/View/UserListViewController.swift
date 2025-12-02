@@ -78,35 +78,43 @@ final class UserListViewController: UIViewController {
     
     /// 現在のユーザーを登録
     private func saveCurrentUser(selectedUser: UserSessionUser) {
-        if let accountID = UserSession.shared.accountID {
-            // Firestoreに current_user として保存
-            let currentUserData: [String: Any] = [
-                "user_name": selectedUser.userName,
-                "challenge_task": selectedUser.challengeTask,
-                "challenge_point": selectedUser.challengePoint,
-                "bonus_point": selectedUser.bonusPoint,
-                "goal_point": selectedUser.goalPoint,
-                "challenge_day": selectedUser.challengeDay,
-                "hidden_place": selectedUser.hiddenPlace,
-                "profile_image_url": selectedUser.profileImageURL ?? "",
-                "current_point": selectedUser.currentPoint
-            ]
-            FirebaseService.shared.update(
-                collection: "users",
-                documentID: accountID,
-                data: ["current_user": currentUserData]
-            ) { error in
-                if let error = error {
-                    print("currentUser 保存失敗: \(error.localizedDescription)")
-                } else {
-                    print("currentUser 保存成功: \(currentUserData)")
-                    self.delegate?.didSelectCurrentUser()
-                    self.dismiss(animated: true, completion: nil)
-                }
+        guard let accountID = UserSession.shared.accountID else {
+            print("❌ accountIDがnil")
+            return
+        }
+
+        let userName = selectedUser.userName
+        let currentUserData: [String: Any] = [
+            "user_name": selectedUser.userName,
+            "challenge_task": selectedUser.challengeTask,
+            "challenge_point": selectedUser.challengePoint,
+            "bonus_point": selectedUser.bonusPoint,
+            "goal_point": selectedUser.goalPoint,
+            "challenge_day": selectedUser.challengeDay,
+            "hidden_place": selectedUser.hiddenPlace,
+            "profile_image_url": selectedUser.profileImageURL ?? "",
+            "current_point": selectedUser.currentPoint
+        ]
+
+        print("📝 ユーザー切り替え: \(userName), ポイント: \(selectedUser.currentPoint)")
+
+        // 🔴 修正: updateUserAndCurrentUser を使用して両方更新
+        firebaseService.updateUserAndCurrentUser(
+            collection: "users",
+            documentID: accountID,
+            userName: userName,
+            userData: currentUserData
+        ) { [weak self] error in
+            if let error = error {
+                print("❌ currentUser 保存失敗: \(error.localizedDescription)")
+            } else {
+                print("✅ currentUser 保存成功")
+                self?.delegate?.didSelectCurrentUser()
+                self?.dismiss(animated: true, completion: nil)
             }
         }
     }
-    
+
     /// データを取得する
     private func fetchData() {
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
@@ -134,7 +142,7 @@ final class UserListViewController: UIViewController {
                         hiddenPlace: user.hiddenPlace ?? "",
                         profileImage: nil,
                         profileImageURL: user.profileImageURL,
-                        currentPoint: user.challengePoint ?? 0,
+                        currentPoint: user.currentPoint ?? 0,
                         pin: user.pin ?? 0
                     )
                 }
