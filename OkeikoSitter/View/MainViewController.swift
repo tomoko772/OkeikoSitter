@@ -11,14 +11,14 @@ import FirebaseAuth
 
 /// メイン画面
 final class MainViewController: UIViewController {
-
+    
     // MARK: - Properties
-
+    
     /// FirebaseServiceのインスタンス
     private let firebaseService = FirebaseService.shared
-
+    
     // MARK: - IBOutlets
-
+    
     /// ユーザー画像
     @IBOutlet private weak var userImageView: UIImageView!
     /// ユーザーネームラベル
@@ -35,47 +35,54 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var goalPointLabel: UILabel!
     /// 残りの日数ラベル
     @IBOutlet private weak var remainingDaysLabel: UILabel!
-    /// GIF画像を表示するためにIBOutlet接続
+    /// バイオリンのGIF画像
     @IBOutlet private weak var gifImage: UIImageView!
-    /// GIF画像を表示するためにIBOutlet接続
+    /// プレゼントのGIF画像
     @IBOutlet private weak var gifImage2: UIImageView!
-
+    /// チャレンジ内容などのビュー
+    @IBOutlet private weak var challengeContentView: UIView!
+    /// 目標達成ビュー
+    @IBOutlet private weak var goalAchievementView: UIView!
+    ///　プレゼントのGIF画像（目標達成ビュー）
+    @IBOutlet private weak var gifImage3: UIImageView!
+    
     // MARK: - View Life-Cycle Methods
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        gifImage.loadGif(name: "violin")
-        gifImage.clipsToBounds = true
-        gifImage.contentMode = .center
-        gifImage2.loadGif(name: "present")
         configureBarButtonItems()
         fetchData()
+        configureGIFImage()
     }
-
+    
     // MARK: - IBActions
-
+    
     /// ポイント獲得ボタンをタップ
     @IBAction private func addButtonTapped(_ sender: UIButton) {
-        guard let currentPoint = UserSession.shared.currentUser?.currentPoint,
-              let challengePoint = UserSession.shared.currentUser?.challengePoint else { return }
+        guard let currentUser = UserSession.shared.currentUser else { return }
+        let currentPoint = currentUser.currentPoint
+        let challengePoint = currentUser.challengePoint
         UserSession.shared.updateCurrentPoint(currentPoint + challengePoint)
         currentPointLabel.text = "現在　\(currentPoint + challengePoint)　ポイント"
         saveCurrentPoint(currentPoint: currentPoint + challengePoint)
     }
-
+    
     /// ボーナスボタンをタップ
     @IBAction private func addBonusButtonTapped(_ sender: UIButton) {
-        guard let currentPoint = UserSession.shared.currentUser?.currentPoint,
-              let bonusPoint = UserSession.shared.currentUser?.bonusPoint else { return }
+        guard let currentUser = UserSession.shared.currentUser else { return }
+        let currentPoint = currentUser.currentPoint
+        let bonusPoint = currentUser.bonusPoint
+        let goalPoint = currentUser.goalPoint
         UserSession.shared.updateCurrentPoint(currentPoint + bonusPoint)
         currentPointLabel.text = "現在　\(currentPoint + bonusPoint)　ポイント"
+        shouldShowGoalAchievementView(goalPoint: goalPoint, currentPoint: currentPoint + bonusPoint)
         saveCurrentPoint(currentPoint: currentPoint + bonusPoint)
     }
-
+    
     /// 残り日数が表示されたボタンをタップ
     @IBAction private func calendarButtonTapped(_ sender: UIButton) {
     }
-
+    
     /// ご褒美ボタンをタップ
     @IBAction private func presentButtonTapped(_ sender: UIButton) {
         let presentVC = PresentViewController()
@@ -83,39 +90,39 @@ final class MainViewController: UIViewController {
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
     }
-
+    
     // MARK: - Other Methods
-
+    
     private func configureBarButtonItems() {
-
+        
         // １つ目の画像ボタン
         let firstBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "ic_users"),
             style: .plain,
             target: self,
             action: #selector(didTapUsersButton))
-
+        
         // ２つ目の画像のボタン
         let secondBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "ic_setting"),
             style: .plain,
             target: self,
             action: #selector(didTapSettingButton))
-
+        
         // ボタンを右側に２つ並べる
         self.navigationItem.rightBarButtonItems = [firstBarButtonItem, secondBarButtonItem]
     }
-
+    
     /// 設定ボタンがタップされたときの処理
     @objc private func didTapSettingButton(_ sender: UIButton) {
         navigateToSetting()
     }
-
+    
     /// ユーザー切り替えボタンがタップされたときの処理
     @objc private func didTapUsersButton(_ sender: UIButton) {
         navigateToUsers()
     }
-
+    
     /// 現在のポイントを保存
     private func saveCurrentPoint(currentPoint: Int) {
         guard let userID = Auth.auth().currentUser?.uid,
@@ -123,10 +130,10 @@ final class MainViewController: UIViewController {
             print("未ログインまたはユーザー情報がありません")
             return
         }
-
+        
         let userName = currentUser.userName
         let saveData: [String: Any] = ["current_point": currentPoint]
-
+        
         // current_user と users配列の両方を更新
         firebaseService.updateUserAndCurrentUser(
             collection: "users",
@@ -135,7 +142,7 @@ final class MainViewController: UIViewController {
             userData: saveData
         ) { [weak self] error in
             guard let self = self else { return }
-
+            
             if let error = error {
                 self.showAlert(title: "データの保存エラー", message: error.localizedDescription)
             } else {
@@ -144,7 +151,7 @@ final class MainViewController: UIViewController {
             }
         }
     }
-
+    
     /// データを取得する
     private func fetchData() {
         guard let userID = Auth.auth().currentUser?.uid else {
@@ -157,10 +164,10 @@ final class MainViewController: UIViewController {
                 print("取得エラー: \(error)")
                 return
             }
-
+            
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-
+                
                 if let currentUserData = accountData?.currentUser {
                     print("📊 取得したポイント: \(currentUserData.currentPoint ?? -1)")
                     if let allUsers = accountData?.users {
@@ -196,18 +203,18 @@ final class MainViewController: UIViewController {
                         currentPoint: currentUserData.currentPoint ?? 0,
                         pin: currentUserData.pin
                     )
-
+                    
                     // UserSession に反映
                     UserSession.shared.selectCurrentUser(user: user)
-
+                    
                     // UI 更新
                     self.updateUI(with: user)
-
+                    
                     // 画像取得
                     if let profileImageURL = currentUserData.profileImageURL {
                         self.fetchImage(from: profileImageURL)
                     }
-
+                    
                 } else {
                     print("current_user が存在しません")
                     navigateToUsers()
@@ -219,7 +226,7 @@ final class MainViewController: UIViewController {
     /// 画像を取得
     private func fetchImage(from urlString: String) {
         guard let url = URL(string: urlString) else { return }
-
+        
         URLSession.shared.dataTask(with: url) { data, _, _ in
             if let data = data, let image = UIImage(data: data) {
                 DispatchQueue.main.async {
@@ -229,17 +236,29 @@ final class MainViewController: UIViewController {
             }
         }.resume()
     }
-
+    
     private func updateUI(with user: UserSessionUser) {
         userNameLabel.text = user.userName
         taskLabel.text = user.challengeTask.isEmpty ? "設定してください" : user.challengeTask
         dailyPointLabel.text = "+\(user.challengePoint) ポイント"
-        currentPointLabel.text = "現在　\(user.currentPoint) ポイント"
         bonusPointLabel.text = "ボーナス+\(user.bonusPoint) ポイント"
+        currentPointLabel.text = "現在　\(user.currentPoint) ポイント"
         goalPointLabel.text = "目標　\(user.goalPoint)　ポイント"
         remainingDaysLabel.text = "\(user.challengeDay) 日"
+        shouldShowGoalAchievementView(goalPoint: user.goalPoint, currentPoint: user.currentPoint)
     }
-
+    
+    private func shouldShowGoalAchievementView(goalPoint: Int, currentPoint: Int) {
+        if goalPoint > 0,
+           goalPoint <= currentPoint {
+            goalAchievementView.isHidden = false
+            challengeContentView.isHidden = true
+        } else {
+            goalAchievementView.isHidden = true
+            challengeContentView.isHidden = false
+        }
+    }
+    
     /// 設定画面へ遷移
     private func navigateToSetting() {
         let settingVC = SettingViewController()
@@ -248,7 +267,7 @@ final class MainViewController: UIViewController {
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
     }
-
+    
     /// ユーザー一覧画面へ遷移
     private func navigateToUsers() {
         let userVC = UserListViewController()
@@ -257,7 +276,7 @@ final class MainViewController: UIViewController {
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
     }
-
+    
     /// アラートを表示
     private func showAlert(title: String, message: String = "",
                            completion: (() -> Void)? = nil) {
@@ -268,6 +287,14 @@ final class MainViewController: UIViewController {
             completion?()
         })
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func configureGIFImage() {
+        gifImage.clipsToBounds = true
+        gifImage.contentMode = .center
+        gifImage.loadGif(name: "violin")
+        gifImage2.loadGif(name: "present")
+        gifImage3.loadGif(name: "present")
     }
 }
 
