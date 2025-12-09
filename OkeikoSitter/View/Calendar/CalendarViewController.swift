@@ -16,7 +16,8 @@ final class CalendarViewController: UIViewController {
     private var calendarView: CalendarView!
     private var startDate: Date!
     private var endDate: Date!
-    private var selectedDates: Set<Date> = []
+    var selectedDates: Set<Date> = []
+    var onSaveSelectedDates: ((Set<Date>) -> Void)?
 
     // MARK: - IBOutlets
 
@@ -27,9 +28,25 @@ final class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        loadSelectedDates()
+        loadSelectedDatesForCurrentUser()
         setupCalendar()
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        // 現在のユーザーに選択日を反映
+        if let currentUser = UserSession.shared.currentUser {
+            let timestamps = selectedDates.map { $0.timeIntervalSince1970 }
+            UserSession.shared.updateSelectedDates(for: currentUser.userName, timestamps: timestamps)
+
+            // 必要なら UserDefaults にも保存
+            UserDefaults.standard.set(timestamps, forKey: "selectedDates_\(currentUser.userName)")
+        }
+
+        onSaveSelectedDates?(selectedDates)
+    }
+
 
     // MARK: - IBActions
 
@@ -38,6 +55,17 @@ final class CalendarViewController: UIViewController {
     }
 
     // MARK: - Other Methods
+
+    private func loadSelectedDatesForCurrentUser() {
+        guard let currentUser = UserSession.shared.currentUser else { return }
+        let key = "selectedDates_\(currentUser.userName)"
+
+        if let timestamps = UserDefaults.standard.array(forKey: key) as? [TimeInterval] {
+            self.selectedDates = Set(timestamps.map { Date(timeIntervalSince1970: $0) })
+        } else {
+            self.selectedDates = []
+        }
+    }
 
     private func setupCalendar() {
         let calendar = Calendar.current
@@ -66,7 +94,7 @@ final class CalendarViewController: UIViewController {
         self.calendarView = calendarView
 
         // 日付タップで selectedDate を更新
-        calendarView.daySelectionHandler = { [weak self] (day: Day) in
+        calendarView.daySelectionHandler = { [weak self] day in
             guard let self = self else { return }
             let calendar = Calendar.current
             let date = calendar.date(from: day.components)!
@@ -77,7 +105,11 @@ final class CalendarViewController: UIViewController {
                 self.selectedDates.insert(date)
             }
 
-            self.saveSelectedDates()
+            // UserSession に反映
+            if let currentUser = UserSession.shared.currentUser {
+                let timestamps = self.selectedDates.map { $0.timeIntervalSince1970 }
+                UserSession.shared.updateSelectedDates(for: currentUser.userName, timestamps: timestamps)
+            }
 
             // 再描画
             let newContent = self.makeContent(

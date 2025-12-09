@@ -32,6 +32,8 @@ struct UserSessionUser {
     var currentPoint: Int = 0
     /// 暗証番号
     var pin: Int?
+    /// 達成した日
+    var selectedDates: [TimeInterval]? = []
 
     // MARK: - Initializers
 
@@ -45,7 +47,8 @@ struct UserSessionUser {
          profileImage: UIImage?,
          profileImageURL: String?,
          currentPoint: Int,
-         pin: Int?) {
+         pin: Int?,
+         selectedDates: [TimeInterval]? = []) {
         self.userName = userName
         self.challengeTask = challengeTask
         self.challengePoint = challengePoint
@@ -57,5 +60,6 @@ struct UserSessionUser {
         self.profileImageURL = profileImageURL
         self.currentPoint = currentPoint
         self.pin = pin
+        self.selectedDates = selectedDates
     }
 }
