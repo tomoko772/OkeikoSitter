@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		05077BB51AA57A201A8C1F08 /* Pods_OkeikoSitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCF1541357E48D93D118484 /* Pods_OkeikoSitter.framework */; };
 		421558465FDDDEE70E4E48B6 /* Pods_OkeikoSitter_OkeikoSitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6B792ACEFAA27DD5C0BB5F /* Pods_OkeikoSitter_OkeikoSitterUITests.framework */; };
+		A0A67E9E2EE84E9B001891E9 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = A0A67E9D2EE84E9B001891E9 /* HorizonCalendar */; };
 		A0F5F9752E0EE76100020ED9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A0F5F9742E0EE76100020ED9 /* FirebaseAuth */; };
 		A0F5F9772E0EE76C00020ED9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A0F5F9762E0EE76C00020ED9 /* FirebaseFirestore */; };
 		A0F5F9792E0EE77A00020ED9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A0F5F9782E0EE77A00020ED9 /* FirebaseStorage */; };
@@ -88,6 +89,7 @@
 				A0F5F97B2E0EE78E00020ED9 /* FirebaseCore in Frameworks */,
 				A0F5F9792E0EE77A00020ED9 /* FirebaseStorage in Frameworks */,
 				A0F5F9752E0EE76100020ED9 /* FirebaseAuth in Frameworks */,
+				A0A67E9E2EE84E9B001891E9 /* HorizonCalendar in Frameworks */,
 				A0F5F9772E0EE76C00020ED9 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +262,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				A0F5F9712E0EDD0300020ED9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A0A67E9C2EE84BC0001891E9 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A02C05062DA40FDF00316F42 /* Products */;
@@ -350,13 +353,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OkeikoSitter-OkeikoSitterUITests/Pods-OkeikoSitter-OkeikoSitterUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OkeikoSitter-OkeikoSitterUITests/Pods-OkeikoSitter-OkeikoSitterUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -371,13 +370,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OkeikoSitter/Pods-OkeikoSitter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OkeikoSitter/Pods-OkeikoSitter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -749,6 +744,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A0A67E9C2EE84BC0001891E9 /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/HorizonCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		A0F5F9712E0EDD0300020ED9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -760,6 +763,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A0A67E9D2EE84E9B001891E9 /* HorizonCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0A67E9C2EE84BC0001891E9 /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
+			productName = HorizonCalendar;
+		};
 		A0F5F9742E0EE76100020ED9 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A0F5F9712E0EDD0300020ED9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

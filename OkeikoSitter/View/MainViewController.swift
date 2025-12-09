@@ -81,6 +81,8 @@ final class MainViewController: UIViewController {
     
     /// 残り日数が表示されたボタンをタップ
     @IBAction private func calendarButtonTapped(_ sender: UIButton) {
+        let calendarVC = CalendarViewController()
+        present(calendarVC, animated: true)
     }
     
     /// ご褒美ボタンをタップ
