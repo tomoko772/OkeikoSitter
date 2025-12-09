@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalendarViewController" customModule="OkeikoSitter" customModuleProvider="target">
+            <connections>
+                <outlet property="calendarContainerView" destination="gb9-3E-1ay" id="OPo-fb-hWh"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOr-9O-jTf">
+                    <rect key="frame" x="0.0" y="150" width="393" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGs-yz-WaW">
+                            <rect key="frame" x="0.0" y="0.0" width="74" height="44"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="cancel"/>
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="-1" eventType="touchUpInside" id="Waf-tV-z3D"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="9SE-id-7Gc"/>
+                        <constraint firstItem="CGs-yz-WaW" firstAttribute="top" secondItem="HOr-9O-jTf" secondAttribute="top" id="PwR-Ol-bQp"/>
+                        <constraint firstAttribute="bottom" secondItem="CGs-yz-WaW" secondAttribute="bottom" id="Xkc-9A-6XA"/>
+                        <constraint firstItem="CGs-yz-WaW" firstAttribute="leading" secondItem="HOr-9O-jTf" secondAttribute="leading" id="vtp-nL-sVB"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gb9-3E-1ay">
+                    <rect key="frame" x="20" y="226" width="353" height="558"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gb9-3E-1ay" secondAttribute="bottom" id="582-of-47x"/>
+                <constraint firstItem="HOr-9O-jTf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="897-FT-eRn"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gb9-3E-1ay" secondAttribute="trailing" constant="20" id="Oai-kM-cVo"/>
+                <constraint firstItem="gb9-3E-1ay" firstAttribute="top" secondItem="HOr-9O-jTf" secondAttribute="bottom" constant="32" id="k9q-0M-THg"/>
+                <constraint firstItem="gb9-3E-1ay" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="lT3-It-kSK"/>
+                <constraint firstItem="HOr-9O-jTf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="sFq-o5-85j"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="HOr-9O-jTf" secondAttribute="trailing" id="xdU-rT-Dig"/>
+            </constraints>
+            <point key="canvasLocation" x="62" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="cancel" width="50" height="50"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -5,6 +5,8 @@
 //  Created by Tomoko T. Nakao on 2025/07/02.
 //
 
+import Foundation
+
 /// ユーザーの情報
 struct User: Codable {
     
@@ -21,6 +23,7 @@ struct User: Codable {
         case currentPoint = "current_point"
         case profileImageURL = "profile_image_url"
         case pin = "pin"
+        case selectedDates = "selected_dates"
     }
     
     // MARK: - Properties
@@ -45,4 +48,6 @@ struct User: Codable {
     let profileImageURL: String?
     /// 暗唱番号
     let pin: Int?
+    /// 達成できた日
+    var selectedDates: [TimeInterval]?
 }
