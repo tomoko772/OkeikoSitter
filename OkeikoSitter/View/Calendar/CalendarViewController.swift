@@ -13,8 +13,10 @@ final class CalendarViewController: UIViewController {
 
     // MARK: - Properties
 
-    private var selectedDate: Date?
     private var calendarView: CalendarView!
+    private var startDate: Date!
+    private var endDate: Date!
+    private var selectedDates: Set<Date> = []
 
     // MARK: - IBOutlets
 
@@ -25,7 +27,7 @@ final class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-
+        loadSelectedDates()
         setupCalendar()
     }
 
@@ -39,15 +41,15 @@ final class CalendarViewController: UIViewController {
 
     private func setupCalendar() {
         let calendar = Calendar.current
-        let startDate = calendar.date(byAdding: .year, value: -1, to: Date())!
-        let endDate   = calendar.date(byAdding: .year, value: 1, to: Date())!
+        startDate = calendar.date(byAdding: .year, value: -1, to: Date())!
+        endDate   = calendar.date(byAdding: .year, value: 1, to: Date())!
         let dateRange = startDate...endDate
 
         // 初期コンテンツ作成
         let content = makeContent(
             calendar: calendar,
             visibleDateRange: dateRange,
-            selectedDate: selectedDate
+            selectedDates: selectedDates
         )
 
         let calendarView = CalendarView(initialContent: content)
@@ -64,23 +66,40 @@ final class CalendarViewController: UIViewController {
         self.calendarView = calendarView
 
         // 日付タップで selectedDate を更新
-        calendarView.daySelectionHandler = { [weak self] day in
+        calendarView.daySelectionHandler = { [weak self] (day: Day) in
             guard let self = self else { return }
-            self.selectedDate = calendar.date(from: day.components)
+            let calendar = Calendar.current
+            let date = calendar.date(from: day.components)!
 
+            if self.selectedDates.contains(date) {
+                self.selectedDates.remove(date)
+            } else {
+                self.selectedDates.insert(date)
+            }
+
+            self.saveSelectedDates()
+
+            // 再描画
             let newContent = self.makeContent(
                 calendar: calendar,
-                visibleDateRange: dateRange,
-                selectedDate: self.selectedDate
+                visibleDateRange: self.startDate...self.endDate,
+                selectedDates: self.selectedDates
             )
             self.calendarView.setContent(newContent)
-
-            if let selectedDate = self.selectedDate {
-                let formatter = DateFormatter()
-                formatter.dateStyle = .medium
-                print("選択された日付: \(formatter.string(from: selectedDate))")
-            }
         }
+    }
+
+    /// Day → Date → 保存
+    private func saveSelectedDates() {
+        let timestamps = selectedDates.map { $0.timeIntervalSince1970 }
+        UserDefaults.standard.set(timestamps, forKey: "selectedDates")
+    }
+
+
+    /// UserDefaults → Day に復元
+    private func loadSelectedDates() {
+        guard let timestamps = UserDefaults.standard.array(forKey: "selectedDates") as? [TimeInterval] else { return }
+        selectedDates = Set(timestamps.map { Date(timeIntervalSince1970: $0) })
     }
 
     // MARK: - Helper Methods
@@ -89,9 +108,8 @@ final class CalendarViewController: UIViewController {
     private func makeContent(
         calendar: Calendar,
         visibleDateRange: ClosedRange<Date>,
-        selectedDate: Date?
+        selectedDates: Set<Date>
     ) -> CalendarViewContent {
-
         var jpCalendar = calendar
         jpCalendar.locale = Locale(identifier: "ja_JP")
 
@@ -105,7 +123,7 @@ final class CalendarViewController: UIViewController {
         .horizontalDayMargin(8)
         .withMonthHeader(jpCalendar: jpCalendar)
         .withDayOfWeek()
-        .withDayItems(selectedDate: selectedDate, jpCalendar: jpCalendar)
+        .withDayItems(selectedDates: selectedDates, jpCalendar: jpCalendar)
     }
 }
 
@@ -160,33 +178,29 @@ private extension CalendarViewContent {
     
     /// 日付セル
     func withDayItems(
-        selectedDate: Date?,
+        selectedDates: Set<Date>,
         jpCalendar: Calendar
     ) -> CalendarViewContent {
         self.dayItemProvider { day in
+            let date = jpCalendar.date(from: day.components)!
+            let isSelected = selectedDates.contains(date)
 
-            let isSelected: Bool
-            if let selectedDate = selectedDate {
-                let selectedDay = jpCalendar.dateComponents([.year, .month, .day], from: selectedDate)
-                isSelected = (day.components == selectedDay)
-            } else {
-                isSelected = false
-            }
-
-            let invariant = DayLabel.InvariantViewProperties(
-                font: .systemFont(ofSize: 18),
-                textColor: .label,
-                backgroundColor: .clear
-            )
-
-            let content = DayLabel.Content(
-                day: day,
+            let viewModel = DayLabel.ViewModel(
+                year: day.month.year,
+                month: day.month.month,
+                day: day.day,
                 isSelected: isSelected
             )
 
             return CalendarItemModel<DayLabel>(
-                invariantViewProperties: invariant,
-                viewModel: content
+                invariantViewProperties: DayLabel.InvariantViewProperties(
+                    font: .systemFont(ofSize: 16),
+                    textColor: .label,
+                    selectedFillColor: .clear,
+                    selectedTextColor: .label,
+                    diameter: 40
+                ),
+                viewModel: viewModel
             )
         }
     }
