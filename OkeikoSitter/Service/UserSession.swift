@@ -22,12 +22,26 @@ final class UserSession {
     private(set) var users: [UserSessionUser] = []
     /// 現在のユーザーを保持
     private(set) var currentUser: UserSessionUser?
+    // 選択済みの日付を保持
+    private(set) var selectedDates: [TimeInterval] = []
 
     // MARK: - Initializers
 
     private init() {}
 
     // MARK: - Other Methods
+
+    /// 選択日を currentUser と users 配列に反映
+    func updateSelectedDates(for userName: String, timestamps: [TimeInterval]) {
+        // users 配列内の該当ユーザーを更新
+        if let index = users.firstIndex(where: { $0.userName == userName }) {
+            users[index].selectedDates = timestamps
+        }
+        // currentUser がそのユーザーなら反映
+        if currentUser?.userName == userName {
+            currentUser?.selectedDates = timestamps
+        }
+    }
 
     /// 初回取得時に設定する
     func setUserID(accountID: String) {
@@ -67,7 +81,8 @@ final class UserSession {
         profileImage: UIImage? = nil,
         profileImageURL: String? = nil,
         currentPoint: Int? = nil,
-        pin: Int? = nil
+        pin: Int? = nil,
+        selectedDates: [TimeInterval]? = nil
     ) {
         guard var user = currentUser else { return }
 
@@ -82,7 +97,7 @@ final class UserSession {
         if let profileImageURL = profileImageURL { user.profileImageURL = profileImageURL }
         if let currentPoint = currentPoint { user.currentPoint = currentPoint }
         if let pin = pin { user.pin = pin }
-
+        if let selectedDates = selectedDates { user.selectedDates = selectedDates }
         self.currentUser = user
 
         // users配列内の該当ユーザーも更新

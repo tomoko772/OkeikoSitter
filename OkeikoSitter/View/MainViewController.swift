@@ -81,6 +81,40 @@ final class MainViewController: UIViewController {
     
     /// 残り日数が表示されたボタンをタップ
     @IBAction private func calendarButtonTapped(_ sender: UIButton) {
+        guard let currentUser = UserSession.shared.currentUser else { return }
+
+        // ★ currentUser ごとの selectedDates を取得するよう変更
+        let savedDates: [TimeInterval] = currentUser.selectedDates ?? []
+        let selectedDates = Set(savedDates.map { Date(timeIntervalSince1970: $0) })
+
+        let calendarVC = CalendarViewController()
+        calendarVC.selectedDates = selectedDates
+
+        // 保存時の処理
+        calendarVC.onSaveSelectedDates = { selectedDates in
+            let timestamps = selectedDates.map { $0.timeIntervalSince1970 }
+
+            guard let currentUser = UserSession.shared.currentUser else { return }
+
+            // ★ currentUser ごとの selectedDates を反映
+            UserSession.shared.updateSelectedDates(for: currentUser.userName, timestamps: timestamps)
+
+            // Firebase に保存
+            let saveData: [String: Any] = ["selected_dates": timestamps]
+            FirebaseService.shared.updateUserAndCurrentUser(
+                collection: "users",
+                documentID: Auth.auth().currentUser!.uid,
+                userName: currentUser.userName,
+                userData: saveData
+            ) { error in
+                if let error = error {
+                    print("日付保存失敗: \(error)")
+                } else {
+                    print("日付保存成功")
+                }
+            }
+        }
+        present(calendarVC, animated: true)
     }
     
     /// ご褒美ボタンをタップ
@@ -201,7 +235,8 @@ final class MainViewController: UIViewController {
                         profileImage: nil,
                         profileImageURL: currentUserData.profileImageURL,
                         currentPoint: currentUserData.currentPoint ?? 0,
-                        pin: currentUserData.pin
+                        pin: currentUserData.pin,
+                        selectedDates: currentUserData.selectedDates
                     )
                     
                     // UserSession に反映
@@ -295,6 +330,27 @@ final class MainViewController: UIViewController {
         gifImage.loadGif(name: "violin")
         gifImage2.loadGif(name: "present")
         gifImage3.loadGif(name: "present")
+    }
+
+    private func saveSelectedDatesToFirebase(_ dates: Set<Date>) {
+        guard let currentUser = UserSession.shared.currentUser,
+              let userID = Auth.auth().currentUser?.uid else { return }
+
+        let timestamps = dates.map { $0.timeIntervalSince1970 }
+        let data: [String: Any] = ["selectedDates": timestamps]
+
+        FirebaseService.shared.updateUserAndCurrentUser(
+            collection: "users",
+            documentID: userID,
+            userName: currentUser.userName,
+            userData: data
+        ) { error in
+            if let error = error {
+                print("日付保存失敗: \(error)")
+            } else {
+                print("日付保存成功")
+            }
+        }
     }
 }
 
