@@ -35,6 +35,33 @@ final class LoginViewController: UIViewController {
     
     /// パスワードを忘れた場合ボタンをタップ
     @IBAction private func forgotPasswordButtonTapped(_ sender: Any) {
+        guard let email = emailTextField.text, !email.isEmpty else {
+            showAlert(message: "登録しているEmailアドレスを入力してください")
+            return
+        }
+
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            
+            if let error = error as NSError? {
+                switch error.code {
+                case AuthErrorCode.userNotFound.rawValue:
+                    self.showAlert(message: "このメールアドレスのユーザーが見つかりません")
+                case AuthErrorCode.invalidEmail.rawValue:
+                    self.showAlert(message: "メールアドレスの形式が正しくありません")
+                default:
+                    self.showAlert(message: "パスワードリセットメールの送信に失敗しました")
+                }
+                return
+            }
+            // 送信成功
+            let alert = UIAlertController(
+                title: "メールを送信しました",
+                message: "パスワード再設定用のメールを送りました。メール内のリンクからパスワードを再設定してください。",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
+        }
     }
     
     /// ログインボタンをタップ
