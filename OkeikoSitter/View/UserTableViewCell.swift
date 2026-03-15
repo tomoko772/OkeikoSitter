@@ -18,7 +18,7 @@ final class UserTableViewCell: UITableViewCell {
     
     /// デリゲートのプロパティ
     weak var delegate: UserTableViewCellDelegete?
-
+    
     // MARK: - IBOutlets
     
     /// ユーザーイメージビュー
@@ -37,11 +37,12 @@ final class UserTableViewCell: UITableViewCell {
     
     func configure(profileImage: UIImage?, userName: String) {
         if let profileImage = profileImage {
-            self.userImageView.image = profileImage
+            userImageView.image = profileImage
         } else {
-            self.userImageView.image = UIImage(systemName: "person.circle")
+            // 画像がまだ読み込まれていない／未設定のときは初期画像を表示
+            userImageView.image = UIImage(named: "default_icon")
         }
-        self.userNameLabel.text = userName
+        userNameLabel.text = userName
     }
     
 }
