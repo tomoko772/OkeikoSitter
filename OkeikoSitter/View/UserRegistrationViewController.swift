@@ -53,9 +53,31 @@ final class UserRegistrationViewController: UIViewController {
     // MARK: - IBActions
     
     /// 画像選択ボタンをタップした
-    @IBAction private func imageSelectionButtonｆ(_ sender: Any) {
-        presentImagePicker()
+    @IBAction private func imageSelectionButtonTapped(_ sender: Any) {
+        let alert = UIAlertController(
+            title: "プロフィール画像",
+            message: "画像を選択してください",
+            preferredStyle: .actionSheet
+        )
+        
+        // デフォルトアイコンを使う
+        alert.addAction(UIAlertAction(title: "デフォルト画像を使う", style: .default) { _ in
+            let defaultImage = UIImage(named: "default_icon")
+            self.profileImageView.image = defaultImage
+            self.selectedImage = defaultImage
+        })
+        
+        // 写真ライブラリから選ぶ
+        alert.addAction(UIAlertAction(title: "写真から選ぶ", style: .default) { _ in
+            self.presentImagePicker()
+        })
+        
+        // キャンセル
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
+        
+        present(alert, animated: true)
     }
+    
     // 登録ボタンをタップした
     @IBAction private func saveButtonTapped(_ sender: Any) {
         guard let userName = userNameTextField.text, !userName.isEmpty else {
