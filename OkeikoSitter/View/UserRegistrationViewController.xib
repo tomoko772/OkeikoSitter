@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dW7-24-Q00">
-                    <rect key="frame" x="136.66666666666666" y="238" width="119.99999999999997" height="120"/>
+                    <rect key="frame" x="136.66666666666666" y="297" width="119.99999999999997" height="120"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="120" id="8fk-qm-5cN"/>
                         <constraint firstAttribute="width" constant="120" id="DqM-YO-uva"/>
@@ -32,11 +32,11 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="person.fill.badge.plus" catalog="system"/>
                     <connections>
-                        <action selector="imageSelectionButtonTapped:" destination="-1" eventType="touchUpInside" id="yHl-4l-A5f"/>
+                        <action selector="imageSelectionButtonｆ:" destination="-1" eventType="touchUpInside" id="iFO-K5-5Ow"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BA1-hj-alG">
-                    <rect key="frame" x="70" y="523" width="253" height="65"/>
+                    <rect key="frame" x="70" y="582" width="253" height="65"/>
                     <color key="backgroundColor" systemColor="systemGreenColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="Qnz-6c-BKg"/>
@@ -55,20 +55,20 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ユーザー登録" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WpI-58-6jK">
-                    <rect key="frame" x="129" y="159" width="135" height="29"/>
+                    <rect key="frame" x="129" y="218" width="135" height="29"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Czm-Gj-3lr">
-                    <rect key="frame" x="73" y="188" width="247" height="50"/>
+                    <rect key="frame" x="73" y="247" width="247" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="1aG-9V-D4X"/>
                         <constraint firstAttribute="width" constant="247" id="U9q-Cl-L2M"/>
                     </constraints>
                 </imageView>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="名前を入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jhc-bE-OmL">
-                    <rect key="frame" x="60" y="417" width="273" height="40"/>
+                    <rect key="frame" x="60" y="476" width="273" height="40"/>
                     <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="273" id="CGM-X4-K43"/>
@@ -78,14 +78,14 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q35-P8-JBg">
-                    <rect key="frame" x="180.66666666666666" y="383" width="32" height="21"/>
+                    <rect key="frame" x="180.66666666666666" y="442" width="32" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AvJ-NW-A40">
-                    <rect key="frame" x="136.66666666666666" y="238.66666666666666" width="119.99999999999997" height="118.66666666666671"/>
-                    <color key="backgroundColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_icon" translatesAutoresizingMaskIntoConstraints="NO" id="AvJ-NW-A40">
+                    <rect key="frame" x="136.66666666666666" y="297" width="119.99999999999997" height="120"/>
+                    <color key="backgroundColor" systemColor="systemYellowColor"/>
                     <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="nU7-XT-60z"/>
@@ -120,13 +120,16 @@
         </view>
     </objects>
     <resources>
-        <image name="person.circle" catalog="system" width="128" height="123"/>
+        <image name="default_icon" width="295" height="340"/>
         <image name="person.fill.badge.plus" catalog="system" width="128" height="126"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
