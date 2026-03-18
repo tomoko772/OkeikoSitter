@@ -54,13 +54,51 @@ final class UserRegistrationViewController: UIViewController {
     
     /// 画像選択ボタンをタップした
     @IBAction private func imageSelectionButtonTapped(_ sender: Any) {
-        presentImagePicker()
+        let alert = UIAlertController(
+            title: "プロフィール画像",
+            message: "画像を選択してください",
+            preferredStyle: .actionSheet
+        )
+        
+        // デフォルトアイコンを使う
+        alert.addAction(UIAlertAction(title: "デフォルト画像を使う", style: .default) { _ in
+            let defaultImage = UIImage(named: "default_icon")
+            self.profileImageView.image = defaultImage
+            self.selectedImage = defaultImage
+        })
+        
+        // 写真ライブラリから選ぶ
+        alert.addAction(UIAlertAction(title: "写真から選ぶ", style: .default) { _ in
+            self.presentImagePicker()
+        })
+        
+        // キャンセル
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
+        
+        present(alert, animated: true)
     }
-    /// 登録ボタンをタップした
+    
+    // 登録ボタンをタップした
     @IBAction private func saveButtonTapped(_ sender: Any) {
-        guard let userName = userNameTextField.text, let image = selectedImage else { return }
+        guard let userName = userNameTextField.text, !userName.isEmpty else {
+            showAlert(title: "エラー", message: "ユーザー名を入力してください")
+            return
+        }
+        
+        // 写真任意：選択されていなければデフォルト画像を使う
+        let imageToUpload: UIImage
+        if let selectedImage = selectedImage {
+            imageToUpload = selectedImage
+        } else if let defaultImage = UIImage(named: "default_icon") {
+            imageToUpload = defaultImage
+        } else {
+            // デフォルト画像がプロジェクトに入っていないなどの異常系
+            showAlert(title: "エラー", message: "プロフィール画像を設定できませんでした")
+            return
+        }
+        
         registrationButton.isEnabled = false
-        uploadProfileImage(image, userName: userName)
+        uploadProfileImage(imageToUpload, userName: userName)
     }
     
     // MARK: - Other Methods
@@ -162,7 +200,7 @@ final class UserRegistrationViewController: UIViewController {
         let alert = UIAlertController(title: "登録しました！",
                                       message: "",
                                       preferredStyle: .alert)
-      
+        
         self.present(alert, animated: true, completion: nil)
         // 1秒後に自動で閉じる
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
