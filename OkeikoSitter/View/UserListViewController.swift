@@ -47,13 +47,22 @@ final class UserListViewController: UIViewController {
     // MARK: - Other Methods
     
     private func configureBarButtonItems(){
-        // 左端のキャンセルボタン（アイコン）
-        let cancelImage = UIImage(named: "cancel")
-        let cancelButton = UIBarButtonItem(image: cancelImage,
-                                           style: .plain,
-                                           target: self,
-                                           action: #selector(cancelButtonPressed(_:)))
-        navigationItem.leftBarButtonItem = cancelButton
+        // カスタムボタンを作成
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        // キャンセルアイコンを設定
+        if let cancelImage = UIImage(named: "cancel") {
+            button.setImage(cancelImage, for: .normal)
+            button.contentMode = .scaleAspectFit
+        }
+        
+        // ボタンアクションを設定
+        button.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
+        
+        // UIBarButtonItem化して設定
+        let customBarButton = UIBarButtonItem(customView: button)
+        navigationItem.leftBarButtonItem = customBarButton
     }
     
     @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
@@ -93,7 +102,8 @@ final class UserListViewController: UIViewController {
             "challenge_day": selectedUser.challengeDay,
             "hidden_place": selectedUser.hiddenPlace,
             "profile_image_url": selectedUser.profileImageURL ?? "",
-            "current_point": selectedUser.currentPoint
+            "current_point": selectedUser.currentPoint,
+            "pin": selectedUser.pin as Any  // pinは値がnilの可能性もあるためキャスト
         ]
 
         print("📝 ユーザー切り替え: \(userName), ポイント: \(selectedUser.currentPoint)")
@@ -143,7 +153,7 @@ final class UserListViewController: UIViewController {
                         profileImage: nil,
                         profileImageURL: user.profileImageURL,
                         currentPoint: user.currentPoint ?? 0,
-                        pin: user.pin ?? 0
+                                        pin: user.pin
                     )
                 }
                 UserSession.shared.setUsers(sessionUsers)

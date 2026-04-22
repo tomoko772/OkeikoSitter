@@ -228,13 +228,22 @@ private func configureTextView() {
 }
 
 private func configureBarButtonItems() {
-    // 左端のキャンセルボタン（アイコン）
-    let cancelImage = UIImage(named: "cancel")
-    let closeButton = UIBarButtonItem(image: cancelImage,
-                                      style: .plain,
-                                      target: self,
-                                      action: #selector(closeButtonTapped(_:)))
-    navigationItem.leftBarButtonItem = closeButton
+    // カスタムボタンを作成
+    let button = UIButton(type: .custom)
+    button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+    
+    // キャンセルアイコンを設定
+    if let cancelImage = UIImage(named: "cancel") {
+        button.setImage(cancelImage, for: .normal)
+        button.contentMode = .scaleAspectFit
+    }
+    
+    // ボタンアクションを設定
+    button.addTarget(self, action: #selector(closeButtonTapped(_:)), for: .touchUpInside)
+    
+    // UIBarButtonItem化して設定
+    let customBarButton = UIBarButtonItem(customView: button)
+    navigationItem.leftBarButtonItem = customBarButton
 }
 
 @objc func closeButtonTapped(_ sender: UIBarButtonItem) {
