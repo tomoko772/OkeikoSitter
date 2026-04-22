@@ -31,6 +31,18 @@ final class PresentViewController: UIViewController {
     /// クエスチョンマーク
     @IBOutlet private weak var quesitonMarkImageView: UIImageView!
     
+    // MARK: - Initializers
+
+    init(isGoalReached: Bool = false, hidingPlace: String = "") {
+        self.isGoalReached = isGoalReached
+        self.hidingPlace = hidingPlace
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     // MARK: - View Life-Cycle Methods
     
     override func viewDidLoad() {
