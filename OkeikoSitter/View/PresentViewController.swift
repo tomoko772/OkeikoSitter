@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 /// ご褒美登録画面
 final class PresentViewController: UIViewController {
@@ -48,21 +49,23 @@ final class PresentViewController: UIViewController {
     /// 隠し場所登録・変更ボタンをタップした
     @IBAction private func registrationButtonTapped(_ sender: Any) {
         // 現在選択中のユーザーを取得
-        guard let currentUser = UserSession.shared.currentUser else { return }
-        let childID = currentUser.userName // IDとして扱う
-
+        guard let currentUser = UserSession.shared.currentUser,
+              let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let documentID = uid
+        
         // PIN登録済みかを確認する
-        checkPinRegistered(for: childID) { [weak self] isRegistered, pin, hiddenPlace in
+        checkPinRegistered(for: documentID) { [weak self] isRegistered, pin, hiddenPlace in
             guard let self = self else { return }
             let mode: DialogMode = isRegistered ? .pinOnly : .registerHiddenPlaceAndPin
             let dialogVC = CustomInputDialogViewController(pin: pin, dialogMode: mode)
-
+            
             // 登録コールバック
             dialogVC.onRegister = { [weak self] hiddenPlace, pin in
-                self?.saveHiddenPlaceAndPin(hiddenPlace: hiddenPlace, pin: pin, userID: childID)
+                self?.saveHiddenPlaceAndPin(hiddenPlace: hiddenPlace, pin: pin, userID: documentID)
                 dialogVC.dismiss(animated: true)
             }
-
+            
             // PIN認証コールバック
             dialogVC.onValidate = { enteredPin in
                 guard let hiddenPlace = hiddenPlace else { return }
@@ -73,14 +76,14 @@ final class PresentViewController: UIViewController {
                     dialogVC.showAlert(title: "暗唱番号が違います", message: "")
                 }
             }
-
+            
             dialogVC.modalPresentationStyle = .overCurrentContext
             dialogVC.modalTransitionStyle = .crossDissolve
             self.present(dialogVC, animated: true)
         }
     }
-
-
+    
+    
     // MARK: - Other Methods
     
     private func configureBarButtonItems(){
@@ -113,7 +116,7 @@ final class PresentViewController: UIViewController {
         let actionSheet = UIAlertController(title: "アクションを選択",
                                             message: "以下から選択してください",
                                             preferredStyle: .actionSheet)
-
+        
         actionSheet.addAction(UIAlertAction(title: "カメラで撮影", style: .default, handler: { _ in
             self.presentImagePicker(sourceType: .camera)
         }))
@@ -121,7 +124,7 @@ final class PresentViewController: UIViewController {
             self.presentImagePicker(sourceType: .photoLibrary)
         }))
         actionSheet.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
-
+        
         present(actionSheet, animated: true)
     }
     
@@ -131,7 +134,7 @@ final class PresentViewController: UIViewController {
         picker.delegate = self
         present(picker, animated: true)
     }
-
+    
     /// アラートを表示
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title,
@@ -140,7 +143,7 @@ final class PresentViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
-
+    
     ///Firebase から PIN 登録の有無を確認
     private func checkPinRegistered(for userID: String,
                                     completion: @escaping (Bool, Int?, String?) -> Void) {
@@ -158,7 +161,7 @@ final class PresentViewController: UIViewController {
             }
         }
     }
-
+    
     /// Firebaseに保存
     private func saveHiddenPlaceAndPin(hiddenPlace: String, pin: Int, userID: String) {
         let saveData: [String: Any] = [
@@ -176,25 +179,26 @@ final class PresentViewController: UIViewController {
             }
         }
     }
-
+    
     /// PIN認証処理
     private func validatePin(_ enteredPin: Int, correctPin: Int?) {
         guard let correctPin = correctPin else {
             showAlert(title: "暗唱番号が未登録です", message: "")
             return
         }
-
+        
         if enteredPin == correctPin {
             // 認証成功 → アラート表示
             showAlert(title: "認証成功", message: "")
-
+            
             // 認証成功後にPIN＆隠し場所ダイアログを表示
-            guard let currentUser = UserSession.shared.currentUser else { return }
-            let childID = currentUser.userName
+            guard let currentUser = UserSession.shared.currentUser,
+                  let uid = Auth.auth().currentUser?.uid else { return }
+            let documentID = uid
             let dialogVC = CustomInputDialogViewController(pin: correctPin,
                                                            dialogMode: .registerHiddenPlaceAndPin)
             dialogVC.onRegister = { [weak self] hiddenPlace, pin in
-                self?.saveHiddenPlaceAndPin(hiddenPlace: hiddenPlace, pin: pin, userID: childID)
+                self?.saveHiddenPlaceAndPin(hiddenPlace: hiddenPlace, pin: pin, userID: documentID)
                 dialogVC.dismiss(animated: true)
             }
             dialogVC.modalPresentationStyle = .overCurrentContext
