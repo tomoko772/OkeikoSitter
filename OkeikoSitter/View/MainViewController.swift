@@ -119,7 +119,14 @@ final class MainViewController: UIViewController {
     
     /// ご褒美ボタンをタップ
     @IBAction private func presentButtonTapped(_ sender: UIButton) {
-        let presentVC = PresentViewController()
+        guard let currentUser = UserSession.shared.currentUser else { return }
+        let isGoalReached = currentUser.goalPoint > 0 && currentUser.currentPoint >= currentUser.goalPoint
+        
+        let presentVC = PresentViewController(
+            isGoalReached: isGoalReached,
+            hidingPlace: currentUser.hiddenPlace
+        )
+        
         let navController = UINavigationController(rootViewController: presentVC)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
