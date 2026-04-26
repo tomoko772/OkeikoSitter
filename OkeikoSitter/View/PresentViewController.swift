@@ -65,16 +65,17 @@ final class PresentViewController: UIViewController {
               let uid = Auth.auth().currentUser?.uid else { return }
         
         let documentID = uid
+        let userName = currentUser.userName
         
-        // PIN登録済みかを確認する
-        checkPinRegistered(for: documentID) { [weak self] isRegistered, pin, hiddenPlace in
+        // 選択中ユーザー用のPIN登録済みかを確認する
+        checkPinRegistered(for: documentID, userName: userName) { [weak self] isRegistered, pin, hiddenPlace in
             guard let self = self else { return }
             let mode: DialogMode = isRegistered ? .pinOnly : .registerHiddenPlaceAndPin
             let dialogVC = CustomInputDialogViewController(pin: pin, dialogMode: mode)
             
             // 登録コールバック
             dialogVC.onRegister = { [weak self] hiddenPlace, pin in
-                self?.saveHiddenPlaceAndPin(hiddenPlace: hiddenPlace, pin: pin, userID: documentID)
+                self?.saveHiddenPlaceAndPin(hiddenPlace: hiddenPlace, pin: pin, userID: documentID, userName: userName)
                 dialogVC.dismiss(animated: true)
             }
             
@@ -99,13 +100,22 @@ final class PresentViewController: UIViewController {
     // MARK: - Other Methods
     
     private func configureBarButtonItems(){
-        // 左端のキャンセルボタン（アイコン）
-        let backImage = UIImage(named: "cancel")
-        let backButton = UIBarButtonItem(image: backImage,
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(backlButtonPressed(_:)))
-        navigationItem.leftBarButtonItem = backButton
+        // カスタムボタンを作成
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        // キャンセルアイコンを設定
+        if let cancelImage = UIImage(named: "cancel") {
+            button.setImage(cancelImage, for: .normal)
+            button.contentMode = .scaleAspectFit
+        }
+        
+        // ボタンアクションを設定
+        button.addTarget(self, action: #selector(backlButtonPressed(_:)), for: .touchUpInside)
+        
+        // UIBarButtonItem化して設定
+        let customBarButton = UIBarButtonItem(customView: button)
+        navigationItem.leftBarButtonItem = customBarButton
     }
     
     @objc func backlButtonPressed(_ sender: UIBarButtonItem) {
@@ -156,37 +166,42 @@ final class PresentViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    ///Firebase から PIN 登録の有無を確認
+    ///Firebase から PIN 登録の有無を確認 (ユーザー名指定)
     private func checkPinRegistered(for userID: String,
-                                    completion: @escaping (Bool, Int?, String?) -> Void) {
-        firebaseService.fetchDocument(collection: "users", documentID: userID) { (user: User?, error) in
-            guard let user = user, error == nil else {
-                completion(false, nil, nil)
-                return
-            }
-            let pin = user.pin
-            let hiddenPlace = user.hiddenPlace
-            if pin != nil {
-                completion(true, pin, hiddenPlace)
-            } else {
-                completion(false, nil, hiddenPlace)
-            }
-        }
+                                   userName: String,
+                                   completion: @escaping (Bool, Int?, String?) -> Void) {
+        firebaseService.checkPinRegistered(
+            collection: "users", 
+            documentID: userID, 
+            userName: userName, 
+            completion: completion
+        )
     }
     
-    /// Firebaseに保存
-    private func saveHiddenPlaceAndPin(hiddenPlace: String, pin: Int, userID: String) {
-        let saveData: [String: Any] = [
+    /// Firebaseに保存 (ユーザー名指定)
+    private func saveHiddenPlaceAndPin(hiddenPlace: String, pin: Int, userID: String, userName: String) {
+        // 現在のユーザー情報に対して、hiddenPlaceとpinを更新
+        let userData: [String: Any] = [
             "hidden_place": hiddenPlace,
             "pin": pin
         ]
-        firebaseService.update(collection: "users", documentID: userID, data: saveData) { [weak self] error in
+        
+        // ユーザー名を指定した更新処理
+        firebaseService.updateUserAndCurrentUser(
+            collection: "users",
+            documentID: userID,
+            userName: userName,
+            userData: userData
+        ) { [weak self] error in
             DispatchQueue.main.async {
                 if let error = error {
                     self?.showAlert(title: "保存エラー", message: error.localizedDescription)
                 } else {
                     self?.hidingPlace = hiddenPlace
                     self?.showAlert(title: "登録しました！", message: "")
+                    
+                    // UserSessionも更新
+                    UserSession.shared.updateCurrentUser(hiddenPlace: hiddenPlace, pin: pin)
                 }
             }
         }
@@ -207,10 +222,11 @@ final class PresentViewController: UIViewController {
             guard let currentUser = UserSession.shared.currentUser,
                   let uid = Auth.auth().currentUser?.uid else { return }
             let documentID = uid
+            let userName = currentUser.userName
             let dialogVC = CustomInputDialogViewController(pin: correctPin,
                                                            dialogMode: .registerHiddenPlaceAndPin)
             dialogVC.onRegister = { [weak self] hiddenPlace, pin in
-                self?.saveHiddenPlaceAndPin(hiddenPlace: hiddenPlace, pin: pin, userID: documentID)
+                self?.saveHiddenPlaceAndPin(hiddenPlace: hiddenPlace, pin: pin, userID: documentID, userName: userName)
                 dialogVC.dismiss(animated: true)
             }
             dialogVC.modalPresentationStyle = .overCurrentContext

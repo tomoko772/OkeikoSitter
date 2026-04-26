@@ -126,7 +126,7 @@ final class UserSession {
 
 extension UserSessionUser {
     func toDictionary() -> [String: Any] {
-        return [
+        var dict: [String: Any] = [
             "user_name": userName,
             "challenge_task": challengeTask,
             "challenge_point": challengePoint,
@@ -137,5 +137,17 @@ extension UserSessionUser {
             "profile_image_url": profileImageURL ?? "",
             "current_point": currentPoint
         ]
+        
+        // PIN情報がある場合のみ追加
+        if let pin = pin {
+            dict["pin"] = pin
+        }
+        
+        // 選択日付情報がある場合のみ追加
+        if let selectedDates = selectedDates {
+            dict["selected_dates"] = selectedDates
+        }
+        
+        return dict
     }
 }

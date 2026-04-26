@@ -145,6 +145,44 @@ final class FirebaseService {
         let ref = storage.reference().child(path)
         ref.delete(completion: completion)
     }
+    /// 特定のユーザーのPIN登録状況を確認
+    func checkPinRegistered(
+        collection: String,
+        documentID: String,
+        userName: String,
+        completion: @escaping (Bool, Int?, String?) -> Void
+    ) {
+        let docRef = db.collection(collection).document(documentID)
+        docRef.getDocument { snapshot, error in
+            if let error = error {
+                print("❌ ドキュメント取得エラー: \(error)")
+                completion(false, nil, nil)
+                return
+            }
+            
+            guard let snapshot = snapshot, snapshot.exists,
+                  let data = snapshot.data() else {
+                completion(false, nil, nil)
+                return
+            }
+            
+            // users配列から該当ユーザーを検索
+            if let users = data["users"] as? [[String: Any]],
+               let userInfo = users.first(where: { ($0["user_name"] as? String) == userName }) {
+                // 該当ユーザーのPINとhidden_placeを取得
+                let pin = userInfo["pin"] as? Int
+                let hiddenPlace = userInfo["hidden_place"] as? String
+                
+                if pin != nil {
+                    completion(true, pin, hiddenPlace)
+                } else {
+                    completion(false, nil, hiddenPlace)
+                }
+            } else {
+                completion(false, nil, nil)
+            }
+        }
+    }
 }
 
 extension FirebaseService {

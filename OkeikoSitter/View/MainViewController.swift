@@ -135,23 +135,32 @@ final class MainViewController: UIViewController {
     // MARK: - Other Methods
     
     private func configureBarButtonItems() {
+        // １つ目の画像ボタン（ユーザー切替）
+        let usersButton = UIButton(type: .custom)
+        usersButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        if let usersImage = UIImage(named: "ic_users") {
+            usersButton.setImage(usersImage, for: .normal)
+            usersButton.contentMode = .scaleAspectFit
+        }
+        usersButton.addTarget(self, action: #selector(didTapUsersButton), for: .touchUpInside)
+        let usersBarButtonItem = UIBarButtonItem(customView: usersButton)
         
-        // １つ目の画像ボタン
-        let firstBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "ic_users"),
-            style: .plain,
-            target: self,
-            action: #selector(didTapUsersButton))
+        // ２つ目の画像ボタン（設定）
+        let settingsButton = UIButton(type: .custom)
+        settingsButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        if let settingsImage = UIImage(named: "ic_setting") {
+            settingsButton.setImage(settingsImage, for: .normal)
+            settingsButton.contentMode = .scaleAspectFit
+        }
+        settingsButton.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
+        let settingsBarButtonItem = UIBarButtonItem(customView: settingsButton)
         
-        // ２つ目の画像のボタン
-        let secondBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "ic_setting"),
-            style: .plain,
-            target: self,
-            action: #selector(didTapSettingButton))
+        // スペースを追加して適切な間隔を確保
+        let spaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spaceItem.width = 16.0
         
-        // ボタンを右側に２つ並べる
-        self.navigationItem.rightBarButtonItems = [firstBarButtonItem, secondBarButtonItem]
+        // ボタンを右側に並べる（間隔を適切に）
+        self.navigationItem.rightBarButtonItems = [settingsBarButtonItem, spaceItem, usersBarButtonItem]
     }
     
     /// 設定ボタンがタップされたときの処理
