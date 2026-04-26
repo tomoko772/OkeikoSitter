@@ -32,13 +32,13 @@ final class PresentViewController: UIViewController {
     @IBOutlet private weak var quesitonMarkImageView: UIImageView!
     
     // MARK: - Initializers
-
+    
     init(isGoalReached: Bool = false, hidingPlace: String = "") {
         self.isGoalReached = isGoalReached
         self.hidingPlace = hidingPlace
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -49,6 +49,7 @@ final class PresentViewController: UIViewController {
         super.viewDidLoad()
         configureBarButtonItems()
         configureUI()
+        loadSavedRewardImage()
     }
     
     // MARK: - IBActions
@@ -96,6 +97,13 @@ final class PresentViewController: UIViewController {
         }
     }
     
+    @IBAction func ewardImageSaveButtonTapped(_ sender: Any) {
+        saveRewardImage()
+    }
+    
+    @IBAction func rewardImageDeleteButtonTapped(_ sender: Any) {
+        deleteRewardImage()
+    }
     
     // MARK: - Other Methods
     
@@ -168,12 +176,12 @@ final class PresentViewController: UIViewController {
     
     ///Firebase から PIN 登録の有無を確認 (ユーザー名指定)
     private func checkPinRegistered(for userID: String,
-                                   userName: String,
-                                   completion: @escaping (Bool, Int?, String?) -> Void) {
+                                    userName: String,
+                                    completion: @escaping (Bool, Int?, String?) -> Void) {
         firebaseService.checkPinRegistered(
-            collection: "users", 
-            documentID: userID, 
-            userName: userName, 
+            collection: "users",
+            documentID: userID,
+            userName: userName,
             completion: completion
         )
     }
@@ -235,6 +243,81 @@ final class PresentViewController: UIViewController {
         } else {
             // 認証失敗
             showAlert(title: "暗唱番号が違います", message: "")
+        }
+    }
+    
+    /// ご褒美画像の保存先URL
+    private func rewardImageFileURL() -> URL? {
+        guard let currentUser = UserSession.shared.currentUser else { return nil }
+        
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                          in: .userDomainMask).first
+        
+        let safeUserName = currentUser.userName
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: " ", with: "_")
+        
+        return documentsDirectory?.appendingPathComponent("reward_\(safeUserName).jpg")
+    }
+    
+    /// ご褒美画像を保存
+    private func saveRewardImage() {
+        guard let image = rewardImageView.image else {
+            showAlert(title: "画像がありません", message: "先にご褒美画像を選択してください。")
+            return
+        }
+        
+        guard let fileURL = rewardImageFileURL() else {
+            showAlert(title: "保存エラー", message: "選択中ユーザーを取得できませんでした。")
+            return
+        }
+        
+        guard let data = image.jpegData(compressionQuality: 0.8) else {
+            showAlert(title: "保存エラー", message: "画像データに変換できませんでした。")
+            return
+        }
+        
+        do {
+            try data.write(to: fileURL, options: .atomic)
+            showAlert(title: "保存しました！", message: "")
+        } catch {
+            showAlert(title: "保存エラー", message: error.localizedDescription)
+        }
+    }
+    
+    /// 保存済みご褒美画像を読み込む
+    private func loadSavedRewardImage() {
+        guard let fileURL = rewardImageFileURL() else { return }
+        
+        if FileManager.default.fileExists(atPath: fileURL.path),
+           let savedImage = UIImage(contentsOfFile: fileURL.path) {
+            rewardImageView.image = savedImage
+            presentMarkImageView.isHidden = true
+        } else {
+            rewardImageView.image = nil
+            presentMarkImageView.isHidden = false
+        }
+    }
+    
+    /// ご褒美画像を削除
+    private func deleteRewardImage() {
+        guard let fileURL = rewardImageFileURL() else {
+            showAlert(title: "削除エラー", message: "選択中ユーザーを取得できませんでした。")
+            return
+        }
+        
+        do {
+            if FileManager.default.fileExists(atPath: fileURL.path) {
+                try FileManager.default.removeItem(at: fileURL)
+            }
+            
+            // 画面表示を元に戻す
+            rewardImageView.image = nil
+            presentMarkImageView.isHidden = false
+            
+            showAlert(title: "削除しました！", message: "")
+        } catch {
+            showAlert(title: "削除エラー", message: error.localizedDescription)
         }
     }
 }
