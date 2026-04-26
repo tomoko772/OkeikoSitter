@@ -190,8 +190,8 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIj-xQ-vXY" userLabel="保存ボタン">
-                                            <rect key="frame" x="145" y="223" width="56" height="35"/>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIj-xQ-vXY" userLabel="保存ボタン">
+                                            <rect key="frame" x="100" y="223" width="56" height="35"/>
                                             <color key="backgroundColor" red="0.99607843139999996" green="0.73725490199999999" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
@@ -201,15 +201,40 @@
                                                     <integer key="value" value="8"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="ewardImageSaveButtonTapped:" destination="-1" eventType="touchUpInside" id="akd-Aa-Usp"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5S-d6-OAg" userLabel="削除ボタン">
+                                            <rect key="frame" x="190" y="223" width="56" height="35"/>
+                                            <color key="backgroundColor" systemColor="underPageBackgroundColor"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="削除"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="ewardImageSaveButtonTapped:" destination="-1" eventType="touchUpInside" id="51T-s6-7D8"/>
+                                                <action selector="rewardImageDeleteButtonTapped:" destination="-1" eventType="touchUpInside" id="Wr1-sA-hue"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="6vp-Zk-IL3" firstAttribute="leading" secondItem="FXh-Xm-uvb" secondAttribute="leading" constant="18" id="1Ot-yO-OGd"/>
+                                        <constraint firstItem="RIj-xQ-vXY" firstAttribute="leading" secondItem="FXh-Xm-uvb" secondAttribute="leading" constant="100" id="91f-ec-Tzb"/>
+                                        <constraint firstItem="6vp-Zk-IL3" firstAttribute="top" secondItem="Q5S-d6-OAg" secondAttribute="bottom" constant="6" id="9GZ-23-QFf"/>
+                                        <constraint firstItem="Q5S-d6-OAg" firstAttribute="top" secondItem="RlC-5G-K0g" secondAttribute="bottom" constant="3" id="AG6-Zy-X5P"/>
                                         <constraint firstItem="8lf-SQ-DoZ" firstAttribute="leading" secondItem="FXh-Xm-uvb" secondAttribute="leading" constant="46" id="MuT-mP-5Eh"/>
+                                        <constraint firstAttribute="trailing" secondItem="Q5S-d6-OAg" secondAttribute="trailing" constant="100" id="PZD-uD-jiZ"/>
                                         <constraint firstItem="RlC-5G-K0g" firstAttribute="top" secondItem="FXh-Xm-uvb" secondAttribute="top" constant="36" id="T5D-Tz-LPD"/>
                                         <constraint firstAttribute="trailing" secondItem="8lf-SQ-DoZ" secondAttribute="trailing" constant="46" id="UqQ-LE-07Y"/>
-                                        <constraint firstItem="RIj-xQ-vXY" firstAttribute="centerX" secondItem="FXh-Xm-uvb" secondAttribute="centerX" id="ViN-QU-ovr"/>
+                                        <constraint firstAttribute="trailing" secondItem="Q5S-d6-OAg" secondAttribute="trailing" constant="100" id="WL9-MA-9mG"/>
+                                        <constraint firstItem="6vp-Zk-IL3" firstAttribute="top" secondItem="RIj-xQ-vXY" secondAttribute="bottom" constant="6" id="bTD-iZ-M7c"/>
+                                        <constraint firstItem="Q5S-d6-OAg" firstAttribute="leading" secondItem="RIj-xQ-vXY" secondAttribute="trailing" constant="34" id="fJU-VM-r4b"/>
                                         <constraint firstAttribute="trailing" secondItem="6vp-Zk-IL3" secondAttribute="trailing" constant="18" id="hda-8o-pRt"/>
                                         <constraint firstAttribute="bottom" secondItem="8lf-SQ-DoZ" secondAttribute="bottom" constant="63" id="jfS-YK-x3G"/>
                                         <constraint firstItem="YQK-AB-jRb" firstAttribute="leading" secondItem="FXh-Xm-uvb" secondAttribute="leading" constant="46" id="jgZ-bx-cRg"/>
@@ -219,6 +244,7 @@
                                         <constraint firstItem="RIj-xQ-vXY" firstAttribute="top" secondItem="RlC-5G-K0g" secondAttribute="bottom" constant="3" id="oJh-um-Ilw"/>
                                         <constraint firstAttribute="trailing" secondItem="YQK-AB-jRb" secondAttribute="trailing" constant="46" id="rED-jq-GEE"/>
                                         <constraint firstItem="YQK-AB-jRb" firstAttribute="top" secondItem="6vp-Zk-IL3" secondAttribute="bottom" constant="18" id="t4U-kR-Uin"/>
+                                        <constraint firstItem="Q5S-d6-OAg" firstAttribute="leading" secondItem="RIj-xQ-vXY" secondAttribute="trailing" constant="34" id="v04-zX-rTU"/>
                                         <constraint firstItem="6vp-Zk-IL3" firstAttribute="top" secondItem="RlC-5G-K0g" secondAttribute="bottom" constant="44" id="z4W-ls-iE3"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
@@ -270,6 +296,9 @@
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="underPageBackgroundColor">
+            <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

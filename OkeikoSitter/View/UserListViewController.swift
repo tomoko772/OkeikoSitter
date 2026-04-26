@@ -91,7 +91,7 @@ final class UserListViewController: UIViewController {
             print("❌ accountIDがnil")
             return
         }
-
+        
         let userName = selectedUser.userName
         let currentUserData: [String: Any] = [
             "user_name": selectedUser.userName,
@@ -105,9 +105,9 @@ final class UserListViewController: UIViewController {
             "current_point": selectedUser.currentPoint,
             "pin": selectedUser.pin as Any  // pinは値がnilの可能性もあるためキャスト
         ]
-
+        
         print("📝 ユーザー切り替え: \(userName), ポイント: \(selectedUser.currentPoint)")
-
+        
         // 🔴 修正: updateUserAndCurrentUser を使用して両方更新
         firebaseService.updateUserAndCurrentUser(
             collection: "users",
@@ -124,7 +124,7 @@ final class UserListViewController: UIViewController {
             }
         }
     }
-
+    
     /// データを取得する
     private func fetchData() {
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
@@ -153,7 +153,7 @@ final class UserListViewController: UIViewController {
                         profileImage: nil,
                         profileImageURL: user.profileImageURL,
                         currentPoint: user.currentPoint ?? 0,
-                                        pin: user.pin
+                        pin: user.pin
                     )
                 }
                 UserSession.shared.setUsers(sessionUsers)
@@ -191,15 +191,25 @@ final class UserListViewController: UIViewController {
     /// ユーザーを削除
     private func deleteUser(_ user: UserSessionUser, at indexPath: IndexPath) {
         guard let accountID = UserSession.shared.accountID else { return }
-
+        if let fileURL = rewardImageFileURL(for: user) {
+                do {
+                    if FileManager.default.fileExists(atPath: fileURL.path) {
+                        try FileManager.default.removeItem(at: fileURL)
+                        print("ご褒美画像を削除しました: \(fileURL.lastPathComponent)")
+                    }
+                } catch {
+                    print("ご褒美画像削除失敗: \(error.localizedDescription)")
+                }
+            }
+        
         // ローカル削除
         UserSession.shared.setUsers(
             UserSession.shared.users.filter { $0.userName != user.userName }
         )
-
+        
         // Firestoreデータ形式に変換
         let updatedUsersData = UserSession.shared.users.map { $0.toDictionary() }
-
+        
         // Firestoreに書き戻し
         FirebaseService.shared.update(
             collection: "users",
@@ -210,13 +220,25 @@ final class UserListViewController: UIViewController {
                 print("ユーザー削除失敗: \(error.localizedDescription)")
             } else {
                 print("Firestore更新成功: \(user.userName) を削除しました")
-
+                
                 // テーブル更新
                 DispatchQueue.main.async {
                     self?.userTableView.deleteRows(at: [indexPath], with: .automatic)
                 }
             }
         }
+    }
+    
+    /// 指定ユーザーのご褒美画像ファイルURL
+    private func rewardImageFileURL(for user: UserSessionUser) -> URL? {
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                          in: .userDomainMask).first
+        
+        let safeUserName = user.userName
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: " ", with: "_")
+        
+        return documentsDirectory?.appendingPathComponent("reward_\(safeUserName).jpg")
     }
 }
 
