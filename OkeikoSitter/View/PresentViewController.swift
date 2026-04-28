@@ -350,6 +350,8 @@ final class PresentViewController: UIViewController {
                     if let error = error {
                         self?.showAlert(title: "削除エラー", message: error.localizedDescription)
                     } else {
+                        // UserSessionのcurrentUserも更新（メモリ上）
+                        UserSession.shared.updateCurrentUser(rewardImageURL: "")
                         self?.showAlert(title: "削除しました！", message: "")
                     }
                 }
@@ -436,6 +438,8 @@ extension PresentViewController: UIImagePickerControllerDelegate & UINavigationC
                 if let error = error {
                     self?.showAlert(title: "画像URL保存エラー", message: error.localizedDescription)
                 } else {
+                    // UserSessionのcurrentUserを更新（メモリ上）
+                    UserSession.shared.updateCurrentUser(rewardImageURL: urlString)
                     self?.showAlert(title: "ご褒美画像を保存しました！", message: "")
                 }
             }
