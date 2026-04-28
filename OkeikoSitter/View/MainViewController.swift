@@ -62,9 +62,18 @@ final class MainViewController: UIViewController {
         guard let currentUser = UserSession.shared.currentUser else { return }
         let currentPoint = currentUser.currentPoint
         let challengePoint = currentUser.challengePoint
-        UserSession.shared.updateCurrentPoint(currentPoint + challengePoint)
-        currentPointLabel.text = "現在　\(currentPoint + challengePoint)　ポイント"
-        saveCurrentPoint(currentPoint: currentPoint + challengePoint)
+        let goalPoint = currentUser.goalPoint
+        let newPoint = currentPoint + challengePoint
+        
+        // ポイント更新
+        UserSession.shared.updateCurrentPoint(newPoint)
+        currentPointLabel.text = "現在　\(newPoint)　ポイント"
+        
+        // 目標達成チェック
+        shouldShowGoalAchievementView(goalPoint: goalPoint, currentPoint: newPoint)
+        
+        // 保存
+        saveCurrentPoint(currentPoint: newPoint)
     }
     
     /// ボーナスボタンをタップ
