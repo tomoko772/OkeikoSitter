@@ -130,12 +130,11 @@ final class MainViewController: UIViewController {
     @IBAction private func presentButtonTapped(_ sender: UIButton) {
         guard let currentUser = UserSession.shared.currentUser else { return }
         let isGoalReached = currentUser.goalPoint > 0 && currentUser.currentPoint >= currentUser.goalPoint
-        
+
         let presentVC = PresentViewController(
             isGoalReached: isGoalReached,
             hidingPlace: currentUser.hiddenPlace
         )
-        
         let navController = UINavigationController(rootViewController: presentVC)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
@@ -298,6 +297,15 @@ final class MainViewController: UIViewController {
                 }
             }
         }.resume()
+    }
+    
+    /// 画面を再読み込みする必要があることをマークするメソッド
+    /// 他の画面から呼び出せるように追加
+    func setNeedsReload() {
+        print("MainViewController: 再読み込みが予定されています")
+        DispatchQueue.main.async { [weak self] in
+            self?.fetchData()
+        }
     }
     
     private func updateUI(with user: UserSessionUser) {
