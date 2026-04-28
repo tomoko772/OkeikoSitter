@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseStorage
 
 /// ご褒美登録画面
 final class PresentViewController: UIViewController {
@@ -59,6 +60,79 @@ final class PresentViewController: UIViewController {
         loadSavedRewardImage()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 画面表示時に必ずFirestoreから最新データを再取得
+        fetchLatestUserDataFromFirestore()
+    }
+    
+    /// Firestoreから最新のユーザーデータを取得
+    private func fetchLatestUserDataFromFirestore() {
+        guard let uid = Auth.auth().currentUser?.uid,
+              let currentUser = UserSession.shared.currentUser else {
+            return
+        }
+        
+        // ローディング表示
+        showLoading()
+        
+        // 現在のユーザー名を保持
+        let userName = currentUser.userName
+        
+        print("🔄 Firestoreから最新データを取得: \(userName)")
+        
+        // ユーザードキュメントを取得
+        firebaseService.fetchDocument(collection: "users", documentID: uid) { [weak self] (account: Account?, error) in
+            guard let self = self else { return }
+            
+            // ローディング非表示
+            self.hideLoading()
+            
+            if let error = error {
+                print("❌ Firestore取得エラー: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let account = account else {
+                print("❌ アカウントデータが見つかりません")
+                return
+            }
+            
+            // 現在選択中のユーザーと同名のユーザーデータを探す
+            let users = account.users
+            guard let matchedUser = users.first(where: { $0.userName == userName }) else {
+                print("❌ ユーザー \(userName) のデータが見つかりません")
+                return
+            }
+            
+            // UserSessionのキャッシュも更新
+            let updatedUser = UserSessionUser(
+                userName: matchedUser.userName ?? "",
+                challengeTask: matchedUser.challengeTask ?? "",
+                challengePoint: matchedUser.challengePoint ?? 0,
+                bonusPoint: matchedUser.bonusPoint ?? 0,
+                goalPoint: matchedUser.goalPoint ?? 0,
+                challengeDay: matchedUser.challengeDay ?? 0,
+                hiddenPlace: matchedUser.hiddenPlace ?? "",
+                profileImage: currentUser.profileImage, // 既存の画像は維持
+                profileImageURL: matchedUser.profileImageURL,
+                currentPoint: matchedUser.currentPoint ?? 0,
+                pin: matchedUser.pin,
+                selectedDates: matchedUser.selectedDates,
+                rewardImageURL: matchedUser.rewardImageURL
+            )
+            
+            // UserSessionの内容を更新
+            UserSession.shared.selectCurrentUser(user: updatedUser)
+            
+            print("✅ Firestoreから最新データを取得完了: \(userName)")
+            print("📸 rewardImageURL: \(updatedUser.rewardImageURL ?? "なし")")
+            
+            // 最新データに基づいて画像を読み込む
+            self.loadSavedRewardImage()
+        }
+    }
+    
     /// ローディングインジケータの設定
     private func setupActivityIndicator() {
         // スタイル設定
@@ -109,6 +183,11 @@ final class PresentViewController: UIViewController {
         let documentID = uid
         let userName = currentUser.userName
         
+        // PINがすでに設定されているか確認
+        if let pin = currentUser.pin {
+            print("✅ PINはすでに設定済み: \(userName), PIN: \(pin)")
+        }
+        
         // 選択中ユーザー用のPIN登録済みかを確認する
         checkPinRegistered(for: documentID, userName: userName) { [weak self] isRegistered, pin, hiddenPlace in
             guard let self = self else { return }
@@ -141,7 +220,7 @@ final class PresentViewController: UIViewController {
     @IBAction func ewardImageSaveButtonTapped(_ sender: Any) {
         // 既にrewardImageViewに画像がある場合のみ処理
         guard let image = rewardImageView.image else {
-            showAlert(title: "画像がありません", message: "先にご褒美画像を選択してください。")
+            showAlert(title: "画像がありません", message: "先にご褒美画像を選択してください")
             return
         }
         
@@ -318,32 +397,70 @@ final class PresentViewController: UIViewController {
     private func loadSavedRewardImage() {
         guard let currentUser = UserSession.shared.currentUser else { return }
         
-        // ローカルファイルをまず確認（後方互換性のため）
-        if let fileURL = rewardImageFileURL(),
-           FileManager.default.fileExists(atPath: fileURL.path),
-           let savedImage = UIImage(contentsOfFile: fileURL.path) {
-            rewardImageView.image = savedImage
-            presentMarkImageView.isHidden = true
-            return
-        }
-        
-        // この時点でcurrentUserのrewardImageURLがあるか確認
-        if let rewardImageURL = currentUser.rewardImageURL, !rewardImageURL.isEmpty {
-            // すでにUserSessionに保存されている画像URLを使用
-            UIImage.load(from: rewardImageURL) { [weak self] image in
-                guard let self = self, let image = image else { return }
-                
-                DispatchQueue.main.async {
-                    self.rewardImageView.image = image
-                    self.presentMarkImageView.isHidden = true
-                }
-            }
-            return
-        }
-        
-        // ここまでくると画像は設定されていない
+        // 毎回必ず画像表示をリセット
         rewardImageView.image = nil
         presentMarkImageView.isHidden = false
+        
+        // ローディングインジケータを表示
+        showLoading()
+        
+        print("REWARD DEBUG: =========================================")
+        print("REWARD DEBUG: 現在のユーザー: \(currentUser.userName)")
+        print("REWARD DEBUG: 隠し場所: \(currentUser.hiddenPlace)")
+        print("REWARD DEBUG: 画像URL: \(currentUser.rewardImageURL ?? "なし")")
+        print("REWARD DEBUG: =========================================")
+        
+        // URLがないか空の場合はデフォルト表示のままにしてローディングを終了
+        guard let rewardImageURL = currentUser.rewardImageURL, !rewardImageURL.isEmpty else {
+            print("REWARD DEBUG: 画像URLなし - \(currentUser.userName)のデフォルト表示")
+            hideLoading()
+            return
+        }
+        
+        // URL存在チェック
+        guard let url = URL(string: rewardImageURL) else {
+            print("REWARD DEBUG: 無効なURL形式")
+            hideLoading()
+            return
+        }
+        
+        // URLのパスとユーザー名（デバッグログのみ）
+        let path = url.path
+        let safeUsername = currentUser.userName.replacingOccurrences(of: " ", with: "_")
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: ".", with: "_")
+        
+        print("REWARD DEBUG: URL検証: \(url.absoluteString)")
+        print("REWARD DEBUG: URL検証: ユーザー名一致確認: \(safeUsername).jpg")
+        
+        // 現在のユーザー名を保存して、コールバック時に確認
+        let loadStartUsername = currentUser.userName
+        
+        UIImage.load(from: rewardImageURL) { [weak self] image in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                // ローディングを終了
+                self.hideLoading()
+                
+                // 現在表示中のユーザーが読み込み開始時と同じか確認
+                let currentUsername = UserSession.shared.currentUser?.userName ?? ""
+                if currentUsername == loadStartUsername {
+                    if let image = image {
+                        print("REWARD DEBUG: \(loadStartUsername)の画像取得成功: サイズ=\(image.size)")
+                        self.rewardImageView.image = image
+                        self.presentMarkImageView.isHidden = true
+                    } else {
+                        print("REWARD DEBUG: \(loadStartUsername)の画像取得失敗")
+                        // 画像取得に失敗した場合もデフォルト表示に戻す
+                        self.rewardImageView.image = nil
+                        self.presentMarkImageView.isHidden = false
+                    }
+                } else {
+                    print("REWARD DEBUG: ユーザー切り替え済み - 古い画像ロードを無視: \(loadStartUsername) → \(currentUsername)")
+                }
+            }
+        }
     }
     
     /// ご褒美画像を削除（Firebase Storage対応）
@@ -357,54 +474,69 @@ final class PresentViewController: UIViewController {
         // ローディング表示開始
         showLoading()
         
+        // まず画像表示をクリア
+        rewardImageView.image = nil
+        presentMarkImageView.isHidden = false
+        
         // ローカルファイルがあれば削除（後方互換性のため）
         if let fileURL = rewardImageFileURL(), FileManager.default.fileExists(atPath: fileURL.path) {
             do {
                 try FileManager.default.removeItem(at: fileURL)
+                print("ローカルファイルを削除しました: \(fileURL.path)")
             } catch {
                 print("ローカルファイル削除エラー: \(error.localizedDescription)")
             }
         }
         
-        // Firebase Storageから削除
-        let safeUserName = currentUser.userName
-            .replacingOccurrences(of: "/", with: "_")
-            .replacingOccurrences(of: " ", with: "_")
-        let path = "reward_images/\(safeUserName).jpg"
-        
-        firebaseService.deleteFileFromStorage(path: path) { [weak self] error in
-            if let error = error {
-                print("Firebase Storage削除エラー: \(error.localizedDescription)")
+        // まず既存の画像URLを確認
+        if let existingURL = currentUser.rewardImageURL, !existingURL.isEmpty {
+            // この時点で保存されているURLが存在する場合、直接そのURLの参照を削除
+            print("削除: 既存の画像URL: \(existingURL)")
+            
+            // urlからStorageの参照を取得
+            let storageRef = Storage.storage().reference(forURL: existingURL)
+            // 直接その参照を削除
+            storageRef.delete { error in
+                if let error = error {
+                    print("Firebase Storage削除エラー: \(error.localizedDescription)")
+                } else {
+                    print("Firebase Storage: 既存画像を削除しました")
+                }
             }
+        } else {
+            print("削除対象の画像URLが見つかりません")
+        }
+        
+        // UserSessionのcurrentUserも先に更新（メモリ上）
+        UserSession.shared.updateCurrentUser(rewardImageURL: "")
+        
+        // 以降はFirestoreのユーザー情報も更新
             
-            // Firestoreのユーザー情報も更新（URLを削除）
-            let userData: [String: Any] = [
-                "reward_image_url": ""
-            ]
+        // Firestoreのユーザー情報も更新（URLを削除）
+        let userData: [String: Any] = [
+            "reward_image_url": ""
+        ]
             
-            self?.firebaseService.updateUserAndCurrentUser(
-                collection: "users",
-                documentID: uid,
-                userName: currentUser.userName,
-                userData: userData
-            ) { [weak self] error in
-                DispatchQueue.main.async {
-                    // 画面表示を元に戻す
-                    self?.rewardImageView.image = nil
-                    self?.presentMarkImageView.isHidden = false
-                    
-                    // ローディング表示終了
-                    self?.hideLoading()
-                    
-                    if let error = error {
-                        self?.showAlert(title: "削除エラー", message: error.localizedDescription)
-                    } else {
-                        // isManualSaveをリセットして保存アラートが表示されないようにする
-                        self?.isManualSave = false
-                        // UserSessionのcurrentUserも更新（メモリ上）
-                        UserSession.shared.updateCurrentUser(rewardImageURL: "")
-                        self?.showAlert(title: "削除しました！", message: "")
-                    }
+        print("Firestore: ユーザー情報のURL参照を削除します")
+        
+        firebaseService.updateUserAndCurrentUser(
+            collection: "users",
+            documentID: uid,
+            userName: currentUser.userName,
+            userData: userData
+        ) { [weak self] error in
+            DispatchQueue.main.async {
+                // ローディング表示終了
+                self?.hideLoading()
+                
+                if let error = error {
+                    print("Firestore更新エラー: \(error.localizedDescription)")
+                    self?.showAlert(title: "削除エラー", message: error.localizedDescription)
+                } else {
+                    print("Firestore: ユーザーデータからURLを削除しました")
+                    // isManualSaveをリセットして保存アラートが表示されないようにする
+                    self?.isManualSave = false
+                    self?.showAlert(title: "削除しました！", message: "")
                 }
             }
         }
@@ -440,42 +572,73 @@ extension PresentViewController: UIImagePickerControllerDelegate & UINavigationC
     private func uploadToFirebaseStorage(_ image: UIImage) {
         guard let currentUser = UserSession.shared.currentUser,
               let uid = Auth.auth().currentUser?.uid else {
+            hideLoading()
             showAlert(title: "エラー", message: "ユーザー情報が取得できませんでした")
             return
         }
         
+        // UserSessionのURLクリア
+        UserSession.shared.updateCurrentUser(rewardImageURL: "")
+        
+        // まず既存の画像を削除
+        if let existingURL = currentUser.rewardImageURL, !existingURL.isEmpty {
+            // この時点で保存されているURLが存在する場合、直接そのURLの参照を削除
+            print("上書き: 既存の画像URL: \(existingURL)")
+            
+            // urlからStorageの参照を取得
+            let storageRef = Storage.storage().reference(forURL: existingURL)
+            // 直接その参照を削除
+            storageRef.delete { error in
+                if let error = error {
+                    print("Firebase Storage削除エラー: \(error.localizedDescription)")
+                } else {
+                    print("Firebase Storage: 既存画像を削除しました")
+                }
+            }
+        }
+        
         // JPEGデータに変換
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            showAlert(title: "エラー", message: "画像データの変換に失敗しました")
+            self.hideLoading()
+            self.showAlert(title: "エラー", message: "画像データの変換に失敗しました")
             return
         }
         
-        // 保存パス（ユーザー名を含む）
-        let safeUserName = currentUser.userName
-            .replacingOccurrences(of: "/", with: "_")
+        // 子ユーザーごとに固有のパスを生成
+        let username = currentUser.userName
+        
+        // 各子ユーザーに固有のディレクトリ構造（パス情報に子ユーザー名を含める）
+        let safeUsername = username.replacingOccurrences(of: "/", with: "_")
             .replacingOccurrences(of: " ", with: "_")
-        let path = "reward_images/\(safeUserName).jpg"
+            .replacingOccurrences(of: ".", with: "_")
+        
+        // 各子ユーザーにユニークなパス（rewards_simple/ユーザー名.jpg）
+        let path = "rewards_simple/\(safeUsername).jpg"
+        
+        print("新しい画像をアップロード: \(path)")
         
         // Firebase Storageにアップロード
-        firebaseService.uploadDataToStorage(data: imageData, path: path) { [weak self] url, error in
-            if let error = error {
-                self?.hideLoading()
-                self?.showAlert(title: "画像アップロード失敗", message: error.localizedDescription)
-                return
+        self.firebaseService.uploadDataToStorage(data: imageData, path: path) { [weak self] url, error in
+            guard let self = self else { return }
+                
+                if let error = error {
+                    self.hideLoading()
+                    self.showAlert(title: "画像アップロード失敗", message: error.localizedDescription)
+                    return
+                }
+                
+                guard let downloadURL = url else {
+                    self.hideLoading()
+                    self.showAlert(title: "画像URL取得失敗", message: "")
+                    return
+                }
+                
+                print("ご褒美画像アップロード成功: \(downloadURL)")
+                
+                // Firestoreにユーザー情報の一部としてURLを保存
+                self.saveRewardImageURL(downloadURL.absoluteString, userName: currentUser.userName, userID: uid)
             }
-            
-            guard let downloadURL = url else {
-                self?.hideLoading()
-                self?.showAlert(title: "画像URL取得失敗", message: "")
-                return
-            }
-            
-            print("ご褒美画像アップロード成功: \(downloadURL)")
-            
-            // Firestoreにユーザー情報の一部としてURLを保存
-            self?.saveRewardImageURL(downloadURL.absoluteString, userName: currentUser.userName, userID: uid)
         }
-    }
     
     /// ご褒美画像URLをFirestoreに保存
     private func saveRewardImageURL(_ urlString: String, userName: String, userID: String) {

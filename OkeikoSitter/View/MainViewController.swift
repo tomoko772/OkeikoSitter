@@ -386,6 +386,26 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: UserListViewControllerDelegete {
     func didSelectCurrentUser() {
+        // fetchDataの前にURL検証を行う
+        if let currentUser = UserSession.shared.currentUser, 
+           let rewardURL = currentUser.rewardImageURL, 
+           !rewardURL.isEmpty {
+            
+            print("DEBUG-メイン画面: ユーザー切替後確認")
+            print("DEBUG-メイン画面: ユーザー名=\(currentUser.userName)")
+            print("DEBUG-メイン画面: 隠し場所=\(currentUser.hiddenPlace)")
+            print("DEBUG-メイン画面: 画像URL=\(rewardURL)")
+            
+            // URLにユーザー名が含まれるか確認
+            if let url = URL(string: rewardURL) {
+                if url.path.contains(currentUser.userName.replacingOccurrences(of: " ", with: "_")) {
+                    print("DEBUG-メイン画面: URL確認OK - ユーザー名を含む")
+                } else {
+                    print("DEBUG-メイン画面: ⚠️ URL不一致の可能性: \(url.path)はユーザー\(currentUser.userName)のものではない可能性")
+                }
+            }
+        }
+        
         fetchData()
     }
 }
