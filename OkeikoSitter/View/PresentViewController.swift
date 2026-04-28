@@ -19,6 +19,10 @@ final class PresentViewController: UIViewController {
     private var isGoalReached: Bool = false
     /// FirebaseServiceのインスタンス
     private let firebaseService = FirebaseService.shared
+    /// 手動保存かどうか（アラート表示制御用）
+    private var isManualSave = false
+    /// ローディングインジケータ
+    private var activityIndicator = UIActivityIndicatorView(style: .large)
     
     // MARK: - IBOutlets
     
@@ -49,7 +53,44 @@ final class PresentViewController: UIViewController {
         super.viewDidLoad()
         configureBarButtonItems()
         configureUI()
+        setupActivityIndicator()
+        // 起動時にフラグをリセット
+        isManualSave = false
         loadSavedRewardImage()
+    }
+    
+    /// ローディングインジケータの設定
+    private func setupActivityIndicator() {
+        // スタイル設定
+        activityIndicator.color = .gray
+        activityIndicator.hidesWhenStopped = true
+        
+        // 画面中央に配置
+        activityIndicator.center = view.center
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(activityIndicator)
+        
+        // 制約を設定
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
+    /// ローディング表示の開始
+    private func showLoading() {
+        DispatchQueue.main.async { [weak self] in
+            self?.activityIndicator.startAnimating()
+            self?.view.isUserInteractionEnabled = false
+        }
+    }
+    
+    /// ローディング表示の終了
+    private func hideLoading() {
+        DispatchQueue.main.async { [weak self] in
+            self?.activityIndicator.stopAnimating()
+            self?.view.isUserInteractionEnabled = true
+        }
     }
     
     // MARK: - IBActions
@@ -98,7 +139,20 @@ final class PresentViewController: UIViewController {
     }
     
     @IBAction func ewardImageSaveButtonTapped(_ sender: Any) {
-        saveRewardImage()
+        // 既にrewardImageViewに画像がある場合のみ処理
+        guard let image = rewardImageView.image else {
+            showAlert(title: "画像がありません", message: "先にご褒美画像を選択してください。")
+            return
+        }
+        
+        // 手動保存フラグを常にtrueに設定（画像選択時の自動保存は行わないため）
+        isManualSave = true
+        
+        // ローディング表示開始
+        showLoading()
+        
+        // Firebase Storageに直接アップロード
+        uploadToFirebaseStorage(image)
     }
     
     @IBAction func rewardImageDeleteButtonTapped(_ sender: Any) {
@@ -260,17 +314,6 @@ final class PresentViewController: UIViewController {
         return documentsDirectory?.appendingPathComponent("reward_\(safeUserName).jpg")
     }
     
-    /// ご褒美画像を保存（Firebase Storageを使用）
-    private func saveRewardImage() {
-        guard let image = rewardImageView.image else {
-            showAlert(title: "画像がありません", message: "先にご褒美画像を選択してください。")
-            return
-        }
-        
-        // Firebase Storageに画像をアップロード
-        uploadToFirebaseStorage(image)
-    }
-    
     /// 保存済みご褒美画像を読み込む（Firebase Storage対応）
     private func loadSavedRewardImage() {
         guard let currentUser = UserSession.shared.currentUser else { return }
@@ -311,6 +354,9 @@ final class PresentViewController: UIViewController {
             return
         }
         
+        // ローディング表示開始
+        showLoading()
+        
         // ローカルファイルがあれば削除（後方互換性のため）
         if let fileURL = rewardImageFileURL(), FileManager.default.fileExists(atPath: fileURL.path) {
             do {
@@ -347,9 +393,14 @@ final class PresentViewController: UIViewController {
                     self?.rewardImageView.image = nil
                     self?.presentMarkImageView.isHidden = false
                     
+                    // ローディング表示終了
+                    self?.hideLoading()
+                    
                     if let error = error {
                         self?.showAlert(title: "削除エラー", message: error.localizedDescription)
                     } else {
+                        // isManualSaveをリセットして保存アラートが表示されないようにする
+                        self?.isManualSave = false
                         // UserSessionのcurrentUserも更新（メモリ上）
                         UserSession.shared.updateCurrentUser(rewardImageURL: "")
                         self?.showAlert(title: "削除しました！", message: "")
@@ -370,10 +421,14 @@ extension PresentViewController: UIImagePickerControllerDelegate & UINavigationC
             rewardImageView.image = image
             presentMarkImageView.isHidden = true
             
-            // 自動的にFirebase Storageにアップロード
-            uploadToFirebaseStorage(image)
+            // 自動保存フラグをリセット（アラート表示しない）
+            isManualSave = false
+            
+            // ImagePickerを閉じるだけ（保存しない）
+            picker.dismiss(animated: true)
+        } else {
+            picker.dismiss(animated: true)
         }
-        picker.dismiss(animated: true, completion: nil)
     }
     
     /// イメージピッカーコントローラーをキャンセルした
@@ -404,11 +459,13 @@ extension PresentViewController: UIImagePickerControllerDelegate & UINavigationC
         // Firebase Storageにアップロード
         firebaseService.uploadDataToStorage(data: imageData, path: path) { [weak self] url, error in
             if let error = error {
+                self?.hideLoading()
                 self?.showAlert(title: "画像アップロード失敗", message: error.localizedDescription)
                 return
             }
             
             guard let downloadURL = url else {
+                self?.hideLoading()
                 self?.showAlert(title: "画像URL取得失敗", message: "")
                 return
             }
@@ -435,12 +492,20 @@ extension PresentViewController: UIImagePickerControllerDelegate & UINavigationC
             userData: userData
         ) { [weak self] error in
             DispatchQueue.main.async {
+                // ローディング表示終了
+                self?.hideLoading()
+                
                 if let error = error {
                     self?.showAlert(title: "画像URL保存エラー", message: error.localizedDescription)
                 } else {
                     // UserSessionのcurrentUserを更新（メモリ上）
                     UserSession.shared.updateCurrentUser(rewardImageURL: urlString)
-                    self?.showAlert(title: "ご褒美画像を保存しました！", message: "")
+                    
+                    // 画像選択後の自動保存時はサイレントに処理、ボタン押下時のみ表示
+                    if self?.isManualSave == true {
+                        self?.showAlert(title: "ご褒美画像を保存しました！", message: "")
+                        self?.isManualSave = false
+                    }
                 }
             }
         }
