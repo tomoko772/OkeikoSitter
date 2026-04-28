@@ -233,7 +233,9 @@ final class MainViewController: UIViewController {
                                 profileImage: nil,
                                 profileImageURL: user.profileImageURL,
                                 currentPoint: user.currentPoint ?? 0,
-                                pin: user.pin
+                                pin: user.pin,
+                                selectedDates: user.selectedDates,
+                                rewardImageURL: user.rewardImageURL
                             )
                         }
                         UserSession.shared.setUsers(sessionUsers)
@@ -252,7 +254,8 @@ final class MainViewController: UIViewController {
                         profileImageURL: currentUserData.profileImageURL,
                         currentPoint: currentUserData.currentPoint ?? 0,
                         pin: currentUserData.pin,
-                        selectedDates: currentUserData.selectedDates
+                        selectedDates: currentUserData.selectedDates,
+                        rewardImageURL: currentUserData.rewardImageURL
                     )
                     
                     // UserSession に反映

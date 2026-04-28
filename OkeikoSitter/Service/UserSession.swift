@@ -82,7 +82,8 @@ final class UserSession {
         profileImageURL: String? = nil,
         currentPoint: Int? = nil,
         pin: Int? = nil,
-        selectedDates: [TimeInterval]? = nil
+        selectedDates: [TimeInterval]? = nil,
+        rewardImageURL: String? = nil
     ) {
         guard var user = currentUser else { return }
 
@@ -98,6 +99,7 @@ final class UserSession {
         if let currentPoint = currentPoint { user.currentPoint = currentPoint }
         if let pin = pin { user.pin = pin }
         if let selectedDates = selectedDates { user.selectedDates = selectedDates }
+        if let rewardImageURL = rewardImageURL { user.rewardImageURL = rewardImageURL }
         self.currentUser = user
 
         // users配列内の該当ユーザーも更新
@@ -146,6 +148,11 @@ extension UserSessionUser {
         // 選択日付情報がある場合のみ追加
         if let selectedDates = selectedDates {
             dict["selected_dates"] = selectedDates
+        }
+        
+        // ご褒美画像URL情報がある場合のみ追加
+        if let rewardImageURL = rewardImageURL {
+            dict["reward_image_url"] = rewardImageURL
         }
         
         return dict

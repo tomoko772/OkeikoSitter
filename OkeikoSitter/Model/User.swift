@@ -24,6 +24,7 @@ struct User: Codable {
         case profileImageURL = "profile_image_url"
         case pin = "pin"
         case selectedDates = "selected_dates"
+        case rewardImageURL = "reward_image_url"
     }
     
     // MARK: - Properties
@@ -50,4 +51,6 @@ struct User: Codable {
     let pin: Int?
     /// 達成できた日
     var selectedDates: [TimeInterval]?
+    /// ご褒美画像のURL
+    let rewardImageURL: String?
 }

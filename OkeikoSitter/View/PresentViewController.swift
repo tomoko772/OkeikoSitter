@@ -260,64 +260,100 @@ final class PresentViewController: UIViewController {
         return documentsDirectory?.appendingPathComponent("reward_\(safeUserName).jpg")
     }
     
-    /// ご褒美画像を保存
+    /// ご褒美画像を保存（Firebase Storageを使用）
     private func saveRewardImage() {
         guard let image = rewardImageView.image else {
             showAlert(title: "画像がありません", message: "先にご褒美画像を選択してください。")
             return
         }
         
-        guard let fileURL = rewardImageFileURL() else {
-            showAlert(title: "保存エラー", message: "選択中ユーザーを取得できませんでした。")
-            return
-        }
-        
-        guard let data = image.jpegData(compressionQuality: 0.8) else {
-            showAlert(title: "保存エラー", message: "画像データに変換できませんでした。")
-            return
-        }
-        
-        do {
-            try data.write(to: fileURL, options: .atomic)
-            showAlert(title: "保存しました！", message: "")
-        } catch {
-            showAlert(title: "保存エラー", message: error.localizedDescription)
-        }
+        // Firebase Storageに画像をアップロード
+        uploadToFirebaseStorage(image)
     }
     
-    /// 保存済みご褒美画像を読み込む
+    /// 保存済みご褒美画像を読み込む（Firebase Storage対応）
     private func loadSavedRewardImage() {
-        guard let fileURL = rewardImageFileURL() else { return }
+        guard let currentUser = UserSession.shared.currentUser else { return }
         
-        if FileManager.default.fileExists(atPath: fileURL.path),
+        // ローカルファイルをまず確認（後方互換性のため）
+        if let fileURL = rewardImageFileURL(),
+           FileManager.default.fileExists(atPath: fileURL.path),
            let savedImage = UIImage(contentsOfFile: fileURL.path) {
             rewardImageView.image = savedImage
             presentMarkImageView.isHidden = true
-        } else {
-            rewardImageView.image = nil
-            presentMarkImageView.isHidden = false
+            return
         }
+        
+        // この時点でcurrentUserのrewardImageURLがあるか確認
+        if let rewardImageURL = currentUser.rewardImageURL, !rewardImageURL.isEmpty {
+            // すでにUserSessionに保存されている画像URLを使用
+            UIImage.load(from: rewardImageURL) { [weak self] image in
+                guard let self = self, let image = image else { return }
+                
+                DispatchQueue.main.async {
+                    self.rewardImageView.image = image
+                    self.presentMarkImageView.isHidden = true
+                }
+            }
+            return
+        }
+        
+        // ここまでくると画像は設定されていない
+        rewardImageView.image = nil
+        presentMarkImageView.isHidden = false
     }
     
-    /// ご褒美画像を削除
+    /// ご褒美画像を削除（Firebase Storage対応）
     private func deleteRewardImage() {
-        guard let fileURL = rewardImageFileURL() else {
+        guard let currentUser = UserSession.shared.currentUser, 
+              let uid = Auth.auth().currentUser?.uid else {
             showAlert(title: "削除エラー", message: "選択中ユーザーを取得できませんでした。")
             return
         }
         
-        do {
-            if FileManager.default.fileExists(atPath: fileURL.path) {
+        // ローカルファイルがあれば削除（後方互換性のため）
+        if let fileURL = rewardImageFileURL(), FileManager.default.fileExists(atPath: fileURL.path) {
+            do {
                 try FileManager.default.removeItem(at: fileURL)
+            } catch {
+                print("ローカルファイル削除エラー: \(error.localizedDescription)")
+            }
+        }
+        
+        // Firebase Storageから削除
+        let safeUserName = currentUser.userName
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: " ", with: "_")
+        let path = "reward_images/\(safeUserName).jpg"
+        
+        firebaseService.deleteFileFromStorage(path: path) { [weak self] error in
+            if let error = error {
+                print("Firebase Storage削除エラー: \(error.localizedDescription)")
             }
             
-            // 画面表示を元に戻す
-            rewardImageView.image = nil
-            presentMarkImageView.isHidden = false
+            // Firestoreのユーザー情報も更新（URLを削除）
+            let userData: [String: Any] = [
+                "reward_image_url": ""
+            ]
             
-            showAlert(title: "削除しました！", message: "")
-        } catch {
-            showAlert(title: "削除エラー", message: error.localizedDescription)
+            self?.firebaseService.updateUserAndCurrentUser(
+                collection: "users",
+                documentID: uid,
+                userName: currentUser.userName,
+                userData: userData
+            ) { [weak self] error in
+                DispatchQueue.main.async {
+                    // 画面表示を元に戻す
+                    self?.rewardImageView.image = nil
+                    self?.presentMarkImageView.isHidden = false
+                    
+                    if let error = error {
+                        self?.showAlert(title: "削除エラー", message: error.localizedDescription)
+                    } else {
+                        self?.showAlert(title: "削除しました！", message: "")
+                    }
+                }
+            }
         }
     }
 }
@@ -331,6 +367,9 @@ extension PresentViewController: UIImagePickerControllerDelegate & UINavigationC
             // 撮影した画像を利用
             rewardImageView.image = image
             presentMarkImageView.isHidden = true
+            
+            // 自動的にFirebase Storageにアップロード
+            uploadToFirebaseStorage(image)
         }
         picker.dismiss(animated: true, completion: nil)
     }
@@ -338,5 +377,68 @@ extension PresentViewController: UIImagePickerControllerDelegate & UINavigationC
     /// イメージピッカーコントローラーをキャンセルした
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    /// Firebase Storageに画像をアップロード
+    private func uploadToFirebaseStorage(_ image: UIImage) {
+        guard let currentUser = UserSession.shared.currentUser,
+              let uid = Auth.auth().currentUser?.uid else {
+            showAlert(title: "エラー", message: "ユーザー情報が取得できませんでした")
+            return
+        }
+        
+        // JPEGデータに変換
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            showAlert(title: "エラー", message: "画像データの変換に失敗しました")
+            return
+        }
+        
+        // 保存パス（ユーザー名を含む）
+        let safeUserName = currentUser.userName
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: " ", with: "_")
+        let path = "reward_images/\(safeUserName).jpg"
+        
+        // Firebase Storageにアップロード
+        firebaseService.uploadDataToStorage(data: imageData, path: path) { [weak self] url, error in
+            if let error = error {
+                self?.showAlert(title: "画像アップロード失敗", message: error.localizedDescription)
+                return
+            }
+            
+            guard let downloadURL = url else {
+                self?.showAlert(title: "画像URL取得失敗", message: "")
+                return
+            }
+            
+            print("ご褒美画像アップロード成功: \(downloadURL)")
+            
+            // Firestoreにユーザー情報の一部としてURLを保存
+            self?.saveRewardImageURL(downloadURL.absoluteString, userName: currentUser.userName, userID: uid)
+        }
+    }
+    
+    /// ご褒美画像URLをFirestoreに保存
+    private func saveRewardImageURL(_ urlString: String, userName: String, userID: String) {
+        // ご褒美画像のURL情報を更新
+        let userData: [String: Any] = [
+            "reward_image_url": urlString
+        ]
+        
+        // ユーザー名を指定した更新処理
+        firebaseService.updateUserAndCurrentUser(
+            collection: "users",
+            documentID: userID,
+            userName: userName,
+            userData: userData
+        ) { [weak self] error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self?.showAlert(title: "画像URL保存エラー", message: error.localizedDescription)
+                } else {
+                    self?.showAlert(title: "ご褒美画像を保存しました！", message: "")
+                }
+            }
+        }
     }
 }
