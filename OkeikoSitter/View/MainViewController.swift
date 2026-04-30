@@ -62,9 +62,18 @@ final class MainViewController: UIViewController {
         guard let currentUser = UserSession.shared.currentUser else { return }
         let currentPoint = currentUser.currentPoint
         let challengePoint = currentUser.challengePoint
-        UserSession.shared.updateCurrentPoint(currentPoint + challengePoint)
-        currentPointLabel.text = "現在　\(currentPoint + challengePoint)　ポイント"
-        saveCurrentPoint(currentPoint: currentPoint + challengePoint)
+        let goalPoint = currentUser.goalPoint
+        let newPoint = currentPoint + challengePoint
+        
+        // ポイント更新
+        UserSession.shared.updateCurrentPoint(newPoint)
+        currentPointLabel.text = "現在　\(newPoint)　ポイント"
+        
+        // 目標達成チェック
+        shouldShowGoalAchievementView(goalPoint: goalPoint, currentPoint: newPoint)
+        
+        // 保存
+        saveCurrentPoint(currentPoint: newPoint)
     }
     
     /// ボーナスボタンをタップ
@@ -121,12 +130,11 @@ final class MainViewController: UIViewController {
     @IBAction private func presentButtonTapped(_ sender: UIButton) {
         guard let currentUser = UserSession.shared.currentUser else { return }
         let isGoalReached = currentUser.goalPoint > 0 && currentUser.currentPoint >= currentUser.goalPoint
-        
+
         let presentVC = PresentViewController(
             isGoalReached: isGoalReached,
             hidingPlace: currentUser.hiddenPlace
         )
-        
         let navController = UINavigationController(rootViewController: presentVC)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
@@ -233,7 +241,9 @@ final class MainViewController: UIViewController {
                                 profileImage: nil,
                                 profileImageURL: user.profileImageURL,
                                 currentPoint: user.currentPoint ?? 0,
-                                pin: user.pin
+                                pin: user.pin,
+                                selectedDates: user.selectedDates,
+                                rewardImageURL: user.rewardImageURL
                             )
                         }
                         UserSession.shared.setUsers(sessionUsers)
@@ -252,7 +262,8 @@ final class MainViewController: UIViewController {
                         profileImageURL: currentUserData.profileImageURL,
                         currentPoint: currentUserData.currentPoint ?? 0,
                         pin: currentUserData.pin,
-                        selectedDates: currentUserData.selectedDates
+                        selectedDates: currentUserData.selectedDates,
+                        rewardImageURL: currentUserData.rewardImageURL
                     )
                     
                     // UserSession に反映
@@ -286,6 +297,15 @@ final class MainViewController: UIViewController {
                 }
             }
         }.resume()
+    }
+    
+    /// 画面を再読み込みする必要があることをマークするメソッド
+    /// 他の画面から呼び出せるように追加
+    func setNeedsReload() {
+        print("MainViewController: 再読み込みが予定されています")
+        DispatchQueue.main.async { [weak self] in
+            self?.fetchData()
+        }
     }
     
     private func updateUI(with user: UserSessionUser) {
@@ -374,6 +394,26 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: UserListViewControllerDelegete {
     func didSelectCurrentUser() {
+        // fetchDataの前にURL検証を行う
+        if let currentUser = UserSession.shared.currentUser, 
+           let rewardURL = currentUser.rewardImageURL, 
+           !rewardURL.isEmpty {
+            
+            print("DEBUG-メイン画面: ユーザー切替後確認")
+            print("DEBUG-メイン画面: ユーザー名=\(currentUser.userName)")
+            print("DEBUG-メイン画面: 隠し場所=\(currentUser.hiddenPlace)")
+            print("DEBUG-メイン画面: 画像URL=\(rewardURL)")
+            
+            // URLにユーザー名が含まれるか確認
+            if let url = URL(string: rewardURL) {
+                if url.path.contains(currentUser.userName.replacingOccurrences(of: " ", with: "_")) {
+                    print("DEBUG-メイン画面: URL確認OK - ユーザー名を含む")
+                } else {
+                    print("DEBUG-メイン画面: ⚠️ URL不一致の可能性: \(url.path)はユーザー\(currentUser.userName)のものではない可能性")
+                }
+            }
+        }
+        
         fetchData()
     }
 }

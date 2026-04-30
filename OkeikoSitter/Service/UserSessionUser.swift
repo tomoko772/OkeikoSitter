@@ -34,6 +34,8 @@ struct UserSessionUser {
     var pin: Int?
     /// 達成した日
     var selectedDates: [TimeInterval]? = []
+    /// ご褒美画像のURL
+    var rewardImageURL: String?
 
     // MARK: - Initializers
 
@@ -48,7 +50,8 @@ struct UserSessionUser {
          profileImageURL: String?,
          currentPoint: Int,
          pin: Int?,
-         selectedDates: [TimeInterval]? = []) {
+         selectedDates: [TimeInterval]? = [],
+         rewardImageURL: String? = nil) {
         self.userName = userName
         self.challengeTask = challengeTask
         self.challengePoint = challengePoint
@@ -61,5 +64,43 @@ struct UserSessionUser {
         self.currentPoint = currentPoint
         self.pin = pin
         self.selectedDates = selectedDates
+        self.rewardImageURL = rewardImageURL
+    }
+    
+    // MARK: - Methods
+    
+    /// Firestoreに保存するためのデータ変換
+    func toDictionary() -> [String: Any] {
+        var dict: [String: Any] = [
+            "user_name": userName,
+            "challenge_task": challengeTask,
+            "challenge_point": challengePoint,
+            "bonus_point": bonusPoint,
+            "goal_point": goalPoint,
+            "challenge_day": challengeDay,
+            "hidden_place": hiddenPlace,
+            "current_point": currentPoint
+        ]
+        
+        if let profileImageURL = profileImageURL {
+            dict["profile_image_url"] = profileImageURL
+        }
+        
+        if let pin = pin {
+            dict["pin"] = pin
+        }
+        
+        if let selectedDates = selectedDates {
+            dict["selected_dates"] = selectedDates
+        }
+        
+        // ご褒美画像URLはそのまま保存（検証しない）
+        if let rewardURL = rewardImageURL, !rewardURL.isEmpty {
+            dict["reward_image_url"] = rewardURL
+        } else {
+            dict["reward_image_url"] = ""
+        }
+        
+        return dict
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 /// ユーザーの情報
-struct User: Codable {
+struct User: Codable, CustomDebugStringConvertible {
     
     // MARK: - Enums
     
@@ -24,6 +24,7 @@ struct User: Codable {
         case profileImageURL = "profile_image_url"
         case pin = "pin"
         case selectedDates = "selected_dates"
+        case rewardImageURL = "reward_image_url"
     }
     
     // MARK: - Properties
@@ -50,4 +51,19 @@ struct User: Codable {
     let pin: Int?
     /// 達成できた日
     var selectedDates: [TimeInterval]?
+    /// ご褒美画像のURL
+    let rewardImageURL: String?
+    
+    // MARK: - Debug Support
+    
+    var debugDescription: String {
+        return """
+        User(
+          userName: \(userName ?? "nil"),
+          hiddenPlace: \(hiddenPlace ?? "nil"),
+          rewardImageURL: \(rewardImageURL ?? "nil"),
+          pin: \(pin?.description ?? "nil")
+        )
+        """
+    }
 }

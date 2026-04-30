@@ -82,7 +82,8 @@ final class UserSession {
         profileImageURL: String? = nil,
         currentPoint: Int? = nil,
         pin: Int? = nil,
-        selectedDates: [TimeInterval]? = nil
+        selectedDates: [TimeInterval]? = nil,
+        rewardImageURL: String? = nil
     ) {
         guard var user = currentUser else { return }
 
@@ -98,6 +99,7 @@ final class UserSession {
         if let currentPoint = currentPoint { user.currentPoint = currentPoint }
         if let pin = pin { user.pin = pin }
         if let selectedDates = selectedDates { user.selectedDates = selectedDates }
+        if let rewardImageURL = rewardImageURL { user.rewardImageURL = rewardImageURL }
         self.currentUser = user
 
         // users配列内の該当ユーザーも更新
@@ -124,30 +126,10 @@ final class UserSession {
     }
 }
 
+// 注: toDictionary実装はUserSessionUser.swiftに移動されました
+// 重複コードと不整合を防ぐため、そちらを参照してください
+// このエクステンションは互換性のために残していますが、
+// 常に内部でUserSessionUserの実装を呼び出して動作を統一します
 extension UserSessionUser {
-    func toDictionary() -> [String: Any] {
-        var dict: [String: Any] = [
-            "user_name": userName,
-            "challenge_task": challengeTask,
-            "challenge_point": challengePoint,
-            "bonus_point": bonusPoint,
-            "goal_point": goalPoint,
-            "challenge_day": challengeDay,
-            "hidden_place": hiddenPlace,
-            "profile_image_url": profileImageURL ?? "",
-            "current_point": currentPoint
-        ]
-        
-        // PIN情報がある場合のみ追加
-        if let pin = pin {
-            dict["pin"] = pin
-        }
-        
-        // 選択日付情報がある場合のみ追加
-        if let selectedDates = selectedDates {
-            dict["selected_dates"] = selectedDates
-        }
-        
-        return dict
-    }
+    // UserSessionUser.swiftにセーフティチェック付きの実装があります
 }

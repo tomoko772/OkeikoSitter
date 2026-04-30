@@ -91,40 +91,77 @@ final class UserListViewController: UIViewController {
             print("❌ accountIDがnil")
             return
         }
-
-        let userName = selectedUser.userName
-        let currentUserData: [String: Any] = [
-            "user_name": selectedUser.userName,
-            "challenge_task": selectedUser.challengeTask,
-            "challenge_point": selectedUser.challengePoint,
-            "bonus_point": selectedUser.bonusPoint,
-            "goal_point": selectedUser.goalPoint,
-            "challenge_day": selectedUser.challengeDay,
-            "hidden_place": selectedUser.hiddenPlace,
-            "profile_image_url": selectedUser.profileImageURL ?? "",
-            "current_point": selectedUser.currentPoint,
-            "pin": selectedUser.pin as Any  // pinは値がnilの可能性もあるためキャスト
-        ]
-
-        print("📝 ユーザー切り替え: \(userName), ポイント: \(selectedUser.currentPoint)")
-
-        // 🔴 修正: updateUserAndCurrentUser を使用して両方更新
-        firebaseService.updateUserAndCurrentUser(
-            collection: "users",
-            documentID: accountID,
-            userName: userName,
-            userData: currentUserData
-        ) { [weak self] error in
+        
+        // Firestoreから最新データを取得して確実に最新状態を維持する
+        firebaseService.fetchDocument(collection: "users", documentID: accountID) { [weak self] (accountData: Account?, error) in
+            guard let self = self else { return }
+            
             if let error = error {
-                print("❌ currentUser 保存失敗: \(error.localizedDescription)")
-            } else {
-                print("✅ currentUser 保存成功")
-                self?.delegate?.didSelectCurrentUser()
-                self?.dismiss(animated: true, completion: nil)
+                print("❌ アカウントデータ取得失敗: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let accountData = accountData else {
+                print("❌ アカウントデータが見つかりません")
+                return
+            }
+            
+            // 最新のユーザーデータを取得
+            let users = accountData.users
+            guard let latestUserData = users.first(where: { $0.userName == selectedUser.userName }) else {
+                print("❌ ユーザー \(selectedUser.userName) のデータが見つかりません")
+                return
+            }
+            
+            // 最新のデータでUserSessionUserを更新
+            let updatedUser = UserSessionUser(
+                userName: latestUserData.userName ?? "",
+                challengeTask: latestUserData.challengeTask ?? "",
+                challengePoint: latestUserData.challengePoint ?? 0,
+                bonusPoint: latestUserData.bonusPoint ?? 0,
+                goalPoint: latestUserData.goalPoint ?? 0,
+                challengeDay: latestUserData.challengeDay ?? 0,
+                hiddenPlace: latestUserData.hiddenPlace ?? "",
+                profileImage: selectedUser.profileImage, // 元のプロフィール画像は維持
+                profileImageURL: latestUserData.profileImageURL,
+                currentPoint: latestUserData.currentPoint ?? 0,
+                pin: latestUserData.pin,
+                selectedDates: latestUserData.selectedDates,
+                rewardImageURL: latestUserData.rewardImageURL
+            )
+            
+            let userName = updatedUser.userName
+            // selectedUser から辞書生成（toDictionary を使用して完全に同じ構造にする）
+            let currentUserData = updatedUser.toDictionary()
+            
+            // 重要なフィールドについてログ出力
+            print("📝 ユーザー切り替え: \(updatedUser.userName)")
+            print("📝 hiddenPlace: \(updatedUser.hiddenPlace)")
+            print("📝 rewardImageURL: \(updatedUser.rewardImageURL ?? "なし")")
+            
+            // 修正後のユーザーを先にセット
+            UserSession.shared.selectCurrentUser(user: updatedUser)
+            
+            print("📝 ユーザー切り替え: \(userName), ポイント: \(updatedUser.currentPoint)")
+            
+            // updateUserAndCurrentUser を使用して両方更新
+            self.firebaseService.updateUserAndCurrentUser(
+                collection: "users",
+                documentID: accountID,
+                userName: userName,
+                userData: currentUserData
+            ) { [weak self] error in
+                if let error = error {
+                    print("❌ currentUser 保存失敗: \(error.localizedDescription)")
+                } else {
+                    print("✅ currentUser 保存成功")
+                    self?.delegate?.didSelectCurrentUser()
+                    self?.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
-
+    
     /// データを取得する
     private func fetchData() {
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
@@ -138,7 +175,11 @@ final class UserListViewController: UIViewController {
             
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                guard let firestoreUsers = accountData?.users, !firestoreUsers.isEmpty else { return }
+                guard let accountData = accountData else { return }
+            
+            // users配列を直接取得（非Optionalの配列なのでnilチェックは不要）
+            let firestoreUsers = accountData.users
+            if firestoreUsers.isEmpty { return }
                 
                 // UserSession にセット
                 let sessionUsers = firestoreUsers.map { user in
@@ -153,7 +194,7 @@ final class UserListViewController: UIViewController {
                         profileImage: nil,
                         profileImageURL: user.profileImageURL,
                         currentPoint: user.currentPoint ?? 0,
-                                        pin: user.pin
+                        pin: user.pin
                     )
                 }
                 UserSession.shared.setUsers(sessionUsers)
@@ -191,15 +232,25 @@ final class UserListViewController: UIViewController {
     /// ユーザーを削除
     private func deleteUser(_ user: UserSessionUser, at indexPath: IndexPath) {
         guard let accountID = UserSession.shared.accountID else { return }
-
+        if let fileURL = rewardImageFileURL(for: user) {
+                do {
+                    if FileManager.default.fileExists(atPath: fileURL.path) {
+                        try FileManager.default.removeItem(at: fileURL)
+                        print("ご褒美画像を削除しました: \(fileURL.lastPathComponent)")
+                    }
+                } catch {
+                    print("ご褒美画像削除失敗: \(error.localizedDescription)")
+                }
+            }
+        
         // ローカル削除
         UserSession.shared.setUsers(
             UserSession.shared.users.filter { $0.userName != user.userName }
         )
-
+        
         // Firestoreデータ形式に変換
         let updatedUsersData = UserSession.shared.users.map { $0.toDictionary() }
-
+        
         // Firestoreに書き戻し
         FirebaseService.shared.update(
             collection: "users",
@@ -210,13 +261,25 @@ final class UserListViewController: UIViewController {
                 print("ユーザー削除失敗: \(error.localizedDescription)")
             } else {
                 print("Firestore更新成功: \(user.userName) を削除しました")
-
+                
                 // テーブル更新
                 DispatchQueue.main.async {
                     self?.userTableView.deleteRows(at: [indexPath], with: .automatic)
                 }
             }
         }
+    }
+    
+    /// 指定ユーザーのご褒美画像ファイルURL
+    private func rewardImageFileURL(for user: UserSessionUser) -> URL? {
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                          in: .userDomainMask).first
+        
+        let safeUserName = user.userName
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: " ", with: "_")
+        
+        return documentsDirectory?.appendingPathComponent("reward_\(safeUserName).jpg")
     }
 }
 
