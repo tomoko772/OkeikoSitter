@@ -88,6 +88,22 @@ final class MainViewController: UIViewController {
         saveCurrentPoint(currentPoint: currentPoint + bonusPoint)
     }
     
+    @IBAction private func minusButtonTapped(_ sender: UIButton) {
+        guard let currentUser = UserSession.shared.currentUser else {
+            return
+        }
+        
+        let currentPoint = currentUser.currentPoint
+        let goalPoint = currentUser.goalPoint
+        let newPoint = max(0, currentPoint - 1)
+        
+        UserSession.shared.updateCurrentPoint(newPoint)
+        currentPointLabel.text = "現在　\(newPoint)　ポイント"
+        
+        shouldShowGoalAchievementView(goalPoint: goalPoint, currentPoint: newPoint)
+        saveCurrentPoint(currentPoint: newPoint)
+    }
+    
     /// 残り日数が表示されたボタンをタップ
     @IBAction private func calendarButtonTapped(_ sender: UIButton) {
         guard let currentUser = UserSession.shared.currentUser else { return }
@@ -130,7 +146,7 @@ final class MainViewController: UIViewController {
     @IBAction private func presentButtonTapped(_ sender: UIButton) {
         guard let currentUser = UserSession.shared.currentUser else { return }
         let isGoalReached = currentUser.goalPoint > 0 && currentUser.currentPoint >= currentUser.goalPoint
-
+        
         let presentVC = PresentViewController(
             isGoalReached: isGoalReached,
             hidingPlace: currentUser.hiddenPlace
@@ -395,8 +411,8 @@ final class MainViewController: UIViewController {
 extension MainViewController: UserListViewControllerDelegete {
     func didSelectCurrentUser() {
         // fetchDataの前にURL検証を行う
-        if let currentUser = UserSession.shared.currentUser, 
-           let rewardURL = currentUser.rewardImageURL, 
+        if let currentUser = UserSession.shared.currentUser,
+           let rewardURL = currentUser.rewardImageURL,
            !rewardURL.isEmpty {
             
             print("DEBUG-メイン画面: ユーザー切替後確認")
