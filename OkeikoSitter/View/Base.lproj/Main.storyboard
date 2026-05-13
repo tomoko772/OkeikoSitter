@@ -71,8 +71,8 @@
                                                     <constraint firstItem="TVZ-Jd-Y65" firstAttribute="centerX" secondItem="b7V-Uw-vdh" secondAttribute="centerX" id="j90-Tl-fq9"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGZ-sC-pCP" userLabel="緑のView">
-                                                <rect key="frame" x="28" y="82" width="337" height="685"/>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HGZ-sC-pCP" userLabel="緑のView">
+                                                <rect key="frame" x="28" y="78" width="337" height="685"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KnB-Xb-NYh">
                                                         <rect key="frame" x="24" y="14" width="289" height="229"/>
@@ -282,11 +282,93 @@
                                                             </view>
                                                         </subviews>
                                                     </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKy-wT-pCh" userLabel="もらえるよView">
+                                                        <rect key="frame" x="18" y="551" width="301" height="42"/>
+                                                        <subviews>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目標ポイントに到達するともらえるよ↓                        " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6v0-3a-D06">
+                                                                <rect key="frame" x="13" y="11.333333333333369" width="275" height="19.333333333333329"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layercornerRadius">
+                                                                        <integer key="value" value="8"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.92156862745098034" green="0.99607843137254903" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="42" id="d2W-Kx-kJw"/>
+                                                            <constraint firstItem="6v0-3a-D06" firstAttribute="leading" secondItem="qKy-wT-pCh" secondAttribute="leading" constant="13" id="eAx-0q-SQY"/>
+                                                            <constraint firstItem="6v0-3a-D06" firstAttribute="centerY" secondItem="qKy-wT-pCh" secondAttribute="centerY" id="eZy-Mn-BQG"/>
+                                                            <constraint firstAttribute="trailing" secondItem="6v0-3a-D06" secondAttribute="trailing" constant="13" id="hHW-5F-PUi"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZq-DP-9Pi" userLabel="黄色いご褒美View">
+                                                        <rect key="frame" x="46" y="601" width="245" height="75"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="present.gif" translatesAutoresizingMaskIntoConstraints="NO" id="vBd-J9-KBJ">
+                                                                <rect key="frame" x="47.666666666666671" y="1" width="150" height="73"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="73" id="Dez-9l-qtC"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Msq-co-iEf" userLabel="ご褒美Button" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="245" height="75"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="75" id="oPD-bt-W7x"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="8"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="presentButtonTapped:" destination="G8A-ao-Z37" eventType="touchUpInside" id="MNZ-gR-cX9"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="vBd-J9-KBJ" firstAttribute="centerX" secondItem="wZq-DP-9Pi" secondAttribute="centerX" id="7mz-UX-awc"/>
+                                                            <constraint firstItem="Msq-co-iEf" firstAttribute="top" secondItem="wZq-DP-9Pi" secondAttribute="top" id="F1d-Z9-3IF"/>
+                                                            <constraint firstAttribute="height" constant="75" id="Ne6-8C-6u7"/>
+                                                            <constraint firstItem="Msq-co-iEf" firstAttribute="leading" secondItem="wZq-DP-9Pi" secondAttribute="leading" id="R7h-Gg-8CU"/>
+                                                            <constraint firstItem="vBd-J9-KBJ" firstAttribute="centerY" secondItem="wZq-DP-9Pi" secondAttribute="centerY" id="eKw-UT-oay"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Msq-co-iEf" secondAttribute="bottom" id="gry-8L-iuq"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Msq-co-iEf" secondAttribute="trailing" id="h4K-03-ieG"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LCl-zv-g1k" userLabel="薄黄緑色View">
                                                         <rect key="frame" x="16" y="249" width="305" height="292"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUi-up-B5w" userLabel="現在ポイントView">
-                                                                <rect key="frame" x="31" y="17" width="244" height="75"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpt-sa-yk7" userLabel="透明なマイナスButton" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
+                                                                <rect key="frame" x="272" y="37.666666666666629" width="34" height="34"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="34" id="Jdz-jH-G64"/>
+                                                                    <constraint firstAttribute="height" constant="34" id="hyx-WB-vWS"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                                <connections>
+                                                                    <action selector="minusButtonTapped:" destination="G8A-ao-Z37" eventType="touchUpInside" id="kHu-rE-xxN"/>
+                                                                </connections>
+                                                            </button>
+                                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NUi-up-B5w" userLabel="現在ポイントView">
+                                                                <rect key="frame" x="30" y="17" width="244" height="75"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="現在　＊　ポイント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cW-IU-c4O">
                                                                         <rect key="frame" x="50.333333333333329" y="27.333333333333371" width="143.33333333333337" height="20.333333333333329"/>
@@ -393,6 +475,14 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="abp-Uz-VUG" userLabel="minusアイコン表示用ImageView">
+                                                                <rect key="frame" x="272" y="38.3333333333333" width="34" height="32.666666666666671"/>
+                                                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="34" id="H4O-5X-MRG"/>
+                                                                    <constraint firstAttribute="height" constant="34" id="MVj-yZ-Mtm"/>
+                                                                </constraints>
+                                                            </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.68627450980392157" green="0.95686274509803915" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
@@ -400,82 +490,18 @@
                                                             <constraint firstItem="C7b-1f-5UW" firstAttribute="leading" secondItem="LCl-zv-g1k" secondAttribute="leading" constant="31" id="6uV-h6-1Ia"/>
                                                             <constraint firstAttribute="trailing" secondItem="NUi-up-B5w" secondAttribute="trailing" constant="30" id="9bJ-aY-CqD"/>
                                                             <constraint firstAttribute="height" constant="292" id="DnF-Xn-5uv"/>
+                                                            <constraint firstItem="Rpt-sa-yk7" firstAttribute="width" secondItem="abp-Uz-VUG" secondAttribute="width" id="IYN-m3-7ba"/>
+                                                            <constraint firstItem="Rpt-sa-yk7" firstAttribute="centerY" secondItem="abp-Uz-VUG" secondAttribute="centerY" id="V8F-nv-oQx"/>
                                                             <constraint firstItem="C7b-1f-5UW" firstAttribute="top" secondItem="NUi-up-B5w" secondAttribute="bottom" constant="19" id="VZk-FM-Aej"/>
                                                             <constraint firstAttribute="trailing" secondItem="C7b-1f-5UW" secondAttribute="trailing" constant="31" id="YeP-pe-mRY"/>
+                                                            <constraint firstAttribute="trailing" secondItem="abp-Uz-VUG" secondAttribute="trailing" constant="-1" id="h7j-eq-4MB"/>
                                                             <constraint firstItem="NUi-up-B5w" firstAttribute="leading" secondItem="LCl-zv-g1k" secondAttribute="leading" constant="31" id="hI4-ln-clL"/>
                                                             <constraint firstItem="cy1-13-BlZ" firstAttribute="top" secondItem="C7b-1f-5UW" secondAttribute="bottom" constant="15" id="j26-y3-nrp"/>
                                                             <constraint firstItem="NUi-up-B5w" firstAttribute="top" secondItem="LCl-zv-g1k" secondAttribute="top" constant="17" id="pAs-VA-3YG"/>
+                                                            <constraint firstItem="Rpt-sa-yk7" firstAttribute="height" secondItem="abp-Uz-VUG" secondAttribute="height" id="rzi-CY-ulD"/>
                                                             <constraint firstItem="cy1-13-BlZ" firstAttribute="leading" secondItem="LCl-zv-g1k" secondAttribute="leading" constant="31" id="xBp-hE-Mpf"/>
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="8"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKy-wT-pCh" userLabel="もらえるよView">
-                                                        <rect key="frame" x="18" y="551" width="301" height="42"/>
-                                                        <subviews>
-                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目標ポイントに到達するともらえるよ↓                        " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6v0-3a-D06">
-                                                                <rect key="frame" x="13" y="11.333333333333369" width="275" height="19.333333333333329"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layercornerRadius">
-                                                                        <integer key="value" value="8"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" red="0.92156862745098034" green="0.99607843137254903" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="42" id="d2W-Kx-kJw"/>
-                                                            <constraint firstItem="6v0-3a-D06" firstAttribute="leading" secondItem="qKy-wT-pCh" secondAttribute="leading" constant="13" id="eAx-0q-SQY"/>
-                                                            <constraint firstItem="6v0-3a-D06" firstAttribute="centerY" secondItem="qKy-wT-pCh" secondAttribute="centerY" id="eZy-Mn-BQG"/>
-                                                            <constraint firstAttribute="trailing" secondItem="6v0-3a-D06" secondAttribute="trailing" constant="13" id="hHW-5F-PUi"/>
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="8"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZq-DP-9Pi" userLabel="黄色いご褒美View">
-                                                        <rect key="frame" x="46" y="601" width="245" height="75"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="present.gif" translatesAutoresizingMaskIntoConstraints="NO" id="vBd-J9-KBJ">
-                                                                <rect key="frame" x="47.666666666666671" y="1" width="150" height="73"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="73" id="Dez-9l-qtC"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Msq-co-iEf" userLabel="ご褒美Button" customClass="PressableButton" customModule="OkeikoSitter" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="245" height="75"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="75" id="oPD-bt-W7x"/>
-                                                                </constraints>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="8"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="presentButtonTapped:" destination="G8A-ao-Z37" eventType="touchUpInside" id="MNZ-gR-cX9"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
-                                                        <constraints>
-                                                            <constraint firstItem="vBd-J9-KBJ" firstAttribute="centerX" secondItem="wZq-DP-9Pi" secondAttribute="centerX" id="7mz-UX-awc"/>
-                                                            <constraint firstItem="Msq-co-iEf" firstAttribute="top" secondItem="wZq-DP-9Pi" secondAttribute="top" id="F1d-Z9-3IF"/>
-                                                            <constraint firstAttribute="height" constant="75" id="Ne6-8C-6u7"/>
-                                                            <constraint firstItem="Msq-co-iEf" firstAttribute="leading" secondItem="wZq-DP-9Pi" secondAttribute="leading" id="R7h-Gg-8CU"/>
-                                                            <constraint firstItem="vBd-J9-KBJ" firstAttribute="centerY" secondItem="wZq-DP-9Pi" secondAttribute="centerY" id="eKw-UT-oay"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Msq-co-iEf" secondAttribute="bottom" id="gry-8L-iuq"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Msq-co-iEf" secondAttribute="trailing" id="h4K-03-ieG"/>
+                                                            <constraint firstItem="Rpt-sa-yk7" firstAttribute="centerX" secondItem="abp-Uz-VUG" secondAttribute="centerX" id="xqx-c1-mWW"/>
+                                                            <constraint firstItem="abp-Uz-VUG" firstAttribute="centerY" secondItem="NUi-up-B5w" secondAttribute="centerY" id="yoc-KF-EVA"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -570,10 +596,14 @@
     </scenes>
     <resources>
         <image name="calendar" width="25" height="25"/>
+        <image name="minus.circle" catalog="system" width="128" height="123"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="present.gif" width="150" height="150"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
