@@ -94,10 +94,14 @@ final class MainViewController: UIViewController {
         }
         
         let currentPoint = currentUser.currentPoint
+        let goalPoint = currentUser.goalPoint
         let newPoint = max(0, currentPoint - 1)
         
         UserSession.shared.updateCurrentPoint(newPoint)
         currentPointLabel.text = "現在　\(newPoint)　ポイント"
+        
+        shouldShowGoalAchievementView(goalPoint: goalPoint, currentPoint: newPoint)
+        saveCurrentPoint(currentPoint: newPoint)
     }
     
     /// 残り日数が表示されたボタンをタップ
@@ -408,8 +412,8 @@ extension MainViewController: UserListViewControllerDelegete {
     func didSelectCurrentUser() {
         // fetchDataの前にURL検証を行う
         if let currentUser = UserSession.shared.currentUser,
-            let rewardURL = currentUser.rewardImageURL,
-            !rewardURL.isEmpty {
+           let rewardURL = currentUser.rewardImageURL,
+           !rewardURL.isEmpty {
             
             print("DEBUG-メイン画面: ユーザー切替後確認")
             print("DEBUG-メイン画面: ユーザー名=\(currentUser.userName)")
