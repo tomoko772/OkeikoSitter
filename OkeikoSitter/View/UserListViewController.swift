@@ -120,7 +120,8 @@ final class UserListViewController: UIViewController {
                 challengePoint: latestUserData.challengePoint ?? 0,
                 bonusPoint: latestUserData.bonusPoint ?? 0,
                 goalPoint: latestUserData.goalPoint ?? 0,
-                challengeDay: latestUserData.challengeDay ?? 0,
+                streakGoalDays: latestUserData.streakGoalDays ?? 0,
+                dailyPointTotals: latestUserData.dailyPointTotals ?? [:],
                 hiddenPlace: latestUserData.hiddenPlace ?? "",
                 profileImage: selectedUser.profileImage, // 元のプロフィール画像は維持
                 profileImageURL: latestUserData.profileImageURL,
@@ -189,12 +190,15 @@ final class UserListViewController: UIViewController {
                         challengePoint: user.challengePoint ?? 0,
                         bonusPoint: user.bonusPoint ?? 0,
                         goalPoint: user.goalPoint ?? 0,
-                        challengeDay: user.challengeDay ?? 0,
+                        streakGoalDays: user.streakGoalDays ?? 0,
+                        dailyPointTotals: user.dailyPointTotals ?? [:],
                         hiddenPlace: user.hiddenPlace ?? "",
                         profileImage: nil,
                         profileImageURL: user.profileImageURL,
                         currentPoint: user.currentPoint ?? 0,
-                        pin: user.pin
+                        pin: user.pin,
+                        selectedDates: user.selectedDates,
+                        rewardImageURL: user.rewardImageURL
                     )
                 }
                 UserSession.shared.setUsers(sessionUsers)

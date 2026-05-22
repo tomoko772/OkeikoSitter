@@ -21,8 +21,10 @@ struct UserSessionUser {
     var bonusPoint: Int
     /// 目標ポイント
     var goalPoint: Int
-    /// チャレンジ日数
-    var challengeDay: Int
+    /// 目標達成連続記録日数
+    var streakGoalDays: Int
+    /// 1日ごとのポイント増減合計
+    var dailyPointTotals: [String: Int]?
     /// ご褒美の隠し場所
     var hiddenPlace: String
     /// プロフィール画像
@@ -44,7 +46,8 @@ struct UserSessionUser {
          challengePoint: Int = 0,
          bonusPoint: Int = 0,
          goalPoint: Int = 0,
-         challengeDay: Int = 0,
+         streakGoalDays: Int = 0,
+         dailyPointTotals: [String: Int]? = [:],
          hiddenPlace: String = "",
          profileImage: UIImage?,
          profileImageURL: String?,
@@ -57,7 +60,8 @@ struct UserSessionUser {
         self.challengePoint = challengePoint
         self.bonusPoint = bonusPoint
         self.goalPoint = goalPoint
-        self.challengeDay = challengeDay
+        self.streakGoalDays = streakGoalDays
+        self.dailyPointTotals = dailyPointTotals 
         self.hiddenPlace = hiddenPlace
         self.profileImage = profileImage
         self.profileImageURL = profileImageURL
@@ -77,7 +81,7 @@ struct UserSessionUser {
             "challenge_point": challengePoint,
             "bonus_point": bonusPoint,
             "goal_point": goalPoint,
-            "challenge_day": challengeDay,
+            "streak_goal_days": streakGoalDays,
             "hidden_place": hiddenPlace,
             "current_point": currentPoint
         ]
@@ -92,6 +96,10 @@ struct UserSessionUser {
         
         if let selectedDates = selectedDates {
             dict["selected_dates"] = selectedDates
+        }
+        
+        if let dailyPointTotals = dailyPointTotals {
+        dict["daily_point_totals"] = dailyPointTotals
         }
         
         // ご褒美画像URLはそのまま保存（検証しない）

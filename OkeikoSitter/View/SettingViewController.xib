@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,14 +13,15 @@
             <connections>
                 <outlet property="bonusPointLabel" destination="afu-uu-2D3" id="afe-zS-Td8"/>
                 <outlet property="bonusPointMenuButton" destination="uiU-wp-kL7" id="7tz-5v-pEc"/>
-                <outlet property="challengeDaysLabel" destination="XWg-Pb-buF" id="sPY-vA-wUT"/>
-                <outlet property="challengeDaysMenuButton" destination="aLB-iu-A3w" id="eIb-O1-AoX"/>
                 <outlet property="challengePointLabel" destination="YSW-a2-v8u" id="sLE-wG-9Lu"/>
                 <outlet property="challengePointMenuButton" destination="L1I-AD-PnX" id="eU6-sk-55K"/>
                 <outlet property="challengeTaskTextView" destination="Miz-NP-92I" id="UCb-Yk-Nbi"/>
                 <outlet property="goalPointLabel" destination="3jz-v0-iov" id="d5p-q5-eYV"/>
                 <outlet property="goalPointMenuButton" destination="SXH-DH-jAr" id="bxv-R5-kfV"/>
                 <outlet property="placeholderLabel" destination="xaV-eV-PI1" id="CK1-TS-FW6"/>
+                <outlet property="streakGoalDaysLabel" destination="lOU-Ls-nao" id="jxr-1K-nPs"/>
+                <outlet property="streakGoalDaysMenuButton" destination="aLB-iu-A3w" id="phR-Ea-z7y"/>
+                <outlet property="streakGoalDaysValueLabel" destination="XWg-Pb-buF" id="ibZ-Xr-afn"/>
                 <outlet property="userImageView" destination="K38-ae-l04" id="ncn-4n-yNP"/>
                 <outlet property="userNameLabel" destination="puQ-nb-VZC" id="fYE-Vn-ag6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -403,11 +404,11 @@
                                                                 <constraint firstItem="SXH-DH-jAr" firstAttribute="centerY" secondItem="dHg-cv-90O" secondAttribute="centerY" id="uMr-I6-NK8"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7f1-li-kO0" userLabel="項目名「チャレンジ日数」表示用UIVIew">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7f1-li-kO0" userLabel="項目名「目標連続記録日数」表示用UIVIew">
                                                             <rect key="frame" x="0.0" y="445.66666666666663" width="345" height="40"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャレンジ日数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOU-Ls-nao">
-                                                                    <rect key="frame" x="117" y="9.9999999999999982" width="111.33333333333331" height="20.333333333333329"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目標連続記録日数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOU-Ls-nao">
+                                                                    <rect key="frame" x="109" y="9.9999999999999982" width="127.33333333333331" height="20.333333333333329"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -420,7 +421,7 @@
                                                                 <constraint firstItem="lOU-Ls-nao" firstAttribute="centerY" secondItem="7f1-li-kO0" secondAttribute="centerY" id="zXN-0f-OrQ"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1Y-B4-ine" userLabel="チャレンジ日数表示用UIVIew">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1Y-B4-ine" userLabel="目標連続記録日数表示用UIVIew">
                                                             <rect key="frame" x="0.0" y="485.66666666666663" width="345" height="40"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1c9-2Q-KmT">
@@ -660,7 +661,7 @@
         <image name="ic_check" width="30" height="30"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
