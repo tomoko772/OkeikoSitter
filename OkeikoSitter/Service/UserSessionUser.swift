@@ -99,7 +99,7 @@ struct UserSessionUser {
         }
         
         if let dailyPointTotals = dailyPointTotals {
-        dict["daily_point_totals"] = dailyPointTotals
+            dict["daily_point_totals"] = dailyPointTotals
         }
         
         // ご褒美画像URLはそのまま保存（検証しない）
