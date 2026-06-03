@@ -16,6 +16,7 @@ final class MainViewController: UIViewController {
     
     /// FirebaseServiceのインスタンス
     private let firebaseService = FirebaseService.shared
+    /// 連続記録達成を表示したかどうか
     private var hasShownStreakAchievement = false
     
     // MARK: - IBOutlets
