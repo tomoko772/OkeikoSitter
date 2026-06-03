@@ -18,7 +18,8 @@ struct User: Codable, CustomDebugStringConvertible {
         case challengePoint = "challenge_point"
         case bonusPoint = "bonus_point"
         case goalPoint = "goal_point"
-        case challengeDay = "challenge_day"
+        case streakGoalDays = "streak_goal_days"
+        case dailyPointTotals = "daily_point_totals"
         case hiddenPlace = "hidden_place"
         case currentPoint = "current_point"
         case profileImageURL = "profile_image_url"
@@ -39,8 +40,10 @@ struct User: Codable, CustomDebugStringConvertible {
     let bonusPoint: Int?
     /// 目標ポイント
     let goalPoint: Int?
-    /// チャレンジ日数
-    let challengeDay: Int?
+    /// 目標連続記録日数
+    let streakGoalDays: Int?
+    /// 目標連続記録日数
+    let dailyPointTotals: [String: Int]?
     /// ご褒美の隠し場所
     let hiddenPlace: String?
     /// 現在のポイント

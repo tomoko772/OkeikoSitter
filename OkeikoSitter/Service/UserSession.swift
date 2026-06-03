@@ -76,7 +76,8 @@ final class UserSession {
         challengePoint: Int? = nil,
         bonusPoint: Int? = nil,
         goalPoint: Int? = nil,
-        challengeDay: Int? = nil,
+        streakGoalDays: Int? = nil,
+        dailyPointTotals: [String: Int]? = nil,
         hiddenPlace: String? = nil,
         profileImage: UIImage? = nil,
         profileImageURL: String? = nil,
@@ -92,7 +93,8 @@ final class UserSession {
         if let challengePoint = challengePoint { user.challengePoint = challengePoint }
         if let bonusPoint = bonusPoint { user.bonusPoint = bonusPoint }
         if let goalPoint = goalPoint { user.goalPoint = goalPoint }
-        if let challengeDay = challengeDay { user.challengeDay = challengeDay }
+        if let streakGoalDays = streakGoalDays { user.streakGoalDays = streakGoalDays }
+        if let dailyPointTotals = dailyPointTotals { user.dailyPointTotals = dailyPointTotals }
         if let hiddenPlace = hiddenPlace { user.hiddenPlace = hiddenPlace }
         if let profileImage = profileImage { user.profileImage = profileImage }
         if let profileImageURL = profileImageURL { user.profileImageURL = profileImageURL }

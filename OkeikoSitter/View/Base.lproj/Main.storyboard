@@ -583,7 +583,7 @@
                         <outlet property="gifImage3" destination="5Cv-Gf-1JZ" id="iaZ-MC-Ztq"/>
                         <outlet property="goalAchievementView" destination="1OC-Qc-Fnw" id="O0J-J6-5Yf"/>
                         <outlet property="goalPointLabel" destination="Pze-Sr-b4G" id="UsS-1h-T1P"/>
-                        <outlet property="remainingDaysLabel" destination="duu-kE-vVK" id="d3n-0f-q4o"/>
+                        <outlet property="streakDaysLabel" destination="duu-kE-vVK" id="d3n-0f-q4o"/>
                         <outlet property="taskLabel" destination="F6x-qg-RCo" id="XfF-VS-79t"/>
                         <outlet property="userImageView" destination="OvK-5u-h7g" id="QSc-xs-VdV"/>
                         <outlet property="userNameLabel" destination="TVZ-Jd-Y65" id="a9j-CC-XcL"/>

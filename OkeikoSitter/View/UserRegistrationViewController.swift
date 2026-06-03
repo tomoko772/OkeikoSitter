@@ -146,10 +146,13 @@ final class UserRegistrationViewController: UIViewController {
             "challenge_point": 0,
             "bonus_point": 0,
             "goal_point": 0,
-            "challenge_day": 0,
+            "streak_goal_days": 0,
+            "daily_point_totals": [:],
             "hidden_place": "",
             "current_point": 0,
-            "profile_image_url": profileImageURL
+            "profile_image_url": profileImageURL,
+            "selected_dates": [],
+            "reward_image_url": ""
         ]
         
         firebaseService.update(
@@ -169,12 +172,15 @@ final class UserRegistrationViewController: UIViewController {
                     challengePoint: 0,
                     bonusPoint: 0,
                     goalPoint: 0,
-                    challengeDay: 0,
+                    streakGoalDays: 0,
+                    dailyPointTotals: [:],
                     hiddenPlace: "",
                     profileImage: nil,
                     profileImageURL: profileImageURL,
                     currentPoint: 0,
-                    pin: nil
+                    pin: nil,
+                    selectedDates: [],
+                    rewardImageURL: nil
                 )
                 UserSession.shared.addUser(user: newUser)
                 

@@ -16,6 +16,8 @@ final class MainViewController: UIViewController {
     
     /// FirebaseServiceのインスタンス
     private let firebaseService = FirebaseService.shared
+    /// 連続記録達成を表示したかどうか
+    private var hasShownStreakAchievement = false
     
     // MARK: - IBOutlets
     
@@ -33,8 +35,8 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var currentPointLabel: UILabel!
     /// 目標ポイント数ラベル
     @IBOutlet private weak var goalPointLabel: UILabel!
-    /// 残りの日数ラベル
-    @IBOutlet private weak var remainingDaysLabel: UILabel!
+    /// 連続記録日数ラベル
+    @IBOutlet private weak var streakDaysLabel: UILabel!
     /// バイオリンのGIF画像
     @IBOutlet private weak var gifImage: UIImageView!
     /// プレゼントのGIF画像
@@ -72,6 +74,8 @@ final class MainViewController: UIViewController {
         // 目標達成チェック
         shouldShowGoalAchievementView(goalPoint: goalPoint, currentPoint: newPoint)
         
+        incrementTodayPointCountIfNeeded()
+        
         // 保存
         saveCurrentPoint(currentPoint: newPoint)
     }
@@ -85,6 +89,9 @@ final class MainViewController: UIViewController {
         UserSession.shared.updateCurrentPoint(currentPoint + bonusPoint)
         currentPointLabel.text = "現在　\(currentPoint + bonusPoint)　ポイント"
         shouldShowGoalAchievementView(goalPoint: goalPoint, currentPoint: currentPoint + bonusPoint)
+        
+        incrementTodayPointCountIfNeeded()
+        
         saveCurrentPoint(currentPoint: currentPoint + bonusPoint)
     }
     
@@ -101,12 +108,19 @@ final class MainViewController: UIViewController {
         currentPointLabel.text = "現在　\(newPoint)　ポイント"
         
         shouldShowGoalAchievementView(goalPoint: goalPoint, currentPoint: newPoint)
+        
+        decrementTodayPointCountIfNeeded()
+        
         saveCurrentPoint(currentPoint: newPoint)
     }
     
-    /// 残り日数が表示されたボタンをタップ
+    /// 連続記録日数が表示されたボタンをタップ
     @IBAction private func calendarButtonTapped(_ sender: UIButton) {
         guard let currentUser = UserSession.shared.currentUser else { return }
+        
+        print("=== カレンダーボタン押下 ===")
+        print("userName: \(currentUser.userName)")
+        print("selectedDates: \(formatTimestamps(currentUser.selectedDates ?? []))")
         
         // ★ currentUser ごとの selectedDates を取得するよう変更
         let savedDates: [TimeInterval] = currentUser.selectedDates ?? []
@@ -115,30 +129,8 @@ final class MainViewController: UIViewController {
         let calendarVC = CalendarViewController()
         calendarVC.selectedDates = selectedDates
         
-        // 保存時の処理
-        calendarVC.onSaveSelectedDates = { selectedDates in
-            let timestamps = selectedDates.map { $0.timeIntervalSince1970 }
-            
-            guard let currentUser = UserSession.shared.currentUser else { return }
-            
-            // ★ currentUser ごとの selectedDates を反映
-            UserSession.shared.updateSelectedDates(for: currentUser.userName, timestamps: timestamps)
-            
-            // Firebase に保存
-            let saveData: [String: Any] = ["selected_dates": timestamps]
-            FirebaseService.shared.updateUserAndCurrentUser(
-                collection: "users",
-                documentID: Auth.auth().currentUser!.uid,
-                userName: currentUser.userName,
-                userData: saveData
-            ) { error in
-                if let error = error {
-                    print("日付保存失敗: \(error)")
-                } else {
-                    print("日付保存成功")
-                }
-            }
-        }
+        calendarVC.onSaveSelectedDates = nil
+        
         present(calendarVC, animated: true)
     }
     
@@ -157,6 +149,26 @@ final class MainViewController: UIViewController {
     }
     
     // MARK: - Other Methods
+    
+    private let jpDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar.current
+        formatter.locale = Locale(identifier: "ja_JP")
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        return formatter
+    }()
+    
+    private func formatDates(_ dates: [Date]) -> [String] {
+        return dates.sorted().map { jpDateFormatter.string(from: $0) }
+    }
+    
+    private func formatTimestamps(_ timestamps: [TimeInterval]) -> [String] {
+        return timestamps
+            .map { Date(timeIntervalSince1970: $0) }
+            .sorted()
+            .map { jpDateFormatter.string(from: $0) }
+    }
     
     private func configureBarButtonItems() {
         // １つ目の画像ボタン（ユーザー切替）
@@ -221,7 +233,7 @@ final class MainViewController: UIViewController {
                 self.showAlert(title: "データの保存エラー", message: error.localizedDescription)
             } else {
                 UserSession.shared.updateCurrentPoint(currentPoint)
-                print("ポイント保存成功: \(currentPoint)")
+                print("current_point 保存成功: \(currentPoint)")
             }
         }
     }
@@ -244,6 +256,7 @@ final class MainViewController: UIViewController {
                 
                 if let currentUserData = accountData?.currentUser {
                     print("📊 取得したポイント: \(currentUserData.currentPoint ?? -1)")
+                    print("📊 取得した streakGoalDays: \(currentUserData.streakGoalDays ?? -1)")
                     if let allUsers = accountData?.users {
                         let sessionUsers = allUsers.map { user in
                             UserSessionUser(
@@ -252,7 +265,8 @@ final class MainViewController: UIViewController {
                                 challengePoint: user.challengePoint ?? 0,
                                 bonusPoint: user.bonusPoint ?? 0,
                                 goalPoint: user.goalPoint ?? 0,
-                                challengeDay: user.challengeDay ?? 0,
+                                streakGoalDays: user.streakGoalDays ?? 0,
+                                dailyPointTotals: user.dailyPointTotals ?? [:],
                                 hiddenPlace: user.hiddenPlace ?? "",
                                 profileImage: nil,
                                 profileImageURL: user.profileImageURL,
@@ -272,7 +286,8 @@ final class MainViewController: UIViewController {
                         challengePoint: currentUserData.challengePoint ?? 0,
                         bonusPoint: currentUserData.bonusPoint ?? 0,
                         goalPoint: currentUserData.goalPoint ?? 0,
-                        challengeDay: currentUserData.challengeDay ?? 0,
+                        streakGoalDays: currentUserData.streakGoalDays ?? 0,
+                        dailyPointTotals: currentUserData.dailyPointTotals ?? [:],
                         hiddenPlace: currentUserData.hiddenPlace ?? "",
                         profileImage: nil,
                         profileImageURL: currentUserData.profileImageURL,
@@ -326,13 +341,18 @@ final class MainViewController: UIViewController {
     
     private func updateUI(with user: UserSessionUser) {
         userNameLabel.text = user.userName
+        
         taskLabel.text = user.challengeTask.isEmpty ? "設定してください" : user.challengeTask
         dailyPointLabel.text = "+\(user.challengePoint) ポイント"
         bonusPointLabel.text = "ボーナス+\(user.bonusPoint) ポイント"
         currentPointLabel.text = "現在　\(user.currentPoint) ポイント"
         goalPointLabel.text = "目標　\(user.goalPoint)　ポイント"
-        remainingDaysLabel.text = "\(user.challengeDay) 日"
+        
+        let streak = calculateCurrentStreak(from: user.selectedDates)
+        streakDaysLabel.text = "連続記録 \(streak)日"
+        
         shouldShowGoalAchievementView(goalPoint: user.goalPoint, currentPoint: user.currentPoint)
+        showStreakAchievementIfNeeded(streak: streak, streakGoalDays: user.streakGoalDays)
     }
     
     private func shouldShowGoalAchievementView(goalPoint: Int, currentPoint: Int) {
@@ -389,7 +409,7 @@ final class MainViewController: UIViewController {
               let userID = Auth.auth().currentUser?.uid else { return }
         
         let timestamps = dates.map { $0.timeIntervalSince1970 }
-        let data: [String: Any] = ["selectedDates": timestamps]
+        let data: [String: Any] = ["selected_dates": timestamps]
         
         FirebaseService.shared.updateUserAndCurrentUser(
             collection: "users",
@@ -400,8 +420,260 @@ final class MainViewController: UIViewController {
             if let error = error {
                 print("日付保存失敗: \(error)")
             } else {
-                print("日付保存成功")
+                let formattedDates = dates.sorted().map { String(describing: $0) }
+                print("日付保存成功: \(formattedDates)")
             }
+        }
+    }
+    
+    private func calculateCurrentStreak(from timestamps: [TimeInterval]?) -> Int {
+        guard let timestamps = timestamps, !timestamps.isEmpty else { return 0 }
+        
+        let calendar = Calendar.current
+        let normalizedDates = timestamps.map {
+            calendar.startOfDay(for: Date(timeIntervalSince1970: $0))
+        }
+        
+        let uniqueDates = Array(Set(normalizedDates)).sorted()
+        guard let lastDate = uniqueDates.last else { return 0 }
+        
+        let today = calendar.startOfDay(for: Date())
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
+        
+        print("=== calculateCurrentStreak ===")
+        print("timestamps: \(formatTimestamps(timestamps))")
+        print("uniqueDates: \(formatDates(uniqueDates))")
+        print("lastDate: \(jpDateFormatter.string(from: lastDate))")
+        print("today: \(jpDateFormatter.string(from: today))")
+        print("yesterday: \(jpDateFormatter.string(from: yesterday))")
+        
+        if !calendar.isDate(lastDate, inSameDayAs: today) &&
+            !calendar.isDate(lastDate, inSameDayAs: yesterday) {
+            return 0
+        }
+        
+        var streak = 1
+        var currentDate = lastDate
+        
+        for date in uniqueDates.dropLast().reversed() {
+            let diff = calendar.dateComponents([.day], from: date, to: currentDate).day ?? 0
+            
+            print("compare: date=\(jpDateFormatter.string(from: date)), currentDate=\(jpDateFormatter.string(from: currentDate)), diff=\(diff)")
+            
+            if diff == 1 {
+                streak += 1
+                currentDate = date
+            } else if diff > 1 {
+                break
+            }
+        }
+        
+        print("streak: \(streak)")
+        return streak
+    }
+    
+    private func addTodayToSelectedDatesIfNeeded() {
+        guard let currentUser = UserSession.shared.currentUser,
+              let userID = Auth.auth().currentUser?.uid else { return }
+        
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        
+        var timestamps = currentUser.selectedDates ?? []
+        
+        let alreadyExists = timestamps.contains {
+            calendar.isDate(Date(timeIntervalSince1970: $0), inSameDayAs: today)
+        }
+        
+        guard !alreadyExists else { return }
+        
+        timestamps.append(today.timeIntervalSince1970)
+        
+        UserSession.shared.updateSelectedDates(for: currentUser.userName, timestamps: timestamps)
+        
+        if var updatedUser = UserSession.shared.currentUser {
+            updatedUser.selectedDates = timestamps
+            UserSession.shared.selectCurrentUser(user: updatedUser)
+            updateUI(with: updatedUser)
+        }
+        
+        let saveData: [String: Any] = ["selected_dates": timestamps]
+        
+        firebaseService.updateUserAndCurrentUser(
+            collection: "users",
+            documentID: userID,
+            userName: currentUser.userName,
+            userData: saveData
+        ) { [weak self] error in
+            if let error = error {
+                print("selected_dates 保存失敗: \(error)")
+            } else {
+                if var updatedUser = UserSession.shared.currentUser {
+                    updatedUser.selectedDates = timestamps
+                    UserSession.shared.selectCurrentUser(user: updatedUser)
+                    self?.updateUI(with: updatedUser)
+                }
+                print("selected_dates 保存成功")
+                print("selected_dates 保存前: \(String(describing: self?.formatTimestamps(currentUser.selectedDates ?? [])))")
+                print("selected_dates 保存後: \(String(describing: self?.formatTimestamps(timestamps)))")
+                
+                let formatter = DateFormatter()
+                formatter.calendar = Calendar.current
+                formatter.locale = Locale(identifier: "ja_JP")
+                formatter.timeZone = TimeZone.current
+                formatter.dateFormat = "M月d日"
+                
+                let formattedDates = timestamps
+                    .map { Date(timeIntervalSince1970: $0) }
+                    .sorted()
+                    .map { formatter.string(from: $0) }
+                
+                print("selected_dates 保存後: \(formattedDates)")
+            }
+        }
+    }
+    
+    private func removeTodayFromSelectedDatesIfNeeded() {
+        guard let currentUser = UserSession.shared.currentUser,
+              let userID = Auth.auth().currentUser?.uid else { return }
+        
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        
+        let oldTimestamps = currentUser.selectedDates ?? []
+        
+        let newTimestamps = oldTimestamps.filter {
+            !calendar.isDate(Date(timeIntervalSince1970: $0), inSameDayAs: today)
+        }
+        
+        guard newTimestamps.count != oldTimestamps.count else { return }
+        
+        UserSession.shared.updateSelectedDates(for: currentUser.userName, timestamps: newTimestamps)
+        
+        if var updatedUser = UserSession.shared.currentUser {
+            updatedUser.selectedDates = newTimestamps
+            UserSession.shared.selectCurrentUser(user: updatedUser)
+            updateUI(with: updatedUser)
+        }
+        
+        let saveData: [String: Any] = ["selected_dates": newTimestamps]
+        
+        firebaseService.updateUserAndCurrentUser(
+            collection: "users",
+            documentID: userID,
+            userName: currentUser.userName,
+            userData: saveData
+        ) { [weak self] error in
+            if let error = error {
+                print("selected_dates 削除失敗: \(error)")
+            } else {
+                if var updatedUser = UserSession.shared.currentUser {
+                    updatedUser.selectedDates = newTimestamps
+                    UserSession.shared.selectCurrentUser(user: updatedUser)
+                    self?.updateUI(with: updatedUser)
+                }
+                print("selected_dates 削除成功")
+                print("selected_dates 削除前: \(oldTimestamps)")
+                print("selected_dates 削除後: \(newTimestamps)")
+            }
+        }
+    }
+    
+    private func todayKey() -> String {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar.current
+        formatter.locale = Locale(identifier: "ja_JP")
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: Date())
+    }
+    
+    private func incrementTodayPointCountIfNeeded() {
+        guard let currentUser = UserSession.shared.currentUser,
+              let userID = Auth.auth().currentUser?.uid else { return }
+        
+        let key = todayKey()
+        var totals = currentUser.dailyPointTotals ?? [:]
+        let oldCount = totals[key] ?? 0
+        let newCount = oldCount + 1
+        totals[key] = newCount
+        
+        let saveData: [String: Any] = ["daily_point_totals": totals]
+        
+        firebaseService.updateUserAndCurrentUser(
+            collection: "users",
+            documentID: userID,
+            userName: currentUser.userName,
+            userData: saveData
+        ) { error in
+            if let error = error {
+                print("daily_point_totals 保存失敗: \(error)")
+            } else {
+                if var updatedUser = UserSession.shared.currentUser {
+                    updatedUser.dailyPointTotals = totals
+                    UserSession.shared.selectCurrentUser(user: updatedUser)
+                }
+                print("daily_point_totals 保存成功: \(totals)")
+            }
+        }
+        
+        if oldCount == 0 && newCount == 1 {
+            addTodayToSelectedDatesIfNeeded()
+        }
+    }
+    
+    private func decrementTodayPointCountIfNeeded() {
+        guard let currentUser = UserSession.shared.currentUser,
+              let userID = Auth.auth().currentUser?.uid else { return }
+        
+        let key = todayKey()
+        var totals = currentUser.dailyPointTotals ?? [:]
+        let oldCount = totals[key] ?? 0
+        
+        guard oldCount > 0 else { return }
+        
+        let newCount = oldCount - 1
+        
+        if newCount > 0 {
+            totals[key] = newCount
+        } else {
+            totals.removeValue(forKey: key)
+        }
+        
+        let saveData: [String: Any] = ["daily_point_totals": totals]
+        
+        firebaseService.updateUserAndCurrentUser(
+            collection: "users",
+            documentID: userID,
+            userName: currentUser.userName,
+            userData: saveData
+        ) { error in
+            if let error = error {
+                print("daily_point_totals 更新失敗: \(error)")
+            } else {
+                if var updatedUser = UserSession.shared.currentUser {
+                    updatedUser.dailyPointTotals = totals
+                    UserSession.shared.selectCurrentUser(user: updatedUser)
+                }
+                print("daily_point_totals 全体: \(totals)")
+            }
+        }
+        
+        if newCount <= 0 {
+            removeTodayFromSelectedDatesIfNeeded()
+        }
+    }
+    
+    private func showStreakAchievementIfNeeded(streak: Int, streakGoalDays: Int) {
+        guard streakGoalDays > 0 else { return }
+        
+        if streak >= streakGoalDays {
+            if !hasShownStreakAchievement {
+                hasShownStreakAchievement = true
+                showAlert(title: "連続記録達成！", message: "\(streakGoalDays)日連続を達成しました！")
+            }
+        } else {
+            hasShownStreakAchievement = false
         }
     }
 }
