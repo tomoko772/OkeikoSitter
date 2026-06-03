@@ -69,10 +69,9 @@ struct DayLabel: CalendarItemViewRepresentable {
     // 3) ViewModel を反映する（必須）
     static func setViewModel(_ viewModel: ViewModel, on view: UILabel) {
         view.text = "\(viewModel.day)"
-        view.textColor = .label
         view.backgroundColor = .clear
+        view.textColor = .label
 
-        // 幅高さの制約を取得
         let widthConstraint = view.constraints.first { $0.identifier == "day_diameter_width" }
         let heightConstraint = view.constraints.first { $0.identifier == "day_diameter_height" }
 
@@ -81,12 +80,17 @@ struct DayLabel: CalendarItemViewRepresentable {
         widthConstraint?.constant = diameter
         heightConstraint?.constant = diameter
 
+        view.layer.cornerRadius = diameter / 2
+        view.clipsToBounds = true
+
         if viewModel.isSelected {
-            view.layer.cornerRadius = diameter / 2
-            view.layer.borderWidth = 2
-            view.layer.borderColor = UIColor.systemRed.cgColor
+            view.backgroundColor = UIColor.systemOrange
+            view.textColor = UIColor.white
+            view.layer.borderWidth = 0
+            view.layer.borderColor = UIColor.clear.cgColor
         } else {
-            view.layer.cornerRadius = diameter / 2
+            view.backgroundColor = UIColor.clear
+            view.textColor = UIColor.label                               
             view.layer.borderWidth = 0
             view.layer.borderColor = UIColor.clear.cgColor
         }

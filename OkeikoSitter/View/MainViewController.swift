@@ -128,41 +128,8 @@ final class MainViewController: UIViewController {
         let calendarVC = CalendarViewController()
         calendarVC.selectedDates = selectedDates
         
-        // 保存時の処理
-        calendarVC.onSaveSelectedDates = { [weak self] selectedDates in
-            guard let self = self else { return }
-            let timestamps = selectedDates.map { $0.timeIntervalSince1970 }
-            
-            print("=== カレンダー保存後 ===")
-            print("selectedDates: \(formatDates(Array(selectedDates)))")
-            print("timestamps: \(formatTimestamps(timestamps))")
-            
-            guard let currentUser = UserSession.shared.currentUser else { return }
-            
-            // ★ currentUser ごとの selectedDates を反映
-            UserSession.shared.updateSelectedDates(for: currentUser.userName, timestamps: timestamps)
-            
-            // Firebase に保存
-            let saveData: [String: Any] = ["selected_dates": timestamps]
-            FirebaseService.shared.updateUserAndCurrentUser(
-                collection: "users",
-                documentID: Auth.auth().currentUser!.uid,
-                userName: currentUser.userName,
-                userData: saveData
-            ) { error in
-                if let error = error {
-                    print("日付保存失敗: \(error)")
-                } else {
-                    print("日付保存成功: \(self.formatDates(Array(selectedDates)))")
-                    
-                    if var updatedUser = UserSession.shared.currentUser {
-                        updatedUser.selectedDates = timestamps
-                        UserSession.shared.selectCurrentUser(user: updatedUser)
-                        self.updateUI(with: updatedUser)
-                    }
-                }
-            }
-        }
+        calendarVC.onSaveSelectedDates = nil
+        
         present(calendarVC, animated: true)
     }
     
@@ -190,11 +157,11 @@ final class MainViewController: UIViewController {
         formatter.dateFormat = "yyyy/MM/dd HH:mm"
         return formatter
     }()
-
+    
     private func formatDates(_ dates: [Date]) -> [String] {
         return dates.sorted().map { jpDateFormatter.string(from: $0) }
     }
-
+    
     private func formatTimestamps(_ timestamps: [TimeInterval]) -> [String] {
         return timestamps
             .map { Date(timeIntervalSince1970: $0) }
@@ -491,7 +458,7 @@ final class MainViewController: UIViewController {
             let diff = calendar.dateComponents([.day], from: date, to: currentDate).day ?? 0
             
             print("compare: date=\(jpDateFormatter.string(from: date)), currentDate=\(jpDateFormatter.string(from: currentDate)), diff=\(diff)")
-
+            
             if diff == 1 {
                 streak += 1
                 currentDate = date
@@ -554,12 +521,12 @@ final class MainViewController: UIViewController {
                 formatter.locale = Locale(identifier: "ja_JP")
                 formatter.timeZone = TimeZone.current
                 formatter.dateFormat = "M月d日"
-
+                
                 let formattedDates = timestamps
                     .map { Date(timeIntervalSince1970: $0) }
                     .sorted()
                     .map { formatter.string(from: $0) }
-
+                
                 print("selected_dates 保存後: \(formattedDates)")
             }
         }

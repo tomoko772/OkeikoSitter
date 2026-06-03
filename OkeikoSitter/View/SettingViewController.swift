@@ -323,6 +323,10 @@ final class SettingViewController: UIViewController {
     
     private func configureStreakGoalDaysMenuButton() {
         let streakGoalDaysMenu = UIMenu(title: "", children: [
+      //    UIAction(title: "1日") { _ in
+      //        self.selectedStreakGoalDays = 1
+      //        self.streakGoalDaysValueLabel.text = "1日"
+      //    },
             UIAction(title: "7日") { _ in
                 self.selectedStreakGoalDays = 7
                 self.streakGoalDaysValueLabel.text = "7日"
