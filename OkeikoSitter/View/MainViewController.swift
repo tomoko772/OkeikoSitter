@@ -122,13 +122,16 @@ final class MainViewController: UIViewController {
         print("userName: \(currentUser.userName)")
         print("selectedDates: \(formatTimestamps(currentUser.selectedDates ?? []))")
         
-        // ★ currentUser ごとの selectedDates を取得するよう変更
         let savedDates: [TimeInterval] = currentUser.selectedDates ?? []
-        let selectedDates = Set(savedDates.map { Date(timeIntervalSince1970: $0) })
+        let calendar = Calendar.current
+        let selectedDates = Set(
+            savedDates.map {
+                calendar.startOfDay(for: Date(timeIntervalSince1970: $0))
+            }
+        )
         
-        let calendarVC = CalendarViewController()
+        let calendarVC = CalendarViewController(nibName: "CalendarViewController", bundle: nil)
         calendarVC.selectedDates = selectedDates
-        
         calendarVC.onSaveSelectedDates = nil
         
         present(calendarVC, animated: true)
